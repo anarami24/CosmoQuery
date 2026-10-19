@@ -89,3 +89,23 @@ BM25_K1 = 1.5          # saturación de la frecuencia del término
 BM25_B = 0.75          # normalización por longitud del fragmento
 PHRASE_WEIGHT = 1.0    # peso del bono por frases (bigramas) encontradas
 TOP_K = 5
+
+# --------------------------------------------------------------------------
+# Persona 2 - Etapa 4: Búsqueda aproximada
+# --------------------------------------------------------------------------
+FUZZY_MIN_LEN = 4                # palabras de 3 letras o menos no se corrigen
+FUZZY_MAX_DIST = {4: 1, 8: 2}    # longitud mínima -> distancia máxima (4-7: 1, >=8: 2)
+FUZZY_MAX_CANDIDATES = 3         # correcciones por palabra
+NGRAM_N = 2                      # bigramas (se compara con 3 en la Etapa 6)
+NGRAM_MIN_JACCARD = 0.45
+JACCARD_RERANK_WEIGHT = 0.1      # β del reordenamiento por Jaccard de trigramas
+# --------------------------------------------------------------------------
+# Persona 2 - Etapa 5: Contexto y modelo
+# --------------------------------------------------------------------------
+QA_MODEL = "deepset/roberta-base-squad2"
+MODEL_MAX_TOKENS = 512
+CONTEXT_CANDIDATES = 10          # top-N recuperados que entran a la selección
+CONTEXT_TOKEN_BUDGET = None      # None = 512 - tokens(pregunta) - especiales - margen
+REDUNDANCY_JACCARD = 0.5
+NO_ANSWER_THRESHOLD = 7.0        # umbral del PokeChat (score_difference < 7)
+NO_ANSWER_TEXT = "I don't know"  # coincide con evaluation.answer_scores
