@@ -1,0 +1,811 @@
+[
+ {
+  "id": "Q01",
+  "question": "When was Pluto discovered?",
+  "answers": [
+   "1930"
+  ],
+  "evidence": [
+   "1930"
+  ],
+  "docs": [
+   "Pluto Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q02",
+  "question": "When was Pluto reclassified as a dwarf planet?",
+  "answers": [
+   "2006"
+  ],
+  "evidence": [
+   "reclassified"
+  ],
+  "docs": [
+   "Pluto Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q03",
+  "question": "When did New Horizons fly by Pluto?",
+  "answers": [
+   "July 14, 2015",
+   "2015"
+  ],
+  "evidence": [
+   "2015"
+  ],
+  "docs": [
+   "Pluto Facts",
+   "New Horizons Mission"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q04",
+  "question": "What is the largest moon of Pluto?",
+  "answers": [
+   "Charon"
+  ],
+  "evidence": [
+   "Charon"
+  ],
+  "docs": [
+   "Pluto Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q05",
+  "question": "How many known moons does Pluto have?",
+  "answers": [
+   "five",
+   "five known moons"
+  ],
+  "evidence": [
+   "five known moons"
+  ],
+  "docs": [
+   "Pluto Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q06",
+  "question": "What are the names of the two moons of Mars?",
+  "answers": [
+   "Phobos and Deimos",
+   "Phobos",
+   "Deimos"
+  ],
+  "evidence": [
+   "Deimos"
+  ],
+  "docs": [
+   "Mars Facts",
+   "Mars Exploration"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q07",
+  "question": "What is the largest volcano in the solar system?",
+  "answers": [
+   "Olympus Mons"
+  ],
+  "evidence": [
+   "Olympus Mons"
+  ],
+  "docs": [
+   "Mars Facts",
+   "Mars Exploration"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q08",
+  "question": "What gases make up the atmosphere of Mars?",
+  "answers": [
+   "carbon dioxide, nitrogen, and argon",
+   "carbon dioxide"
+  ],
+  "evidence": [
+   "carbon dioxide"
+  ],
+  "docs": [
+   "Mars Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q09",
+  "question": "How long is a year on Mars?",
+  "answers": [
+   "687 Earth days",
+   "669.6 sols"
+  ],
+  "evidence": [
+   "687"
+  ],
+  "docs": [
+   "Mars Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q10",
+  "question": "What is the Great Red Spot?",
+  "answers": [
+   "a giant storm bigger than Earth",
+   "giant storm"
+  ],
+  "evidence": [
+   "Great Red Spot"
+  ],
+  "docs": [
+   "Jupiter Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q11",
+  "question": "Who first observed the four largest moons of Jupiter?",
+  "answers": [
+   "Galileo Galilei",
+   "Galileo"
+  ],
+  "evidence": [
+   "Galileo"
+  ],
+  "docs": [
+   "Jupiter Facts",
+   "Europa Facts",
+   "Ganymede Facts",
+   "Io Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q12",
+  "question": "What is the largest moon in the solar system?",
+  "answers": [
+   "Ganymede"
+  ],
+  "evidence": [
+   "Ganymede"
+  ],
+  "docs": [
+   "Jupiter Facts",
+   "Ganymede Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q13",
+  "question": "How long is one day on Jupiter?",
+  "answers": [
+   "9.9 hours"
+  ],
+  "evidence": [
+   "9.9 hours"
+  ],
+  "docs": [
+   "Jupiter Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q14",
+  "question": "Who discovered Uranus?",
+  "answers": [
+   "William Herschel",
+   "Herschel"
+  ],
+  "evidence": [
+   "Herschel"
+  ],
+  "docs": [
+   "Uranus Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q15",
+  "question": "What gives Uranus its blue-green color?",
+  "answers": [
+   "methane gas",
+   "methane"
+  ],
+  "evidence": [
+   "methane"
+  ],
+  "docs": [
+   "Uranus Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q16",
+  "question": "What is the axial tilt of Uranus?",
+  "answers": [
+   "97.77 degrees"
+  ],
+  "evidence": [
+   "97.77"
+  ],
+  "docs": [
+   "Uranus Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q17",
+  "question": "When was Neptune discovered?",
+  "answers": [
+   "1846"
+  ],
+  "evidence": [
+   "1846"
+  ],
+  "docs": [
+   "Neptune Facts",
+   "Triton Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q18",
+  "question": "What is the largest moon of Neptune?",
+  "answers": [
+   "Triton"
+  ],
+  "evidence": [
+   "Triton"
+  ],
+  "docs": [
+   "Neptune Facts",
+   "Triton Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q19",
+  "question": "Which planet is the windiest in our solar system?",
+  "answers": [
+   "Neptune"
+  ],
+  "evidence": [
+   "windiest"
+  ],
+  "docs": [
+   "Neptune Facts",
+   "About the Planets",
+   "Solar System Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q20",
+  "question": "What is the hottest planet in our solar system?",
+  "answers": [
+   "Venus"
+  ],
+  "evidence": [
+   "hottest"
+  ],
+  "docs": [
+   "Venus Facts",
+   "About the Planets",
+   "Solar System Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q21",
+  "question": "What is the surface temperature of Venus?",
+  "answers": [
+   "872 degrees Fahrenheit (467 Celsius)",
+   "872 degrees Fahrenheit",
+   "467 Celsius"
+  ],
+  "evidence": [
+   "467"
+  ],
+  "docs": [
+   "Venus Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q22",
+  "question": "What is the atmosphere of Venus mostly made of?",
+  "answers": [
+   "carbon dioxide"
+  ],
+  "evidence": [
+   "carbon dioxide"
+  ],
+  "docs": [
+   "Venus Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q23",
+  "question": "What is the smallest planet in our solar system?",
+  "answers": [
+   "Mercury"
+  ],
+  "evidence": [
+   "smallest planet"
+  ],
+  "docs": [
+   "Mercury Facts",
+   "About the Planets",
+   "Solar System Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q24",
+  "question": "How long does Mercury take to orbit the Sun?",
+  "answers": [
+   "88 Earth days",
+   "88 days"
+  ],
+  "evidence": [
+   "88"
+  ],
+  "docs": [
+   "Mercury Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q25",
+  "question": "What are Saturn's rings made of?",
+  "answers": [
+   "billions of small chunks of ice and rock",
+   "ice and rock"
+  ],
+  "evidence": [
+   "ice and rock"
+  ],
+  "docs": [
+   "Saturn Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q26",
+  "question": "Which planet has an average density less than water?",
+  "answers": [
+   "Saturn"
+  ],
+  "evidence": [
+   "less than water"
+  ],
+  "docs": [
+   "Saturn Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q27",
+  "question": "How long is one day on Saturn?",
+  "answers": [
+   "10.7 hours"
+  ],
+  "evidence": [
+   "10.7 hours"
+  ],
+  "docs": [
+   "Saturn Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q28",
+  "question": "What is the largest moon of Saturn?",
+  "answers": [
+   "Titan"
+  ],
+  "evidence": [
+   "largest moon"
+  ],
+  "docs": [
+   "Titan Facts",
+   "Saturn Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q29",
+  "question": "What are the lakes and seas on Titan made of?",
+  "answers": [
+   "liquid hydrocarbons like methane and ethane",
+   "methane and ethane"
+  ],
+  "evidence": [
+   "methane"
+  ],
+  "docs": [
+   "Titan Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q30",
+  "question": "What lies beneath the icy shell of Europa?",
+  "answers": [
+   "a saltwater ocean",
+   "saltwater ocean"
+  ],
+  "evidence": [
+   "ocean"
+  ],
+  "docs": [
+   "Europa Facts",
+   "Europa Clipper"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q31",
+  "question": "When did Europa Clipper launch?",
+  "answers": [
+   "Oct. 14, 2024",
+   "October 14, 2024",
+   "2024"
+  ],
+  "evidence": [
+   "2024"
+  ],
+  "docs": [
+   "Europa Clipper",
+   "Europa Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q32",
+  "question": "When will Europa Clipper reach Jupiter?",
+  "answers": [
+   "April 2030",
+   "2030"
+  ],
+  "evidence": [
+   "2030"
+  ],
+  "docs": [
+   "Europa Clipper"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q33",
+  "question": "How old is the Sun?",
+  "answers": [
+   "4.5 billion years",
+   "4.5 billion-year-old"
+  ],
+  "evidence": [
+   "4.5 billion"
+  ],
+  "docs": [
+   "Sun Facts",
+   "Solar System Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q34",
+  "question": "What is the Sun made of?",
+  "answers": [
+   "hydrogen and helium"
+  ],
+  "evidence": [
+   "hydrogen and helium"
+  ],
+  "docs": [
+   "Sun Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q35",
+  "question": "How far is the Sun from Earth?",
+  "answers": [
+   "93 million miles (150 million kilometers)",
+   "93 million miles",
+   "150 million kilometers"
+  ],
+  "evidence": [
+   "93 million miles"
+  ],
+  "docs": [
+   "Sun Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q36",
+  "question": "Where did the Perseverance rover land?",
+  "answers": [
+   "Jezero Crater",
+   "Jezero"
+  ],
+  "evidence": [
+   "Jezero"
+  ],
+  "docs": [
+   "Perseverance Mission",
+   "Mars Exploration"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q37",
+  "question": "What was the first aircraft to fly on another planet?",
+  "answers": [
+   "Ingenuity"
+  ],
+  "evidence": [
+   "Ingenuity"
+  ],
+  "docs": [
+   "Perseverance Mission",
+   "Mars Exploration"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q38",
+  "question": "When did Voyager 1 reach interstellar space?",
+  "answers": [
+   "2012"
+  ],
+  "evidence": [
+   "2012"
+  ],
+  "docs": [
+   "Voyager Mission"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q39",
+  "question": "Who led the committee that selected the contents of the golden record?",
+  "answers": [
+   "Carl Sagan"
+  ],
+  "evidence": [
+   "Sagan"
+  ],
+  "docs": [
+   "Voyager Mission"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q40",
+  "question": "When did the Juno spacecraft arrive at Jupiter?",
+  "answers": [
+   "July 4, 2016",
+   "2016"
+  ],
+  "evidence": [
+   "2016"
+  ],
+  "docs": [
+   "Juno Mission"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q41",
+  "question": "Where is the main asteroid belt located?",
+  "answers": [
+   "between Mars and Jupiter",
+   "between the orbits of Mars and Jupiter"
+  ],
+  "evidence": [
+   "Jupiter"
+  ],
+  "docs": [
+   "Asteroid Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q42",
+  "question": "Where do comets come from?",
+  "answers": [
+   "the Kuiper Belt and the Oort Cloud",
+   "Kuiper Belt",
+   "Oort Cloud"
+  ],
+  "evidence": [
+   "Oort"
+  ],
+  "docs": [
+   "Comet Facts",
+   "Oort Cloud Facts",
+   "Kuiper Belt Facts"
+  ],
+  "category": "literal"
+ },
+ {
+  "id": "Q43",
+  "question": "Which world circles closest to our star?",
+  "answers": [
+   "Mercury"
+  ],
+  "evidence": [
+   "nearest to the Sun"
+  ],
+  "docs": [
+   "Mercury Facts",
+   "About the Planets",
+   "Solar System Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q44",
+  "question": "Who first spotted the seventh planet?",
+  "answers": [
+   "William Herschel",
+   "Herschel"
+  ],
+  "evidence": [
+   "Herschel"
+  ],
+  "docs": [
+   "Uranus Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q45",
+  "question": "What is the tallest volcano on the red planet?",
+  "answers": [
+   "Olympus Mons"
+  ],
+  "evidence": [
+   "Olympus Mons"
+  ],
+  "docs": [
+   "Mars Facts",
+   "Mars Exploration"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q46",
+  "question": "Which satellites orbit the fourth planet?",
+  "answers": [
+   "Phobos and Deimos",
+   "Phobos",
+   "Deimos"
+  ],
+  "evidence": [
+   "Deimos"
+  ],
+  "docs": [
+   "Mars Facts",
+   "Mars Exploration"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q47",
+  "question": "What enormous storm rages on the biggest planet?",
+  "answers": [
+   "Great Red Spot"
+  ],
+  "evidence": [
+   "Great Red Spot"
+  ],
+  "docs": [
+   "Jupiter Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q48",
+  "question": "Which world has the strongest winds?",
+  "answers": [
+   "Neptune"
+  ],
+  "evidence": [
+   "windiest"
+  ],
+  "docs": [
+   "Neptune Facts",
+   "About the Planets",
+   "Solar System Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q49",
+  "question": "Which moon of the ringed planet has seas of hydrocarbons?",
+  "answers": [
+   "Titan"
+  ],
+  "evidence": [
+   "methane"
+  ],
+  "docs": [
+   "Titan Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q50",
+  "question": "What is the age of our star?",
+  "answers": [
+   "4.5 billion years",
+   "4.5 billion-year-old"
+  ],
+  "evidence": [
+   "4.5 billion"
+  ],
+  "docs": [
+   "Sun Facts",
+   "Solar System Facts"
+  ],
+  "category": "paraphrase"
+ },
+ {
+  "id": "Q51",
+  "question": "How many people live on Mars today?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ },
+ {
+  "id": "Q52",
+  "question": "What is the capital city of Venus?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ },
+ {
+  "id": "Q53",
+  "question": "How much does a ticket to the Moon cost?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ },
+ {
+  "id": "Q54",
+  "question": "Who is the current president of Jupiter?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ },
+ {
+  "id": "Q55",
+  "question": "What is the favorite food of astronauts on Pluto?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ },
+ {
+  "id": "Q56",
+  "question": "Which football team plays on Saturn?",
+  "answers": [],
+  "evidence": [],
+  "docs": [],
+  "category": "no_answer"
+ }
+]

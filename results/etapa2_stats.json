@@ -1,0 +1,78 @@
+{
+  "build": {
+    "preprocess_s": 0.06095050000294577,
+    "inverted_index_s": 0.0046871660015312955,
+    "trie_s": 0.0033394170022802427,
+    "suffix_array_s": 0.05229041600250639,
+    "n_chunks": 523,
+    "total_stem_tokens": 31637,
+    "vocab_words": 5225,
+    "vocab_stems": 3786,
+    "trie_words": 4693,
+    "trie_nodes": 14191,
+    "trie_chars_inserted": 32687,
+    "inv_stems_terms": 3786,
+    "inv_stems_pairs": 24962,
+    "suffix_array_len": 32160,
+    "suffix_array_rounds": 6
+  },
+  "ablation": [
+    {
+      "step": "0. Texto crudo (split por espacios)",
+      "tokens": 52333,
+      "vocab": 8101,
+      "time_ms": 0.013333999959286302
+    },
+    {
+      "step": "1. + Minúsculas",
+      "tokens": 52333,
+      "vocab": 7509,
+      "time_ms": 0.47774999984540045
+    },
+    {
+      "step": "2. + Normalizar acentos (NFD)",
+      "tokens": 52333,
+      "vocab": 7508,
+      "time_ms": 16.476041004352737
+    },
+    {
+      "step": "3. + Quitar puntuación y especiales",
+      "tokens": 52734,
+      "vocab": 5225,
+      "time_ms": 10.808499995619059
+    },
+    {
+      "step": "4. + Quitar stopwords",
+      "tokens": 31637,
+      "vocab": 5080,
+      "time_ms": 2.099666999129113
+    },
+    {
+      "step": "5. + Stemming de Porter (estado del arte)",
+      "tokens": 31637,
+      "vocab": 3786,
+      "time_ms": 18.492250004783273
+    }
+  ],
+  "bpe": {
+    "available": true,
+    "model": "deepset/roberta-base-squad2",
+    "bpe_vocab_size": 50265,
+    "tokens_per_chunk_avg": 129.38240917782028,
+    "tokens_per_chunk_max": 282,
+    "tokens_per_word": 1.2930082357212467,
+    "chunks_over_384_tokens": 0,
+    "example": {
+      "magnetosphere": [
+        "Ġmagnet",
+        "osphere"
+      ]
+    }
+  },
+  "memory": {
+    "trie_MB": 3.372017,
+    "inverted_index_MB": 1.760836,
+    "suffix_array_MB": 0.655268,
+    "chunks_text_MB": 0.314527
+  }
+}

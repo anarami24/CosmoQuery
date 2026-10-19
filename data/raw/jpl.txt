@@ -1,0 +1,19 @@
+TITLE: JPL Solar System
+== Solar System Exploration at JPL ==
+Spacecraft managed by JPL for NASA have visited every planet in our solar system. This daunting accomplishment began when the JPL-built Mariner 2 spacecraft flew past Venus in 1962. Since then, many NASA space missions have explored the other planets and some of their many moons, as well as asteroids and comets.
+These missions have brought us dramatic and diverse discoveries, including volcanoes, canyons, geysers, colossal storms, and evidence of liquid oceans on other worlds.
+The venerable twin Voyager spacecraft have played a pivotal role in unlocking solar system secrets. Built at JPL and launched in 1977, between them they flew by and imaged Jupiter, Saturn, Uranus, and Neptune. Their discoveries added numerous chapters to astronomy books. Iconic Voyager images include a “family portrait” of planets, and a lookback view of Earth as a “pale blue dot.” The Voyagers are now in interstellar space—the space between the stars. And in case they ever encounter other beings, both spacecraft carry instructions for playing an onboard “Golden Record” of human greetings, sounds, music, and images.
+It seems there’s a surprise around every corner in the solar system. The thrill and benefits of discovering these delights are unlimited — except by vast travel distances, technology, resources, and the hostile conditions of space. That’s why we maximize discoveries from each mission to strategize where to go next.
+For example, the Galileo mission found evidence of an ocean under the surface of Jupiter’s icy moon Europa in the 1990s. Then in 2005, another JPL-managed mission, Cassini, spotted jets of water vapor spewing from Saturn’s icy moon Enceladus. Scientists determined that it, too, could also have a subsurface ocean. Because of these revelations, icy worlds became a prime candidate for further exploration as possible hosts for some form of life. A future mission in the works, Europa Clipper, will get a closeup look at that promising Jovian destination. And researchers are now also looking at the possibility that other locales, including asteroids and comets, could have ice and maybe even liquid water.
+== Feature ==
+=== NASA’s Perseverance Rover Watches Earth Vanish Behind Martian Moon ===
+== NASA resources ==
+== More About Solar System ==
+=== Make a Moon Phases Calendar and Calculator ===
+=== Comparing Off-World Rover Driving Distances ===
+=== NASA’s Record-Setting Perseverance Rover Team ===
+=== Voyager Technologies’ Griffin-1 Completes Environmental Testing at NASA JPL ===
+=== Perseverance Navcam Image Marks Record Drive ===
+=== Farside Seismic Suite ===
+=== CADRE ===
+=== SunRISE ===
