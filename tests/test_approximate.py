@@ -92,12 +92,22 @@ class TestEditDistances(unittest.TestCase):
         self.assertEqual([max_edit_distance(n, rules, 4) for n in (2, 3, 4, 7, 8, 12)], [0, 0, 1, 1, 2, 2])
 
 
+_INDEX = None
+
+
+def real_index():
+    """Índice real de la colección, construido una vez desde data/chunks.json (está en el repo)."""
+    global _INDEX
+    if _INDEX is None:
+        from index_builder import CorpusIndex, load_chunks
+        _INDEX = CorpusIndex(load_chunks()).build(verbose=False)
+    return _INDEX
+
+
 class TestTrieFuzzySearch(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Trie real de la colección (se construye desde data/chunks.json, que está en el repo).
-        from index_builder import CorpusIndex, load_chunks
-        cls.idx = CorpusIndex(load_chunks()).build(verbose=False)
+        cls.idx = real_index()
         cls.vocab = cls.idx.trie.words()
 
     def brute(self, word, k, metric, exclude=None):
@@ -182,6 +192,52 @@ class TestLCS(unittest.TestCase):
             b = "".join(rng.choice("abc") for _ in range(rng.randint(0, 7)))
             self.assertEqual(lcs_length(a, b), ref_lcs(a, b), (a, b))
         self.assertEqual(lcs_length(["mar", "volcano", "larg"], ["larg", "volcano", "mar"]), 1)
+
+
+class TestApproximateSearcher(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from approx_search import ApproximateSearcher
+        from exact_search import ExactSearcher
+        cls.idx = real_index()
+        cls.approx = ApproximateSearcher(cls.idx)
+        cls.exact = ExactSearcher(cls.idx)
+
+    def test_no_typos_same_as_exact(self):
+        # Sin errores no hay correcciones: misma fórmula que la exacta, mismos ids y puntajes.
+        from approx_search import ALGORITHMS
+        for q in ["When was Pluto discovered?", "What is the Great Red Spot on Jupiter?",
+                  "How many moons does Mars have?"]:
+            ref = self.exact.search(q, "kmp")
+            for alg in ALGORITHMS:
+                res = self.approx.search(q, alg, rerank_beta=0.0)
+                self.assertEqual(res.details["corrections"], [], (q, alg))
+                self.assertEqual([(r.chunk_id, r.score) for r in res.results],
+                                 [(r.chunk_id, r.score) for r in ref.results], (q, alg))
+                self.assertEqual(res.n_examined, ref.n_examined)
+
+    def test_typo_finds_jupiter(self):
+        res = self.approx.search("How big is Jupitr?", "osa_trie")
+        self.assertEqual(res.details["corrections"][0]["candidate"], "jupiter")
+        self.assertIn("Jupiter Facts", [r.doc for r in res.results])
+        self.assertEqual(res.method, "approximate")
+        self.assertGreater(res.details["nodes_visited"], 0)
+        self.assertLess(res.details["nodes_visited"], res.details["nodes_total"])
+
+    def test_robust_queries(self):
+        for q in ["", "   ", "what is the", "¿¡!?", "zzzzqx", "io"]:
+            res = self.approx.search(q)
+            self.assertIsInstance(res.results, list, q)
+        self.assertEqual(self.approx.search("what is the").results, [])
+
+    def test_subset_rebuilds_trie(self):
+        from approx_search import ApproximateSearcher
+        sub = self.idx.subset(50)
+        self.assertEqual(len(sub.trie), 0)                  # observación de §1.3: subset() deja el Trie vacío
+        searcher = ApproximateSearcher(sub)
+        self.assertGreater(len(searcher.trie), 0)
+        for r in searcher.search("What is the sun made of?").results:
+            self.assertLess(r.chunk_id, 50)
 
 
 if __name__ == "__main__":
