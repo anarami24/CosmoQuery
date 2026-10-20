@@ -1,68 +1,20 @@
-/* Estilos de la GUI de CosmoQuery */
-.gradio-container { max-width: 1200px !important; font-family: "Segoe UI", Arial, sans-serif !important; }
+.gradio-container { max-width: 1050px !important; font-family: "Segoe UI", Arial, sans-serif !important; }
 
-.cq-header h1 { margin: 8px 0 0; font-size: 26px; }
-.cq-header p { margin: 2px 0; color: #555; font-size: 14px; }
+.cq-header { text-align: center; margin: 10px 0 4px; }
+.cq-header h1 { margin: 0; font-size: 30px; color: #1f3a5f; }
+.cq-header p { margin: 4px 0 0; color: #666; }
+.cq-credits { text-align: center; color: #999; font-size: 12px; margin-top: 18px; }
 
-.cq-card { border: 1px solid #ddd; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; background: #fff; }
-.cq-card h3 { margin: 0 0 8px; font-size: 15px; }
-.cq-muted, .cq-empty { color: #666; font-size: 14px; }
-
-.cq-answer { font-size: 22px; font-weight: bold; margin: 4px 0 8px; }
-.cq-answer.cq-idk { color: #666; font-size: 18px; }
-.cq-source { font-size: 13px; color: #555; margin-top: 10px; }
-.cq-sentence { border-left: 3px solid #1f5fa8; padding-left: 10px; margin-top: 4px; }
-.cq-answer-hl { background: #cfe2ff; font-weight: bold; }
-
-.cq-bar { position: relative; height: 8px; background: #eee; margin: 6px 0 2px; }
-.cq-bar-fill { height: 100%; background: #1f5fa8; }
-.cq-bar-fill.cq-low { background: #999; }
-.cq-bar-tick { position: absolute; top: -3px; width: 2px; height: 14px; background: #c0392b; }
-.cq-bar-legend { display: flex; justify-content: space-between; font-size: 12px; color: #666; }
-
-.cq-budget { display: flex; height: 12px; border: 1px solid #ccc; margin: 6px 0; }
-.cq-seg-q { background: #f0ad4e; }
-.cq-seg-c { background: #1f5fa8; }
-.cq-seg-f { background: #f3f3f3; }
-.cq-seg-x { background: #c0392b; }
-.cq-legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: #555; }
-.cq-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 4px; }
-
-.cq-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-.cq-chip { padding: 2px 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; background: #f7f7f7; }
-.cq-chip.cq-phrase { border-style: dashed; }
-.cq-gram.cq-shared { background: #cfe2ff; border-color: #1f5fa8; }
-.cq-fix { font-size: 14px; margin: 3px 0; }
-.cq-from { text-decoration: line-through; color: #888; }
-.cq-to { font-weight: bold; }
-
-.cq-chunk { border: 1px solid #e2e2e2; border-radius: 4px; padding: 8px 10px; margin-bottom: 8px; }
-.cq-chunk.cq-src { border-color: #1f5fa8; }
-.cq-chunk.cq-off { opacity: .5; }
-.cq-chunk-head { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; margin-bottom: 4px; }
-.cq-doc { font-weight: bold; }
-.cq-meta { color: #666; white-space: nowrap; }
-.cq-chunk-text { font-size: 14px; line-height: 1.5; }
-.cq-badge { font-size: 11px; padding: 0 6px; margin-left: 6px; border-radius: 3px; background: #1f5fa8; color: #fff; }
-.cq-badge.cq-both { background: #2e7d32; }
-.cq-why { font-size: 12px; color: #c0392b; margin-top: 3px; }
-mark { background: #fff176; padding: 0 1px; }
-
-.cq-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 6px; }
-.cq-stat { border: 1px solid #e2e2e2; padding: 6px 8px; }
-.cq-v { font-size: 16px; font-weight: bold; }
-.cq-l { font-size: 11px; color: #666; }
-
-.cq-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 900px) { .cq-compare { grid-template-columns: 1fr; } }
-
-.cq-dp { border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-.cq-dp td, .cq-dp th { border: 1px solid #ccc; width: 26px; height: 24px; text-align: center; }
-.cq-dp th { background: #f3f3f3; }
-.cq-dp td.cq-swap { background: #fff176; font-weight: bold; }
-.cq-dp td.cq-final { outline: 2px solid #1f5fa8; font-weight: bold; }
-.cq-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.cq-table td, .cq-table th { border-bottom: 1px solid #e2e2e2; padding: 4px 6px; text-align: left; }
-.cq-table th { color: #555; font-size: 13px; }
-
-.cq-trie-info { font-size: 12px; color: #666; }
+.cq-card { border: 1px solid #d6e2f0; background: #f7faff; border-radius: 10px; padding: 16px 18px; }
+.cq-card.cq-idk { background: #fafafa; border-color: #e3e3e3; }
+.cq-card p { margin: 6px 0; color: #555; }
+.cq-answer { font-size: 24px; font-weight: 600; color: #1f3a5f; }
+.cq-idk .cq-answer { color: #777; }
+.cq-fixes { margin-top: 6px; font-size: 14px; color: #555; }
+.cq-fixes s { color: #999; }
+.cq-quote { margin-top: 12px; padding-left: 10px; border-left: 3px solid #9bbbe0; line-height: 1.5; }
+.cq-ans { font-weight: 600; text-decoration: underline; text-decoration-color: #6a9bd8; }
+.cq-source { margin-top: 6px; font-size: 13px; color: #666; }
+.cq-foot { margin-top: 12px; font-size: 12px; color: #999; }
+.cq-hint { color: #777; padding: 8px 2px; }
+mark { background: #fff3a8; padding: 0 1px; }
