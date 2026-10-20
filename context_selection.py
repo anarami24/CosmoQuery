@@ -1,10 +1,5 @@
 #ETAPA 5 - selección del contexto
 
-# Al modelo le caben 512 tokens, así que elegir fragmentos es una mochila 0/1:
-# peso = tokens del fragmento, valor = puntaje normalizado * (0.5 + cobertura),
-# capacidad = 512 - pregunta - tokens especiales - margen.
-# topk: los k primeros (línea base) | greedy: por densidad valor/peso | dp: tabla V[i][j]
-
 from dataclasses import dataclass, field
 
 import config
@@ -17,8 +12,6 @@ MARGIN = 8
 
 
 def knapsack_greedy(values, weights, capacity):
-    """Mochila voraz: ordena por densidad v/w (merge_sort) y toma lo que quepa.
-    No siempre da el óptimo. Tiempo O(n log n), espacio O(n)."""
     order = merge_sort(list(range(len(values))),
                        key=lambda i: (-values[i] / max(weights[i], 1e-9), -values[i], i))
     chosen, total_v, total_w = [], 0.0, 0
@@ -31,10 +24,6 @@ def knapsack_greedy(values, weights, capacity):
 
 
 def knapsack_dp(values, weights, capacity):
-    """Mochila 0/1 óptima con PD, como en clase:
-    V[i][j] = max(V[i-1][j], v_i + V[i-1][j - w_i]) si cabe, si no V[i-1][j].
-    Luego se recorre la tabla hacia atrás para saber qué objetos entraron.
-    Tiempo y espacio O(n·W) (pseudopolinomial)."""
     n, W = len(values), max(0, int(capacity))
     V = [[0.0] * (W + 1) for _ in range(n + 1)]
     for i in range(1, n + 1):
@@ -59,9 +48,9 @@ class ContextSelection:
     strategy: str
     redundancy: bool
     selected: list
-    discarded: list                     # (chunk_id, motivo)
+    discarded: list
     context: str
-    spans: list                         # (chunk_id, inicio, fin) dentro del contexto
+    spans: list
     token_budget: int
     tokens_question: int
     tokens_context: int
@@ -70,7 +59,6 @@ class ContextSelection:
     weights: dict = field(default_factory=dict)
 
     def chunk_at(self, char_pos):
-        # para saber de qué fragmento salió la respuesta
         if char_pos is None:
             return None
         for cid, start, end in self.spans:
@@ -81,7 +69,6 @@ class ContextSelection:
 
 class ContextSelector:
     def __init__(self, index, count_tokens=None, special_tokens=None):
-        # count_tokens y special_tokens se pueden pasar para probar sin el modelo
         if count_tokens is None or special_tokens is None:
             import qa_model
             count_tokens = count_tokens or qa_model.count_tokens
@@ -92,7 +79,6 @@ class ContextSelector:
         self._weights = {}
 
     def weight(self, chunk_id):
-        # se cuenta junto con el separador: el BPE corta distinto en la unión
         w = self._weights.get(chunk_id)
         if w is None:
             w = self._weights[chunk_id] = self.count_tokens(SEPARATOR + self.index.chunks[chunk_id]["text"])
@@ -136,12 +122,10 @@ class ContextSelector:
             discarded += [(r.chunk_id, f"no cabe en el presupuesto ({weights[r.chunk_id]} tokens)")
                           for i, r in enumerate(pool) if i not in picked]
 
-        # se arma el contexto ordenado por valor
         chosen = sorted(chosen, key=lambda r: (-values[r.chunk_id], r.chunk_id))
         context, spans = self._assemble(chosen)
         tokens_ctx = self.count_tokens(context) if context else 0
         if strategy != "topk":
-            # por si acaso: si el contexto real se pasa, se quita el de menor valor
             while chosen and tokens_ctx > W:
                 removed = chosen.pop()
                 discarded.append((removed.chunk_id, "excede el presupuesto real al ensamblar"))
@@ -154,8 +138,6 @@ class ContextSelector:
             total_value=sum(values[r.chunk_id] for r in chosen), values=values, weights=weights)
 
     def _remove_redundant(self, pool, threshold=None):
-        """Quita fragmentos casi iguales a uno ya elegido (Jaccard de raíces > umbral).
-        O(N²·T), T = tokens por fragmento."""
         threshold = config.REDUNDANCY_JACCARD if threshold is None else threshold
         kept, dropped = [], []
         stems = self.index.stem_tokens

@@ -1,10 +1,5 @@
 #ETAPA 4 - búsqueda aproximada
 
-# Corrige las palabras que no están en el vocabulario y vuelve a puntuar los fragmentos con
-# la fórmula de la exacta (BM25 + frases + cobertura), usando la similitud como peso.
-# lev_trie / osa_trie: distancia sobre el Trie con poda | ngram_jaccard: n-gramas | hybrid: ambos
-# python approx_search.py "What is the largset volcanno on Mars?" --compare
-
 import argparse
 import math
 import textwrap
@@ -27,8 +22,8 @@ ALGORITHM_LABELS = {
 }
 TECHNIQUES = {"lev_trie": ("lev",), "osa_trie": ("osa",), "ngram_jaccard": ("ngram",),
               "hybrid": ("osa", "ngram")}
-LCS_WEIGHT = 0.0        # γ del bono por orden (RF-4.4); apagado salvo que la ablación lo justifique
-RERANK_NGRAM = 3        # el reordenamiento compara trigramas de caracteres
+LCS_WEIGHT = 0.0
+RERANK_NGRAM = 3
 
 
 class ApproximateSearcher:
@@ -37,7 +32,6 @@ class ApproximateSearcher:
         self.pp = index.preprocessor
         self.trie = index.trie
         if len(self.trie) == 0:
-            # subset() deja el Trie vacío, entonces se arma aquí con el vocabulario del subconjunto
             self.trie = build_trie(index.word_tokens)
         self._ngram_indexes = {}
         self._chunk_grams = {}
@@ -49,15 +43,13 @@ class ApproximateSearcher:
         return self._ngram_indexes[n]
 
     def expand_word(self, word, algorithm, max_dist_rules=None, ngram_n=None, min_len=None):
-        # si la palabra existe o es corta se deja igual; si no, se buscan las correcciones
-        # con la mejor distancia (o el mejor Jaccard)
         min_len = config.FUZZY_MIN_LEN if min_len is None else min_len
         if self.trie.contains(word) or not word.isalpha():
             return [(word, 1.0, None)], 0, "exact"
         max_dist = max_edit_distance(len(word), max_dist_rules, min_len)
         if len(word) < min_len or max_dist == 0:
             return [(word, 1.0, None)], 0, "short"
-        best = {}                              # candidato -> (similitud, datos de la corrección)
+        best = {}
         nodes = 0
         for tech in TECHNIQUES[algorithm]:
             if tech in ("lev", "osa"):
@@ -100,9 +92,8 @@ class ApproximateSearcher:
 
         words = self.pp.query_words(query)
 
-        # cada palabra se vuelve un grupo de raíces con peso
-        weights = {}              # raíz -> peso (similitud de su mejor corrección)
-        groups = []               # una entrada por palabra: conjunto de raíces que la representan
+        weights = {}
+        groups = []
         corrections, exact_words, short_words = [], [], []
         nodes_visited = 0
         expansion_cache = {}
@@ -128,7 +119,6 @@ class ApproximateSearcher:
                 short_words.append(w)
             groups.append(group)
         terms = list(dict.fromkeys(s for g in groups for s in g))
-        # "moon" y "moons" cuentan una vez, como en la exacta
         unique_groups = list(dict.fromkeys(tuple(g) for g in groups))
         phrases = []
         if use_phrases:
@@ -141,7 +131,6 @@ class ApproximateSearcher:
         for t in terms:
             for cid, tf in inv.get(t).items():
                 counts.setdefault(cid, {})[t] = tf
-        # frases con el arreglo de sufijos
         for a, b in phrases:
             if inv.df(a) and inv.df(b):
                 for cid, c in idx.suffix_array.count_by_chunk([a, b]).items():
@@ -182,14 +171,11 @@ class ApproximateSearcher:
 
     @staticmethod
     def _coverage(found, groups):
-        # una palabra cuenta si aparece cualquiera de sus correcciones
         if not groups:
             return 0.0
         return sum(1 for g in groups if any(s in found for s in g)) / len(groups)
 
     def _score(self, cid, found, terms, groups, phrases, weights, inv):
-        # misma fórmula que ExactSearcher._score, pero cada tf se multiplica por el peso de la
-        # corrección y la cobertura se cuenta por palabra (si no hay correcciones da lo mismo)
         k1, b = config.BM25_K1, config.BM25_B
         length_norm = 1 - b + b * inv.doc_len.get(cid, 0) / max(inv.avg_len, 1e-9)
         base = 0.0

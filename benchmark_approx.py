@@ -1,9 +1,5 @@
 #ETAPA 6 - exacta contra aproximada, contexto y modelo
 
-# Usa el banco de Ana (load_questions, semilla 42). Escribe results/etapa6_comparacion.md/.json,
-# results/etapa6_aprox_*.csv y results/figures/comp_*.png
-# python benchmark_approx.py --quick   (rápido)   |   python benchmark_approx.py   (completo)
-
 import argparse
 import json
 import math
@@ -32,7 +28,6 @@ METHODS = [("kmp", "exact"), ("suffix_array", "exact"), ("lev_trie", "approximat
            ("osa_trie", "approximate"), ("ngram_jaccard", "approximate"), ("hybrid", "approximate")]
 CATEGORIES = ["literal", "paraphrase", "typo", "no_answer"]
 CAT_NAMES = {"literal": "Literales", "paraphrase": "Paráfrasis", "typo": "Con errores", "no_answer": "Sin respuesta"}
-# (clave, etiqueta, estrategia, quitar redundancia, k, umbral de redundancia)
 STRATEGIES = [("topk1", "top-k (k=1)", "topk", False, 1, None), ("topk3", "top-k (k=3)", "topk", False, 3, None),
               ("topk5", "top-k (k=5)", "topk", False, 5, None), ("greedy", "voraz", "greedy", True, None, None),
               ("greedy_nored", "voraz sin redundancia", "greedy", False, None, None),
@@ -46,7 +41,6 @@ F1_OK = 0.5
 
 
 def clean(x):
-    # inf/NaN no son JSON válido
     if isinstance(x, float) and (math.isinf(x) or math.isnan(x)):
         return None
     if isinstance(x, dict):
@@ -62,7 +56,6 @@ def searcher_fn(exact, approx, alg, **kw):
     return lambda q: approx.search(q, alg, config.TOP_K, **kw)
 
 
-# A. Exacta contra aproximada
 def experiment_methods(index, questions, exact, approx, repeats):
     summary, per_question, by_cat = [], [], {}
     for alg, method in METHODS:
@@ -75,7 +68,6 @@ def experiment_methods(index, questions, exact, approx, repeats):
 
 
 def check_against_ana(by_cat):
-    # con el mismo banco, la exacta debe dar lo mismo que en el benchmark de Ana
     path = config.RESULTS_DIR / "etapa6_exacta.json"
     if not path.exists():
         return {"available": False}
@@ -89,7 +81,6 @@ def check_against_ana(by_cat):
     return {"available": True, "match": not diffs, "differences": diffs}
 
 
-# B. Casos parecidos y distintos
 def experiment_cases(index, questions, exact, approx, per_question):
     rows = {(r["algorithm"], r["id"]): r for r in per_question}
     same, approx_wins, exact_wins = [], [], []
@@ -105,7 +96,7 @@ def experiment_cases(index, questions, exact, approx, per_question):
         if e["hit@5"] and not a["hit@5"]:
             exact_wins.append(q)
         elif e["hit@1"] and not a["hit@1"]:
-            exact_wins.append(q)          # también cuenta si la aproximada solo bajó el primer lugar
+            exact_wins.append(q)
 
     def detail(q):
         rel = relevant_chunks(index, q)
@@ -121,7 +112,6 @@ def experiment_cases(index, questions, exact, approx, per_question):
             "counts": {"same_top1": len(same), "approx_only_hit5": len(approx_wins), "exact_better": len(exact_wins)}}
 
 
-# C. Evidencia de la poda
 def experiment_pruning(index, questions, approx, repeats):
     trie, pp = approx.trie, index.preprocessor
     vocab = trie.words()
@@ -155,7 +145,6 @@ def experiment_pruning(index, questions, approx, repeats):
     return rows, summary
 
 
-# D. Ablaciones
 def experiment_ablations(index, questions, approx, repeats):
     variants = [
         ("Regla de distancia", "fija en 1", "hybrid", {"max_dist_rules": {4: 1}}),
@@ -184,7 +173,6 @@ def experiment_ablations(index, questions, approx, repeats):
     return out
 
 
-# E. Tamaño de la colección
 def experiment_scaling(index, questions, fractions, repeats):
     sample = [q for q in questions if q["category"] == "literal"][:10] + \
              [q for q in questions if q["category"] == "typo"][:10]
@@ -194,7 +182,7 @@ def experiment_scaling(index, questions, fractions, repeats):
         n = max(1, int(total * frac))
         sub = index.subset(n)
         t0 = time.perf_counter()
-        approx = ApproximateSearcher(sub)                     # reconstruye el Trie del subconjunto
+        approx = ApproximateSearcher(sub)
         t_trie = time.perf_counter() - t0
         t0 = time.perf_counter()
         approx.ngram_index()
@@ -212,7 +200,6 @@ def experiment_scaling(index, questions, fractions, repeats):
     return rows
 
 
-# F. Efecto del contexto en el modelo
 def experiment_context(cq, questions):
     index = cq.index
     records = []
@@ -269,7 +256,6 @@ def experiment_context(cq, questions):
 
 
 def redundancy_stats(index, seed=42):
-    # Jaccard entre fragmentos vecinos del mismo documento contra pares al azar
     import random
     from approximate import jaccard_words
     st, ch = index.stem_tokens, index.chunks
@@ -283,9 +269,7 @@ def redundancy_stats(index, seed=42):
                        "above": {t: sum(c > t for c in rnd) for t in (0.2, 0.3, 0.4, 0.5)}}}
 
 
-# G. Umbral de "I don't know"
 def experiment_threshold(records):
-    # se reutilizan las respuestas ya calculadas: con umbral t se responde si score_difference >= t
     sweeps = []
     for method, strategy in (("approximate", "greedy"), ("approximate", "topk1"), ("exact", "greedy")):
         rs = [r for r in records if r["method"] == method and r["strategy"] == strategy]
@@ -317,7 +301,6 @@ def experiment_threshold(records):
     return sweeps, by_strategy
 
 
-# H. Voraz contra PD
 def experiment_greedy_vs_dp(records):
     out = {}
     for method, _, mlabel in RAG_METHODS:
@@ -340,7 +323,6 @@ def experiment_greedy_vs_dp(records):
     return out
 
 
-# Gráficas
 def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     try:
         import matplotlib
@@ -359,7 +341,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
         plt.close(fig)
         files.append(path)
 
-    # 1. Hit@5 por categoría y método
     cats = ["literal", "paraphrase", "typo"]
     fig, ax = plt.subplots(figsize=(9, 4.4))
     width = 0.8 / len(METHODS)
@@ -375,7 +356,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     ax.legend(fontsize=7.5, frameon=False, loc="upper left", bbox_to_anchor=(1.0, 1.0))
     save(fig, "comp_hit5_categorias.png")
 
-    # 2. Tiempo promedio por método
     fig, ax = plt.subplots(figsize=(8, 4.2))
     vals = [s["time_ms_avg"] for s in summary]
     ax.bar(range(len(vals)), vals, color=[COLOR[s["algorithm"]] for s in summary], edgecolor="white", linewidth=2)
@@ -387,7 +367,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     _style(ax, "Tiempo promedio de búsqueda por consulta (escala log)", "", "ms por consulta")
     save(fig, "comp_tiempo.png")
 
-    # 3. Poda: % de nodos visitados contra longitud de la palabra
     fig, ax = plt.subplots(figsize=(8, 4.2))
     for k, color in ((1, APPROX_COLORS["osa_trie"]), (2, APPROX_COLORS["hybrid"])):
         pts = [r for r in pruning if r["max_dist"] == k]
@@ -398,7 +377,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     ax.legend(fontsize=8, frameon=False)
     save(fig, "comp_poda.png")
 
-    # 4. Escalabilidad
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
     for ax, xkey, xlabel in ((axes[0], "n_chunks", "fragmentos en la colección"),
                              (axes[1], "vocab_words", "palabras en el vocabulario (Trie)")):
@@ -411,7 +389,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     axes[1].legend(fontsize=7, frameon=False, loc="upper left", bbox_to_anchor=(1.0, 1.0))
     save(fig, "comp_escalabilidad.png")
 
-    # 5. F1 por estrategia de contexto
     fig, ax = plt.subplots(figsize=(9, 4.2))
     width = 0.38
     colors = {"exact": COLORS["kmp"], "approximate": APPROX_COLORS["hybrid"]}
@@ -428,7 +405,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     ax.legend(fontsize=8, frameon=False)
     save(fig, "comp_contexto_f1.png")
 
-    # 6. Umbral
     fig, ax = plt.subplots(figsize=(8, 4.2))
     rows = [s for s in sweeps if s["method"] == "approximate" and s["strategy"] == "greedy"]
     t = [s["threshold"] for s in rows]
@@ -449,7 +425,6 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     return files
 
 
-# Reporte
 def f3(x):
     return "—" if x is None else f"{x:.3f}"
 

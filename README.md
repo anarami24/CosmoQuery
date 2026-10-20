@@ -25,7 +25,7 @@ La primera vez que se usa el modelo se descargan unos 500 MB; después funciona 
 python app.py                    # abre http://127.0.0.1:7860
 ```
 
-Mientras escribes la pregunta, el Trie sugiere palabras del vocabulario. Se puede elegir búsqueda exacta o aproximada y el algoritmo. La respuesta muestra las correcciones ("¿quisiste decir…?"), la oración de donde salió con las palabras de la pregunta resaltadas y el tiempo.
+Mientras escribes la pregunta, el Trie sugiere palabras del vocabulario. Se puede elegir búsqueda exacta o aproximada y el algoritmo. La respuesta muestra las correcciones ("¿quisiste decir…?"), la oración de donde salió con las palabras de la pregunta resaltadas, el tiempo de cada etapa (búsqueda, contexto, modelo) y los fragmentos que leyó el modelo. El botón "Comparar algoritmos" corre la misma pregunta con las 9 búsquedas (exactas y aproximadas), marca la más rápida y resume los resultados del banco de 106 preguntas; al tocarlo otra vez se oculta.
 
 ### Consola
 

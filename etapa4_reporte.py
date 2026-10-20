@@ -1,7 +1,5 @@
 #ETAPA 4 - reporte de la búsqueda aproximada
 
-# python etapa4_reporte.py -> results/etapa4_busqueda_aproximada.md y .json
-
 import json
 import statistics
 
@@ -22,7 +20,6 @@ def median_ms(fn, runs=RUNS):
 
 
 def typo_words(questions, index, searcher):
-    # palabras con error de las variantes typo que no están en el vocabulario
     pp = index.preprocessor
     out, seen = [], set()
     for q in questions:
@@ -61,7 +58,6 @@ def correction_row(searcher, word, original):
 
 
 def pick_rows(rows, n):
-    # primero las palabras donde las técnicas no coinciden
     def disagree(r):
         hits = {r["ok"]["osa"], r["ok"]["bigram"], r["ok"]["trigram"]}
         return len(hits) > 1 or not any(hits)
