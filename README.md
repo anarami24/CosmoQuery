@@ -25,10 +25,7 @@ La primera vez que se usa el modelo se descargan unos 500 MB; después funciona 
 python app.py                    # abre http://127.0.0.1:7860
 ```
 
-- **Pregunta:** autocompletado con el Trie mientras se escribe, "¿quisiste decir…?", respuesta con su fuente, fragmentos resaltados, presupuesto de tokens y tiempos.
-- **Exacta vs aproximada:** las dos búsquedas lado a lado con la respuesta del modelo.
-- **Laboratorio de cadenas:** corrección con OSA sobre el Trie (nodos visitados), tabla de programación dinámica, bigramas y Jaccard, y autocompletado de un prefijo.
-- **Resultados:** gráficas de `results/figures/`.
+Mientras escribes la pregunta, el Trie sugiere palabras del vocabulario. Se puede elegir búsqueda exacta o aproximada y el algoritmo. La respuesta muestra las correcciones ("¿quisiste decir…?"), la oración de donde salió con las palabras de la pregunta resaltadas y el tiempo.
 
 ### Consola
 
