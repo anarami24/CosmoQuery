@@ -1,11 +1,6 @@
-#ETAPA 4 - Reporte de la búsqueda aproximada (Persona 2).
+#ETAPA 4 - reporte de la búsqueda aproximada
 
-# Genera results/etapa4_busqueda_aproximada.md y .json con:
-#   algoritmos y parámetros, tabla de correcciones por palabra (OSA, bigramas, trigramas),
-#   6 consultas de ejemplo contra la exacta, tiempos (mediana de 5 corridas) y "falsos amigos".
-# Todo sale de ejecuciones reales sobre el índice y el banco de preguntas de Ana.
-
-# Uso:  python etapa4_reporte.py
+# python etapa4_reporte.py -> results/etapa4_busqueda_aproximada.md y .json
 
 import json
 import statistics
@@ -27,8 +22,7 @@ def median_ms(fn, runs=RUNS):
 
 
 def typo_words(questions, index, searcher):
-    """Palabras con error del banco (variantes typo de Ana): (id, palabra con error, original).
-    Solo las que no existen en el vocabulario y tienen la longitud mínima para corregirse."""
+    # palabras con error de las variantes typo que no están en el vocabulario
     pp = index.preprocessor
     out, seen = [], set()
     for q in questions:
@@ -67,8 +61,7 @@ def correction_row(searcher, word, original):
 
 
 def pick_rows(rows, n):
-    """Primero los casos donde las técnicas no coinciden en acertar (los más interesantes),
-    después el resto en el orden del banco."""
+    # primero las palabras donde las técnicas no coinciden
     def disagree(r):
         hits = {r["ok"]["osa"], r["ok"]["bigram"], r["ok"]["trigram"]}
         return len(hits) > 1 or not any(hits)
@@ -78,7 +71,6 @@ def pick_rows(rows, n):
 
 
 def pick_examples(questions, index, exact, approx):
-    """3 con errores donde la aproximada mejora a la exacta, 1 literal, 1 paráfrasis, 1 sin respuesta."""
     chosen = []
     for q in questions:
         if q["category"] != "typo" or len(chosen) == 3:
@@ -93,7 +85,6 @@ def pick_examples(questions, index, exact, approx):
 
 
 def bank_noise(questions, index, exact, approx):
-    """Correcciones reales del banco que no recuperan la palabra original (ruido)."""
     pp = index.preprocessor
     out, extra = [], {"corrected_words": 0, "with_extra_candidates": 0, "examples": []}
     for q in questions:
@@ -124,7 +115,6 @@ def bank_noise(questions, index, exact, approx):
 
 
 def neighbors_without_rules(trie, words):
-    """Vecinos a distancia 1 si se apagan las reglas (corregir palabras cortas o existentes)."""
     rows = []
     for w in words:
         found, _ = trie_fuzzy_search(trie, w, 1, "osa")

@@ -1,10 +1,6 @@
-#ETAPA 5 - Flujo completo de CosmoQuery (Persona 2).
+#ETAPA 5 - flujo completo: pregunta -> búsqueda -> fragmentos -> contexto -> modelo
 
-# pregunta -> búsqueda (exacta o aproximada) -> recuperación de fragmentos
-#          -> selección del contexto (mochila) -> modelo de lenguaje -> respuesta
-
-# Uso:  python rag_pipeline.py "When was Pluto discovered?"
-#       python rag_pipeline.py "Wehn was Plutto discovred?" --method approximate --selection dp
+# python rag_pipeline.py "When was Pluto discovered?" [--method exact] [--selection dp]
 
 import argparse
 import textwrap
@@ -55,7 +51,6 @@ class RagAnswer:
 
 
 class CosmoQuery:
-    """Carga el índice, los buscadores, el selector y el modelo una sola vez."""
 
     def __init__(self, index=None, preload_model=True):
         self.index = index if index is not None else load_index()
@@ -107,7 +102,6 @@ class CosmoQuery:
             source_chunk_id=source, answer_span=span, truncated=out["truncated"],
             selection=selection, redundancy=sel.redundancy,
             t_search_ms=(t1 - t0) * 1000, t_select_ms=(t2 - t1) * 1000,
-            # Tiempo del modelo medido por el modelo mismo (si vino de la caché, el original)
             t_model_ms=out["time_ms"] if out.get("cached") else (t3 - t2) * 1000,
             t_total_ms=(t3 - t0) * 1000,
             extra={"values": sel.values, "weights": sel.weights, "total_value": sel.total_value,

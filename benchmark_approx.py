@@ -1,20 +1,8 @@
-#ETAPA 6 - Comparación de la búsqueda exacta contra la aproximada (parte de Persona 2).
+#ETAPA 6 - exacta contra aproximada, contexto y modelo
 
-# Experimentos (todos sobre el banco de Ana, load_questions() con semilla 42):
-#   A. Exacta contra aproximada: tiempo, examinados, recuperados, Hit@k, MRR, P@5, por categoría.
-#   B. Casos parecidos y casos distintos (selección automática).
-#   C. Evidencia de la poda: nodos visitados y OSA en el Trie contra fuerza bruta.
-#   D. Ablaciones: regla de distancia, n de los n-gramas, β, frases, LCS.
-#   E. Tamaño de la colección (10-100 % de los fragmentos).
-#   F. Efecto del contexto en el modelo (método × estrategia de selección).
-#   G. Umbral de "I don't know" (barrido sobre las respuestas ya calculadas).
-#   H. Voraz contra programación dinámica.
-#   I. Datos para el análisis (números clave para las preguntas del enunciado).
-# Salidas: results/etapa6_comparacion.md y .json, results/etapa6_aprox_*.csv y
-# results/figures/comp_*.png (con la paleta de Ana).
-
-# Uso:  python benchmark_approx.py --quick      (subconjunto, 1 repetición, ~3 min)
-#       python benchmark_approx.py              (banco completo, mediana de 3 repeticiones)
+# Usa el banco de Ana (load_questions, semilla 42). Escribe results/etapa6_comparacion.md/.json,
+# results/etapa6_aprox_*.csv y results/figures/comp_*.png
+# python benchmark_approx.py --quick   (rápido)   |   python benchmark_approx.py   (completo)
 
 import argparse
 import json
@@ -44,7 +32,7 @@ METHODS = [("kmp", "exact"), ("suffix_array", "exact"), ("lev_trie", "approximat
            ("osa_trie", "approximate"), ("ngram_jaccard", "approximate"), ("hybrid", "approximate")]
 CATEGORIES = ["literal", "paraphrase", "typo", "no_answer"]
 CAT_NAMES = {"literal": "Literales", "paraphrase": "Paráfrasis", "typo": "Con errores", "no_answer": "Sin respuesta"}
-# (clave, etiqueta, estrategia, eliminar redundancia, k, umbral de redundancia; None = config)
+# (clave, etiqueta, estrategia, quitar redundancia, k, umbral de redundancia)
 STRATEGIES = [("topk1", "top-k (k=1)", "topk", False, 1, None), ("topk3", "top-k (k=3)", "topk", False, 3, None),
               ("topk5", "top-k (k=5)", "topk", False, 5, None), ("greedy", "voraz", "greedy", True, None, None),
               ("greedy_nored", "voraz sin redundancia", "greedy", False, None, None),
@@ -57,7 +45,7 @@ F1_OK = 0.5
 
 
 def clean(x):
-    """Convierte infinitos/NaN en None para que el JSON sea válido."""
+    # inf/NaN no son JSON válido
     if isinstance(x, float) and (math.isinf(x) or math.isnan(x)):
         return None
     if isinstance(x, dict):
@@ -73,7 +61,7 @@ def searcher_fn(exact, approx, alg, **kw):
     return lambda q: approx.search(q, alg, config.TOP_K, **kw)
 
 
-# A. EXACTA CONTRA APROXIMADA
+# A. Exacta contra aproximada
 def experiment_methods(index, questions, exact, approx, repeats):
     summary, per_question, by_cat = [], [], {}
     for alg, method in METHODS:
@@ -86,7 +74,7 @@ def experiment_methods(index, questions, exact, approx, repeats):
 
 
 def check_against_ana(by_cat):
-    """Los números de la exacta deben coincidir con results/etapa6_exacta.json (mismo banco)."""
+    # con el mismo banco, la exacta debe dar lo mismo que en el benchmark de Ana
     path = config.RESULTS_DIR / "etapa6_exacta.json"
     if not path.exists():
         return {"available": False}
@@ -100,7 +88,7 @@ def check_against_ana(by_cat):
     return {"available": True, "match": not diffs, "differences": diffs}
 
 
-# B. CASOS PARECIDOS Y DISTINTOS
+# B. Casos parecidos y distintos
 def experiment_cases(index, questions, exact, approx, per_question):
     rows = {(r["algorithm"], r["id"]): r for r in per_question}
     same, approx_wins, exact_wins = [], [], []
@@ -132,7 +120,7 @@ def experiment_cases(index, questions, exact, approx, per_question):
             "counts": {"same_top1": len(same), "approx_only_hit5": len(approx_wins), "exact_better": len(exact_wins)}}
 
 
-# C. EVIDENCIA DE LA PODA
+# C. Evidencia de la poda
 def experiment_pruning(index, questions, approx, repeats):
     trie, pp = approx.trie, index.preprocessor
     vocab = trie.words()
@@ -166,7 +154,7 @@ def experiment_pruning(index, questions, approx, repeats):
     return rows, summary
 
 
-# D. ABLACIONES
+# D. Ablaciones
 def experiment_ablations(index, questions, approx, repeats):
     variants = [
         ("Regla de distancia", "fija en 1", "hybrid", {"max_dist_rules": {4: 1}}),
@@ -195,7 +183,7 @@ def experiment_ablations(index, questions, approx, repeats):
     return out
 
 
-# E. TAMAÑO DE LA COLECCIÓN
+# E. Tamaño de la colección
 def experiment_scaling(index, questions, fractions, repeats):
     sample = [q for q in questions if q["category"] == "literal"][:10] + \
              [q for q in questions if q["category"] == "typo"][:10]
@@ -223,7 +211,7 @@ def experiment_scaling(index, questions, fractions, repeats):
     return rows
 
 
-# F. EFECTO DEL CONTEXTO EN EL MODELO
+# F. Efecto del contexto en el modelo
 def experiment_context(cq, questions):
     index = cq.index
     records = []
@@ -280,8 +268,7 @@ def experiment_context(cq, questions):
 
 
 def redundancy_stats(index, seed=42):
-    """Jaccard de raíces entre fragmentos consecutivos del mismo documento (traslape de 30 palabras)
-    contra pares al azar: sirve para juzgar el umbral de redundancia."""
+    # Jaccard entre fragmentos vecinos del mismo documento contra pares al azar
     import random
     from approximate import jaccard_words
     st, ch = index.stem_tokens, index.chunks
@@ -295,10 +282,9 @@ def redundancy_stats(index, seed=42):
                        "above": {t: sum(c > t for c in rnd) for t in (0.2, 0.3, 0.4, 0.5)}}}
 
 
-# G. UMBRAL DE "I DON'T KNOW"
+# G. Umbral de "I don't know"
 def experiment_threshold(records):
-    """Barrido del umbral sobre las respuestas ya calculadas: con umbral t la respuesta es el tramo
-    del modelo (raw_answer) si score_difference >= t, si no "I don't know". No vuelve a correr el modelo."""
+    # se reutilizan las respuestas ya calculadas: con umbral t se responde si score_difference >= t
     sweeps = []
     for method, strategy in (("approximate", "greedy"), ("approximate", "topk1"), ("exact", "greedy")):
         rs = [r for r in records if r["method"] == method and r["strategy"] == strategy]
@@ -317,7 +303,6 @@ def experiment_threshold(records):
             sweeps.append({"method": method, "strategy": strategy, "threshold": t, "f1": statistics.mean(f1s),
                            "f1_answerable": statistics.mean(f1_ans) if f1_ans else None,
                            "no_answer_acc": statistics.mean(noans) if noans else None})
-    # score_difference de los tramos correctos según el tamaño del contexto
     by_strategy = []
     for key, label, *_ in STRATEGIES:
         rs = [r for r in records if r["method"] == "approximate" and r["strategy"] == key
@@ -331,7 +316,7 @@ def experiment_threshold(records):
     return sweeps, by_strategy
 
 
-# H. VORAZ CONTRA PD
+# H. Voraz contra PD
 def experiment_greedy_vs_dp(records):
     out = {}
     for method, _, mlabel in RAG_METHODS:
@@ -354,7 +339,7 @@ def experiment_greedy_vs_dp(records):
     return out
 
 
-# GRÁFICAS
+# Gráficas
 def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     try:
         import matplotlib
@@ -461,7 +446,7 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
     return files
 
 
-# REPORTE
+# Reporte
 def f3(x):
     return "—" if x is None else f"{x:.3f}"
 
@@ -477,7 +462,6 @@ def write_markdown(path, ctx):
                  + ("**coinciden** con `results/etapa6_exacta.json` de Ana.\n" if chk["match"]
                     else f"**NO coinciden** con los de Ana: {chk['differences']}\n"))
 
-    # A
     L += ["## A. Exacta contra aproximada (recuperación)\n",
           "| Método | Tiempo prom. (ms) | Mediana (ms) | Examinados | Recuperados (score>0) | Hit@1 | Hit@3 | Hit@5 | MRR | P@5 |",
           "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
@@ -497,7 +481,6 @@ def write_markdown(path, ctx):
                          f"{f3(s.get('mrr'))} | {f3(s.get('p@5'))} |")
     L.append("\nEn `no_answer` no hay métricas de ranking (no existe fragmento relevante); solo tiempo y recuperados.\n")
 
-    # B
     cases = ctx["cases"]
     L += ["## B. Casos parecidos y casos distintos (exacta KMP contra aproximada híbrida)\n",
           f"Conteos sobre las preguntas con respuesta: mismo top-1 relevante en {cases['counts']['same_top1']}; "
@@ -522,7 +505,6 @@ def write_markdown(path, ctx):
                 L.append(f"| {i + 1} | {fmt(c['exact'])} | {fmt(c['approx'])} |")
             L.append("")
 
-    # C
     L += ["## C. Evidencia de la poda (OSA sobre el Trie contra fuerza bruta)\n",
           f"Todas las palabras de las preguntas que no están en el vocabulario y se corrigen ({len(ctx['pruning'])}). "
           f"Fuerza bruta = OSA contra las {ctx['vocab_size']:,} palabras del vocabulario.\n",
@@ -533,7 +515,6 @@ def write_markdown(path, ctx):
                  f"{s['brute_ms_avg']:.1f} | {s['speedup_avg']:.0f}× | {'sí' if s['all_same'] else 'NO'} |")
     L.append("\nDetalle por palabra en `results/etapa6_aprox_poda.csv`.\n")
 
-    # D
     L += ["## D. Ablaciones (calidad y tiempo)\n",
           "| Factor | Variante | Algoritmo | Hit@5 | MRR | Hit@5 literal | Hit@5 typo | MRR typo | ms prom. |",
           "|---|---|---|---:|---:|---:|---:|---:|---:|"]
@@ -542,7 +523,6 @@ def write_markdown(path, ctx):
                  f"{f3(a['hit@5_literal'])} | {f3(a['hit@5_typo'])} | {f3(a['mrr_typo'])} | {a['time_ms_avg']:.3f} |")
     L.append("")
 
-    # E
     L += ["## E. Tamaño de la colección\n",
           "Consultas: 10 literales + 10 con errores. ms promedio por consulta. El Trie y el índice de n-gramas se "
           "reconstruyen con el vocabulario de cada subconjunto (sin stopwords).\n",
@@ -554,7 +534,6 @@ def write_markdown(path, ctx):
                  f"{r['osa_trie_ms']:.2f} | {r['ngram_jaccard_ms']:.2f} | {r['hybrid_ms']:.2f} |")
     L.append("")
 
-    # F
     L += ["## F. Efecto del contexto en el modelo\n",
           f"Modelo `{config.QA_MODEL}` con la lógica del PokeChat (umbral {config.NO_ANSWER_THRESHOLD:g}). "
           f"Recuperación de {config.CONTEXT_CANDIDATES} candidatos; top-k no usa presupuesto ni redundancia. "
@@ -578,7 +557,6 @@ def write_markdown(path, ctx):
     L += [f"| {t} | {c['above'][t]} | {r['above'][t]} |" for t in c["above"]]
     L.append("")
 
-    # G
     L += ["## G. Umbral de \"I don't know\"\n",
           "Barrido sobre las respuestas ya calculadas (no se vuelve a correr el modelo): con umbral t, la respuesta es el "
           "tramo del modelo si score_difference ≥ t. El sistema usa t = 7, el del PokeChat.\n",
@@ -602,7 +580,6 @@ def write_markdown(path, ctx):
                  f"{f3(r['sd_median'])} | {pct} |")
     L.append("")
 
-    # H
     L += ["## H. Mochila voraz contra programación dinámica\n",
           "| Búsqueda | Preguntas | Conjuntos distintos | Diferencia de valor prom. (PD − voraz) | Máxima | % prom. | "
           "Respuesta cambió | F1 voraz | F1 PD | Selección voraz (ms) | Selección PD (ms) |",
@@ -619,7 +596,6 @@ def write_markdown(path, ctx):
     L.append("\nEl tiempo de selección incluye contar tokens (con caché) y eliminar redundancia; la tabla de la PD tiene "
              "unas N·W ≈ 10 × 490 celdas.\n")
 
-    # I
     L += ["## I. Datos para el análisis\n"] + [f"- {b}" for b in ctx["analysis"]]
     if ctx["figures"]:
         L += ["\n## Gráficas\n"] + [f"![{f.stem}](figures/{f.name})" for f in ctx["figures"]]

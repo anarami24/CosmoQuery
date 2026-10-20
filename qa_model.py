@@ -1,26 +1,10 @@
-#ETAPA 5 - Modelo de lenguaje para responder preguntas (Persona 2).
+#ETAPA 5 - modelo de lenguaje (deepset/roberta-base-squad2, extractivo)
 
-# Modelo: deepset/roberta-base-squad2 (Hugging Face), sin entrenamiento adicional. Es un modelo
-# extractivo: no redacta, elige un tramo (inicio, fin) del contexto que recibe.
-
-# La lógica de ask_question replica la versión final del cuaderno PokeChat del profesor
-# (celda "Define the final version of ask_question with no-answer handling"):
-#   1. tokenizer(question, context) sin truncar;
-#   2. inicio = argmax(start_logits) y fin = argmax(end_logits), elegidos por separado;
-#   3. answer_score = start_logits[inicio] + end_logits[fin];
-#      no_answer_score = start_logits[0] + end_logits[0]   (token <s>, "sin respuesta");
-#      score_difference = answer_score - no_answer_score;
-#   4. si score_difference < 7 -> "I don't know"; si no, se decodifica el tramo.
-# Únicos agregados (no cambian la respuesta del cuaderno salvo el caso 3):
-#   1. Se pide return_offsets_mapping para saber en qué carácter del contexto empieza la
-#      respuesta (y así de qué fragmento salió).
-#   2. Si la entrada pasa de 512 tokens se trunca el contexto (el cuaderno fallaría); se marca
-#      truncated=True y se cuenta como error de la selección de contexto.
-#   3. Si el tramo decodificado queda vacío (fin < inicio, o el tramo es un token especial),
-#      la respuesta es "I don't know" (decisión aprobada por Camila).
-
-# Complejidad: el modelo es un transformer; la atención cuesta O(L²·d) con L tokens de entrada
-# (L <= 512) y d el tamaño oculto. Por eso el presupuesto de tokens importa.
+# answer() sigue el ask_question final del cuaderno PokeChat: argmax de inicio y de fin,
+# score_difference = (inicio + fin) - (<s> + <s>) y si es < 7 la respuesta es "I don't know".
+# Lo único que se agregó: los offsets para ubicar la respuesta, truncar si se pasa de 512
+# tokens (se marca como error) y "I don't know" si el tramo sale vacío.
+# La atención del modelo cuesta O(L²) con L tokens de entrada; por eso importa el presupuesto.
 
 import hashlib
 import time
@@ -34,7 +18,7 @@ _ANSWER_CACHE = {}
 
 
 def load_model():
-    """Carga el tokenizador y el modelo una sola vez (caché a nivel de módulo)."""
+    # se carga una sola vez
     global _TOKENIZER, _MODEL, _DEVICE
     if _MODEL is None:
         import torch
@@ -46,7 +30,6 @@ def load_model():
 
 
 def get_tokenizer():
-    """Solo el tokenizador (no carga los pesos del modelo); sirve para contar tokens."""
     global _TOKENIZER
     if _TOKENIZER is None:
         from transformers import AutoTokenizer
@@ -55,22 +38,16 @@ def get_tokenizer():
 
 
 def count_tokens(text):
-    """Tokens BPE reales del texto, sin tokens especiales."""
     return len(get_tokenizer()(text, add_special_tokens=False)["input_ids"])
 
 
 def special_tokens_pair():
-    """Tokens especiales que agrega el modelo a una pareja (pregunta, contexto): <s> q </s></s> c </s>."""
+    # <s> pregunta </s></s> contexto </s>
     return get_tokenizer().num_special_tokens_to_add(pair=True)
 
 
 def answer(question, context, use_cache=True):
-    """Respuesta del modelo para una pregunta y un contexto, con la lógica del PokeChat.
-
-    Devuelve {answer, raw_answer, score_difference, start_char, end_char, tokens_used, truncated, time_ms}.
-    raw_answer es el tramo elegido antes del umbral (solo para diagnosticar "I don't know").
-    start_char/end_char son posiciones dentro de `context` (None si no hay respuesta).
-    """
+    # raw_answer es el tramo antes del umbral; start_char/end_char son posiciones en el contexto
     key = (question, hashlib.sha1(context.encode("utf-8")).hexdigest())
     if use_cache and key in _ANSWER_CACHE:
         return dict(_ANSWER_CACHE[key], cached=True)
@@ -103,7 +80,7 @@ def answer(question, context, use_cache=True):
 
     text = tokenizer.decode(inputs["input_ids"][0, start_index:end_index + 1],
                             skip_special_tokens=True).strip()
-    raw_text = text                         # tramo elegido antes de aplicar el umbral (diagnóstico)
+    raw_text = text
     start_char = end_char = None
     if score_difference < config.NO_ANSWER_THRESHOLD or not text:
         text = config.NO_ANSWER_TEXT
@@ -119,7 +96,7 @@ def answer(question, context, use_cache=True):
 
 
 def load_cache(path):
-    """Carga respuestas guardadas por (pregunta, hash del contexto) desde un JSON."""
+    # caché en disco por (pregunta, hash del contexto) para el benchmark
     import json
     if path.exists():
         for k, v in json.loads(path.read_text(encoding="utf-8")).items():
@@ -136,5 +113,5 @@ def save_cache(path):
 
 
 def ask_question(context, question):
-    """Misma firma y salida que ask_question del cuaderno PokeChat (solo el texto)."""
+    # misma firma que en el cuaderno
     return answer(question, context)["answer"]

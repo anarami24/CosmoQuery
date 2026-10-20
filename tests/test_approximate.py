@@ -1,5 +1,5 @@
 """
-Pruebas de correctitud de Persona 2 (Etapas 4 y 5).
+Pruebas de la parte de Persona 2 (Etapas 4 y 5).
 """
 import random
 import sys
@@ -17,7 +17,7 @@ from preprocessing import STOPWORDS                                             
 from structures import Trie                                                                 # noqa: E402
 
 
-# Implementaciones de referencia: la definición recursiva, memoizada, sin optimizar.
+# referencia: la definición recursiva con memoización
 def ref_distance(a, b, transpositions):
     @lru_cache(maxsize=None)
     def d(i, j):
@@ -33,7 +33,6 @@ def ref_distance(a, b, transpositions):
 
 
 def ref_lcs(a, b):
-    """Fuerza bruta: la subsecuencia más larga de `a` que también es subsecuencia de `b`."""
     def is_subseq(s, t):
         it = iter(t)
         return all(ch in it for ch in s)
@@ -96,7 +95,6 @@ _INDEX = None
 
 
 def real_index():
-    """Índice real de la colección, construido una vez desde data/chunks.json (está en el repo)."""
     global _INDEX
     if _INDEX is None:
         from index_builder import CorpusIndex, load_chunks
@@ -111,7 +109,7 @@ class TestTrieFuzzySearch(unittest.TestCase):
         cls.vocab = cls.idx.trie.words()
 
     def brute(self, word, k, metric, exclude=None):
-        # Fuerza bruta acotada por |len(a) - len(b)| <= k (cota inferior válida de la distancia).
+        # solo palabras con |len(a) - len(b)| <= k, las demás no pueden estar a distancia k
         near = [(w, f) for w, f in self.vocab if abs(len(w) - len(word)) <= k]
         return brute_force_fuzzy(near, word, k, metric, exclude)[0]
 
@@ -140,7 +138,7 @@ class TestTrieFuzzySearch(unittest.TestCase):
         t = Trie()
         for w, f in [("jupiter", 9), ("juno", 4), ("mars", 3), ("perseverance", 2)]:
             t.insert(w, f)
-        # "ju" ya está a distancia 1 de "jpu" (una inserción): se acepta y no se baja más.
+        # "ju" ya está a distancia 1 de "jpu", entonces ahí se detiene
         got, _ = trie_fuzzy_search(t, "jpu", 1, "osa", prefix_mode=True)
         self.assertEqual([p for p, _, _ in got], ["ju"])
         got, _ = trie_fuzzy_search(t, "jupt", 1, "osa", prefix_mode=True)
@@ -204,7 +202,7 @@ class TestApproximateSearcher(unittest.TestCase):
         cls.exact = ExactSearcher(cls.idx)
 
     def test_no_typos_same_as_exact(self):
-        # Sin errores no hay correcciones: misma fórmula que la exacta, mismos ids y puntajes.
+        # sin errores debe dar exactamente lo mismo que la exacta
         from approx_search import ALGORITHMS
         for q in ["When was Pluto discovered?", "What is the Great Red Spot on Jupiter?",
                   "How many moons does Mars have?"]:
@@ -243,7 +241,6 @@ class TestApproximateSearcher(unittest.TestCase):
 class TestKnapsack(unittest.TestCase):
     @staticmethod
     def brute_force(values, weights, capacity):
-        """Prueba los 2^N subconjuntos."""
         best = 0.0
         n = len(values)
         for mask in range(1 << n):
@@ -285,7 +282,7 @@ class TestContextSelection(unittest.TestCase):
 
     def fake_selector(self):
         from context_selection import ContextSelector
-        # Contador falso (1 token por palabra) para probar la lógica sin el modelo.
+        # contador falso (1 token por palabra) para no cargar el modelo
         return ContextSelector(self.idx, count_tokens=lambda t: len(t.split()), special_tokens=4)
 
     def test_strategies_and_spans(self):
@@ -307,7 +304,6 @@ class TestContextSelection(unittest.TestCase):
 
     def test_redundancy_drops_overlapping_chunks(self):
         from search_types import ScoredChunk
-        # Dos fragmentos idénticos: el segundo es redundante.
         c = self.idx.chunks[10]
         dup = [ScoredChunk(10, 2.0, c["doc"], c["section"], c["text"], coverage=1.0),
                ScoredChunk(10, 1.0, c["doc"], c["section"], c["text"], coverage=1.0)]

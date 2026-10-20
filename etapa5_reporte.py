@@ -1,12 +1,6 @@
-#ETAPA 5 - Reporte de respuestas del modelo con contexto seleccionado (Persona 2).
+#ETAPA 5 - reporte de respuestas (24 preguntas, aproximada y exacta)
 
-# Corre 24 preguntas del banco de Ana (10 literales, 4 de paráfrasis, 6 con errores de escritura
-# y 4 sin respuesta en la colección) por el flujo completo de CosmoQuery, con la búsqueda
-# aproximada híbrida como método principal y la exacta (KMP) en paralelo. Para cada una guarda
-# los fragmentos elegidos, la respuesta, score_difference, el fragmento de origen, los tiempos y
-# un diagnóstico automático. Salidas: results/etapa5_respuestas.md, .csv y .json.
-
-# Uso:  python etapa5_reporte.py [--selection greedy|dp]
+# python etapa5_reporte.py -> results/etapa5_respuestas.md, .csv y .json
 
 import argparse
 import csv
@@ -28,8 +22,7 @@ DIAGNOSES = ["correcta y respaldada", "correcta (evidencia fuera de los fragment
 
 
 def pick_questions(questions):
-    """Preguntas repartidas uniformemente dentro de cada categoría (en el orden del banco), para no
-    concentrarse en los primeros documentos. Regla fija: índices round(i·n/k) para i = 0..k-1."""
+    # repartidas a lo largo de cada categoría para no quedarnos solo con los primeros documentos
     chosen = []
     for cat, k in PLAN:
         pool = [q for q in questions if q["category"] == cat]
@@ -38,7 +31,6 @@ def pick_questions(questions):
 
 
 def diagnose(q, rag, relevant):
-    """Diagnóstico automático de una respuesta (ver la sección de criterios del reporte)."""
     selected = {s.chunk_id for s in rag.selected}
     evidence_in_context = bool(relevant & selected)
     scores = answer_scores(rag.answer, q["answers"], config.NO_ANSWER_TEXT)
@@ -50,7 +42,7 @@ def diagnose(q, rag, relevant):
         label = "recuperación incompleta"
     else:
         label = "falla del modelo"
-    # Detalle de los "I don't know": ¿el tramo que eligió el modelo era correcto antes del umbral?
+    # para los "I don't know": ¿el tramo era correcto antes del umbral?
     detail = ""
     raw = rag.extra.get("raw_answer", "")
     if rag.is_no_answer and q["answers"]:

@@ -1,17 +1,9 @@
-#ETAPA 4 - Recuperación mediante búsqueda aproximada (Persona 2).
+#ETAPA 4 - búsqueda aproximada
 
-# Corrige cada palabra de la pregunta que no existe en el vocabulario con una técnica
-# aproximada, convierte las correcciones en raíces con peso (su similitud) y vuelve a
-# puntuar los fragmentos con el mismo criterio de la búsqueda exacta de Ana
-# (BM25 + bono por frases + factor de cobertura), ponderando cada término por su peso.
-
-# Algoritmos:
-#   lev_trie       Levenshtein recorriendo el Trie con poda (línea base de la técnica A)
-#   osa_trie       Damerau-Levenshtein (OSA) recorriendo el Trie con poda (técnica A)
-#   ngram_jaccard  n-gramas de caracteres + Jaccard con tabla hash (técnica B)
-#   hybrid         unión de OSA y n-gramas; cada candidato se queda con su mayor similitud
-
-# Uso:  python approx_search.py "What is the largset volcanno on Mars?" --compare
+# Corrige las palabras que no están en el vocabulario y vuelve a puntuar los fragmentos con
+# la fórmula de la exacta (BM25 + frases + cobertura), usando la similitud como peso.
+# lev_trie / osa_trie: distancia sobre el Trie con poda | ngram_jaccard: n-gramas | hybrid: ambos
+# python approx_search.py "What is the largset volcanno on Mars?" --compare
 
 import argparse
 import math
@@ -45,30 +37,20 @@ class ApproximateSearcher:
         self.pp = index.preprocessor
         self.trie = index.trie
         if len(self.trie) == 0:
-            # CorpusIndex.subset(n) deja el Trie vacío: se reconstruye aquí con el vocabulario
-            # del subconjunto (sin modificar el código de Ana). Se usan las mismas reglas que
-            # index_builder: solo palabras alfabéticas de 2 o más letras.
+            # subset() deja el Trie vacío, entonces se arma aquí con el vocabulario del subconjunto
             self.trie = build_trie(index.word_tokens)
         self._ngram_indexes = {}
         self._chunk_grams = {}
 
     def ngram_index(self, n=None):
-        """Índice de n-gramas del vocabulario; se construye la primera vez que se pide."""
         n = config.NGRAM_N if n is None else n
         if n not in self._ngram_indexes:
             self._ngram_indexes[n] = NgramIndex(self.trie.words(), n)
         return self._ngram_indexes[n]
 
-    # Paso 2: expansión de cada palabra de la pregunta
     def expand_word(self, word, algorithm, max_dist_rules=None, ngram_n=None, min_len=None):
-        """Candidatos (palabra, similitud, corrección) para una palabra de la pregunta.
-
-        - Palabra que existe en el vocabulario (o número): término exacto, peso 1.
-        - Palabra corta (< FUZZY_MIN_LEN): se deja exacta aunque no exista.
-        - Si no, se buscan correcciones y se conservan solo las de mejor distancia
-          (o mejor Jaccard), hasta FUZZY_MAX_CANDIDATES.
-        Devuelve (lista de candidatos, nodos visitados del Trie, motivo).
-        """
+        # si la palabra existe o es corta se deja igual; si no, se buscan las correcciones
+        # con la mejor distancia (o el mejor Jaccard)
         min_len = config.FUZZY_MIN_LEN if min_len is None else min_len
         if self.trie.contains(word) or not word.isalpha():
             return [(word, 1.0, None)], 0, "exact"
@@ -116,10 +98,9 @@ class ApproximateSearcher:
         idx, inv = self.index, self.index.inv_stems
         t0 = time.perf_counter()
 
-        # 1. Palabras de la pregunta (sin stopwords ni relleno, sin stemming)
         words = self.pp.query_words(query)
 
-        # 2. Expansión: cada palabra -> grupo de raíces con peso
+        # cada palabra se vuelve un grupo de raíces con peso
         weights = {}              # raíz -> peso (similitud de su mejor corrección)
         groups = []               # una entrada por palabra: conjunto de raíces que la representan
         corrections, exact_words, short_words = [], [], []
@@ -147,7 +128,7 @@ class ApproximateSearcher:
                 short_words.append(w)
             groups.append(group)
         terms = list(dict.fromkeys(s for g in groups for s in g))
-        # Grupos únicos (igual que Ana deduplica términos: "moon" y "moons" cuentan una vez)
+        # "moon" y "moons" cuentan una vez, como en la exacta
         unique_groups = list(dict.fromkeys(tuple(g) for g in groups))
         phrases = []
         if use_phrases:
@@ -155,19 +136,17 @@ class ApproximateSearcher:
                 (a, b) for g1, g2 in zip(groups, groups[1:]) for a in g1 for b in g2 if a != b))
         unmatched = [w for w, g in zip(words, groups) if not any(inv.df(s) for s in g)]
 
-        # 3. Recuperación con el índice invertido de raíces (n_examined igual que en la exacta)
         candidates = inv.candidates(terms)
         counts = {}
         for t in terms:
             for cid, tf in inv.get(t).items():
                 counts.setdefault(cid, {})[t] = tf
-        # Frases: bigramas de términos consecutivos contados con el arreglo de sufijos de Ana
+        # frases con el arreglo de sufijos
         for a, b in phrases:
             if inv.df(a) and inv.df(b):
                 for cid, c in idx.suffix_array.count_by_chunk([a, b]).items():
                     counts.setdefault(cid, {})[f"{a} {b}"] = c
 
-        # 4-5. Puntuación ponderada + reordenamiento opcional por Jaccard de trigramas
         q_grams = char_ngrams(" ".join(terms), RERANK_NGRAM) if rerank_beta else None
         scored = []
         for cid, found in counts.items():
@@ -178,7 +157,6 @@ class ApproximateSearcher:
                 score += lcs_weight * lcs_length(terms, idx.stem_tokens[cid]) / len(terms)
             scored.append((score, cid))
 
-        # 6. Top-k con el quickselect de Ana, desempate por id (igual que la exacta)
         top = quickselect_top_k(scored, top_k, key=lambda x: (x[0], -x[1]))
         elapsed_ms = (time.perf_counter() - t0) * 1000
 
@@ -204,18 +182,14 @@ class ApproximateSearcher:
 
     @staticmethod
     def _coverage(found, groups):
-        """Fracción de palabras de la pregunta presentes: una palabra cuenta si alguno de sus
-        candidatos aparece en el fragmento."""
+        # una palabra cuenta si aparece cualquiera de sus correcciones
         if not groups:
             return 0.0
         return sum(1 for g in groups if any(s in found for s in g)) / len(groups)
 
     def _score(self, cid, found, terms, groups, phrases, weights, inv):
-        """Misma fórmula que ExactSearcher._score de Ana (exact_search.py), con dos cambios:
-        la frecuencia de cada término se multiplica por su peso (similitud de la corrección)
-        y la cobertura se cuenta por palabra de la pregunta. No se llama directamente a
-        _score porque ahí la cobertura se cuenta por término y contaría cada candidato
-        como si fuera una palabra distinta. Si no hubo correcciones, ambas coinciden."""
+        # misma fórmula que ExactSearcher._score, pero cada tf se multiplica por el peso de la
+        # corrección y la cobertura se cuenta por palabra (si no hay correcciones da lo mismo)
         k1, b = config.BM25_K1, config.BM25_B
         length_norm = 1 - b + b * inv.doc_len.get(cid, 0) / max(inv.avg_len, 1e-9)
         base = 0.0
@@ -238,7 +212,6 @@ class ApproximateSearcher:
 
 
 def build_trie(token_lists):
-    """Trie con el vocabulario de una lista de fragmentos tokenizados. O(Σ|w|)."""
     counter = Counter()
     for tokens in token_lists:
         counter.update(tokens)
@@ -249,7 +222,6 @@ def build_trie(token_lists):
     return trie
 
 
-# Demo en consola
 def format_correction(c):
     if "distance" in c:
         return f"{c['query_word']} -> {c['candidate']} ({c['technique'].upper()} d={c['distance']}, peso {c['weight']:.2f})"

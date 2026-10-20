@@ -1,16 +1,10 @@
-#GUI - CosmoQuery con Gradio (Persona 2).
-
-# Ventana de preguntas con autocompletado por Trie mientras se escribe (Nota 1 del enunciado),
-# sugerencias "¿quisiste decir…?" de la búsqueda aproximada, fragmentos con las coincidencias
-# resaltadas, presupuesto de tokens visible y comparación exacta contra aproximada.
-
-# Uso:  python app.py      (abre http://127.0.0.1:7860)
+#GUI - interfaz de CosmoQuery con Gradio (python app.py -> http://127.0.0.1:7860)
 
 import html
+import os
 import time
 
 if __name__ == "__main__":
-    # Gradio, transformers y torch tardan en importarse la primera vez; se avisa antes.
     print("Iniciando CosmoQuery… cargando bibliotecas (la primera vez puede tardar unos minutos)", flush=True)
 
 import gradio as gr
@@ -23,10 +17,9 @@ from preprocessing import STOPWORDS, highlight
 from string_matching import ALGORITHM_LABELS as EXACT_LABELS
 
 CSS_FILE = config.BASE_DIR / "assets" / "cosmoquery.css"
-HEAD = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
-        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">')
 N_SUGGESTIONS = 6
-SD_SCALE = 15.0                       # escala de la barra de confianza (score_difference)
+SD_SCALE = 15.0      # tope de la barra de confianza
+PORT = int(os.environ.get("GRADIO_SERVER_PORT", 7860))
 METHOD_CHOICES = [("Aproximada", "approximate"), ("Exacta", "exact")]
 ALG_CHOICES = {
     "approximate": [(APPROX_LABELS[a], a) for a in ("hybrid", "osa_trie", "ngram_jaccard", "lev_trie")],
@@ -35,7 +28,7 @@ ALG_CHOICES = {
 DEFAULT_ALG = {"approximate": "hybrid", "exact": "kmp"}
 STRATEGY_CHOICES = [("Voraz (densidad valor/peso)", "greedy"), ("PD (mochila óptima)", "dp"),
                     ("Top-k (k = 3, sin presupuesto)", "topk")]
-# Preguntas de ejemplo del banco de Ana: 2 literales, 2 con errores, 1 paráfrasis, 1 sin respuesta.
+# del banco de Ana: 2 literales, 2 con errores, 1 paráfrasis y 1 sin respuesta
 EXAMPLE_IDS = ["Q01", "Q11", "Q11-T", "Q31-T", "Q43", "Q51"]
 FIGURE_TITLES = {
     "comp_hit5_categorias": "Hit@5 por tipo de pregunta: exacta contra aproximada",
@@ -68,13 +61,12 @@ class App:
         self.cq.approx.ngram_index()
         qs = {q["id"]: q for q in load_questions()}
         self.examples = [qs[i]["question"] for i in EXAMPLE_IDS if i in qs]
-        print("Listo. Abre http://127.0.0.1:7860 en el navegador.", flush=True)
+        print(f"Listo. Abre http://127.0.0.1:{PORT} en el navegador.", flush=True)
 
 
 APP = None
 
 
-# UTILIDADES DE HTML
 def esc(x):
     return html.escape(str(x))
 
@@ -103,7 +95,7 @@ def correction_text(c):
     return f'Jaccard {c["jaccard"]:.2f}'
 
 
-# AUTOCOMPLETADO CON TRIE
+# Autocompletado
 def current_prefix(text):
     """Palabra incompleta al final del texto, normalizada como la colección."""
     if not text or text[-1].isspace():
@@ -126,7 +118,7 @@ def suggest(text):
     labels = [f"{w} · {trie.frequency(w)}" for w in words]
     fuzzy = False
     if not words and len(prefix) >= 3:
-        # Autocompletado tolerante a errores: prefijos del Trie a distancia OSA <= 1
+        # si no hay nada, se buscan prefijos parecidos (OSA <= 1)
         prefixes, _ = trie_fuzzy_search(trie, prefix, 1, "osa", prefix_mode=True)
         cands = {}
         for p, d, _ in sorted(prefixes, key=lambda x: (x[1], -len(x[0]))):
@@ -153,7 +145,7 @@ def apply_suggestion(sample, text):
     return base + word + " "
 
 
-# PESTAÑA "PREGUNTA"
+# Pestaña Pregunta
 def run_question(question, method, algorithm, strategy, redundancy):
     question = (question or "").strip()
     if not question:
@@ -273,7 +265,7 @@ def chunks_html(r):
                 "".join(out))
 
 
-# PESTAÑA "EXACTA VS APROXIMADA"
+# Pestaña Exacta vs aproximada
 def run_compare(question, strategy, redundancy):
     question = (question or "").strip()
     if not question:
@@ -311,7 +303,7 @@ def run_compare(question, strategy, redundancy):
     return f'<div class="cq-compare">{"".join(cols)}</div>'
 
 
-# PESTAÑA "LABORATORIO DE CADENAS"
+# Pestaña Laboratorio
 def run_lab_word(word):
     word = APP.pp.normalize(word or "").replace(" ", "")
     if not word:
@@ -339,7 +331,7 @@ def run_lab_word(word):
             body += "</tr>"
         out.append(card(f"Tabla de PD: «{word}» contra «{best}»",
                         f'<table class="cq-dp">{head}{body}</table><div class="cq-legend" style="margin-top:8px">'
-                        f'<span><i style="background:#FFB547"></i>celda donde se usó la transposición (costo 1)</span>'
+                        f'<span><i style="background:#fff176"></i>se usó la transposición</span>'
                         f'<span>distancia final = {D[-1][-1]}</span></div>'))
         ga, gb = char_ngrams(word, 2), char_ngrams(best, 2)
         chips = lambda gs, other: "".join(f'<span class="cq-chip cq-gram {"cq-shared" if g in other else ""}">{esc(g)}</span>'
@@ -376,7 +368,6 @@ def run_lab_prefix(prefix):
                 f'<table class="cq-table"><tr><th>Palabra</th><th>Frecuencia</th></tr>{rows}</table>')
 
 
-# PESTAÑA "RESULTADOS"
 def figure_items():
     items = []
     for stem, title in FIGURE_TITLES.items():
@@ -386,10 +377,9 @@ def figure_items():
     return items
 
 
-# INTERFAZ
 def build_ui():
     with gr.Blocks(title="CosmoQuery") as demo:
-        gr.HTML('<div class="cq-header"><h1>Cosmo<span>Query</span></h1>'
+        gr.HTML('<div class="cq-header"><h1>CosmoQuery</h1>'
                 '<p>Asistente del Sistema Solar con recuperación por algoritmos de cadenas · TC2038</p>'
                 '<p class="cq-credits">Ana Griselda Ramírez Arámburo · Camila Gómez Godínez</p></div>')
         with gr.Row(equal_height=False):
@@ -441,7 +431,7 @@ def build_ui():
                 else:
                     gr.HTML('<div class="cq-empty">Aún no hay figuras. Ejecuta benchmark_approx.py y benchmark_exact.py.</div>')
 
-        # Autocompletado: en cada pulsación, sin barra de progreso y quedándose con la última llamada
+        # el autocompletado corre en cada tecla; always_last evita que se encolen llamadas
         question.input(suggest, question, [suggestions, trie_info], show_progress="hidden",
                        trigger_mode="always_last", queue=False)
         suggestions.click(apply_suggestion, [suggestions, question], question, show_progress="hidden", queue=False) \
@@ -463,24 +453,14 @@ def build_ui():
 
 
 def theme():
-    """Tema "espacio profundo": mismos colores en modo claro y oscuro del navegador."""
-    colors = dict(
-        body_background_fill="#0B1026", body_text_color="#E8ECFF", body_text_color_subdued="#9AA3C7",
-        background_fill_primary="#141B3A", background_fill_secondary="#1A2350", panel_background_fill="#141B3A",
-        block_background_fill="#141B3A", block_border_color="#26305C", block_label_text_color="#9AA3C7",
-        block_label_background_fill="#141B3A", block_title_text_color="#9AA3C7",
-        input_background_fill="#1A2350", input_border_color="#26305C", input_placeholder_color="#7480AD",
-        border_color_primary="#26305C", color_accent="#7C9CFF", color_accent_soft="#26305C",
-        link_text_color="#7C9CFF",
-        button_primary_background_fill="#7C9CFF", button_primary_text_color="#0B1026",
-        button_secondary_background_fill="#1A2350", button_secondary_text_color="#E8ECFF",
-        checkbox_label_background_fill="#1A2350", checkbox_label_background_fill_selected="#26305C",
-        checkbox_label_text_color="#E8ECFF", checkbox_label_text_color_selected="#E8ECFF",
-        checkbox_background_color="#0B1026", checkbox_background_color_selected="#7C9CFF",
-        table_even_background_fill="#141B3A", table_odd_background_fill="#1A2350",
-    )
-    base = gr.themes.Base(primary_hue="indigo", neutral_hue="slate",
-                          font=[gr.themes.GoogleFont("Inter"), "system-ui", "sans-serif"])
+    # Tema claro de Gradio con fuentes del sistema; se usa igual aunque el navegador esté en modo oscuro
+    colors = dict(body_background_fill="#ffffff", body_text_color="#222222", block_background_fill="#ffffff",
+                  background_fill_primary="#ffffff", background_fill_secondary="#f5f5f5",
+                  block_border_color="#dddddd", border_color_primary="#dddddd", input_background_fill="#ffffff",
+                  block_label_text_color="#444444", block_title_text_color="#444444",
+                  body_text_color_subdued="#666666")
+    base = gr.themes.Default(primary_hue="blue", neutral_hue="gray",
+                             font=["Segoe UI", "Arial", "sans-serif"], font_mono=["Consolas", "monospace"])
     dark = {f"{k}_dark": v for k, v in colors.items() if hasattr(base, f"{k}_dark")}
     return base.set(**colors, **dark)
 
@@ -493,12 +473,12 @@ def main():
         with gr.Blocks(title="CosmoQuery") as demo:
             gr.HTML('<div class="cq-card"><h3>Falta el índice</h3><div class="cq-empty">Ejecuta primero '
                     '<code>python index_builder.py</code> y vuelve a abrir la aplicación.</div></div>')
-        demo.launch(server_name="127.0.0.1", server_port=7860, css=css, theme=theme())
+        demo.launch(server_name="127.0.0.1", server_port=PORT, css=css, theme=theme())
         return
     APP = App()
     demo = build_ui()
     demo.queue(default_concurrency_limit=2)
-    demo.launch(server_name="127.0.0.1", server_port=7860, theme=theme(), css=css, head=HEAD,
+    demo.launch(server_name="127.0.0.1", server_port=PORT, theme=theme(), css=css,
                 allowed_paths=[str(config.FIGURES_DIR)])
 
 
