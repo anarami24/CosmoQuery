@@ -25,7 +25,7 @@ La primera vez que se usa el modelo se descargan unos 500 MB; después funciona 
 python app.py                    # abre http://127.0.0.1:7860
 ```
 
-Mientras escribes la pregunta, el Trie sugiere palabras del vocabulario. Se puede elegir búsqueda exacta o aproximada y el algoritmo. La respuesta muestra las correcciones ("¿quisiste decir…?"), la oración de donde salió con las palabras de la pregunta resaltadas y el tiempo.
+Mientras escribes la pregunta, el Trie sugiere palabras del vocabulario. Se puede elegir búsqueda exacta o aproximada y el algoritmo. La respuesta muestra las correcciones ("¿quisiste decir…?"), la oración de donde salió con las palabras de la pregunta resaltadas, el tiempo de cada etapa (búsqueda, contexto, modelo) y los fragmentos que leyó el modelo. El botón "Comparar algoritmos" corre la misma pregunta con las 9 búsquedas (exactas y aproximadas), marca la más rápida y resume los resultados del banco de 106 preguntas; al tocarlo otra vez se oculta.
 
 ### Consola
 
@@ -58,8 +58,9 @@ Las respuestas del modelo del benchmark se guardan en `.cache/qa_answers.json` (
 | `approximate.py` | Levenshtein, OSA (Damerau), recorrido del Trie con ramificación y poda, n-gramas, Jaccard, índice de n-gramas, LCS |
 | `approx_search.py` | `ApproximateSearcher`: corrige palabras y vuelve a puntuar con BM25 + frases + cobertura |
 | `context_selection.py` | Redundancia por Jaccard, mochila 0/1 voraz y con programación dinámica, armado del contexto |
-| `qa_model.py` | RoBERTa con la lógica de `ask_question` del cuaderno PokeChat (umbral 7 → "I don't know") |
-| `rag_pipeline.py` | `CosmoQuery.ask`: flujo completo con tiempos por etapa |
+| `qa_model.py` | RoBERTa con la lógica de `ask_question` del cuaderno PokeChat ("I don't know" si `score_difference` < `NO_ANSWER_THRESHOLD`) |
+| `rag_pipeline.py` | `CosmoQuery.ask`: flujo completo con tiempos por etapa; el modelo lee cada fragmento elegido por separado |
+| `calibrar_umbral.py`, `evaluar_respuestas.py` | Calibración del umbral de "I don't know" y evaluación de las respuestas por pregunta |
 | `etapa4_reporte.py`, `etapa5_reporte.py`, `benchmark_approx.py` | Reportes de las Etapas 4, 5 y 6 |
 | `app.py`, `assets/cosmoquery.css` | GUI en Gradio |
 | `tests/test_approximate.py` | Pruebas contra implementaciones de referencia y fuerza bruta |

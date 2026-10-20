@@ -1,11 +1,5 @@
 #ETAPA 5 - modelo de lenguaje (deepset/roberta-base-squad2, extractivo)
 
-# answer() sigue el ask_question final del cuaderno PokeChat: argmax de inicio y de fin,
-# score_difference = (inicio + fin) - (<s> + <s>) y si es < 7 la respuesta es "I don't know".
-# Lo único que se agregó: los offsets para ubicar la respuesta, truncar si se pasa de 512
-# tokens (se marca como error) y "I don't know" si el tramo sale vacío.
-# La atención del modelo cuesta O(L²) con L tokens de entrada; por eso importa el presupuesto.
-
 import hashlib
 import time
 
@@ -18,7 +12,6 @@ _ANSWER_CACHE = {}
 
 
 def load_model():
-    # se carga una sola vez
     global _TOKENIZER, _MODEL, _DEVICE
     if _MODEL is None:
         import torch
@@ -42,12 +35,10 @@ def count_tokens(text):
 
 
 def special_tokens_pair():
-    # <s> pregunta </s></s> contexto </s>
     return get_tokenizer().num_special_tokens_to_add(pair=True)
 
 
 def answer(question, context, use_cache=True):
-    # raw_answer es el tramo antes del umbral; start_char/end_char son posiciones en el contexto
     key = (question, hashlib.sha1(context.encode("utf-8")).hexdigest())
     if use_cache and key in _ANSWER_CACHE:
         return dict(_ANSWER_CACHE[key], cached=True)
@@ -96,7 +87,6 @@ def answer(question, context, use_cache=True):
 
 
 def load_cache(path):
-    # caché en disco por (pregunta, hash del contexto) para el benchmark
     import json
     if path.exists():
         for k, v in json.loads(path.read_text(encoding="utf-8")).items():
@@ -113,5 +103,4 @@ def save_cache(path):
 
 
 def ask_question(context, question):
-    # misma firma que en el cuaderno
     return answer(question, context)["answer"]

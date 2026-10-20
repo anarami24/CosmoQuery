@@ -1,7 +1,5 @@
 #ETAPA 5 - reporte de respuestas (24 preguntas, aproximada y exacta)
 
-# python etapa5_reporte.py -> results/etapa5_respuestas.md, .csv y .json
-
 import argparse
 import csv
 import json
@@ -14,7 +12,7 @@ from preprocessing import highlight
 from rag_pipeline import CosmoQuery
 
 PLAN = [("literal", 10), ("paraphrase", 4), ("typo", 6), ("no_answer", 4)]
-F1_OK = 0.5             # una respuesta cuenta como correcta si F1 >= 0.5 (estilo SQuAD)
+F1_OK = 0.5
 SNIPPET = 350
 METHODS = [("approximate", "hybrid"), ("exact", "kmp")]
 DIAGNOSES = ["correcta y respaldada", "correcta (evidencia fuera de los fragmentos anotados)",
@@ -22,7 +20,6 @@ DIAGNOSES = ["correcta y respaldada", "correcta (evidencia fuera de los fragment
 
 
 def pick_questions(questions):
-    # repartidas a lo largo de cada categoría para no quedarnos solo con los primeros documentos
     chosen = []
     for cat, k in PLAN:
         pool = [q for q in questions if q["category"] == cat]
@@ -42,7 +39,6 @@ def diagnose(q, rag, relevant):
         label = "recuperación incompleta"
     else:
         label = "falla del modelo"
-    # para los "I don't know": ¿el tramo era correcto antes del umbral?
     detail = ""
     raw = rag.extra.get("raw_answer", "")
     if rag.is_no_answer and q["answers"]:
@@ -110,8 +106,10 @@ def write_markdown(path, rows, selection):
     L = ["# Etapa 5 - Respuestas del modelo con el contexto seleccionado\n",
          f"Modelo: `{config.QA_MODEL}` (extractivo, sin entrenamiento adicional), con la lógica de `ask_question` del "
          f"cuaderno PokeChat: si `score_difference` < {config.NO_ANSWER_THRESHOLD:g}, la respuesta es "
-         f"\"{config.NO_ANSWER_TEXT}\". Flujo: pregunta → búsqueda → recuperación de los {config.CONTEXT_CANDIDATES} "
-         f"mejores fragmentos → selección del contexto (`{selection}`, con eliminación de redundancia) → modelo → respuesta.\n",
+         f"\"{config.NO_ANSWER_TEXT}\" (el PokeChat usaba 7; el umbral se calibró con `calibrar_umbral.py`). "
+         f"Flujo: pregunta → búsqueda → recuperación de los {config.CONTEXT_CANDIDATES} "
+         f"mejores fragmentos → selección del contexto (`{selection}`, con eliminación de redundancia) → el modelo lee "
+         f"cada fragmento elegido por separado y se queda con la respuesta de mayor `score_difference` → respuesta.\n",
          f"Método principal: búsqueda aproximada híbrida. En paralelo: búsqueda exacta (KMP con índice). "
          f"{len(rows)} preguntas del banco de Ana: " + ", ".join(f"{k} {c}" for c, k in PLAN) +
          ", repartidas uniformemente dentro de cada categoría. Tiempos medidos sin caché del modelo, en CPU.\n",
@@ -230,7 +228,7 @@ def main():
 
     print("Cargando índice y modelo…")
     cq = CosmoQuery()
-    cq.ask("When was Pluto discovered?", use_cache=False)          # calentamiento (no se reporta)
+    cq.ask("When was Pluto discovered?", use_cache=False)
     questions = pick_questions(load_questions())
     print(f"Respondiendo {len(questions)} preguntas…")
     rows = run(cq, questions, args.selection)

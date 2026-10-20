@@ -1,7 +1,5 @@
 #ETAPA 5 - flujo completo: pregunta -> búsqueda -> fragmentos -> contexto -> modelo
 
-# python rag_pipeline.py "When was Pluto discovered?" [--method exact] [--selection dp]
-
 import argparse
 import textwrap
 import time
@@ -25,17 +23,17 @@ class RagAnswer:
     method: str
     algorithm: str
     search: SearchResult
-    selected: list                      # list[ScoredChunk] que entraron al contexto
-    discarded: list                     # list[(chunk_id, motivo)]
+    selected: list
+    discarded: list
     context: str
-    tokens_used: int                    # tokens reales de la entrada al modelo
-    token_budget: int                   # presupuesto W para el contexto
+    tokens_used: int
+    token_budget: int
     tokens_question: int
     tokens_context: int
     answer: str
     score_difference: float
-    source_chunk_id: int = None         # fragmento del que salió la respuesta
-    answer_span: tuple = None           # (inicio, fin) de la respuesta dentro del texto de ese fragmento
+    source_chunk_id: int = None
+    answer_span: tuple = None
     truncated: bool = False
     selection: str = "greedy"
     redundancy: bool = True
@@ -112,7 +110,7 @@ class CosmoQuery:
             if source is not None:
                 offset = next(s for cid, s, _ in sel.spans if cid == source)
                 span = (out["start_char"] - offset, out["end_char"] - offset)
-        else:                               # nada recuperado: no se llama al modelo
+        else:
             out = {"answer": config.NO_ANSWER_TEXT, "raw_answer": "", "score_difference": float("-inf"),
                    "start_char": None, "end_char": None, "truncated": False, "time_ms": 0.0,
                    "tokens_used": 0, "cached": False}

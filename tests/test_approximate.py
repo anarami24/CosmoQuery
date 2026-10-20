@@ -1,6 +1,3 @@
-"""
-Pruebas de la parte de Persona 2 (Etapas 4 y 5).
-"""
 import random
 import sys
 import unittest
@@ -10,14 +7,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from approximate import (NgramIndex, brute_force_fuzzy, char_ngrams, edit_distance_table,  # noqa: E402
+from approximate import (NgramIndex, brute_force_fuzzy, char_ngrams, edit_distance_table,
                          jaccard, jaccard_words, lcs_length, levenshtein, max_edit_distance,
                          osa_distance, trie_fuzzy_search)
-from preprocessing import STOPWORDS                                                         # noqa: E402
-from structures import Trie                                                                 # noqa: E402
+from preprocessing import STOPWORDS
+from structures import Trie
 
 
-# referencia: la definición recursiva con memoización
 def ref_distance(a, b, transpositions):
     @lru_cache(maxsize=None)
     def d(i, j):
@@ -76,13 +72,13 @@ class TestEditDistances(unittest.TestCase):
         self.assertEqual(osa_distance("ab", "ba"), 1)
         self.assertEqual(levenshtein("largset", "largest"), 2)
         self.assertEqual(osa_distance("largset", "largest"), 1)
-        self.assertEqual(osa_distance("ca", "abc"), 3)      # OSA no edita dos veces la misma subcadena
+        self.assertEqual(osa_distance("ca", "abc"), 3)
         self.assertEqual(levenshtein("kitten", "sitting"), 3)
 
     def test_table_marks_transposition(self):
         D, swaps = edit_distance_table("largset", "largest", "osa")
         self.assertEqual(D[-1][-1], 1)
-        self.assertIn((6, 6), swaps)                        # "se" -> "es" en las posiciones 5-6
+        self.assertIn((6, 6), swaps)
         D_lev, swaps_lev = edit_distance_table("largset", "largest", "lev")
         self.assertEqual((D_lev[-1][-1], swaps_lev), (2, []))
 
@@ -109,7 +105,6 @@ class TestTrieFuzzySearch(unittest.TestCase):
         cls.vocab = cls.idx.trie.words()
 
     def brute(self, word, k, metric, exclude=None):
-        # solo palabras con |len(a) - len(b)| <= k, las demás no pueden estar a distancia k
         near = [(w, f) for w, f in self.vocab if abs(len(w) - len(word)) <= k]
         return brute_force_fuzzy(near, word, k, metric, exclude)[0]
 
@@ -138,7 +133,6 @@ class TestTrieFuzzySearch(unittest.TestCase):
         t = Trie()
         for w, f in [("jupiter", 9), ("juno", 4), ("mars", 3), ("perseverance", 2)]:
             t.insert(w, f)
-        # "ju" ya está a distancia 1 de "jpu", entonces ahí se detiene
         got, _ = trie_fuzzy_search(t, "jpu", 1, "osa", prefix_mode=True)
         self.assertEqual([p for p, _, _ in got], ["ju"])
         got, _ = trie_fuzzy_search(t, "jupt", 1, "osa", prefix_mode=True)
@@ -166,7 +160,7 @@ class TestNgramsJaccard(unittest.TestCase):
     def test_ngram_index_matches_direct_jaccard(self):
         vocab = [("volcano", 5), ("volcanoes", 3), ("volume", 2), ("the", 99), ("satellites", 4)]
         index = NgramIndex(vocab, n=2)
-        self.assertNotIn("the", index.freq)                 # sin stopwords
+        self.assertNotIn("the", index.freq)
         top, stats = index.lookup("volcanno", min_j=0.0, k=10)
         self.assertEqual(top[0][0], "volcano")
         for w, j, _ in top:
@@ -202,7 +196,6 @@ class TestApproximateSearcher(unittest.TestCase):
         cls.exact = ExactSearcher(cls.idx)
 
     def test_no_typos_same_as_exact(self):
-        # sin errores debe dar exactamente lo mismo que la exacta
         from approx_search import ALGORITHMS
         for q in ["When was Pluto discovered?", "What is the Great Red Spot on Jupiter?",
                   "How many moons does Mars have?"]:
@@ -231,7 +224,7 @@ class TestApproximateSearcher(unittest.TestCase):
     def test_subset_rebuilds_trie(self):
         from approx_search import ApproximateSearcher
         sub = self.idx.subset(50)
-        self.assertEqual(len(sub.trie), 0)                  # observación de §1.3: subset() deja el Trie vacío
+        self.assertEqual(len(sub.trie), 0)
         searcher = ApproximateSearcher(sub)
         self.assertGreater(len(searcher.trie), 0)
         for r in searcher.search("What is the sun made of?").results:
@@ -282,7 +275,6 @@ class TestContextSelection(unittest.TestCase):
 
     def fake_selector(self):
         from context_selection import ContextSelector
-        # contador falso (1 token por palabra) para no cargar el modelo
         return ContextSelector(self.idx, count_tokens=lambda t: len(t.split()), special_tokens=4)
 
     def test_strategies_and_spans(self):
@@ -315,7 +307,7 @@ class TestContextSelection(unittest.TestCase):
         try:
             import qa_model
             qa_model.get_tokenizer()
-        except Exception as e:                           # sin transformers o sin el modelo descargado
+        except Exception as e:
             self.skipTest(f"tokenizador no disponible: {e}")
         from context_selection import ContextSelector
         from evaluation import load_questions

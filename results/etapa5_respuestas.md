@@ -1,6 +1,6 @@
 # Etapa 5 - Respuestas del modelo con el contexto seleccionado
 
-Modelo: `deepset/roberta-base-squad2` (extractivo, sin entrenamiento adicional), con la lógica de `ask_question` del cuaderno PokeChat: si `score_difference` < 0.5, la respuesta es "I don't know". Flujo: pregunta → búsqueda → recuperación de los 10 mejores fragmentos → selección del contexto (`greedy`, con eliminación de redundancia) → modelo → respuesta.
+Modelo: `deepset/roberta-base-squad2` (extractivo, sin entrenamiento adicional), con la lógica de `ask_question` del cuaderno PokeChat: si `score_difference` < 0.5, la respuesta es "I don't know" (el PokeChat usaba 7; el umbral se calibró con `calibrar_umbral.py`). Flujo: pregunta → búsqueda → recuperación de los 10 mejores fragmentos → selección del contexto (`greedy`, con eliminación de redundancia) → el modelo lee cada fragmento elegido por separado y se queda con la respuesta de mayor `score_difference` → respuesta.
 
 Método principal: búsqueda aproximada híbrida. En paralelo: búsqueda exacta (KMP con índice). 24 preguntas del banco de Ana: 10 literal, 4 paraphrase, 6 typo, 4 no_answer, repartidas uniformemente dentro de cada categoría. Tiempos medidos sin caché del modelo, en CPU.
 
