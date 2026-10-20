@@ -88,7 +88,7 @@ class CosmoQuery:
         if sel.context:
             out = qa_model.answer(question, sel.context, use_cache)
         else:                               # nada recuperado: no se llama al modelo
-            out = {"answer": config.NO_ANSWER_TEXT, "score_difference": float("-inf"),
+            out = {"answer": config.NO_ANSWER_TEXT, "raw_answer": "", "score_difference": float("-inf"),
                    "start_char": None, "end_char": None, "truncated": False, "time_ms": 0.0,
                    "tokens_used": 0, "cached": False}
         t3 = time.perf_counter()
@@ -111,7 +111,8 @@ class CosmoQuery:
             t_model_ms=out["time_ms"] if out.get("cached") else (t3 - t2) * 1000,
             t_total_ms=(t3 - t0) * 1000,
             extra={"values": sel.values, "weights": sel.weights, "total_value": sel.total_value,
-                   "spans": sel.spans, "model_cached": out.get("cached", False)})
+                   "spans": sel.spans, "model_cached": out.get("cached", False),
+                   "raw_answer": out.get("raw_answer", "")})
 
 
 def print_answer(r, width=100):

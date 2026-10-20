@@ -67,7 +67,8 @@ def special_tokens_pair():
 def answer(question, context, use_cache=True):
     """Respuesta del modelo para una pregunta y un contexto, con la lógica del PokeChat.
 
-    Devuelve {answer, score_difference, start_char, end_char, tokens_used, truncated, time_ms}.
+    Devuelve {answer, raw_answer, score_difference, start_char, end_char, tokens_used, truncated, time_ms}.
+    raw_answer es el tramo elegido antes del umbral (solo para diagnosticar "I don't know").
     start_char/end_char son posiciones dentro de `context` (None si no hay respuesta).
     """
     key = (question, hashlib.sha1(context.encode("utf-8")).hexdigest())
@@ -102,13 +103,14 @@ def answer(question, context, use_cache=True):
 
     text = tokenizer.decode(inputs["input_ids"][0, start_index:end_index + 1],
                             skip_special_tokens=True).strip()
+    raw_text = text                         # tramo elegido antes de aplicar el umbral (diagnóstico)
     start_char = end_char = None
     if score_difference < config.NO_ANSWER_THRESHOLD or not text:
         text = config.NO_ANSWER_TEXT
     elif sequence_ids[start_index] == 1 and sequence_ids[end_index] == 1:
         start_char, end_char = offsets[start_index][0], offsets[end_index][1]
 
-    result = {"answer": text, "score_difference": score_difference, "start_char": start_char,
+    result = {"answer": text, "raw_answer": raw_text, "score_difference": score_difference, "start_char": start_char,
               "end_char": end_char, "tokens_used": int(tokens_used), "truncated": truncated,
               "time_ms": (time.perf_counter() - t0) * 1000, "cached": False}
     if use_cache:
