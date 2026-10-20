@@ -118,6 +118,23 @@ def answer(question, context, use_cache=True):
     return result
 
 
+def load_cache(path):
+    """Carga respuestas guardadas por (pregunta, hash del contexto) desde un JSON."""
+    import json
+    if path.exists():
+        for k, v in json.loads(path.read_text(encoding="utf-8")).items():
+            q, h = k.rsplit("\x1f", 1)
+            _ANSWER_CACHE[(q, h)] = v
+    return len(_ANSWER_CACHE)
+
+
+def save_cache(path):
+    import json
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({f"{q}\x1f{h}": v for (q, h), v in _ANSWER_CACHE.items()},
+                               ensure_ascii=False), encoding="utf-8")
+
+
 def ask_question(context, question):
     """Misma firma y salida que ask_question del cuaderno PokeChat (solo el texto)."""
     return answer(question, context)["answer"]

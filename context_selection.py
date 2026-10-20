@@ -131,8 +131,9 @@ class ContextSelector:
         return config.MODEL_MAX_TOKENS - self.count_tokens(question) - self.special_tokens - MARGIN
 
     def select(self, question, results, strategy="greedy", redundancy=True, k=None,
-               n_candidates=None):
-        """Elige fragmentos de `results` (list[ScoredChunk] ordenados por puntaje) y arma el contexto."""
+               n_candidates=None, redundancy_threshold=None):
+        """Elige fragmentos de `results` (list[ScoredChunk] ordenados por puntaje) y arma el contexto.
+        `redundancy_threshold` sustituye a REDUNDANCY_JACCARD (para el experimento de la Etapa 6)."""
         if strategy not in STRATEGIES:
             raise ValueError(f"Estrategia desconocida: {strategy}. Opciones: {STRATEGIES}")
         n_candidates = config.CONTEXT_CANDIDATES if n_candidates is None else n_candidates
@@ -151,7 +152,7 @@ class ContextSelector:
         else:
             pool = sorted(cands, key=lambda r: (-values[r.chunk_id], r.chunk_id))
             if redundancy:
-                pool, dropped = self._remove_redundant(pool)
+                pool, dropped = self._remove_redundant(pool, redundancy_threshold)
                 discarded += dropped
             vals = [values[r.chunk_id] for r in pool]
             wts = [weights[r.chunk_id] for r in pool]
@@ -182,14 +183,15 @@ class ContextSelector:
             tokens_question=q_tokens, tokens_context=tokens_ctx,
             total_value=sum(values[r.chunk_id] for r in chosen), values=values, weights=weights)
 
-    def _remove_redundant(self, pool):
+    def _remove_redundant(self, pool, threshold=None):
         """Descarta un fragmento si su Jaccard de raíces con uno ya conservado (de mayor valor)
         supera REDUNDANCY_JACCARD. Complejidad O(N²·T) con T tokens por fragmento."""
+        threshold = config.REDUNDANCY_JACCARD if threshold is None else threshold
         kept, dropped = [], []
         stems = self.index.stem_tokens
         for r in pool:
             dup = next((k for k in kept
-                        if jaccard_words(stems[r.chunk_id], stems[k.chunk_id]) > config.REDUNDANCY_JACCARD), None)
+                        if jaccard_words(stems[r.chunk_id], stems[k.chunk_id]) > threshold), None)
             if dup is None:
                 kept.append(r)
             else:

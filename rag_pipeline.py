@@ -74,7 +74,7 @@ class CosmoQuery:
         return self.approx.search(question, algorithm, top_k)
 
     def ask(self, question, method="approximate", algorithm=None, selection="greedy",
-            redundancy=True, k=None, use_cache=True):
+            redundancy=True, k=None, use_cache=True, redundancy_threshold=None):
         if method not in METHODS:
             raise ValueError(f"Método desconocido: {method}. Opciones: {METHODS}")
         algorithm = algorithm or DEFAULT_ALGORITHM[method]
@@ -82,7 +82,8 @@ class CosmoQuery:
 
         res = self.search(question, method, algorithm)
         t1 = time.perf_counter()
-        sel = self.selector.select(question, res.results, selection, redundancy, k)
+        sel = self.selector.select(question, res.results, selection, redundancy, k,
+                                   redundancy_threshold=redundancy_threshold)
         t2 = time.perf_counter()
 
         if sel.context:
