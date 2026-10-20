@@ -9,6 +9,10 @@
 import html
 import time
 
+if __name__ == "__main__":
+    # Gradio, transformers y torch tardan en importarse la primera vez; se avisa antes.
+    print("Iniciando CosmoQuery… cargando bibliotecas (la primera vez puede tardar unos minutos)", flush=True)
+
 import gradio as gr
 
 import config
@@ -53,10 +57,10 @@ class App:
     def __init__(self):
         from evaluation import load_questions
         from rag_pipeline import CosmoQuery
-        print("Cargando índice…")
+        print("Cargando índice…", flush=True)
         from index_builder import load_index
         index = load_index()
-        print("Cargando modelo de lenguaje (la primera vez se descarga, ~500 MB)…")
+        print("Cargando modelo de lenguaje (la primera vez se descarga, ~500 MB)…", flush=True)
         self.cq = CosmoQuery(index)
         self.index = index
         self.pp = index.preprocessor
@@ -64,7 +68,7 @@ class App:
         self.cq.approx.ngram_index()
         qs = {q["id"]: q for q in load_questions()}
         self.examples = [qs[i]["question"] for i in EXAMPLE_IDS if i in qs]
-        print("Listo.")
+        print("Listo. Abre http://127.0.0.1:7860 en el navegador.", flush=True)
 
 
 APP = None
