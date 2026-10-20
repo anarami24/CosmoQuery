@@ -17,7 +17,7 @@ import unicodedata
 from collections import Counter
 
 
-# Lista de stopwords en inglés (basada en la lista clásica de NLTK/Snowball).
+#lista de stopwords en inglés (basada en la lista clásica de NLTK/Snowball).
 
 STOPWORDS = frozenset("""
 a about above after again against all also am an and any are aren as at be because been
@@ -32,7 +32,7 @@ yourselves s t d ll m o re ve y ain ma
 tell many much called name named known
 """.split())
 
-# Palabras de "relleno" típicas de una PREGUNTA
+#palabras de "relleno" típicas de una PREGUNTA
 QUERY_FILLER = frozenset("""
 mention mentioned mentions describe described explain explained information info say says
 said please thing things something anything give list kind type
@@ -48,13 +48,13 @@ def to_lowercase(text):
 
 
 def strip_accents(text):
-    """Descompone cada carácter (NFD) y elimina las marcas diacríticas: 'Négone' -> 'Negone'."""
+    #descompone cada caracter (NFD) y elimina las marcas diacriticas
     decomposed = unicodedata.normalize("NFD", text)
     return "".join(ch for ch in decomposed if unicodedata.category(ch) != "Mn")
 
 
 def remove_punctuation(text):
-    """Elimina signos y caracteres especiales; conserva decimales (4.6) y miles (1,000 -> 1000)."""
+   #elimina signos y caracteres especiales
     text = _POSSESSIVE_RE.sub("", text)
     text = _NUM_SEP_RE.sub("", text)
     return " ".join(_TOKEN_RE.findall(text))
@@ -69,7 +69,6 @@ def remove_stopwords(tokens):
 
 
 def build_vocabulary(token_lists):
-    """Vocabulario = palabras únicas con su frecuencia total. O(N) con una tabla hash."""
     counter = Counter()
     for tokens in token_lists:
         counter.update(tokens)
@@ -77,7 +76,7 @@ def build_vocabulary(token_lists):
 
 
 
-# Algoritmo de Porter (1980): reduce cada palabra a su raíz
+# Algoritmo de Porter
 
 class PorterStemmer:
     _STEP2 = {

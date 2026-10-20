@@ -1,8 +1,5 @@
 #ETAPA 2 
 
-#Lee data/chunks.json (Etapa 1), aplica el preprocesamiento y construye:Trie del vocabulario (autocompletado + búsqueda aproximada), indice invertido de raíces y otro de palabras sin stemming, arreglo de sufijos de la colección
-#guarda todo en data/index.pkl y escribe el reporte results/etapa2_preprocesamiento.md
-
 import argparse
 import json
 import pickle
@@ -21,7 +18,7 @@ class CorpusIndex:
         self.chunks = chunks
         self.preprocessor = Preprocessor()
         self.stem_tokens = []      
-        self.word_tokens = []      # palabras normalizadas sin stopwords, sin stemming
+        self.word_tokens = []      # palabras normalizadas sin stopwords sin stemming
         self.stem_text = []       
         self.word_text = []
         self.inv_stems = InvertedIndex()
@@ -129,8 +126,6 @@ def load_chunks(path=config.CHUNKS_FILE):
 
 #Reporte de la Etapa 2: 
 def preprocessing_ablation(chunks):
-    #Aplica las técnicas de forma ACUMULATIVA y mide, después de cada una: número de tokens, tamaño del vocabulario y tiempo.
-
     texts = [c["text"] for c in chunks]
     stemmer = PorterStemmer()
     steps = [
@@ -166,11 +161,10 @@ def _row(name, token_lists, elapsed):
 
 
 def bpe_comparison(chunks, model_name="deepset/roberta-base-squad2"):
-   #Cuenta tokens BPE (subpalabras) por fragmento con el tokenizer real del modelo
     try:
         from transformers import AutoTokenizer
         tok = AutoTokenizer.from_pretrained(model_name)
-    except Exception as e:  # sin internet o sin transformers
+    except Exception as e: 
         return {"available": False, "error": str(e)[:200]}
     counts = [len(tok(c["text"], add_special_tokens=False)["input_ids"]) for c in chunks]
     words = [c["n_words"] for c in chunks]
@@ -188,7 +182,6 @@ def bpe_comparison(chunks, model_name="deepset/roberta-base-squad2"):
 
 
 def stemming_examples(index, n=12):
-#Raíces que agrupan más variantes distintas 
     groups = sorted(index.stem_to_words.items(), key=lambda kv: -len(kv[1]))
     return [(stem, list(words.keys())[:6]) for stem, words in groups[:n]]
 

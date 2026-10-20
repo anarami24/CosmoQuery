@@ -9,23 +9,23 @@ class ScoredChunk:
     doc: str
     section: str
     text: str
-    matches: dict = field(default_factory=dict)   # término/patrón: nº de coincidencias
-    coverage: float = 0.0                         # fracción de términos de la consulta presentes
-    extra: dict = field(default_factory=dict)     # datos propios de cada método
+    matches: dict = field(default_factory=dict)   
+    coverage: float = 0.0                        
+    extra: dict = field(default_factory=dict)     
 
 
 @dataclass
 class SearchResult:
     query: str
-    method: str                 # "exact" | "approximate"
-    algorithm: str              # "kmp", "z", "levenshtein_trie", ...
-    terms: list                 # términos extraídos de la pregunta
-    patterns: list              # patrones buscados (términos y frases)
-    results: list               # list[ScoredChunk], ordenados por score desc
-    time_ms: float              # tiempo total de la búsqueda
-    n_examined: int             # fragmentos examinados por el algoritmo
-    n_matched: int              # fragmentos con puntaje > 0
-    n_total: int                # fragmentos en la colección
+    method: str                 
+    algorithm: str             
+    terms: list                 
+    patterns: list             
+    results: list              
+    time_ms: float              
+    n_examined: int             
+    n_matched: int              
+    n_total: int                
     details: dict = field(default_factory=dict)
 
     def ids(self):

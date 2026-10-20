@@ -85,9 +85,6 @@ class ZMatcher:
 
 class RabinKarpMatcher:
     #Polynomial rolling hash:  h(s) = s0·B^(m-1) + s1·B^(m-2) + ... + s(m-1)  (mod M)
-    # Al deslizar la ventana:   h' = (h - s_i·B^(m-1))·B + s_(i+m)   en O(1).
-    # Cuando los hashes coinciden se verifica carácter por carácter, así que el
-    # resultado siempre es correcto, las colisiones solo cuestan tiempo.
 
     name = "rabin_karp"
     BASE = 131

@@ -1,5 +1,5 @@
 
-#Demo en consola de la búsqueda exacta (Etapa 3).
+#Etapa 3
 
 import argparse
 import textwrap

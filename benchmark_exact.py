@@ -98,7 +98,7 @@ def experiment_worst_case(sizes, m=40):
     return rows
 
 
-#Gráficas
+#graficas
 def _style(ax, title, xlabel, ylabel):
     ax.set_title(title, loc="left", fontsize=12, color=INK, pad=10)
     ax.set_xlabel(xlabel, color=MUTED)
@@ -202,7 +202,7 @@ def make_plots(summary_rows, scaling_rows, worst_rows, by_category, stemming):
     return files
 
 
-#Reporte en Markdown
+#reporte
 def write_markdown(path, n_questions, problems, summary_rows, by_category, stemming, scaling_rows, worst_rows, figures):
     L = ["# Etapa 6 - Análisis de la búsqueda exacta\n",
          f"Banco de pruebas: **{n_questions} preguntas** (escritas a mano + variantes con errores de escritura).\n"]

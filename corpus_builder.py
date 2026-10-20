@@ -137,14 +137,8 @@ def split_sentences(paragraph):
 
 #Fragmentación (algoritmo voraz)
 def chunk_section(sentences, size=config.CHUNK_SIZE_WORDS, overlap=config.CHUNK_OVERLAP_WORDS):
-    """
-    Empaquetado VORAZ de oraciones en fragmentos:
-      - Se agregan oraciones al fragmento actual mientras no se exceda `size`.
-      - Al cerrar un fragmento, el siguiente arranca con las últimas oraciones
-        del anterior que suman al menos `overlap` palabras (traslape).
-    Cada oración se visita un número constante de veces O(W) en el número
-    total de palabras W.
-    """
+    #Empaquetado VORAZ de oraciones en fragmentos:
+
     units = []
     for s in sentences:
         words = s.split()
@@ -243,7 +237,7 @@ def write_stats_markdown(stats, path):
 
 
 def diagnose(doc_id):
-    """Muestra cuántas palabras se extraen de una página en cada modo y los primeros bloques."""
+    #muestra cuantas palabras se extraen de una página en cada modo y los primeros bloques.
     path = config.HTML_DIR / f"{doc_id}.html"
     if not path.exists():
         raise SystemExit(f"No existe {path}")

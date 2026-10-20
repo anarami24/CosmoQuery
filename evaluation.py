@@ -14,7 +14,6 @@ _norm_cache = {}
 
 #banco de preguntas
 def make_typo(question, rng, n_words=None):
-    """Introduce errores de escritura realistas en 1-2 palabras de contenido."""
     words = question.split()
     candidates = [i for i, w in enumerate(words)
                   if len(w.strip(string.punctuation)) >= 5 and w.lower().strip(string.punctuation) not in STOPWORDS]
@@ -68,7 +67,6 @@ def _normalized_chunks(index):
 
 
 def relevant_chunks(index, question):
-    """Fragmentos de los documentos esperados que contienen alguna evidencia."""
     if not question.get("evidence"):
         return set()
     texts = _normalized_chunks(index)
@@ -84,7 +82,6 @@ def relevant_chunks(index, question):
 
 
 def validate_questions(index, questions):
-    """Preguntas con respuesta que NO tienen ningún fragmento relevante en la colección."""
     corpus_docs = {c["doc"] for c in index.chunks}
     problems = []
     for q in questions:
@@ -116,7 +113,6 @@ def ranking_metrics(retrieved, relevant, ks=(1, 3, 5)):
 
 
 def normalize_answer(s):
-    """Normalización oficial de SQuAD: minúsculas, sin puntuación, sin artículos."""
     s = s.lower()
     s = "".join(ch for ch in s if ch not in set(string.punctuation))
     s = re.sub(r"\b(a|an|the)\b", " ", s)
@@ -124,8 +120,6 @@ def normalize_answer(s):
 
 
 def answer_scores(prediction, answers, no_answer_text="I don't know"):
-    """Exact Match y F1 (máximo sobre las respuestas aceptadas). Para preguntas
-    sin respuesta, acierta si el modelo contesta `no_answer_text`."""
     if not answers:
         ok = float(prediction.strip().lower() == no_answer_text.lower())
         return {"em": ok, "f1": ok}
@@ -144,11 +138,6 @@ def answer_scores(prediction, answers, no_answer_text="I don't know"):
 
 #Evaluación de una estrategia de búsqueda
 def evaluate_search(search_fn, index, questions, ks=(1, 3, 5), repeats=1):
-    """
-    search_fn(question_text) -> SearchResult.
-    Devuelve (filas por pregunta, resumen global, resumen por categoría).
-    El tiempo de cada pregunta es la MEDIANA de `repeats` ejecuciones.
-    """
     rows = []
     for q in questions:
         times, res = [], None

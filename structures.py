@@ -1,4 +1,4 @@
-#ETAPA 2 (parte B) - Estructuras de datos para búsqueda.
+#ETAPA 2 
 
 import heapq
 import random
@@ -10,11 +10,10 @@ class TrieNode:
     __slots__ = ("children", "is_end", "freq", "word")
 
     def __init__(self):
-        self.children = {}     # carácter -> TrieNode (tabla hash por nodo)
-        self.is_end = False    # ¿termina aquí una palabra del vocabulario?
-        self.freq = 0          # frecuencia de la palabra en la colección
-        self.word = None       # palabra completa (evita reconstruirla en el recorrido)
-
+        self.children = {}   
+        self.is_end = False
+        self.freq = 0          
+        self.word = None       
 
 class Trie:
     def __init__(self):
@@ -61,7 +60,7 @@ class Trie:
         node = self._find_node(prefix)
         if node is None:
             return []
-        heap = []                       # (freq, palabra) de las k mejores
+        heap = []                     
         stack = [node]
         while stack:
             cur = stack.pop()
@@ -90,7 +89,7 @@ class Trie:
         return self.contains(word)
 
 
-# ÍNDICE INVERTIDO
+#INDICE INVERTIDO
 class InvertedIndex:
 
     def __init__(self):
@@ -168,12 +167,11 @@ class SuffixArray:
                     tid = self.term_id[t] = len(self.term_id)
                 seq.append(tid)
                 pos2chunk.append(chunk_id)
-            seq.append(-(chunk_id + 1))      # separador único
+            seq.append(-(chunk_id + 1))     
             pos2chunk.append(chunk_id)
         self.seq = seq
         n = len(seq)
 
-        # rango inicial = posición del valor entre los valores distintos
         distinct = sorted(set(seq))
         rank_of = {v: r for r, v in enumerate(distinct)}
         rank = [rank_of[v] for v in seq]
@@ -235,7 +233,7 @@ class SuffixArray:
 
 # QUICKSELECT
 def quickselect_top_k(items, k, key=lambda x: x, rng=random):
-    #Devuelve los k elementos con mayor `key`, ordenados de mayor a menor.
+    #Devuelve los k elementos con mayor `key` ordenados de mayor a menor.
    
     items = list(items)
     if k <= 0 or not items:
