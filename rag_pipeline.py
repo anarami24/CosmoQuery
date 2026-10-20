@@ -17,7 +17,6 @@ from approx_search import ApproximateSearcher, format_correction
 from context_selection import STRATEGIES, ContextSelector
 from exact_search import ExactSearcher
 from index_builder import load_index
-from preprocessing import highlight
 from search_types import SearchResult
 
 METHODS = ["approximate", "exact"]

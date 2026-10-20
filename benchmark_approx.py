@@ -28,7 +28,7 @@ import qa_model
 from approx_search import ALGORITHM_LABELS as APPROX_LABELS
 from approx_search import ApproximateSearcher, format_correction
 from approximate import brute_force_fuzzy, max_edit_distance, trie_fuzzy_search
-from benchmark_exact import COLORS, GRID, INK, MUTED, _style, write_csv
+from benchmark_exact import COLORS, INK, MUTED, _style, write_csv
 from evaluation import answer_scores, evaluate_search, load_questions, relevant_chunks
 from exact_search import ExactSearcher
 from index_builder import load_index
