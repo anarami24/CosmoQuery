@@ -16,8 +16,8 @@
   padding: 36px max(24px, calc((100% - 880px) / 2)) 120px !important;
   background-color: #173445 !important;
   background-repeat: repeat, no-repeat, repeat-x, no-repeat !important;
-  background-position: top left, right -150px bottom -170px, top center, top left !important;
-  background-size: 240px 240px, 560px 560px, 1366px 900px, 100% 100% !important;
+  background-position: top left, right -140px bottom -200px, top center, top left !important;
+  background-size: 240px 240px, 440px 440px, 1366px 900px, 100% 100% !important;
   color: var(--cq-text);
   font-family: "Alegreya Sans", "Segoe UI", Arial, sans-serif !important;
 }
@@ -40,6 +40,8 @@ footer { display: none !important; }
   color: var(--cq-text) !important; box-shadow: none !important;
 }
 #cq-question textarea:focus { border-color: var(--cq-lavender) !important; outline: none; }
+/* el cuadro crece si la pregunta ocupa dos líneas */
+#cq-question textarea { field-sizing: content; height: auto !important; max-height: 150px; }
 #cq-ask {
   border-radius: 16px !important; font-size: 18px !important; font-weight: 600 !important;
   padding: 0 30px !important; min-height: 60px;
@@ -61,7 +63,7 @@ footer { display: none !important; }
 #cq-examples button {
   text-align: left !important; border-radius: 14px !important; padding: 14px 18px !important;
   font-size: 15px !important; line-height: 1.4; min-height: 64px;
-  background: rgba(255, 255, 255, 0.07) !important; border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(19, 41, 58, 0.78) !important; border: 1px solid rgba(255, 255, 255, 0.16) !important;
   color: var(--cq-text) !important;
 }
 #cq-suggestions button:hover, #cq-examples button:hover { border-color: var(--cq-lavender) !important; }
@@ -118,6 +120,10 @@ footer { display: none !important; }
 
 .cq-credits { text-align: center; color: #A9C3CC; font-size: 13px; margin-top: 140px; }
 
+#cq-alg { overflow: visible !important; }
+
 @media (max-width: 720px) {
   #cq-examples > .gallery { grid-template-columns: 1fr; }
+  #cq-alg .container { flex-wrap: wrap; }
+  #cq-alg .container > .wrap { min-width: 0 !important; flex: 1 1 200px; }
 }
