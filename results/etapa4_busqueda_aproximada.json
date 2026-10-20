@@ -1,0 +1,4036 @@
+{
+  "params": {
+    "FUZZY_MIN_LEN": 4,
+    "FUZZY_MAX_DIST": {
+      "4": 1,
+      "8": 2
+    },
+    "FUZZY_MAX_CANDIDATES": 3,
+    "NGRAM_N": 2,
+    "NGRAM_MIN_JACCARD": 0.45,
+    "JACCARD_RERANK_WEIGHT": 0.1,
+    "BM25_K1": 1.5,
+    "BM25_B": 0.75,
+    "PHRASE_WEIGHT": 1.0,
+    "TOP_K": 5
+  },
+  "trie": {
+    "words": 4693,
+    "nodes": 14191
+  },
+  "ngram_index": {
+    "2": {
+      "words": 4555,
+      "grams": 502
+    },
+    "3": {
+      "words": 4555,
+      "grams": 3417
+    }
+  },
+  "corrections": [
+    {
+      "word": "pluot",
+      "original": "pluto",
+      "max_dist": 1,
+      "osa": "pluto",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "plummet",
+      "bigram_j": 0.4,
+      "trigram": "pluto",
+      "trigram_j": 0.25,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 461,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": false,
+        "trigram": true
+      },
+      "osa_ms": 0.5567999905906618,
+      "brute_ms": 30.663400000776164,
+      "id": "Q01-T"
+    },
+    {
+      "word": "darf",
+      "original": "dwarf",
+      "max_dist": 1,
+      "osa": "dwarf",
+      "osa_d": 1,
+      "lev": "dwarf",
+      "lev_d": 1,
+      "bigram": "dwarf",
+      "bigram_j": 0.571,
+      "trigram": "dark",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 607,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.7098000060068443,
+      "brute_ms": 24.56510000047274,
+      "id": "Q02-T"
+    },
+    {
+      "word": "haorizons",
+      "original": "horizons",
+      "max_dist": 2,
+      "osa": "horizons",
+      "osa_d": 1,
+      "lev": "horizons",
+      "lev_d": 1,
+      "bigram": "horizons",
+      "bigram_j": 0.727,
+      "trigram": "horizons",
+      "trigram_j": 0.545,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2473,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.727399995317683,
+      "brute_ms": 54.35150000266731,
+      "id": "Q03-T"
+    },
+    {
+      "word": "lagest",
+      "original": "largest",
+      "max_dist": 1,
+      "osa": "largest",
+      "osa_d": 1,
+      "lev": "largest",
+      "lev_d": 1,
+      "bigram": "largest",
+      "bigram_j": 0.667,
+      "trigram": "largest",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 633,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.8598999993409961,
+      "brute_ms": 36.25070000998676,
+      "id": "Q04-T"
+    },
+    {
+      "word": "moos",
+      "original": "moons",
+      "max_dist": 1,
+      "osa": "moon",
+      "osa_d": 1,
+      "lev": "moon",
+      "lev_d": 1,
+      "bigram": "moons",
+      "bigram_j": 0.571,
+      "trigram": "moon",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 553,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5864999984623864,
+      "brute_ms": 24.439400003757328,
+      "id": "Q05-T"
+    },
+    {
+      "word": "larugest",
+      "original": "largest",
+      "max_dist": 2,
+      "osa": "largest",
+      "osa_d": 1,
+      "lev": "largest",
+      "lev_d": 1,
+      "bigram": "largest",
+      "bigram_j": 0.7,
+      "trigram": "largest",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2588,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.554300001473166,
+      "brute_ms": 48.69169999437872,
+      "id": "Q07-T"
+    },
+    {
+      "word": "solr",
+      "original": "solar",
+      "max_dist": 1,
+      "osa": "solar",
+      "osa_d": 1,
+      "lev": "solar",
+      "lev_d": 1,
+      "bigram": "solar",
+      "bigram_j": 0.571,
+      "trigram": "sol",
+      "trigram_j": 0.4,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 651,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.6900000007590279,
+      "brute_ms": 25.21149998938199,
+      "id": "Q07-T"
+    },
+    {
+      "word": "gaes",
+      "original": "gases",
+      "max_dist": 1,
+      "osa": "gas",
+      "osa_d": 1,
+      "lev": "gas",
+      "lev_d": 1,
+      "bigram": "gases",
+      "bigram_j": 0.571,
+      "trigram": "gases",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 535,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": false,
+        "lev": false,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5567000043811277,
+      "brute_ms": 24.886399987735786,
+      "id": "Q08-T"
+    },
+    {
+      "word": "graet",
+      "original": "great",
+      "max_dist": 1,
+      "osa": "great",
+      "osa_d": 1,
+      "lev": "grant",
+      "lev_d": 1,
+      "bigram": "grant",
+      "bigram_j": 0.5,
+      "trigram": "gray",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 467,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 0.5649999948218465,
+      "brute_ms": 31.210699991788715,
+      "id": "Q10-T"
+    },
+    {
+      "word": "firut",
+      "original": "first",
+      "max_dist": 1,
+      "osa": "first",
+      "osa_d": 1,
+      "lev": "first",
+      "lev_d": 1,
+      "bigram": "first",
+      "bigram_j": 0.5,
+      "trigram": "fire",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 523,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.6350000039674342,
+      "brute_ms": 30.58479999890551,
+      "id": "Q11-T"
+    },
+    {
+      "word": "largset",
+      "original": "largest",
+      "max_dist": 1,
+      "osa": "largest",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "largest",
+      "bigram_j": 0.455,
+      "trigram": "large",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 665,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 1.0043000074801967,
+      "brute_ms": 42.671599992900155,
+      "id": "Q11-T"
+    },
+    {
+      "word": "largert",
+      "original": "largest",
+      "max_dist": 1,
+      "osa": "largest",
+      "osa_d": 1,
+      "lev": "largest",
+      "lev_d": 1,
+      "bigram": "larger",
+      "bigram_j": 0.667,
+      "trigram": "larger",
+      "trigram_j": 0.625,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 667,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 1.0176000068895519,
+      "brute_ms": 42.689400012022816,
+      "id": "Q12-T"
+    },
+    {
+      "word": "slystem",
+      "original": "system",
+      "max_dist": 1,
+      "osa": "system",
+      "osa_d": 1,
+      "lev": "system",
+      "lev_d": 1,
+      "bigram": "system",
+      "bigram_j": 0.667,
+      "trigram": "system",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 497,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.7464999944204465,
+      "brute_ms": 43.101899995235726,
+      "id": "Q12-T"
+    },
+    {
+      "word": "jpuiter",
+      "original": "jupiter",
+      "max_dist": 1,
+      "osa": "jupiter",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "jupiter",
+      "bigram_j": 0.455,
+      "trigram": "jupiter",
+      "trigram_j": 0.273,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 345,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5211999960010871,
+      "brute_ms": 42.79880000103731,
+      "id": "Q13-T"
+    },
+    {
+      "word": "diocovered",
+      "original": "discovered",
+      "max_dist": 2,
+      "osa": "discovered",
+      "osa_d": 1,
+      "lev": "discovered",
+      "lev_d": 1,
+      "bigram": "discovered",
+      "bigram_j": 0.692,
+      "trigram": "covered",
+      "trigram_j": 0.545,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2343,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 4.750400010379963,
+      "brute_ms": 60.52300000737887,
+      "id": "Q14-T"
+    },
+    {
+      "word": "gires",
+      "original": "gives",
+      "max_dist": 1,
+      "osa": "gives",
+      "osa_d": 1,
+      "lev": "gives",
+      "lev_d": 1,
+      "bigram": "gives",
+      "bigram_j": 0.5,
+      "trigram": "fires",
+      "trigram_j": 0.429,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 509,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.6125000072643161,
+      "brute_ms": 30.666499995277263,
+      "id": "Q15-T"
+    },
+    {
+      "word": "uraus",
+      "original": "uranus",
+      "max_dist": 1,
+      "osa": "uranus",
+      "osa_d": 1,
+      "lev": "uranus",
+      "lev_d": 1,
+      "bigram": "uranus",
+      "bigram_j": 0.625,
+      "trigram": "uranus",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 547,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.7214000070234761,
+      "brute_ms": 30.430200000409968,
+      "id": "Q15-T"
+    },
+    {
+      "word": "neptue",
+      "original": "neptune",
+      "max_dist": 1,
+      "osa": "neptune",
+      "osa_d": 1,
+      "lev": "neptune",
+      "lev_d": 1,
+      "bigram": "neptune",
+      "bigram_j": 0.75,
+      "trigram": "neptune",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 580,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.7990000012796372,
+      "brute_ms": 37.19319999800064,
+      "id": "Q17-T"
+    },
+    {
+      "word": "largst",
+      "original": "largest",
+      "max_dist": 1,
+      "osa": "largest",
+      "osa_d": 1,
+      "lev": "largest",
+      "lev_d": 1,
+      "bigram": "largest",
+      "bigram_j": 0.667,
+      "trigram": "largest",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 665,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.9112999978242442,
+      "brute_ms": 36.42809999291785,
+      "id": "Q18-T"
+    },
+    {
+      "word": "widniest",
+      "original": "windiest",
+      "max_dist": 2,
+      "osa": "windiest",
+      "osa_d": 1,
+      "lev": "windiest",
+      "lev_d": 2,
+      "bigram": "widest",
+      "bigram_j": 0.6,
+      "trigram": "widest",
+      "trigram_j": 0.4,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2098,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 3.620300005422905,
+      "brute_ms": 48.86210001131985,
+      "id": "Q19-T"
+    },
+    {
+      "word": "sysem",
+      "original": "system",
+      "max_dist": 1,
+      "osa": "system",
+      "osa_d": 1,
+      "lev": "system",
+      "lev_d": 1,
+      "bigram": "system",
+      "bigram_j": 0.625,
+      "trigram": "system",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 441,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5735000013373792,
+      "brute_ms": 30.505300004733726,
+      "id": "Q19-T"
+    },
+    {
+      "word": "hotetest",
+      "original": "hottest",
+      "max_dist": 2,
+      "osa": "hottest",
+      "osa_d": 1,
+      "lev": "hottest",
+      "lev_d": 1,
+      "bigram": "hottest",
+      "bigram_j": 0.778,
+      "trigram": "hottest",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2423,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.258900007698685,
+      "brute_ms": 48.45000000204891,
+      "id": "Q20-T"
+    },
+    {
+      "word": "plaet",
+      "original": "planet",
+      "max_dist": 1,
+      "osa": "planet",
+      "osa_d": 1,
+      "lev": "planet",
+      "lev_d": 1,
+      "bigram": "planet",
+      "bigram_j": 0.625,
+      "trigram": "planet",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 503,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5507000023499131,
+      "brute_ms": 31.05570000479929,
+      "id": "Q20-T"
+    },
+    {
+      "word": "surfiace",
+      "original": "surface",
+      "max_dist": 2,
+      "osa": "surface",
+      "osa_d": 1,
+      "lev": "surface",
+      "lev_d": 1,
+      "bigram": "surface",
+      "bigram_j": 0.7,
+      "trigram": "surface",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2395,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.260000001522712,
+      "brute_ms": 49.27109999698587,
+      "id": "Q21-T"
+    },
+    {
+      "word": "temoerature",
+      "original": "temperature",
+      "max_dist": 2,
+      "osa": "temperature",
+      "osa_d": 1,
+      "lev": "temperature",
+      "lev_d": 1,
+      "bigram": "temperature",
+      "bigram_j": 0.714,
+      "trigram": "temperature",
+      "trigram_j": 0.571,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2442,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 5.341600000974722,
+      "brute_ms": 66.78090000059456,
+      "id": "Q21-T"
+    },
+    {
+      "word": "vnus",
+      "original": "venus",
+      "max_dist": 1,
+      "osa": "venus",
+      "osa_d": 1,
+      "lev": "venus",
+      "lev_d": 1,
+      "bigram": "venus",
+      "bigram_j": 0.571,
+      "trigram": "venus",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 388,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.3964999923482537,
+      "brute_ms": 25.390400012838654,
+      "id": "Q22-T"
+    },
+    {
+      "word": "mostrly",
+      "original": "mostly",
+      "max_dist": 1,
+      "osa": "mostly",
+      "osa_d": 1,
+      "lev": "mostly",
+      "lev_d": 1,
+      "bigram": "mostly",
+      "bigram_j": 0.667,
+      "trigram": "mostly",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 571,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.8784999954514205,
+      "brute_ms": 42.685899999924004,
+      "id": "Q22-T"
+    },
+    {
+      "word": "smallet",
+      "original": "smallest",
+      "max_dist": 1,
+      "osa": "smaller",
+      "osa_d": 1,
+      "lev": "smaller",
+      "lev_d": 1,
+      "bigram": "smallest",
+      "bigram_j": 0.7,
+      "trigram": "smaller",
+      "trigram_j": 0.556,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 498,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": false,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.7555000047432259,
+      "brute_ms": 42.407400003867224,
+      "id": "Q23-T"
+    },
+    {
+      "word": "ssytem",
+      "original": "system",
+      "max_dist": 1,
+      "osa": "system",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "system",
+      "bigram_j": 0.556,
+      "trigram": "system",
+      "trigram_j": 0.2,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 429,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5782000080216676,
+      "brute_ms": 36.8224999983795,
+      "id": "Q23-T"
+    },
+    {
+      "word": "mercuery",
+      "original": "mercury",
+      "max_dist": 2,
+      "osa": "mercury",
+      "osa_d": 1,
+      "lev": "mercury",
+      "lev_d": 1,
+      "bigram": "mercury",
+      "bigram_j": 0.778,
+      "trigram": "mercury",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2478,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.403600003570318,
+      "brute_ms": 48.707699999795295,
+      "id": "Q24-T"
+    },
+    {
+      "word": "rinngs",
+      "original": "rings",
+      "max_dist": 1,
+      "osa": "rings",
+      "osa_d": 1,
+      "lev": "rings",
+      "lev_d": 1,
+      "bigram": "rings",
+      "bigram_j": 0.857,
+      "trigram": "rings",
+      "trigram_j": 0.571,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 643,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.9032999951159582,
+      "brute_ms": 36.77220000827219,
+      "id": "Q25-T"
+    },
+    {
+      "word": "dnesity",
+      "original": "density",
+      "max_dist": 1,
+      "osa": "density",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "density",
+      "bigram_j": 0.455,
+      "trigram": "density",
+      "trigram_j": 0.273,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 461,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.6931999960215762,
+      "brute_ms": 41.10449999279808,
+      "id": "Q26-T"
+    },
+    {
+      "word": "watrr",
+      "original": "water",
+      "max_dist": 1,
+      "osa": "water",
+      "osa_d": 1,
+      "lev": "water",
+      "lev_d": 1,
+      "bigram": "water",
+      "bigram_j": 0.5,
+      "trigram": "water",
+      "trigram_j": 0.25,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 565,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.6807000027038157,
+      "brute_ms": 30.77359999588225,
+      "id": "Q26-T"
+    },
+    {
+      "word": "satuin",
+      "original": "saturn",
+      "max_dist": 1,
+      "osa": "saturn",
+      "osa_d": 1,
+      "lev": "saturn",
+      "lev_d": 1,
+      "bigram": "saturn",
+      "bigram_j": 0.556,
+      "trigram": "saturn",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 688,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.9033000096678734,
+      "brute_ms": 36.78860000218265,
+      "id": "Q27-T"
+    },
+    {
+      "word": "satrun",
+      "original": "saturn",
+      "max_dist": 1,
+      "osa": "saturn",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "saturn",
+      "bigram_j": 0.4,
+      "trigram": "run",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 693,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.8534999942639843,
+      "brute_ms": 36.65959999489132,
+      "id": "Q28-T"
+    },
+    {
+      "word": "lakse",
+      "original": "lakes",
+      "max_dist": 1,
+      "osa": "lakes",
+      "osa_d": 1,
+      "lev": "lake",
+      "lev_d": 1,
+      "bigram": "lake",
+      "bigram_j": 0.571,
+      "trigram": "lake",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 610,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.7406999939121306,
+      "brute_ms": 31.904100003885105,
+      "id": "Q29-T"
+    },
+    {
+      "word": "beneah",
+      "original": "beneath",
+      "max_dist": 1,
+      "osa": "beneath",
+      "osa_d": 1,
+      "lev": "beneath",
+      "lev_d": 1,
+      "bigram": "beneath",
+      "bigram_j": 0.667,
+      "trigram": "beneath",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 585,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.8507000020472333,
+      "brute_ms": 37.164399996981956,
+      "id": "Q30-T"
+    },
+    {
+      "word": "shll",
+      "original": "shell",
+      "max_dist": 1,
+      "osa": "shell",
+      "osa_d": 1,
+      "lev": "shell",
+      "lev_d": 1,
+      "bigram": "shell",
+      "bigram_j": 0.571,
+      "trigram": "shell",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 481,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.5029000021750107,
+      "brute_ms": 25.191399996401742,
+      "id": "Q30-T"
+    },
+    {
+      "word": "eurpoa",
+      "original": "europa",
+      "max_dist": 1,
+      "osa": "europa",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "europa",
+      "bigram_j": 0.4,
+      "trigram": "europa",
+      "trigram_j": 0.2,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 646,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.9692000021459535,
+      "brute_ms": 37.703000009059906,
+      "id": "Q31-T"
+    },
+    {
+      "word": "launah",
+      "original": "launch",
+      "max_dist": 1,
+      "osa": "launch",
+      "osa_d": 1,
+      "lev": "launch",
+      "lev_d": 1,
+      "bigram": "launch",
+      "bigram_j": 0.556,
+      "trigram": "launch",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 621,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.876199992490001,
+      "brute_ms": 38.123099991935305,
+      "id": "Q31-T"
+    },
+    {
+      "word": "eruopa",
+      "original": "europa",
+      "max_dist": 1,
+      "osa": "europa",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "europa",
+      "bigram_j": 0.4,
+      "trigram": "erupt",
+      "trigram_j": 0.222,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 625,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.8540999988326803,
+      "brute_ms": 36.641500002588145,
+      "id": "Q32-T"
+    },
+    {
+      "word": "raech",
+      "original": "reach",
+      "max_dist": 1,
+      "osa": "reach",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "rae",
+      "bigram_j": 0.429,
+      "trigram": "rae",
+      "trigram_j": 0.333,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 626,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 0.8208000072045252,
+      "brute_ms": 30.687499995110556,
+      "id": "Q32-T"
+    },
+    {
+      "word": "earht",
+      "original": "earth",
+      "max_dist": 1,
+      "osa": "earth",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "east",
+      "bigram_j": 0.375,
+      "trigram": "ears",
+      "trigram_j": 0.286,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 811,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 0.9824000007938594,
+      "brute_ms": 30.28269999776967,
+      "id": "Q35-T"
+    },
+    {
+      "word": "persevernce",
+      "original": "perseverance",
+      "max_dist": 2,
+      "osa": "perseverance",
+      "osa_d": 1,
+      "lev": "perseverance",
+      "lev_d": 1,
+      "bigram": "perseverance",
+      "bigram_j": 0.769,
+      "trigram": "perseverance",
+      "trigram_j": 0.643,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2576,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 5.741100001614541,
+      "brute_ms": 64.23660001019016,
+      "id": "Q36-T"
+    },
+    {
+      "word": "ailrcraft",
+      "original": "aircraft",
+      "max_dist": 2,
+      "osa": "aircraft",
+      "osa_d": 1,
+      "lev": "aircraft",
+      "lev_d": 1,
+      "bigram": "aircraft",
+      "bigram_j": 0.727,
+      "trigram": "aircraft",
+      "trigram_j": 0.545,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2752,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 5.33010000071954,
+      "brute_ms": 54.27809999673627,
+      "id": "Q37-T"
+    },
+    {
+      "word": "inoterstellar",
+      "original": "interstellar",
+      "max_dist": 2,
+      "osa": "interstellar",
+      "osa_d": 1,
+      "lev": "interstellar",
+      "lev_d": 1,
+      "bigram": "interstellar",
+      "bigram_j": 0.786,
+      "trigram": "interstellar",
+      "trigram_j": 0.667,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2582,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 6.47529998968821,
+      "brute_ms": 78.30619999731425,
+      "id": "Q38-T"
+    },
+    {
+      "word": "splce",
+      "original": "space",
+      "max_dist": 1,
+      "osa": "space",
+      "osa_d": 1,
+      "lev": "space",
+      "lev_d": 1,
+      "bigram": "space",
+      "bigram_j": 0.5,
+      "trigram": "space",
+      "trigram_j": 0.25,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 498,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.563599998713471,
+      "brute_ms": 30.833099997835234,
+      "id": "Q38-T"
+    },
+    {
+      "word": "commitee",
+      "original": "committee",
+      "max_dist": 2,
+      "osa": "committee",
+      "osa_d": 1,
+      "lev": "committee",
+      "lev_d": 1,
+      "bigram": "committee",
+      "bigram_j": 0.9,
+      "trigram": "committee",
+      "trigram_j": 0.7,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2367,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.174499990767799,
+      "brute_ms": 48.07599999185186,
+      "id": "Q39-T"
+    },
+    {
+      "word": "stlected",
+      "original": "selected",
+      "max_dist": 2,
+      "osa": "selected",
+      "osa_d": 1,
+      "lev": "selected",
+      "lev_d": 1,
+      "bigram": "selected",
+      "bigram_j": 0.636,
+      "trigram": "selected",
+      "trigram_j": 0.455,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2406,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.3110999977216125,
+      "brute_ms": 49.53260000911541,
+      "id": "Q39-T"
+    },
+    {
+      "word": "sapcecraft",
+      "original": "spacecraft",
+      "max_dist": 2,
+      "osa": "spacecraft",
+      "osa_d": 1,
+      "lev": "spacecraft",
+      "lev_d": 2,
+      "bigram": "spacecraft",
+      "bigram_j": 0.571,
+      "trigram": "spacecraft",
+      "trigram_j": 0.429,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2540,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.954800009727478,
+      "brute_ms": 59.657400008291006,
+      "id": "Q40-T"
+    },
+    {
+      "word": "jpiter",
+      "original": "jupiter",
+      "max_dist": 1,
+      "osa": "jupiter",
+      "osa_d": 1,
+      "lev": "jupiter",
+      "lev_d": 1,
+      "bigram": "jupiter",
+      "bigram_j": 0.667,
+      "trigram": "jupiter",
+      "trigram_j": 0.444,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 350,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.4681999998865649,
+      "brute_ms": 36.70649998821318,
+      "id": "Q40-T"
+    },
+    {
+      "word": "alteroid",
+      "original": "asteroid",
+      "max_dist": 2,
+      "osa": "asteroid",
+      "osa_d": 1,
+      "lev": "asteroid",
+      "lev_d": 1,
+      "bigram": "asteroid",
+      "bigram_j": 0.636,
+      "trigram": "asteroid",
+      "trigram_j": 0.455,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2681,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.939999998896383,
+      "brute_ms": 47.45800000091549,
+      "id": "Q41-T"
+    },
+    {
+      "word": "comeos",
+      "original": "comets",
+      "max_dist": 1,
+      "osa": "comets",
+      "osa_d": 1,
+      "lev": "comets",
+      "lev_d": 1,
+      "bigram": "comes",
+      "bigram_j": 0.625,
+      "trigram": "come",
+      "trigram_j": 0.429,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 610,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 0.8416999917244539,
+      "brute_ms": 37.31580000021495,
+      "id": "Q42-T"
+    },
+    {
+      "word": "weorld",
+      "original": "world",
+      "max_dist": 1,
+      "osa": "world",
+      "osa_d": 1,
+      "lev": "world",
+      "lev_d": 1,
+      "bigram": "world",
+      "bigram_j": 0.625,
+      "trigram": "world",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 523,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.717700007953681,
+      "brute_ms": 35.96029999607708,
+      "id": "Q43-T"
+    },
+    {
+      "word": "clnosest",
+      "original": "closest",
+      "max_dist": 2,
+      "osa": "closest",
+      "osa_d": 1,
+      "lev": "closest",
+      "lev_d": 1,
+      "bigram": "closest",
+      "bigram_j": 0.7,
+      "trigram": "closest",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2241,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 3.9246999949682504,
+      "brute_ms": 47.6042999944184,
+      "id": "Q43-T"
+    },
+    {
+      "word": "fisrst",
+      "original": "first",
+      "max_dist": 1,
+      "osa": "first",
+      "osa_d": 1,
+      "lev": "first",
+      "lev_d": 1,
+      "bigram": "first",
+      "bigram_j": 0.625,
+      "trigram": "first",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 534,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.6615000020246953,
+      "brute_ms": 37.73300000466406,
+      "id": "Q44-T"
+    },
+    {
+      "word": "seveanth",
+      "original": "seventh",
+      "max_dist": 2,
+      "osa": "seventh",
+      "osa_d": 1,
+      "lev": "seventh",
+      "lev_d": 1,
+      "bigram": "seventh",
+      "bigram_j": 0.7,
+      "trigram": "seventh",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2565,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.483499986235984,
+      "brute_ms": 48.6393000028329,
+      "id": "Q44-T"
+    },
+    {
+      "word": "tollest",
+      "original": "tallest",
+      "max_dist": 1,
+      "osa": "tallest",
+      "osa_d": 1,
+      "lev": "tallest",
+      "lev_d": 1,
+      "bigram": "tallest",
+      "bigram_j": 0.6,
+      "trigram": "tallest",
+      "trigram_j": 0.4,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 584,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.8063999994192272,
+      "brute_ms": 41.47890000604093,
+      "id": "Q45-T"
+    },
+    {
+      "word": "plante",
+      "original": "planet",
+      "max_dist": 1,
+      "osa": "planet",
+      "osa_d": 1,
+      "lev": "plane",
+      "lev_d": 1,
+      "bigram": "plane",
+      "bigram_j": 0.625,
+      "trigram": "plan",
+      "trigram_j": 0.429,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 516,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": false,
+        "trigram": false
+      },
+      "osa_ms": 0.6426000036299229,
+      "brute_ms": 35.78199999174103,
+      "id": "Q45-T"
+    },
+    {
+      "word": "satelites",
+      "original": "satellites",
+      "max_dist": 2,
+      "osa": "satellites",
+      "osa_d": 1,
+      "lev": "satellites",
+      "lev_d": 1,
+      "bigram": "satellites",
+      "bigram_j": 0.9,
+      "trigram": "satellites",
+      "trigram_j": 0.727,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 2788,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 4.889000003458932,
+      "brute_ms": 52.4985999945784,
+      "id": "Q46-T"
+    },
+    {
+      "word": "osrbit",
+      "original": "orbit",
+      "max_dist": 1,
+      "osa": "orbit",
+      "osa_d": 1,
+      "lev": "orbit",
+      "lev_d": 1,
+      "bigram": "orbit",
+      "bigram_j": 0.625,
+      "trigram": "orbit",
+      "trigram_j": 0.375,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 530,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 0.7260000129463151,
+      "brute_ms": 36.16949998831842,
+      "id": "Q46-T"
+    },
+    {
+      "word": "sotrm",
+      "original": "storm",
+      "max_dist": 1,
+      "osa": "storm",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "storm",
+      "bigram_j": 0.333,
+      "trigram": "arm",
+      "trigram_j": 0.143,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 654,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.7244000007631257,
+      "brute_ms": 30.78329999698326,
+      "id": "Q47-T"
+    },
+    {
+      "word": "biggset",
+      "original": "biggest",
+      "max_dist": 1,
+      "osa": "biggest",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "biggest",
+      "bigram_j": 0.455,
+      "trigram": "bigger",
+      "trigram_j": 0.3,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 531,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.7377000001724809,
+      "brute_ms": 41.3134000118589,
+      "id": "Q47-T"
+    },
+    {
+      "word": "wold",
+      "original": "world",
+      "max_dist": 1,
+      "osa": "world",
+      "osa_d": 1,
+      "lev": "world",
+      "lev_d": 1,
+      "bigram": "world",
+      "bigram_j": 0.571,
+      "trigram": "old",
+      "trigram_j": 0.4,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 540,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.5529000045498833,
+      "brute_ms": 24.440699999104254,
+      "id": "Q48-T"
+    },
+    {
+      "word": "wnids",
+      "original": "winds",
+      "max_dist": 1,
+      "osa": "winds",
+      "osa_d": 1,
+      "lev": null,
+      "lev_d": null,
+      "bigram": "winds",
+      "bigram_j": 0.333,
+      "trigram": "acids",
+      "trigram_j": 0.25,
+      "bigram_passes_min_j": false,
+      "nodes_visited": 427,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": false,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.5237000004854053,
+      "brute_ms": 30.52850000676699,
+      "id": "Q48-T"
+    },
+    {
+      "word": "plant",
+      "original": "planet",
+      "max_dist": 1,
+      "osa": "planet",
+      "osa_d": 1,
+      "lev": "planet",
+      "lev_d": 1,
+      "bigram": "planet",
+      "bigram_j": 0.625,
+      "trigram": "plan",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 512,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": false
+      },
+      "osa_ms": 0.6093999982113019,
+      "brute_ms": 30.348500004038215,
+      "id": "Q49-T"
+    },
+    {
+      "word": "hydorcarbons",
+      "original": "hydrocarbons",
+      "max_dist": 2,
+      "osa": "hydrocarbons",
+      "osa_d": 1,
+      "lev": "hydrocarbons",
+      "lev_d": 2,
+      "bigram": "hydrocarbons",
+      "bigram_j": 0.625,
+      "trigram": "hydrocarbons",
+      "trigram_j": 0.5,
+      "bigram_passes_min_j": true,
+      "nodes_visited": 1811,
+      "nodes_total": 14191,
+      "ok": {
+        "osa": true,
+        "lev": true,
+        "bigram": true,
+        "trigram": true
+      },
+      "osa_ms": 3.866400002152659,
+      "brute_ms": 78.67649999388959,
+      "id": "Q49-T"
+    }
+  ],
+  "corrections_summary": {
+    "n_words": 67,
+    "top1_correct": {
+      "osa": 65,
+      "lev": 50,
+      "bigram": 59,
+      "trigram": 46
+    },
+    "avg_nodes_visited": 1091.7611940298507,
+    "avg_pct_nodes": 7.693335170388632,
+    "avg_osa_ms": 1.842391045387042,
+    "avg_brute_ms": 40.24552537298609
+  },
+  "timing_quality": {
+    "kmp": {
+      "overall": {
+        "n": 106,
+        "time_ms_avg": 13.892014150838325,
+        "time_ms_median": 11.060149998229463,
+        "examined_avg": 166.85849056603774,
+        "matched_avg": 166.85849056603774,
+        "hit@1": 0.54,
+        "p@1": 0.54,
+        "r@1": 0.54,
+        "hit@3": 0.69,
+        "p@3": 0.3433333333333333,
+        "r@3": 0.5283333333333333,
+        "hit@5": 0.75,
+        "p@5": 0.258,
+        "r@5": 0.5891666666666666,
+        "mrr": 0.6273333333333333
+      },
+      "by_category": {
+        "literal": {
+          "n": 42,
+          "time_ms_avg": 16.415128570986866,
+          "time_ms_median": 13.966599995910656,
+          "examined_avg": 190.26190476190476,
+          "matched_avg": 190.26190476190476,
+          "hit@1": 0.8095238095238095,
+          "p@1": 0.8095238095238095,
+          "r@1": 0.8095238095238095,
+          "hit@3": 0.9047619047619048,
+          "p@3": 0.49206349206349204,
+          "r@3": 0.7579365079365079,
+          "hit@5": 0.9523809523809523,
+          "p@5": 0.3523809523809524,
+          "r@5": 0.7908730158730158,
+          "mrr": 0.8690476190476191
+        },
+        "paraphrase": {
+          "n": 8,
+          "time_ms_avg": 19.352262497704942,
+          "time_ms_median": 22.76309999433579,
+          "examined_avg": 229,
+          "matched_avg": 229,
+          "hit@1": 0.25,
+          "p@1": 0.25,
+          "r@1": 0.25,
+          "hit@3": 0.375,
+          "p@3": 0.125,
+          "r@3": 0.22916666666666666,
+          "hit@5": 0.375,
+          "p@5": 0.1,
+          "r@5": 0.275,
+          "mrr": 0.3125
+        },
+        "no_answer": {
+          "n": 6,
+          "time_ms_avg": 7.016433332561671,
+          "time_ms_median": 7.770899996103253,
+          "examined_avg": 104.5,
+          "matched_avg": 104.5
+        },
+        "typo": {
+          "n": 50,
+          "time_ms_avg": 11.724028000608087,
+          "time_ms_median": 10.378449995187111,
+          "examined_avg": 144.74,
+          "matched_avg": 144.74,
+          "hit@1": 0.36,
+          "p@1": 0.36,
+          "r@1": 0.36,
+          "hit@3": 0.56,
+          "p@3": 0.2533333333333333,
+          "r@3": 0.3833333333333333,
+          "hit@5": 0.64,
+          "p@5": 0.20400000000000001,
+          "r@5": 0.47,
+          "mrr": 0.4746666666666667
+        }
+      }
+    },
+    "lev_trie": {
+      "overall": {
+        "n": 106,
+        "time_ms_avg": 2.2198754712282502,
+        "time_ms_median": 1.3890499976696447,
+        "examined_avg": 185.45283018867926,
+        "matched_avg": 185.45283018867926,
+        "hit@1": 0.67,
+        "p@1": 0.67,
+        "r@1": 0.67,
+        "hit@3": 0.78,
+        "p@3": 0.4066666666666666,
+        "r@3": 0.6366666666666667,
+        "hit@5": 0.82,
+        "p@5": 0.294,
+        "r@5": 0.671,
+        "mrr": 0.735
+      },
+      "by_category": {
+        "literal": {
+          "n": 42,
+          "time_ms_avg": 1.0730952389643615,
+          "time_ms_median": 1.0030000048573129,
+          "examined_avg": 190.26190476190476,
+          "matched_avg": 190.26190476190476,
+          "hit@1": 0.8095238095238095,
+          "p@1": 0.8095238095238095,
+          "r@1": 0.8095238095238095,
+          "hit@3": 0.9047619047619048,
+          "p@3": 0.49206349206349204,
+          "r@3": 0.7579365079365079,
+          "hit@5": 0.9523809523809523,
+          "p@5": 0.3523809523809524,
+          "r@5": 0.7908730158730158,
+          "mrr": 0.8690476190476191
+        },
+        "paraphrase": {
+          "n": 8,
+          "time_ms_avg": 1.5120374973776052,
+          "time_ms_median": 1.414699996530544,
+          "examined_avg": 231.375,
+          "matched_avg": 231.375,
+          "hit@1": 0.25,
+          "p@1": 0.25,
+          "r@1": 0.25,
+          "hit@3": 0.375,
+          "p@3": 0.125,
+          "r@3": 0.22916666666666666,
+          "hit@5": 0.375,
+          "p@5": 0.1,
+          "r@5": 0.275,
+          "mrr": 0.3125
+        },
+        "no_answer": {
+          "n": 6,
+          "time_ms_avg": 1.6450999949787122,
+          "time_ms_median": 1.2228499981574714,
+          "examined_avg": 107,
+          "matched_avg": 107
+        },
+        "typo": {
+          "n": 50,
+          "time_ms_avg": 3.365397999295965,
+          "time_ms_median": 2.1195500012254342,
+          "examined_avg": 183.48,
+          "matched_avg": 183.48,
+          "hit@1": 0.62,
+          "p@1": 0.62,
+          "r@1": 0.62,
+          "hit@3": 0.74,
+          "p@3": 0.38,
+          "r@3": 0.6,
+          "hit@5": 0.78,
+          "p@5": 0.276,
+          "r@5": 0.6336666666666667,
+          "mrr": 0.69
+        }
+      }
+    },
+    "osa_trie": {
+      "overall": {
+        "n": 106,
+        "time_ms_avg": 2.48533679322858,
+        "time_ms_median": 1.4880000017001294,
+        "examined_avg": 191.64150943396226,
+        "matched_avg": 191.64150943396226,
+        "hit@1": 0.71,
+        "p@1": 0.71,
+        "r@1": 0.71,
+        "hit@3": 0.82,
+        "p@3": 0.43,
+        "r@3": 0.67,
+        "hit@5": 0.86,
+        "p@5": 0.31,
+        "r@5": 0.7033333333333334,
+        "mrr": 0.7733333333333333
+      },
+      "by_category": {
+        "literal": {
+          "n": 42,
+          "time_ms_avg": 1.0475047629803331,
+          "time_ms_median": 0.9843000079854392,
+          "examined_avg": 190.26190476190476,
+          "matched_avg": 190.26190476190476,
+          "hit@1": 0.8095238095238095,
+          "p@1": 0.8095238095238095,
+          "r@1": 0.8095238095238095,
+          "hit@3": 0.9047619047619048,
+          "p@3": 0.49206349206349204,
+          "r@3": 0.7579365079365079,
+          "hit@5": 0.9523809523809523,
+          "p@5": 0.3523809523809524,
+          "r@5": 0.7908730158730158,
+          "mrr": 0.8690476190476191
+        },
+        "paraphrase": {
+          "n": 8,
+          "time_ms_avg": 1.6199125038838247,
+          "time_ms_median": 1.5600500046275556,
+          "examined_avg": 231.375,
+          "matched_avg": 231.375,
+          "hit@1": 0.25,
+          "p@1": 0.25,
+          "r@1": 0.25,
+          "hit@3": 0.375,
+          "p@3": 0.125,
+          "r@3": 0.22916666666666666,
+          "hit@5": 0.375,
+          "p@5": 0.1,
+          "r@5": 0.275,
+          "mrr": 0.3125
+        },
+        "no_answer": {
+          "n": 6,
+          "time_ms_avg": 1.8302166693805095,
+          "time_ms_median": 1.3077999974484555,
+          "examined_avg": 107,
+          "matched_avg": 107
+        },
+        "typo": {
+          "n": 50,
+          "time_ms_avg": 3.910197999794036,
+          "time_ms_median": 2.641949999087956,
+          "examined_avg": 196.6,
+          "matched_avg": 196.6,
+          "hit@1": 0.7,
+          "p@1": 0.7,
+          "r@1": 0.7,
+          "hit@3": 0.82,
+          "p@3": 0.42666666666666664,
+          "r@3": 0.6666666666666666,
+          "hit@5": 0.86,
+          "p@5": 0.308,
+          "r@5": 0.6983333333333334,
+          "mrr": 0.7666666666666667
+        }
+      }
+    },
+    "ngram_jaccard": {
+      "overall": {
+        "n": 106,
+        "time_ms_avg": 1.2338971699926264,
+        "time_ms_median": 1.0466000021551736,
+        "examined_avg": 184.97169811320754,
+        "matched_avg": 184.97169811320754,
+        "hit@1": 0.65,
+        "p@1": 0.65,
+        "r@1": 0.65,
+        "hit@3": 0.77,
+        "p@3": 0.3933333333333333,
+        "r@3": 0.6216666666666667,
+        "hit@5": 0.82,
+        "p@5": 0.28800000000000003,
+        "r@5": 0.661,
+        "mrr": 0.7208333333333333
+      },
+      "by_category": {
+        "literal": {
+          "n": 42,
+          "time_ms_avg": 1.012035713799941,
+          "time_ms_median": 0.930949994653929,
+          "examined_avg": 190.26190476190476,
+          "matched_avg": 190.26190476190476,
+          "hit@1": 0.8095238095238095,
+          "p@1": 0.8095238095238095,
+          "r@1": 0.8095238095238095,
+          "hit@3": 0.9047619047619048,
+          "p@3": 0.49206349206349204,
+          "r@3": 0.7579365079365079,
+          "hit@5": 0.9523809523809523,
+          "p@5": 0.3523809523809524,
+          "r@5": 0.7908730158730158,
+          "mrr": 0.8690476190476191
+        },
+        "paraphrase": {
+          "n": 8,
+          "time_ms_avg": 1.4576374996977393,
+          "time_ms_median": 1.5832499993848614,
+          "examined_avg": 230.625,
+          "matched_avg": 230.625,
+          "hit@1": 0.25,
+          "p@1": 0.25,
+          "r@1": 0.25,
+          "hit@3": 0.375,
+          "p@3": 0.125,
+          "r@3": 0.22916666666666666,
+          "hit@5": 0.375,
+          "p@5": 0.1,
+          "r@5": 0.275,
+          "mrr": 0.3125
+        },
+        "no_answer": {
+          "n": 6,
+          "time_ms_avg": 0.7390833367632391,
+          "time_ms_median": 0.7110500009730458,
+          "examined_avg": 104.66666666666667,
+          "matched_avg": 104.66666666666667
+        },
+        "typo": {
+          "n": 50,
+          "time_ms_avg": 1.4438400004291907,
+          "time_ms_median": 1.1865499982377514,
+          "examined_avg": 182.86,
+          "matched_avg": 182.86,
+          "hit@1": 0.58,
+          "p@1": 0.58,
+          "r@1": 0.58,
+          "hit@3": 0.72,
+          "p@3": 0.35333333333333333,
+          "r@3": 0.57,
+          "hit@5": 0.78,
+          "p@5": 0.264,
+          "r@5": 0.6136666666666667,
+          "mrr": 0.6616666666666666
+        }
+      }
+    },
+    "hybrid": {
+      "overall": {
+        "n": 106,
+        "time_ms_avg": 2.691885849344544,
+        "time_ms_median": 1.6619999951217324,
+        "examined_avg": 191.6509433962264,
+        "matched_avg": 191.6509433962264,
+        "hit@1": 0.71,
+        "p@1": 0.71,
+        "r@1": 0.71,
+        "hit@3": 0.82,
+        "p@3": 0.43,
+        "r@3": 0.67,
+        "hit@5": 0.86,
+        "p@5": 0.31,
+        "r@5": 0.7033333333333334,
+        "mrr": 0.7733333333333333
+      },
+      "by_category": {
+        "literal": {
+          "n": 42,
+          "time_ms_avg": 1.066211904842584,
+          "time_ms_median": 0.9652999942773022,
+          "examined_avg": 190.26190476190476,
+          "matched_avg": 190.26190476190476,
+          "hit@1": 0.8095238095238095,
+          "p@1": 0.8095238095238095,
+          "r@1": 0.8095238095238095,
+          "hit@3": 0.9047619047619048,
+          "p@3": 0.49206349206349204,
+          "r@3": 0.7579365079365079,
+          "hit@5": 0.9523809523809523,
+          "p@5": 0.3523809523809524,
+          "r@5": 0.7908730158730158,
+          "mrr": 0.8690476190476191
+        },
+        "paraphrase": {
+          "n": 8,
+          "time_ms_avg": 1.733475002765772,
+          "time_ms_median": 1.4499000026262365,
+          "examined_avg": 231.375,
+          "matched_avg": 231.375,
+          "hit@1": 0.25,
+          "p@1": 0.25,
+          "r@1": 0.25,
+          "hit@3": 0.375,
+          "p@3": 0.125,
+          "r@3": 0.22916666666666666,
+          "hit@5": 0.375,
+          "p@5": 0.1,
+          "r@5": 0.275,
+          "mrr": 0.3125
+        },
+        "no_answer": {
+          "n": 6,
+          "time_ms_avg": 1.9971333337404455,
+          "time_ms_median": 1.552800000354182,
+          "examined_avg": 107.16666666666667,
+          "matched_avg": 107.16666666666667
+        },
+        "typo": {
+          "n": 50,
+          "time_ms_avg": 4.294168000051286,
+          "time_ms_median": 2.911949995905161,
+          "examined_avg": 196.6,
+          "matched_avg": 196.6,
+          "hit@1": 0.7,
+          "p@1": 0.7,
+          "r@1": 0.7,
+          "hit@3": 0.82,
+          "p@3": 0.42666666666666664,
+          "r@3": 0.6666666666666666,
+          "hit@5": 0.86,
+          "p@5": 0.308,
+          "r@5": 0.6983333333333334,
+          "mrr": 0.7666666666666667
+        }
+      }
+    }
+  },
+  "extra_candidates": {
+    "corrected_words": 72,
+    "with_extra_candidates": 17,
+    "examples": [
+      "darf -> dwarf, dark, dart",
+      "lagest -> largest, latest",
+      "moos -> moons, moon, mons",
+      "solr -> solar, sols, sol",
+      "gaes -> gases, gas, goes",
+      "graet -> great, grant"
+    ]
+  },
+  "noise_bank": [
+    {
+      "id": "Q47-T",
+      "word": "rages",
+      "original": "rages",
+      "candidates": [
+        "rages -> ranges (OSA d=1, peso 0.83)",
+        "rages -> ages (OSA d=1, peso 0.80)",
+        "rages -> rates (OSA d=1, peso 0.80)"
+      ],
+      "kind": "palabra correcta fuera del vocabulario",
+      "hit5_exact": true,
+      "hit5_approx": true
+    },
+    {
+      "id": "Q49-T",
+      "word": "ringed",
+      "original": "ringed",
+      "candidates": [
+        "ringed -> ranged (OSA d=1, peso 0.83)",
+        "ringed -> hinged (OSA d=1, peso 0.83)"
+      ],
+      "kind": "palabra correcta fuera del vocabulario",
+      "hit5_exact": true,
+      "hit5_approx": true
+    }
+  ],
+  "noise_without_rules": [
+    {
+      "word": "age",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "are",
+        "ago",
+        "page",
+        "ages"
+      ],
+      "n_neighbors": 4,
+      "stopword_neighbors": [
+        "are"
+      ]
+    },
+    {
+      "word": "day",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "may",
+        "days",
+        "way",
+        "dry",
+        "ray",
+        "bay",
+        "say"
+      ],
+      "n_neighbors": 7,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "far",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "for",
+        "war",
+        "afar",
+        "car",
+        "fan",
+        "mar"
+      ],
+      "n_neighbors": 6,
+      "stopword_neighbors": [
+        "for"
+      ]
+    },
+    {
+      "word": "fly",
+      "in_vocab": true,
+      "neighbors_d1": [],
+      "n_neighbors": 0,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "icy",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "ice",
+        "ic"
+      ],
+      "n_neighbors": 2,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "led",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "red",
+        "lead",
+        "le",
+        "let"
+      ],
+      "n_neighbors": 4,
+      "stopword_neighbors": [
+        "let"
+      ]
+    },
+    {
+      "word": "new",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "now",
+        "few",
+        "neo",
+        "news",
+        "knew"
+      ],
+      "n_neighbors": 5,
+      "stopword_neighbors": [
+        "now",
+        "few"
+      ]
+    },
+    {
+      "word": "old",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "cold",
+        "hold",
+        "gold",
+        "fold",
+        "odd"
+      ],
+      "n_neighbors": 5,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "one",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "on",
+        "once",
+        "zone",
+        "none",
+        "ones",
+        "done",
+        "gone",
+        "tone"
+      ],
+      "n_neighbors": 8,
+      "stopword_neighbors": [
+        "on",
+        "once"
+      ]
+    },
+    {
+      "word": "red",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "re",
+        "led",
+        "read",
+        "fred",
+        "rex"
+      ],
+      "n_neighbors": 5,
+      "stopword_neighbors": [
+        "re"
+      ]
+    },
+    {
+      "word": "sun",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "run",
+        "gun",
+        "san",
+        "son",
+        "suv",
+        "spun"
+      ],
+      "n_neighbors": 6,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "two",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "to",
+        "too"
+      ],
+      "n_neighbors": 2,
+      "stopword_neighbors": [
+        "to",
+        "too"
+      ]
+    },
+    {
+      "word": "moon",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "moons",
+        "soon",
+        "noon"
+      ],
+      "n_neighbors": 3,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "mars",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "mass",
+        "maps",
+        "mark",
+        "ears",
+        "mar",
+        "marks"
+      ],
+      "n_neighbors": 6,
+      "stopword_neighbors": []
+    },
+    {
+      "word": "rings",
+      "in_vocab": true,
+      "neighbors_d1": [
+        "ring",
+        "brings"
+      ],
+      "n_neighbors": 2,
+      "stopword_neighbors": []
+    }
+  ],
+  "examples": [
+    {
+      "id": "Q07-T",
+      "category": "typo",
+      "question": "What is the larugest volcano in the solr system?",
+      "relevant": [
+        278
+      ],
+      "exact": {
+        "query": "What is the larugest volcano in the solr system?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "larugest",
+          "volcano",
+          "solr",
+          "system"
+        ],
+        "patterns": [
+          "larugest",
+          "volcano",
+          "solr",
+          "system",
+          "larugest volcano",
+          "volcano solr",
+          "solr system"
+        ],
+        "results": [
+          {
+            "chunk_id": 127,
+            "score": 5.5483,
+            "doc": "Io Facts",
+            "section": "Facts About Io",
+            "matches": {
+              "volcano": 2,
+              "system": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 278,
+            "score": 4.9566,
+            "doc": "Mars Facts",
+            "section": "The Largest Volcano",
+            "matches": {
+              "volcano": 1,
+              "system": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 135,
+            "score": 4.6287,
+            "doc": "Juno Mission",
+            "section": "Contents",
+            "matches": {
+              "volcano": 1,
+              "system": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 276,
+            "score": 4.0582,
+            "doc": "Mars Facts",
+            "section": "Surface",
+            "matches": {
+              "volcano": 1,
+              "system": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 480,
+            "score": 3.9163,
+            "doc": "Venus Facts",
+            "section": "Introduction",
+            "matches": {
+              "volcano": 1,
+              "system": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 18.99290000437759,
+        "n_examined": 211,
+        "n_matched": 211,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "What is the larugest volcano in the solr system?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "largest",
+          "volcano",
+          "solar",
+          "sol",
+          "system"
+        ],
+        "patterns": [
+          "largest",
+          "volcano",
+          "solar",
+          "sol",
+          "system",
+          "largest volcano",
+          "volcano solar",
+          "volcano sol",
+          "solar system",
+          "sol system"
+        ],
+        "results": [
+          {
+            "chunk_id": 278,
+            "score": 18.5274,
+            "doc": "Mars Facts",
+            "section": "The Largest Volcano",
+            "matches": {
+              "largest": 1,
+              "volcano": 1,
+              "solar": 1,
+              "system": 1,
+              "largest volcano": 1,
+              "volcano solar": 1,
+              "solar system": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "larugest",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.875,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "solr",
+                  "candidate": "solar",
+                  "stem": "solar",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 135,
+            "score": 13.0376,
+            "doc": "Juno Mission",
+            "section": "Contents",
+            "matches": {
+              "largest": 1,
+              "volcano": 1,
+              "solar": 1,
+              "system": 1,
+              "solar system": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "larugest",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.875,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "solr",
+                  "candidate": "solar",
+                  "stem": "solar",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 383,
+            "score": 11.7128,
+            "doc": "About the Planets",
+            "section": "Saturn's Hexagon / Mercury Facts / Venus Facts / Earth Facts / Mars Facts / Jupiter Facts / Saturn Facts / Uranus Facts / Neptune Facts",
+            "matches": {
+              "largest": 7,
+              "solar": 5,
+              "system": 5,
+              "solar system": 5
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "larugest",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.875,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "solr",
+                  "candidate": "solar",
+                  "stem": "solar",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 118,
+            "score": 9.6623,
+            "doc": "Ganymede Facts",
+            "section": "Ganymede News / Jupiter",
+            "matches": {
+              "largest": 1,
+              "solar": 3,
+              "system": 3,
+              "solar system": 3
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "larugest",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.875,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "solr",
+                  "candidate": "solar",
+                  "stem": "solar",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 402,
+            "score": 9.3734,
+            "doc": "Saturn Facts",
+            "section": "Our Solar System",
+            "matches": {
+              "largest": 1,
+              "solar": 1,
+              "system": 1,
+              "solar system": 1
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "larugest",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.875,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "solr",
+                  "candidate": "solar",
+                  "stem": "solar",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          }
+        ],
+        "time_ms": 9.23549999424722,
+        "n_examined": 255,
+        "n_matched": 255,
+        "n_total": 523,
+        "details": {
+          "corrections": [
+            {
+              "query_word": "larugest",
+              "candidate": "largest",
+              "stem": "largest",
+              "weight": 0.875,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "solr",
+              "candidate": "solar",
+              "stem": "solar",
+              "weight": 0.8,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "solr",
+              "candidate": "sols",
+              "stem": "sol",
+              "weight": 0.75,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "solr",
+              "candidate": "sol",
+              "stem": "sol",
+              "weight": 0.75,
+              "technique": "osa",
+              "distance": 1
+            }
+          ],
+          "weights": {
+            "largest": 0.875,
+            "volcano": 1.0,
+            "solar": 0.8,
+            "sol": 0.75,
+            "system": 1.0
+          },
+          "nodes_visited": 3239,
+          "nodes_total": 14191,
+          "exact_words": [
+            "volcano",
+            "system"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "larugest",
+            "volcano",
+            "solr",
+            "system"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    },
+    {
+      "id": "Q08-T",
+      "category": "typo",
+      "question": "What gaes make up the atmosphere of Mars?",
+      "relevant": [
+        280
+      ],
+      "exact": {
+        "query": "What gaes make up the atmosphere of Mars?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "gae",
+          "make",
+          "atmospher",
+          "mar"
+        ],
+        "patterns": [
+          "gae",
+          "make",
+          "atmospher",
+          "mar",
+          "gae make",
+          "make atmospher",
+          "atmospher mar"
+        ],
+        "results": [
+          {
+            "chunk_id": 276,
+            "score": 10.2394,
+            "doc": "Mars Facts",
+            "section": "Surface",
+            "matches": {
+              "make": 1,
+              "atmospher": 2,
+              "mar": 4
+            },
+            "coverage": 0.75,
+            "extra": {}
+          },
+          {
+            "chunk_id": 373,
+            "score": 8.1072,
+            "doc": "Perseverance Mission",
+            "section": "Mars Rock Samples: The Stories They Could Tell / Perseverance Sheds More Light on Jezero Crater’s Watery Past / The (Crater) Floor Was Lava / Perseverance Fords an Ancient River to Reach Science Target / Perseverance Studies the Wild Winds of Jezero Crater / First On-the-Ground Recording of the Martian Soundscape / Harvesting Oxygen From the Martian Atmosphere / Scenic Overlook",
+            "matches": {
+              "make": 1,
+              "atmospher": 2,
+              "mar": 4
+            },
+            "coverage": 0.75,
+            "extra": {}
+          },
+          {
+            "chunk_id": 272,
+            "score": 6.2192,
+            "doc": "Mars Facts",
+            "section": "Moons",
+            "matches": {
+              "make": 2,
+              "mar": 4
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 257,
+            "score": 6.2031,
+            "doc": "Mars Exploration",
+            "section": "MARS ODYSSEY | Active Mission / NASA’s Curiosity Finds Organic Molecules Never Seen Before on Mars",
+            "matches": {
+              "make": 1,
+              "mar": 3
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 280,
+            "score": 6.1509,
+            "doc": "Mars Facts",
+            "section": "Atmosphere",
+            "matches": {
+              "atmospher": 3,
+              "mar": 4
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 17.234900005860254,
+        "n_examined": 186,
+        "n_matched": 186,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "What gaes make up the atmosphere of Mars?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "gase",
+          "ga",
+          "goe",
+          "make",
+          "atmospher",
+          "mar"
+        ],
+        "patterns": [
+          "gase",
+          "ga",
+          "goe",
+          "make",
+          "atmospher",
+          "mar",
+          "gase make",
+          "ga make",
+          "goe make",
+          "make atmospher",
+          "atmospher mar"
+        ],
+        "results": [
+          {
+            "chunk_id": 280,
+            "score": 10.8824,
+            "doc": "Mars Facts",
+            "section": "Atmosphere",
+            "matches": {
+              "gase": 1,
+              "atmospher": 3,
+              "mar": 4
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "gaes",
+                  "candidate": "gases",
+                  "stem": "gase",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 276,
+            "score": 10.2949,
+            "doc": "Mars Facts",
+            "section": "Surface",
+            "matches": {
+              "make": 1,
+              "atmospher": 2,
+              "mar": 4
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 170,
+            "score": 9.296,
+            "doc": "Juno Mission",
+            "section": "Scientific Discoveries and Results",
+            "matches": {
+              "gase": 1,
+              "ga": 1,
+              "make": 1,
+              "atmospher": 1
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "gaes",
+                  "candidate": "gases",
+                  "stem": "gase",
+                  "weight": 0.8,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "gaes",
+                  "candidate": "gas",
+                  "stem": "ga",
+                  "weight": 0.75,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 447,
+            "score": 8.4301,
+            "doc": "Sun Facts",
+            "section": "Surface",
+            "matches": {
+              "goe": 1,
+              "make": 1,
+              "atmospher": 1
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "gaes",
+                  "candidate": "goes",
+                  "stem": "goe",
+                  "weight": 0.75,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 373,
+            "score": 8.1325,
+            "doc": "Perseverance Mission",
+            "section": "Mars Rock Samples: The Stories They Could Tell / Perseverance Sheds More Light on Jezero Crater’s Watery Past / The (Crater) Floor Was Lava / Perseverance Fords an Ancient River to Reach Science Target / Perseverance Studies the Wild Winds of Jezero Crater / First On-the-Ground Recording of the Martian Soundscape / Harvesting Oxygen From the Martian Atmosphere / Scenic Overlook",
+            "matches": {
+              "make": 1,
+              "atmospher": 2,
+              "mar": 4
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": []
+            }
+          }
+        ],
+        "time_ms": 3.6263999936636537,
+        "n_examined": 222,
+        "n_matched": 222,
+        "n_total": 523,
+        "details": {
+          "corrections": [
+            {
+              "query_word": "gaes",
+              "candidate": "gases",
+              "stem": "gase",
+              "weight": 0.8,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "gaes",
+              "candidate": "gas",
+              "stem": "ga",
+              "weight": 0.75,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "gaes",
+              "candidate": "goes",
+              "stem": "goe",
+              "weight": 0.75,
+              "technique": "osa",
+              "distance": 1
+            }
+          ],
+          "weights": {
+            "gase": 0.8,
+            "ga": 0.75,
+            "goe": 0.75,
+            "make": 1.0,
+            "atmospher": 1.0,
+            "mar": 1.0
+          },
+          "nodes_visited": 535,
+          "nodes_total": 14191,
+          "exact_words": [
+            "make",
+            "atmosphere",
+            "mars"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "gaes",
+            "make",
+            "atmosphere",
+            "mars"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    },
+    {
+      "id": "Q12-T",
+      "category": "typo",
+      "question": "What is the largert moon in the solar slystem?",
+      "relevant": [
+        116,
+        117,
+        118,
+        204
+      ],
+      "exact": {
+        "query": "What is the largert moon in the solar slystem?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "largert",
+          "moon",
+          "solar",
+          "slystem"
+        ],
+        "patterns": [
+          "largert",
+          "moon",
+          "solar",
+          "slystem",
+          "largert moon",
+          "moon solar",
+          "solar slystem"
+        ],
+        "results": [
+          {
+            "chunk_id": 424,
+            "score": 5.3692,
+            "doc": "Solar System Facts",
+            "section": "Moons",
+            "matches": {
+              "moon": 9,
+              "solar": 4,
+              "moon solar": 2
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 116,
+            "score": 4.7232,
+            "doc": "Ganymede Facts",
+            "section": "Introduction",
+            "matches": {
+              "moon": 6,
+              "solar": 2,
+              "moon solar": 2
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 204,
+            "score": 4.4851,
+            "doc": "Jupiter Facts",
+            "section": "Moons",
+            "matches": {
+              "moon": 6,
+              "solar": 4,
+              "moon solar": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 79,
+            "score": 4.0586,
+            "doc": "Earth Facts",
+            "section": "Moons",
+            "matches": {
+              "moon": 7,
+              "solar": 1,
+              "moon solar": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 457,
+            "score": 3.717,
+            "doc": "Titan Facts",
+            "section": "Facts About Titan",
+            "matches": {
+              "moon": 2,
+              "solar": 1,
+              "moon solar": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 31.967699993401766,
+        "n_examined": 308,
+        "n_matched": 308,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "What is the largert moon in the solar slystem?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "largest",
+          "larger",
+          "moon",
+          "solar",
+          "system"
+        ],
+        "patterns": [
+          "largest",
+          "larger",
+          "moon",
+          "solar",
+          "system",
+          "largest moon",
+          "larger moon",
+          "moon solar",
+          "solar system"
+        ],
+        "results": [
+          {
+            "chunk_id": 204,
+            "score": 18.0805,
+            "doc": "Jupiter Facts",
+            "section": "Moons",
+            "matches": {
+              "largest": 2,
+              "moon": 6,
+              "solar": 4,
+              "system": 4,
+              "largest moon": 2,
+              "moon solar": 1,
+              "solar system": 4
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "largert",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "slystem",
+                  "candidate": "system",
+                  "stem": "system",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 116,
+            "score": 17.754,
+            "doc": "Ganymede Facts",
+            "section": "Introduction",
+            "matches": {
+              "largest": 2,
+              "moon": 6,
+              "solar": 2,
+              "system": 2,
+              "largest moon": 2,
+              "moon solar": 2,
+              "solar system": 2
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "largert",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "slystem",
+                  "candidate": "system",
+                  "stem": "system",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 383,
+            "score": 14.1711,
+            "doc": "About the Planets",
+            "section": "Saturn's Hexagon / Mercury Facts / Venus Facts / Earth Facts / Mars Facts / Jupiter Facts / Saturn Facts / Uranus Facts / Neptune Facts",
+            "matches": {
+              "largest": 7,
+              "larger": 1,
+              "solar": 5,
+              "system": 5,
+              "solar system": 5
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "largert",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "largert",
+                  "candidate": "larger",
+                  "stem": "larger",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "slystem",
+                  "candidate": "system",
+                  "stem": "system",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 457,
+            "score": 13.7542,
+            "doc": "Titan Facts",
+            "section": "Facts About Titan",
+            "matches": {
+              "largest": 1,
+              "moon": 2,
+              "solar": 1,
+              "system": 1,
+              "largest moon": 1,
+              "moon solar": 1,
+              "solar system": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "largert",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "slystem",
+                  "candidate": "system",
+                  "stem": "system",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          },
+          {
+            "chunk_id": 167,
+            "score": 13.7199,
+            "doc": "Juno Mission",
+            "section": "The Science Mission",
+            "matches": {
+              "largest": 2,
+              "moon": 3,
+              "solar": 1,
+              "system": 1,
+              "largest moon": 2,
+              "moon solar": 1,
+              "solar system": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": [
+                {
+                  "query_word": "largert",
+                  "candidate": "largest",
+                  "stem": "largest",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                },
+                {
+                  "query_word": "slystem",
+                  "candidate": "system",
+                  "stem": "system",
+                  "weight": 0.857,
+                  "technique": "osa",
+                  "distance": 1
+                }
+              ]
+            }
+          }
+        ],
+        "time_ms": 9.429300000192598,
+        "n_examined": 339,
+        "n_matched": 339,
+        "n_total": 523,
+        "details": {
+          "corrections": [
+            {
+              "query_word": "largert",
+              "candidate": "largest",
+              "stem": "largest",
+              "weight": 0.857,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "largert",
+              "candidate": "larger",
+              "stem": "larger",
+              "weight": 0.857,
+              "technique": "osa",
+              "distance": 1
+            },
+            {
+              "query_word": "slystem",
+              "candidate": "system",
+              "stem": "system",
+              "weight": 0.857,
+              "technique": "osa",
+              "distance": 1
+            }
+          ],
+          "weights": {
+            "largest": 0.857,
+            "larger": 0.857,
+            "moon": 1.0,
+            "solar": 1.0,
+            "system": 0.857
+          },
+          "nodes_visited": 1164,
+          "nodes_total": 14191,
+          "exact_words": [
+            "moon",
+            "solar"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "largert",
+            "moon",
+            "solar",
+            "slystem"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    },
+    {
+      "id": "Q01",
+      "category": "literal",
+      "question": "When was Pluto discovered?",
+      "relevant": [
+        386,
+        389
+      ],
+      "exact": {
+        "query": "When was Pluto discovered?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "pluto",
+          "discov"
+        ],
+        "patterns": [
+          "pluto",
+          "discov",
+          "pluto discov"
+        ],
+        "results": [
+          {
+            "chunk_id": 240,
+            "score": 9.5586,
+            "doc": "Kuiper Belt Facts",
+            "section": "Pluto's Place in the Kuiper Belt",
+            "matches": {
+              "pluto": 6,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {}
+          },
+          {
+            "chunk_id": 386,
+            "score": 9.5236,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "matches": {
+              "pluto": 6,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {}
+          },
+          {
+            "chunk_id": 389,
+            "score": 8.915,
+            "doc": "Pluto Facts",
+            "section": "Namesake",
+            "matches": {
+              "pluto": 3,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {}
+          },
+          {
+            "chunk_id": 47,
+            "score": 6.5047,
+            "doc": "Ceres Facts",
+            "section": "Introduction / Namesake",
+            "matches": {
+              "pluto": 1,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {}
+          },
+          {
+            "chunk_id": 395,
+            "score": 4.7179,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "matches": {
+              "pluto": 10
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 8.057099999859929,
+        "n_examined": 98,
+        "n_matched": 98,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "When was Pluto discovered?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "pluto",
+          "discov"
+        ],
+        "patterns": [
+          "pluto",
+          "discov",
+          "pluto discov"
+        ],
+        "results": [
+          {
+            "chunk_id": 240,
+            "score": 9.5862,
+            "doc": "Kuiper Belt Facts",
+            "section": "Pluto's Place in the Kuiper Belt",
+            "matches": {
+              "pluto": 6,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 386,
+            "score": 9.5518,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "matches": {
+              "pluto": 6,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 389,
+            "score": 8.938,
+            "doc": "Pluto Facts",
+            "section": "Namesake",
+            "matches": {
+              "pluto": 3,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 47,
+            "score": 6.5235,
+            "doc": "Ceres Facts",
+            "section": "Introduction / Namesake",
+            "matches": {
+              "pluto": 1,
+              "discov": 1
+            },
+            "coverage": 1.0,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 395,
+            "score": 4.7296,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "matches": {
+              "pluto": 10
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          }
+        ],
+        "time_ms": 1.0141000093426555,
+        "n_examined": 98,
+        "n_matched": 98,
+        "n_total": 523,
+        "details": {
+          "corrections": [],
+          "weights": {
+            "pluto": 1.0,
+            "discov": 1.0
+          },
+          "nodes_visited": 0,
+          "nodes_total": 14191,
+          "exact_words": [
+            "pluto",
+            "discovered"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "pluto",
+            "discovered"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    },
+    {
+      "id": "Q43",
+      "category": "paraphrase",
+      "question": "Which world circles closest to our star?",
+      "relevant": [
+        284,
+        383,
+        427
+      ],
+      "exact": {
+        "query": "Which world circles closest to our star?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "world",
+          "circl",
+          "closest",
+          "star"
+        ],
+        "patterns": [
+          "world",
+          "circl",
+          "closest",
+          "star",
+          "world circl",
+          "circl closest",
+          "closest star"
+        ],
+        "results": [
+          {
+            "chunk_id": 195,
+            "score": 9.9426,
+            "doc": "Juno Mission",
+            "section": "Juno's Io Encounters",
+            "matches": {
+              "world": 1,
+              "circl": 1,
+              "closest": 1
+            },
+            "coverage": 0.75,
+            "extra": {}
+          },
+          {
+            "chunk_id": 196,
+            "score": 6.4823,
+            "doc": "Juno Mission",
+            "section": "Juno's Io Encounters",
+            "matches": {
+              "world": 1,
+              "closest": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 420,
+            "score": 6.4119,
+            "doc": "Solar System Facts",
+            "section": "Namesake / Potential for Life",
+            "matches": {
+              "world": 1,
+              "star": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 167,
+            "score": 5.8606,
+            "doc": "Juno Mission",
+            "section": "The Science Mission",
+            "matches": {
+              "circl": 1,
+              "closest": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 116,
+            "score": 5.8005,
+            "doc": "Ganymede Facts",
+            "section": "Introduction",
+            "matches": {
+              "world": 1,
+              "circl": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 17.994699999690056,
+        "n_examined": 113,
+        "n_matched": 113,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "Which world circles closest to our star?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "world",
+          "circl",
+          "closest",
+          "star"
+        ],
+        "patterns": [
+          "world",
+          "circl",
+          "closest",
+          "star",
+          "world circl",
+          "circl closest",
+          "closest star"
+        ],
+        "results": [
+          {
+            "chunk_id": 195,
+            "score": 9.9912,
+            "doc": "Juno Mission",
+            "section": "Juno's Io Encounters",
+            "matches": {
+              "world": 1,
+              "circl": 1,
+              "closest": 1
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 196,
+            "score": 6.5167,
+            "doc": "Juno Mission",
+            "section": "Juno's Io Encounters",
+            "matches": {
+              "world": 1,
+              "closest": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 420,
+            "score": 6.4529,
+            "doc": "Solar System Facts",
+            "section": "Namesake / Potential for Life",
+            "matches": {
+              "world": 1,
+              "star": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 167,
+            "score": 5.8838,
+            "doc": "Juno Mission",
+            "section": "The Science Mission",
+            "matches": {
+              "circl": 1,
+              "closest": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 116,
+            "score": 5.8316,
+            "doc": "Ganymede Facts",
+            "section": "Introduction",
+            "matches": {
+              "world": 1,
+              "circl": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          }
+        ],
+        "time_ms": 1.626500001293607,
+        "n_examined": 113,
+        "n_matched": 113,
+        "n_total": 523,
+        "details": {
+          "corrections": [],
+          "weights": {
+            "world": 1.0,
+            "circl": 1.0,
+            "closest": 1.0,
+            "star": 1.0
+          },
+          "nodes_visited": 0,
+          "nodes_total": 14191,
+          "exact_words": [
+            "world",
+            "circles",
+            "closest",
+            "star"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "world",
+            "circles",
+            "closest",
+            "star"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    },
+    {
+      "id": "Q51",
+      "category": "no_answer",
+      "question": "How many people live on Mars today?",
+      "relevant": [],
+      "exact": {
+        "query": "How many people live on Mars today?",
+        "method": "exact",
+        "algorithm": "kmp",
+        "terms": [
+          "peopl",
+          "live",
+          "mar",
+          "todai"
+        ],
+        "patterns": [
+          "peopl",
+          "live",
+          "mar",
+          "todai",
+          "peopl live",
+          "live mar",
+          "mar todai"
+        ],
+        "results": [
+          {
+            "chunk_id": 26,
+            "score": 11.254,
+            "doc": "Asteroid Facts",
+            "section": "Large Asteroids Have Hit Earth in the Past",
+            "matches": {
+              "peopl": 1,
+              "live": 1,
+              "todai": 1
+            },
+            "coverage": 0.75,
+            "extra": {}
+          },
+          {
+            "chunk_id": 279,
+            "score": 9.5984,
+            "doc": "Mars Facts",
+            "section": "Water on Mars",
+            "matches": {
+              "mar": 4,
+              "todai": 2,
+              "mar todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 48,
+            "score": 8.6218,
+            "doc": "Ceres Facts",
+            "section": "Potential for Life",
+            "matches": {
+              "live": 2,
+              "todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 268,
+            "score": 8.3156,
+            "doc": "Mars Facts",
+            "section": "Potential for Life",
+            "matches": {
+              "live": 1,
+              "mar": 2
+            },
+            "coverage": 0.5,
+            "extra": {}
+          },
+          {
+            "chunk_id": 248,
+            "score": 7.1183,
+            "doc": "Mars Exploration",
+            "section": "Perseverance, On a Roll",
+            "matches": {
+              "mar": 1,
+              "todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {}
+          }
+        ],
+        "time_ms": 12.577600005897693,
+        "n_examined": 116,
+        "n_matched": 116,
+        "n_total": 523,
+        "details": {
+          "use_index": true,
+          "field": "stems"
+        }
+      },
+      "approx": {
+        "query": "How many people live on Mars today?",
+        "method": "approximate",
+        "algorithm": "hybrid",
+        "terms": [
+          "peopl",
+          "live",
+          "mar",
+          "todai"
+        ],
+        "patterns": [
+          "peopl",
+          "live",
+          "mar",
+          "todai",
+          "peopl live",
+          "live mar",
+          "mar todai"
+        ],
+        "results": [
+          {
+            "chunk_id": 26,
+            "score": 11.2883,
+            "doc": "Asteroid Facts",
+            "section": "Large Asteroids Have Hit Earth in the Past",
+            "matches": {
+              "peopl": 1,
+              "live": 1,
+              "todai": 1
+            },
+            "coverage": 0.75,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 279,
+            "score": 9.6367,
+            "doc": "Mars Facts",
+            "section": "Water on Mars",
+            "matches": {
+              "mar": 4,
+              "todai": 2,
+              "mar todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 48,
+            "score": 8.664,
+            "doc": "Ceres Facts",
+            "section": "Potential for Life",
+            "matches": {
+              "live": 2,
+              "todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 268,
+            "score": 8.3777,
+            "doc": "Mars Facts",
+            "section": "Potential for Life",
+            "matches": {
+              "live": 1,
+              "mar": 2
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          },
+          {
+            "chunk_id": 248,
+            "score": 7.1721,
+            "doc": "Mars Exploration",
+            "section": "Perseverance, On a Roll",
+            "matches": {
+              "mar": 1,
+              "todai": 1
+            },
+            "coverage": 0.5,
+            "extra": {
+              "corrections": []
+            }
+          }
+        ],
+        "time_ms": 0.8487000013701618,
+        "n_examined": 116,
+        "n_matched": 116,
+        "n_total": 523,
+        "details": {
+          "corrections": [],
+          "weights": {
+            "peopl": 1.0,
+            "live": 1.0,
+            "mar": 1.0,
+            "todai": 1.0
+          },
+          "nodes_visited": 0,
+          "nodes_total": 14191,
+          "exact_words": [
+            "people",
+            "live",
+            "mars",
+            "today"
+          ],
+          "short_words": [],
+          "unmatched_words": [],
+          "query_words": [
+            "people",
+            "live",
+            "mars",
+            "today"
+          ],
+          "rerank_beta": 0.1,
+          "use_phrases": true
+        }
+      }
+    }
+  ]
+}

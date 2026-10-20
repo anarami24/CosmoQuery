@@ -1,0 +1,3073 @@
+{
+  "quick": false,
+  "n_questions": 106,
+  "repeats": 3,
+  "vocab_size": 4693,
+  "summary": [
+    {
+      "algorithm": "kmp",
+      "method": "exact",
+      "n": 106,
+      "time_ms_avg": 14.33482735825786,
+      "time_ms_median": 11.537599995790515,
+      "examined_avg": 166.85849056603774,
+      "matched_avg": 166.85849056603774,
+      "hit@1": 0.54,
+      "p@1": 0.54,
+      "r@1": 0.54,
+      "hit@3": 0.69,
+      "p@3": 0.3433333333333333,
+      "r@3": 0.5283333333333333,
+      "hit@5": 0.75,
+      "p@5": 0.258,
+      "r@5": 0.5891666666666666,
+      "mrr": 0.6273333333333333
+    },
+    {
+      "algorithm": "suffix_array",
+      "method": "exact",
+      "n": 106,
+      "time_ms_avg": 0.5102603769595383,
+      "time_ms_median": 0.4667999965022318,
+      "examined_avg": 166.85849056603774,
+      "matched_avg": 166.85849056603774,
+      "hit@1": 0.54,
+      "p@1": 0.54,
+      "r@1": 0.54,
+      "hit@3": 0.69,
+      "p@3": 0.3433333333333333,
+      "r@3": 0.5283333333333333,
+      "hit@5": 0.75,
+      "p@5": 0.258,
+      "r@5": 0.5891666666666666,
+      "mrr": 0.6273333333333333
+    },
+    {
+      "algorithm": "lev_trie",
+      "method": "approximate",
+      "n": 106,
+      "time_ms_avg": 2.2041952828624076,
+      "time_ms_median": 1.3964499958092347,
+      "examined_avg": 185.45283018867926,
+      "matched_avg": 185.45283018867926,
+      "hit@1": 0.67,
+      "p@1": 0.67,
+      "r@1": 0.67,
+      "hit@3": 0.78,
+      "p@3": 0.4066666666666666,
+      "r@3": 0.6366666666666667,
+      "hit@5": 0.82,
+      "p@5": 0.294,
+      "r@5": 0.671,
+      "mrr": 0.735
+    },
+    {
+      "algorithm": "osa_trie",
+      "method": "approximate",
+      "n": 106,
+      "time_ms_avg": 2.539685849217865,
+      "time_ms_median": 1.5844000008655712,
+      "examined_avg": 191.64150943396226,
+      "matched_avg": 191.64150943396226,
+      "hit@1": 0.71,
+      "p@1": 0.71,
+      "r@1": 0.71,
+      "hit@3": 0.82,
+      "p@3": 0.43,
+      "r@3": 0.67,
+      "hit@5": 0.86,
+      "p@5": 0.31,
+      "r@5": 0.7033333333333334,
+      "mrr": 0.7733333333333333
+    },
+    {
+      "algorithm": "ngram_jaccard",
+      "method": "approximate",
+      "n": 106,
+      "time_ms_avg": 1.2858707554152955,
+      "time_ms_median": 1.1422499956097454,
+      "examined_avg": 184.97169811320754,
+      "matched_avg": 184.97169811320754,
+      "hit@1": 0.65,
+      "p@1": 0.65,
+      "r@1": 0.65,
+      "hit@3": 0.77,
+      "p@3": 0.3933333333333333,
+      "r@3": 0.6216666666666667,
+      "hit@5": 0.82,
+      "p@5": 0.28800000000000003,
+      "r@5": 0.661,
+      "mrr": 0.7208333333333333
+    },
+    {
+      "algorithm": "hybrid",
+      "method": "approximate",
+      "n": 106,
+      "time_ms_avg": 2.9080160381437175,
+      "time_ms_median": 1.8722000022535212,
+      "examined_avg": 191.6509433962264,
+      "matched_avg": 191.6509433962264,
+      "hit@1": 0.71,
+      "p@1": 0.71,
+      "r@1": 0.71,
+      "hit@3": 0.82,
+      "p@3": 0.43,
+      "r@3": 0.67,
+      "hit@5": 0.86,
+      "p@5": 0.31,
+      "r@5": 0.7033333333333334,
+      "mrr": 0.7733333333333333
+    }
+  ],
+  "by_cat": {
+    "kmp": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 16.67266428488628,
+        "time_ms_median": 14.175799995427951,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 23.298574997170363,
+        "time_ms_median": 29.405300003418233,
+        "examined_avg": 229,
+        "matched_avg": 229,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 7.567666665030022,
+        "time_ms_median": 8.25069999700645,
+        "examined_avg": 104.5,
+        "matched_avg": 104.5
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 11.748904000851326,
+        "time_ms_median": 10.383749999164138,
+        "examined_avg": 144.74,
+        "matched_avg": 144.74,
+        "hit@1": 0.36,
+        "p@1": 0.36,
+        "r@1": 0.36,
+        "hit@3": 0.56,
+        "p@3": 0.2533333333333333,
+        "r@3": 0.3833333333333333,
+        "hit@5": 0.64,
+        "p@5": 0.20400000000000001,
+        "r@5": 0.47,
+        "mrr": 0.4746666666666667
+      }
+    },
+    "suffix_array": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 0.6249071413462627,
+        "time_ms_median": 0.5476499936776236,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 0.7092624982760753,
+        "time_ms_median": 0.7948999991640449,
+        "examined_avg": 229,
+        "matched_avg": 229,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 0.27766666607931256,
+        "time_ms_median": 0.2915500008384697,
+        "examined_avg": 104.5,
+        "matched_avg": 104.5
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 0.41002800076967105,
+        "time_ms_median": 0.36535000253934413,
+        "examined_avg": 144.74,
+        "matched_avg": 144.74,
+        "hit@1": 0.36,
+        "p@1": 0.36,
+        "r@1": 0.36,
+        "hit@3": 0.56,
+        "p@3": 0.2533333333333333,
+        "r@3": 0.3833333333333333,
+        "hit@5": 0.64,
+        "p@5": 0.20400000000000001,
+        "r@5": 0.47,
+        "mrr": 0.4746666666666667
+      }
+    },
+    "lev_trie": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 1.0809904761983835,
+        "time_ms_median": 0.9575500007485971,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 1.5896124969003722,
+        "time_ms_median": 1.6674999933457002,
+        "examined_avg": 231.375,
+        "matched_avg": 231.375,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 1.614000000699889,
+        "time_ms_median": 1.1766999959945679,
+        "examined_avg": 107,
+        "matched_avg": 107
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 3.3168440000736155,
+        "time_ms_median": 2.005599999392871,
+        "examined_avg": 183.48,
+        "matched_avg": 183.48,
+        "hit@1": 0.62,
+        "p@1": 0.62,
+        "r@1": 0.62,
+        "hit@3": 0.74,
+        "p@3": 0.38,
+        "r@3": 0.6,
+        "hit@5": 0.78,
+        "p@5": 0.276,
+        "r@5": 0.6336666666666667,
+        "mrr": 0.69
+      }
+    },
+    "osa_trie": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 1.1003857147270104,
+        "time_ms_median": 0.9662999946158379,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 1.6842000022734283,
+        "time_ms_median": 1.6335499967681244,
+        "examined_avg": 231.375,
+        "matched_avg": 231.375,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 1.8329499968482803,
+        "time_ms_median": 1.3749000063398853,
+        "examined_avg": 107,
+        "matched_avg": 107
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 3.9703839999856427,
+        "time_ms_median": 2.6068499937537126,
+        "examined_avg": 196.6,
+        "matched_avg": 196.6,
+        "hit@1": 0.7,
+        "p@1": 0.7,
+        "r@1": 0.7,
+        "hit@3": 0.82,
+        "p@3": 0.42666666666666664,
+        "r@3": 0.6666666666666666,
+        "hit@5": 0.86,
+        "p@5": 0.308,
+        "r@5": 0.6983333333333334,
+        "mrr": 0.7666666666666667
+      }
+    },
+    "ngram_jaccard": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 1.083995238808538,
+        "time_ms_median": 1.0127499990630895,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 1.4658125037385616,
+        "time_ms_median": 1.571350010635797,
+        "examined_avg": 230.625,
+        "matched_avg": 230.625,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 0.7843666680855677,
+        "time_ms_median": 0.705099999322556,
+        "examined_avg": 104.66666666666667,
+        "matched_avg": 104.66666666666667
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 1.4868360001128167,
+        "time_ms_median": 1.2546500001917593,
+        "examined_avg": 182.86,
+        "matched_avg": 182.86,
+        "hit@1": 0.58,
+        "p@1": 0.58,
+        "r@1": 0.58,
+        "hit@3": 0.72,
+        "p@3": 0.35333333333333333,
+        "r@3": 0.57,
+        "hit@5": 0.78,
+        "p@5": 0.264,
+        "r@5": 0.6136666666666667,
+        "mrr": 0.6616666666666666
+      }
+    },
+    "hybrid": {
+      "literal": {
+        "n": 42,
+        "time_ms_avg": 1.142204762713629,
+        "time_ms_median": 1.0103500026161782,
+        "examined_avg": 190.26190476190476,
+        "matched_avg": 190.26190476190476,
+        "hit@1": 0.8095238095238095,
+        "p@1": 0.8095238095238095,
+        "r@1": 0.8095238095238095,
+        "hit@3": 0.9047619047619048,
+        "p@3": 0.49206349206349204,
+        "r@3": 0.7579365079365079,
+        "hit@5": 0.9523809523809523,
+        "p@5": 0.3523809523809524,
+        "r@5": 0.7908730158730158,
+        "mrr": 0.8690476190476191
+      },
+      "paraphrase": {
+        "n": 8,
+        "time_ms_avg": 1.938725001309649,
+        "time_ms_median": 1.8722000022535212,
+        "examined_avg": 231.375,
+        "matched_avg": 231.375,
+        "hit@1": 0.25,
+        "p@1": 0.25,
+        "r@1": 0.25,
+        "hit@3": 0.375,
+        "p@3": 0.125,
+        "r@3": 0.22916666666666666,
+        "hit@5": 0.375,
+        "p@5": 0.1,
+        "r@5": 0.275,
+        "mrr": 0.3125
+      },
+      "no_answer": {
+        "n": 6,
+        "time_ms_avg": 2.2076999982042858,
+        "time_ms_median": 1.784449996193871,
+        "examined_avg": 107.16666666666667,
+        "matched_avg": 107.16666666666667
+      },
+      "typo": {
+        "n": 50,
+        "time_ms_avg": 4.6304220001911744,
+        "time_ms_median": 2.88169999839738,
+        "examined_avg": 196.6,
+        "matched_avg": 196.6,
+        "hit@1": 0.7,
+        "p@1": 0.7,
+        "r@1": 0.7,
+        "hit@3": 0.82,
+        "p@3": 0.42666666666666664,
+        "r@3": 0.6666666666666666,
+        "hit@5": 0.86,
+        "p@5": 0.308,
+        "r@5": 0.6983333333333334,
+        "mrr": 0.7666666666666667
+      }
+    }
+  },
+  "check_ana": {
+    "available": true,
+    "match": true,
+    "differences": []
+  },
+  "cases": {
+    "same": [
+      {
+        "id": "Q02",
+        "category": "literal",
+        "question": "When was Pluto reclassified as a dwarf planet?",
+        "relevant": [
+          385,
+          386
+        ],
+        "exact": [
+          {
+            "id": 385,
+            "doc": "Pluto Facts",
+            "section": "Dwarf Planets",
+            "score": 35.3009,
+            "relevant": true
+          },
+          {
+            "id": 386,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 32.1079,
+            "relevant": true
+          },
+          {
+            "id": 384,
+            "doc": "About the Planets",
+            "section": "Ceres Facts / Pluto Facts / Haumea Facts / Makemake Facts / Eris Facts / Planet Sizes and Locations in Our Solar System / Is There Another Planet in the Solar System? / Temperatures Across Our Solar System",
+            "score": 28.9358,
+            "relevant": false
+          }
+        ],
+        "approx": [
+          {
+            "id": 385,
+            "doc": "Pluto Facts",
+            "section": "Dwarf Planets",
+            "score": 36.3871,
+            "relevant": true
+          },
+          {
+            "id": 386,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 32.3754,
+            "relevant": true
+          },
+          {
+            "id": 384,
+            "doc": "About the Planets",
+            "section": "Ceres Facts / Pluto Facts / Haumea Facts / Makemake Facts / Eris Facts / Planet Sizes and Locations in Our Solar System / Is There Another Planet in the Solar System? / Temperatures Across Our Solar System",
+            "score": 29.1425,
+            "relevant": false
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "id": "Q03",
+        "category": "literal",
+        "question": "When did New Horizons fly by Pluto?",
+        "relevant": [
+          337,
+          338,
+          340,
+          348,
+          349,
+          350,
+          353,
+          388,
+          389,
+          390
+        ],
+        "exact": [
+          {
+            "id": 338,
+            "doc": "New Horizons Mission",
+            "section": "What is New Horizons?",
+            "score": 27.2628,
+            "relevant": true
+          },
+          {
+            "id": 347,
+            "doc": "New Horizons Mission",
+            "section": "In Depth: New Horizons",
+            "score": 24.8866,
+            "relevant": false
+          },
+          {
+            "id": 358,
+            "doc": "New Horizons Mission",
+            "section": "New Horizons Stories",
+            "score": 22.4253,
+            "relevant": false
+          }
+        ],
+        "approx": [
+          {
+            "id": 338,
+            "doc": "New Horizons Mission",
+            "section": "What is New Horizons?",
+            "score": 27.5567,
+            "relevant": true
+          },
+          {
+            "id": 347,
+            "doc": "New Horizons Mission",
+            "section": "In Depth: New Horizons",
+            "score": 25.0048,
+            "relevant": false
+          },
+          {
+            "id": 358,
+            "doc": "New Horizons Mission",
+            "section": "New Horizons Stories",
+            "score": 22.6121,
+            "relevant": false
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "id": "Q05",
+        "category": "literal",
+        "question": "How many known moons does Pluto have?",
+        "relevant": [
+          387,
+          388,
+          395
+        ],
+        "exact": [
+          {
+            "id": 395,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 9.9465,
+            "relevant": true
+          },
+          {
+            "id": 396,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 9.8176,
+            "relevant": false
+          },
+          {
+            "id": 388,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 9.0011,
+            "relevant": true
+          }
+        ],
+        "approx": [
+          {
+            "id": 395,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 9.968,
+            "relevant": true
+          },
+          {
+            "id": 396,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 9.8383,
+            "relevant": false
+          },
+          {
+            "id": 388,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 9.0237,
+            "relevant": true
+          }
+        ],
+        "corrections": []
+      }
+    ],
+    "approx_wins": [
+      {
+        "id": "Q01-T",
+        "category": "typo",
+        "question": "When was Pluot discovered?",
+        "relevant": [
+          386,
+          389
+        ],
+        "exact": [
+          {
+            "id": 461,
+            "doc": "Triton Facts",
+            "section": "Contents / Discovery",
+            "score": 4.2177,
+            "relevant": false
+          },
+          {
+            "id": 329,
+            "doc": "Neptune Facts",
+            "section": "Moons",
+            "score": 3.6835,
+            "relevant": false
+          },
+          {
+            "id": 328,
+            "doc": "Neptune Facts",
+            "section": "Moons",
+            "score": 3.629,
+            "relevant": false
+          }
+        ],
+        "approx": [
+          {
+            "id": 240,
+            "doc": "Kuiper Belt Facts",
+            "section": "Pluto's Place in the Kuiper Belt",
+            "score": 9.2213,
+            "relevant": false
+          },
+          {
+            "id": 386,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 9.1851,
+            "relevant": true
+          },
+          {
+            "id": 389,
+            "doc": "Pluto Facts",
+            "section": "Namesake",
+            "score": 8.4926,
+            "relevant": true
+          }
+        ],
+        "corrections": [
+          "pluot -> pluto (OSA d=1, peso 0.80)"
+        ]
+      },
+      {
+        "id": "Q13-T",
+        "category": "typo",
+        "question": "How long is one day on Jpuiter?",
+        "relevant": [
+          199,
+          203
+        ],
+        "exact": [
+          {
+            "id": 471,
+            "doc": "Uranus Facts",
+            "section": "Orbit and Rotation",
+            "score": 11.6382,
+            "relevant": false
+          },
+          {
+            "id": 488,
+            "doc": "Venus Facts",
+            "section": "Orbit and Rotation",
+            "score": 10.4713,
+            "relevant": false
+          },
+          {
+            "id": 393,
+            "doc": "Pluto Facts",
+            "section": "Orbit and Rotation",
+            "score": 9.1013,
+            "relevant": false
+          }
+        ],
+        "approx": [
+          {
+            "id": 203,
+            "doc": "Jupiter Facts",
+            "section": "Orbit and Rotation",
+            "score": 13.778,
+            "relevant": true
+          },
+          {
+            "id": 471,
+            "doc": "Uranus Facts",
+            "section": "Orbit and Rotation",
+            "score": 11.6726,
+            "relevant": false
+          },
+          {
+            "id": 488,
+            "doc": "Venus Facts",
+            "section": "Orbit and Rotation",
+            "score": 10.4991,
+            "relevant": false
+          }
+        ],
+        "corrections": [
+          "jpuiter -> jupiter (OSA d=1, peso 0.86)"
+        ]
+      },
+      {
+        "id": "Q14-T",
+        "category": "typo",
+        "question": "Who diocovered Uranus?",
+        "relevant": [
+          467,
+          468
+        ],
+        "exact": [
+          {
+            "id": 478,
+            "doc": "Uranus Facts",
+            "section": "Magnetosphere",
+            "score": 5.353,
+            "relevant": false
+          },
+          {
+            "id": 471,
+            "doc": "Uranus Facts",
+            "section": "Orbit and Rotation",
+            "score": 5.3509,
+            "relevant": false
+          },
+          {
+            "id": 466,
+            "doc": "Uranus Facts",
+            "section": "Our Solar System",
+            "score": 5.3342,
+            "relevant": false
+          }
+        ],
+        "approx": [
+          {
+            "id": 467,
+            "doc": "Uranus Facts",
+            "section": "Introduction",
+            "score": 10.8673,
+            "relevant": true
+          },
+          {
+            "id": 323,
+            "doc": "Neptune Facts",
+            "section": "Discovery and Namesake",
+            "score": 8.8756,
+            "relevant": false
+          },
+          {
+            "id": 240,
+            "doc": "Kuiper Belt Facts",
+            "section": "Pluto's Place in the Kuiper Belt",
+            "score": 6.5657,
+            "relevant": false
+          }
+        ],
+        "corrections": [
+          "diocovered -> discovered (OSA d=1, peso 0.90)"
+        ]
+      }
+    ],
+    "exact_wins": [
+      {
+        "id": "Q04-T",
+        "category": "typo",
+        "question": "What is the lagest moon of Pluto?",
+        "relevant": [
+          387,
+          388,
+          395,
+          396,
+          397
+        ],
+        "exact": [
+          {
+            "id": 395,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 7.7362,
+            "relevant": true
+          },
+          {
+            "id": 396,
+            "doc": "Pluto Facts",
+            "section": "Moons",
+            "score": 7.6359,
+            "relevant": true
+          },
+          {
+            "id": 388,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 7.0009,
+            "relevant": true
+          }
+        ],
+        "approx": [
+          {
+            "id": 424,
+            "doc": "Solar System Facts",
+            "section": "Moons",
+            "score": 14.2085,
+            "relevant": false
+          },
+          {
+            "id": 388,
+            "doc": "Pluto Facts",
+            "section": "Introduction",
+            "score": 13.8996,
+            "relevant": true
+          },
+          {
+            "id": 116,
+            "doc": "Ganymede Facts",
+            "section": "Introduction",
+            "score": 13.8389,
+            "relevant": false
+          }
+        ],
+        "corrections": [
+          "lagest -> largest (OSA d=1, peso 0.86)",
+          "lagest -> latest (OSA d=1, peso 0.83)"
+        ]
+      }
+    ],
+    "counts": {
+      "same_top1": 52,
+      "approx_only_hit5": 11,
+      "exact_better": 1
+    }
+  },
+  "pruning_summary": {
+    "todas": {
+      "n": 75,
+      "nodes_avg": 1057.8666666666666,
+      "pct_avg": 7.454489934935288,
+      "trie_ms_avg": 2.344945333121965,
+      "brute_ms_avg": 52.80645200128978,
+      "speedup_avg": 39.5086799654513,
+      "all_same": true
+    },
+    "d = 1": {
+      "n": 55,
+      "nodes_avg": 556.7272727272727,
+      "pct_avg": 3.9231010691795696,
+      "trie_ms_avg": 0.966010908913714,
+      "brute_ms_avg": 45.54509454650212,
+      "speedup_avg": 49.522001256760866,
+      "all_same": true
+    },
+    "d = 2": {
+      "n": 20,
+      "nodes_avg": 2436,
+      "pct_avg": 17.16580931576351,
+      "trie_ms_avg": 6.137014999694657,
+      "brute_ms_avg": 72.77518500195583,
+      "speedup_avg": 11.972046414349975,
+      "all_same": true
+    }
+  },
+  "pruning": [
+    {
+      "word": "rages",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 646,
+      "nodes_total": 14191,
+      "pct_nodes": 4.552180959763231,
+      "found": 4,
+      "same_as_brute": true,
+      "trie_ms": 0.8349999989150092,
+      "brute_ms": 33.837599999969825,
+      "speedup": 40.52407190890787
+    },
+    {
+      "word": "ringed",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 658,
+      "nodes_total": 14191,
+      "pct_nodes": 4.636741596786695,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.93709999055136,
+      "brute_ms": 39.58130000683013,
+      "speedup": 42.23807534513126
+    },
+    {
+      "word": "capital",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 601,
+      "nodes_total": 14191,
+      "pct_nodes": 4.235078570925234,
+      "found": 0,
+      "same_as_brute": true,
+      "trie_ms": 1.0106000117957592,
+      "brute_ms": 44.902099994942546,
+      "speedup": 44.43112949816311
+    },
+    {
+      "word": "city",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 530,
+      "nodes_total": 14191,
+      "pct_nodes": 3.734761468536396,
+      "found": 0,
+      "same_as_brute": true,
+      "trie_ms": 0.5736000020988286,
+      "brute_ms": 25.573399994755164,
+      "speedup": 44.584030511124354
+    },
+    {
+      "word": "ticket",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 553,
+      "nodes_total": 14191,
+      "pct_nodes": 3.896836022831372,
+      "found": 0,
+      "same_as_brute": true,
+      "trie_ms": 0.7943999953567982,
+      "brute_ms": 39.28979999909643,
+      "speedup": 49.45845950244466
+    },
+    {
+      "word": "food",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 533,
+      "nodes_total": 14191,
+      "pct_nodes": 3.7559016277922628,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 0.5584000027738512,
+      "brute_ms": 27.25559999817051,
+      "speedup": 48.81017167403001
+    },
+    {
+      "word": "football",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2171,
+      "nodes_total": 14191,
+      "pct_nodes": 15.298428581495314,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 4.214100001263432,
+      "brute_ms": 52.17750000883825,
+      "speedup": 12.381647325216507
+    },
+    {
+      "word": "plays",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 500,
+      "nodes_total": 14191,
+      "pct_nodes": 3.5233598759777323,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.6246999982977286,
+      "brute_ms": 32.34000000520609,
+      "speedup": 51.76884919694369
+    },
+    {
+      "word": "pluot",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 461,
+      "nodes_total": 14191,
+      "pct_nodes": 3.2485378056514693,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.5630000086966902,
+      "brute_ms": 31.819600000744686,
+      "speedup": 56.517938737523416
+    },
+    {
+      "word": "darf",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 607,
+      "nodes_total": 14191,
+      "pct_nodes": 4.277358889436967,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 0.7019000040600076,
+      "brute_ms": 26.271800001268275,
+      "speedup": 37.429548154016274
+    },
+    {
+      "word": "haorizons",
+      "length": 9,
+      "max_dist": 2,
+      "nodes_visited": 2473,
+      "nodes_total": 14191,
+      "pct_nodes": 17.426537946585864,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 4.9257999926339835,
+      "brute_ms": 57.349900002009235,
+      "speedup": 11.64275855450282
+    },
+    {
+      "word": "lagest",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 633,
+      "nodes_total": 14191,
+      "pct_nodes": 4.460573602987809,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.9285999985877424,
+      "brute_ms": 40.66420000162907,
+      "speedup": 43.790868041646625
+    },
+    {
+      "word": "moos",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 553,
+      "nodes_total": 14191,
+      "pct_nodes": 3.896836022831372,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 0.6395000091288239,
+      "brute_ms": 26.517600010265596,
+      "speedup": 41.46614485023997
+    },
+    {
+      "word": "larugest",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2588,
+      "nodes_total": 14191,
+      "pct_nodes": 18.23691071806074,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 5.271000001812354,
+      "brute_ms": 50.96230001072399,
+      "speedup": 9.66843103646393
+    },
+    {
+      "word": "solr",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 651,
+      "nodes_total": 14191,
+      "pct_nodes": 4.587414558523007,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 0.8780999924056232,
+      "brute_ms": 27.595300009124912,
+      "speedup": 31.42614764581132
+    },
+    {
+      "word": "gaes",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 535,
+      "nodes_total": 14191,
+      "pct_nodes": 3.7699950672961737,
+      "found": 4,
+      "same_as_brute": true,
+      "trie_ms": 0.6087000074330717,
+      "brute_ms": 26.721900008851662,
+      "speedup": 43.89995019310035
+    },
+    {
+      "word": "graet",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 467,
+      "nodes_total": 14191,
+      "pct_nodes": 3.290818124163202,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.5659000016748905,
+      "brute_ms": 32.48279998661019,
+      "speedup": 57.4002471999842
+    },
+    {
+      "word": "firut",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 523,
+      "nodes_total": 14191,
+      "pct_nodes": 3.685434430272708,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.6537000008393079,
+      "brute_ms": 34.63370000827126,
+      "speedup": 52.98103099862913
+    },
+    {
+      "word": "largset",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 665,
+      "nodes_total": 14191,
+      "pct_nodes": 4.686068635050384,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.2162999919382855,
+      "brute_ms": 46.18399999162648,
+      "speedup": 37.97089558311025
+    },
+    {
+      "word": "largert",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 667,
+      "nodes_total": 14191,
+      "pct_nodes": 4.700162074554295,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 1.1424999975133687,
+      "brute_ms": 48.58079999394249,
+      "speedup": 42.52148805223436
+    },
+    {
+      "word": "slystem",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 497,
+      "nodes_total": 14191,
+      "pct_nodes": 3.502219716721866,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.8338000043295324,
+      "brute_ms": 48.71020000427961,
+      "speedup": 58.419524767750524
+    },
+    {
+      "word": "jpuiter",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 345,
+      "nodes_total": 14191,
+      "pct_nodes": 2.4311183144246353,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.5443999980343506,
+      "brute_ms": 48.519499992835335,
+      "speedup": 89.12472477594287
+    },
+    {
+      "word": "diocovered",
+      "length": 10,
+      "max_dist": 2,
+      "nodes_visited": 2343,
+      "nodes_total": 14191,
+      "pct_nodes": 16.510464378831653,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 5.417000007582828,
+      "brute_ms": 63.63620000774972,
+      "speedup": 11.747498600456057
+    },
+    {
+      "word": "gires",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 509,
+      "nodes_total": 14191,
+      "pct_nodes": 3.5867803537453313,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.6253999890759587,
+      "brute_ms": 33.93119999964256,
+      "speedup": 54.25519762124812
+    },
+    {
+      "word": "uraus",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 547,
+      "nodes_total": 14191,
+      "pct_nodes": 3.854555704319639,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.6671000010101125,
+      "brute_ms": 31.14580000692513,
+      "speedup": 46.68835251051513
+    },
+    {
+      "word": "neptue",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 580,
+      "nodes_total": 14191,
+      "pct_nodes": 4.0870974561341695,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.8627999923191965,
+      "brute_ms": 38.64350001094863,
+      "speedup": 44.788479780899564
+    },
+    {
+      "word": "largst",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 665,
+      "nodes_total": 14191,
+      "pct_nodes": 4.686068635050384,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.9159000037470832,
+      "brute_ms": 39.51549998600967,
+      "speedup": 43.143901980943205
+    },
+    {
+      "word": "widniest",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2098,
+      "nodes_total": 14191,
+      "pct_nodes": 14.784018039602564,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 3.347100006067194,
+      "brute_ms": 53.49500000011176,
+      "speedup": 15.982492277835403
+    },
+    {
+      "word": "sysem",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 441,
+      "nodes_total": 14191,
+      "pct_nodes": 3.10760341061236,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.5785999965155497,
+      "brute_ms": 33.07160000258591,
+      "speedup": 57.15796785646389
+    },
+    {
+      "word": "hotetest",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2423,
+      "nodes_total": 14191,
+      "pct_nodes": 17.07420195898809,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 4.404899998917244,
+      "brute_ms": 53.674800001317635,
+      "speedup": 12.185248249565548
+    },
+    {
+      "word": "plaet",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 503,
+      "nodes_total": 14191,
+      "pct_nodes": 3.544500035233599,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.6630999996559694,
+      "brute_ms": 34.2164000030607,
+      "speedup": 51.600663581379735
+    },
+    {
+      "word": "surfiace",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2395,
+      "nodes_total": 14191,
+      "pct_nodes": 16.87689380593334,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 4.406399995787069,
+      "brute_ms": 51.194500003475696,
+      "speedup": 11.618214427292672
+    },
+    {
+      "word": "temoerature",
+      "length": 11,
+      "max_dist": 2,
+      "nodes_visited": 2442,
+      "nodes_total": 14191,
+      "pct_nodes": 17.208089634275243,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 5.49680000403896,
+      "brute_ms": 69.07589999900665,
+      "speedup": 12.566565992623126
+    },
+    {
+      "word": "vnus",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 388,
+      "nodes_total": 14191,
+      "pct_nodes": 2.73412726375872,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.45700000191573054,
+      "brute_ms": 26.901299992459826,
+      "speedup": 58.864988795821375
+    },
+    {
+      "word": "mostrly",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 571,
+      "nodes_total": 14191,
+      "pct_nodes": 4.02367697836657,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.0429999965708703,
+      "brute_ms": 44.882300004246645,
+      "speedup": 43.03192727881947
+    },
+    {
+      "word": "smallet",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 498,
+      "nodes_total": 14191,
+      "pct_nodes": 3.5092664364738213,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 0.8129000052576885,
+      "brute_ms": 47.42400000395719,
+      "speedup": 58.33927875166372
+    },
+    {
+      "word": "ssytem",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 429,
+      "nodes_total": 14191,
+      "pct_nodes": 3.0230427735888945,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.6136000010883436,
+      "brute_ms": 40.29790000640787,
+      "speedup": 65.67454357061833
+    },
+    {
+      "word": "mercuery",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2478,
+      "nodes_total": 14191,
+      "pct_nodes": 17.46177154534564,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 4.749800005811267,
+      "brute_ms": 53.2898999954341,
+      "speedup": 11.219398696836747
+    },
+    {
+      "word": "rinngs",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 643,
+      "nodes_total": 14191,
+      "pct_nodes": 4.5310408005073635,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.031499996315688,
+      "brute_ms": 38.020899999537505,
+      "speedup": 36.8598159334373
+    },
+    {
+      "word": "dnesity",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 461,
+      "nodes_total": 14191,
+      "pct_nodes": 3.2485378056514693,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.8288999961223453,
+      "brute_ms": 46.416299999691546,
+      "speedup": 55.9974667834846
+    },
+    {
+      "word": "watrr",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 565,
+      "nodes_total": 14191,
+      "pct_nodes": 3.9813966598548376,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.6819999980507419,
+      "brute_ms": 35.584999990533106,
+      "speedup": 52.17741949008851
+    },
+    {
+      "word": "satuin",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 688,
+      "nodes_total": 14191,
+      "pct_nodes": 4.84814318934536,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.039800001308322,
+      "brute_ms": 41.44580000138376,
+      "speedup": 39.85939598887751
+    },
+    {
+      "word": "satrun",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 693,
+      "nodes_total": 14191,
+      "pct_nodes": 4.883376788105137,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.304099991102703,
+      "brute_ms": 40.75750001356937,
+      "speedup": 31.25335502771241
+    },
+    {
+      "word": "lakse",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 610,
+      "nodes_total": 14191,
+      "pct_nodes": 4.298499048692833,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 0.7569000008516014,
+      "brute_ms": 33.523499994771555,
+      "speedup": 44.29052709347824
+    },
+    {
+      "word": "beneah",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 585,
+      "nodes_total": 14191,
+      "pct_nodes": 4.122331054893947,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.7982000097399577,
+      "brute_ms": 44.12700000102632,
+      "speedup": 55.28313638508006
+    },
+    {
+      "word": "shll",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 481,
+      "nodes_total": 14191,
+      "pct_nodes": 3.3894722006905784,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.5369999998947605,
+      "brute_ms": 26.12960000988096,
+      "speedup": 48.65847302607403
+    },
+    {
+      "word": "eurpoa",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 646,
+      "nodes_total": 14191,
+      "pct_nodes": 4.552180959763231,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.9954999986803159,
+      "brute_ms": 41.05600000184495,
+      "speedup": 41.24158719866481
+    },
+    {
+      "word": "launah",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 621,
+      "nodes_total": 14191,
+      "pct_nodes": 4.376012965964343,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.9223999950336292,
+      "brute_ms": 43.27209999610204,
+      "speedup": 46.91251108964328
+    },
+    {
+      "word": "eruopa",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 625,
+      "nodes_total": 14191,
+      "pct_nodes": 4.404199844972165,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.873099997988902,
+      "brute_ms": 40.51880000042729,
+      "speedup": 46.40797170284992
+    },
+    {
+      "word": "raech",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 626,
+      "nodes_total": 14191,
+      "pct_nodes": 4.411246564724121,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.7768999930704013,
+      "brute_ms": 36.070999994990416,
+      "speedup": 46.42939930071763
+    },
+    {
+      "word": "earht",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 811,
+      "nodes_total": 14191,
+      "pct_nodes": 5.714889718835882,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.9800000116229057,
+      "brute_ms": 31.926800002111122,
+      "speedup": 32.578366962710035
+    },
+    {
+      "word": "persevernce",
+      "length": 11,
+      "max_dist": 2,
+      "nodes_visited": 2576,
+      "nodes_total": 14191,
+      "pct_nodes": 18.152350081037277,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 5.321999997249804,
+      "brute_ms": 66.29430000612047,
+      "speedup": 12.456651642310916
+    },
+    {
+      "word": "ailrcraft",
+      "length": 9,
+      "max_dist": 2,
+      "nodes_visited": 2752,
+      "nodes_total": 14191,
+      "pct_nodes": 19.39257275738144,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 4.9125000077765435,
+      "brute_ms": 56.81470000126865,
+      "speedup": 11.565333315283528
+    },
+    {
+      "word": "inoterstellar",
+      "length": 13,
+      "max_dist": 2,
+      "nodes_visited": 2582,
+      "nodes_total": 14191,
+      "pct_nodes": 18.19463039954901,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 6.634100005612709,
+      "brute_ms": 85.62319999327883,
+      "speedup": 12.906528379258415
+    },
+    {
+      "word": "splce",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 498,
+      "nodes_total": 14191,
+      "pct_nodes": 3.5092664364738213,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.6441000004997477,
+      "brute_ms": 33.6401999957161,
+      "speedup": 52.22822538365963
+    },
+    {
+      "word": "commitee",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2367,
+      "nodes_total": 14191,
+      "pct_nodes": 16.679585652878586,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 4.752699998789467,
+      "brute_ms": 54.679499997291714,
+      "speedup": 11.50493403985499
+    },
+    {
+      "word": "stlected",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2406,
+      "nodes_total": 14191,
+      "pct_nodes": 16.95440772320485,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 4.929400005494244,
+      "brute_ms": 54.030200000852346,
+      "speedup": 10.960806576993345
+    },
+    {
+      "word": "sapcecraft",
+      "length": 10,
+      "max_dist": 2,
+      "nodes_visited": 2540,
+      "nodes_total": 14191,
+      "pct_nodes": 17.898668169966882,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 6.062300002668053,
+      "brute_ms": 66.78300000203308,
+      "speedup": 11.016115991066345
+    },
+    {
+      "word": "jpiter",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 350,
+      "nodes_total": 14191,
+      "pct_nodes": 2.4663519131844125,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.47450000420212746,
+      "brute_ms": 41.257400007452816,
+      "speedup": 86.94920894010781
+    },
+    {
+      "word": "alteroid",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2681,
+      "nodes_total": 14191,
+      "pct_nodes": 18.8922556549926,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 4.87369998882059,
+      "brute_ms": 55.11090000800323,
+      "speedup": 11.307815445024916
+    },
+    {
+      "word": "comeos",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 610,
+      "nodes_total": 14191,
+      "pct_nodes": 4.298499048692833,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 2.5750999921001494,
+      "brute_ms": 56.78780000016559,
+      "speedup": 22.052658216915187
+    },
+    {
+      "word": "weorld",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 523,
+      "nodes_total": 14191,
+      "pct_nodes": 3.685434430272708,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.0934000019915402,
+      "brute_ms": 82.22660000319593,
+      "speedup": 75.20267043481506
+    },
+    {
+      "word": "clnosest",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2241,
+      "nodes_total": 14191,
+      "pct_nodes": 15.791698964132197,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 9.962799987988546,
+      "brute_ms": 113.37389999243896,
+      "speedup": 11.379722580913596
+    },
+    {
+      "word": "fisrst",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 534,
+      "nodes_total": 14191,
+      "pct_nodes": 3.762948347544218,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.6746000037528574,
+      "brute_ms": 83.11090001370758,
+      "speedup": 49.630299670041886
+    },
+    {
+      "word": "seveanth",
+      "length": 8,
+      "max_dist": 2,
+      "nodes_visited": 2565,
+      "nodes_total": 14191,
+      "pct_nodes": 18.074836163765767,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 9.804799992707558,
+      "brute_ms": 113.15479999757372,
+      "speedup": 11.540755556638993
+    },
+    {
+      "word": "tollest",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 584,
+      "nodes_total": 14191,
+      "pct_nodes": 4.115284335141991,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.8786999862641096,
+      "brute_ms": 97.23220000159927,
+      "speedup": 51.75504376031345
+    },
+    {
+      "word": "plante",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 516,
+      "nodes_total": 14191,
+      "pct_nodes": 3.63610739200902,
+      "found": 3,
+      "same_as_brute": true,
+      "trie_ms": 2.1206000092206523,
+      "brute_ms": 85.1985000044806,
+      "speedup": 40.176600789411545
+    },
+    {
+      "word": "satelites",
+      "length": 9,
+      "max_dist": 2,
+      "nodes_visited": 2788,
+      "nodes_total": 14191,
+      "pct_nodes": 19.646254668451835,
+      "found": 2,
+      "same_as_brute": true,
+      "trie_ms": 13.618299999507144,
+      "brute_ms": 124.10350001300685,
+      "speedup": 9.112995015346867
+    },
+    {
+      "word": "osrbit",
+      "length": 6,
+      "max_dist": 1,
+      "nodes_visited": 530,
+      "nodes_total": 14191,
+      "pct_nodes": 3.734761468536396,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.7659000004641712,
+      "brute_ms": 88.40940000663977,
+      "speedup": 50.064782820885185
+    },
+    {
+      "word": "sotrm",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 654,
+      "nodes_total": 14191,
+      "pct_nodes": 4.608554717778874,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.948599994648248,
+      "brute_ms": 71.3565999903949,
+      "speedup": 36.61941916574615
+    },
+    {
+      "word": "biggset",
+      "length": 7,
+      "max_dist": 1,
+      "nodes_visited": 531,
+      "nodes_total": 14191,
+      "pct_nodes": 3.741808188288352,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 1.9351000082679093,
+      "brute_ms": 98.68660000211094,
+      "speedup": 50.99819109113871
+    },
+    {
+      "word": "wold",
+      "length": 4,
+      "max_dist": 1,
+      "nodes_visited": 540,
+      "nodes_total": 14191,
+      "pct_nodes": 3.805228666055951,
+      "found": 9,
+      "same_as_brute": true,
+      "trie_ms": 1.2489999935496598,
+      "brute_ms": 69.77339999866672,
+      "speedup": 55.86341101601659
+    },
+    {
+      "word": "wnids",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 427,
+      "nodes_total": 14191,
+      "pct_nodes": 3.0089493340849836,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 0.8333000005222857,
+      "brute_ms": 74.72479999705683,
+      "speedup": 89.67334687414103
+    },
+    {
+      "word": "plant",
+      "length": 5,
+      "max_dist": 1,
+      "nodes_visited": 512,
+      "nodes_total": 14191,
+      "pct_nodes": 3.607920513001198,
+      "found": 4,
+      "same_as_brute": true,
+      "trie_ms": 1.5618000034010038,
+      "brute_ms": 72.21480000589509,
+      "speedup": 46.238186610730466
+    },
+    {
+      "word": "hydorcarbons",
+      "length": 12,
+      "max_dist": 2,
+      "nodes_visited": 1811,
+      "nodes_total": 14191,
+      "pct_nodes": 12.761609470791347,
+      "found": 1,
+      "same_as_brute": true,
+      "trie_ms": 9.63479999336414,
+      "brute_ms": 160.67969999858178,
+      "speedup": 16.67701458351477
+    }
+  ],
+  "ablations": [
+    {
+      "group": "Regla de distancia",
+      "variant": "fija en 1",
+      "algorithm": "hybrid",
+      "time_ms_avg": 4.682178301972838,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "Regla de distancia",
+      "variant": "fija en 2",
+      "algorithm": "hybrid",
+      "time_ms_avg": 9.165770754784802,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "Regla de distancia",
+      "variant": "por longitud (elegida)",
+      "algorithm": "hybrid",
+      "time_ms_avg": 6.565899056610915,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "n de los n-gramas",
+      "variant": "n = 2 (elegido)",
+      "algorithm": "ngram_jaccard",
+      "time_ms_avg": 3.1031396223247527,
+      "hit@5": 0.82,
+      "mrr": 0.7208333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.78,
+      "mrr_typo": 0.6616666666666666
+    },
+    {
+      "group": "n de los n-gramas",
+      "variant": "n = 3",
+      "algorithm": "ngram_jaccard",
+      "time_ms_avg": 2.4650386785308585,
+      "hit@5": 0.75,
+      "mrr": 0.6503333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.64,
+      "mrr_typo": 0.5206666666666666
+    },
+    {
+      "group": "β (reordenamiento por Jaccard)",
+      "variant": "β = 0",
+      "algorithm": "hybrid",
+      "time_ms_avg": 5.593093396422567,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "β (reordenamiento por Jaccard)",
+      "variant": "β = 0.1 (elegido)",
+      "algorithm": "hybrid",
+      "time_ms_avg": 6.20102358475121,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "β (reordenamiento por Jaccard)",
+      "variant": "β = 0.3",
+      "algorithm": "hybrid",
+      "time_ms_avg": 6.402216981031124,
+      "hit@5": 0.86,
+      "mrr": 0.7683333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7566666666666667
+    },
+    {
+      "group": "Bono por frases",
+      "variant": "con frases (elegido)",
+      "algorithm": "hybrid",
+      "time_ms_avg": 6.429238679526672,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "Bono por frases",
+      "variant": "sin frases",
+      "algorithm": "hybrid",
+      "time_ms_avg": 4.932372641633265,
+      "hit@5": 0.84,
+      "mrr": 0.74,
+      "hit@5_literal": 0.9285714285714286,
+      "hit@5_typo": 0.84,
+      "mrr_typo": 0.7183333333333334
+    },
+    {
+      "group": "LCS de términos (γ)",
+      "variant": "γ = 0 (elegido)",
+      "algorithm": "hybrid",
+      "time_ms_avg": 2.903914150456845,
+      "hit@5": 0.86,
+      "mrr": 0.7733333333333333,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7666666666666667
+    },
+    {
+      "group": "LCS de términos (γ)",
+      "variant": "γ = 0.5",
+      "algorithm": "hybrid",
+      "time_ms_avg": 6.743145282221035,
+      "hit@5": 0.86,
+      "mrr": 0.7766666666666666,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7733333333333333
+    },
+    {
+      "group": "LCS de términos (γ)",
+      "variant": "γ = 1.0",
+      "algorithm": "hybrid",
+      "time_ms_avg": 7.853732075331346,
+      "hit@5": 0.86,
+      "mrr": 0.7766666666666666,
+      "hit@5_literal": 0.9523809523809523,
+      "hit@5_typo": 0.86,
+      "mrr_typo": 0.7733333333333333
+    }
+  ],
+  "scaling": [
+    {
+      "fraction": 0.1,
+      "n_chunks": 52,
+      "vocab_words": 1111,
+      "trie_nodes": 4212,
+      "tokens": 3618,
+      "build_trie_s": 0.001822199992602691,
+      "build_ngram_s": 0.0027030000055674464,
+      "kmp_ms": 1.1722999981429894,
+      "suffix_array_ms": 0.07357999857049435,
+      "osa_trie_ms": 1.0859549998713192,
+      "ngram_jaccard_ms": 0.1851000008173287,
+      "hybrid_ms": 1.1420849979913328
+    },
+    {
+      "fraction": 0.25,
+      "n_chunks": 130,
+      "vocab_words": 2080,
+      "trie_nodes": 7064,
+      "tokens": 7950,
+      "build_trie_s": 0.003571099994587712,
+      "build_ngram_s": 0.006377099998644553,
+      "kmp_ms": 2.7439949997642543,
+      "suffix_array_ms": 0.13239500040072016,
+      "osa_trie_ms": 1.3805649999994785,
+      "ngram_jaccard_ms": 0.33226000086870044,
+      "hybrid_ms": 1.5030299997306429
+    },
+    {
+      "fraction": 0.5,
+      "n_chunks": 261,
+      "vocab_words": 3262,
+      "trie_nodes": 10453,
+      "tokens": 16711,
+      "build_trie_s": 0.006554399995366111,
+      "build_ngram_s": 0.010281499999109656,
+      "kmp_ms": 6.30556000105571,
+      "suffix_array_ms": 0.2557500025432091,
+      "osa_trie_ms": 2.047905000654282,
+      "ngram_jaccard_ms": 0.6061499974748585,
+      "hybrid_ms": 2.0063699994352646
+    },
+    {
+      "fraction": 0.75,
+      "n_chunks": 392,
+      "vocab_words": 3957,
+      "trie_nodes": 12442,
+      "tokens": 24092,
+      "build_trie_s": 0.008894500002497807,
+      "build_ngram_s": 0.011528900009579957,
+      "kmp_ms": 10.217049998027505,
+      "suffix_array_ms": 0.39138499996624887,
+      "osa_trie_ms": 1.7425249992811587,
+      "ngram_jaccard_ms": 0.8822450014122296,
+      "hybrid_ms": 1.7095999995945022
+    },
+    {
+      "fraction": 1.0,
+      "n_chunks": 523,
+      "vocab_words": 4555,
+      "trie_nodes": 14056,
+      "tokens": 31637,
+      "build_trie_s": 0.01015259999257978,
+      "build_ngram_s": 0.012531300002592616,
+      "kmp_ms": 13.273235002270667,
+      "suffix_array_ms": 0.5275299983622972,
+      "osa_trie_ms": 2.0126399998844136,
+      "ngram_jaccard_ms": 1.1219350002647843,
+      "hybrid_ms": 2.090409999800613
+    }
+  ],
+  "context_summary": [
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "topk1",
+      "strategy_label": "top-k (k=1)",
+      "n": 106,
+      "em": 0.29245283018867924,
+      "f1": 0.3081761006289308,
+      "f1_answerable": 0.26666666666666666,
+      "raw_f1_answerable": 0.44,
+      "idk_rate": 0.7075471698113207,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.54,
+      "tokens_context_avg": 124.97169811320755,
+      "tokens_used_avg": 138.6509433962264,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 1,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 163.25333207584302
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "topk3",
+      "strategy_label": "top-k (k=3)",
+      "n": 106,
+      "em": 0.25471698113207547,
+      "f1": 0.2641509433962264,
+      "f1_answerable": 0.22,
+      "raw_f1_answerable": 0.43976190476190474,
+      "idk_rate": 0.7830188679245284,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.69,
+      "tokens_context_avg": 412.5566037735849,
+      "tokens_used_avg": 426.2358490566038,
+      "budget_avg": 490.3207547169811,
+      "truncated": 25,
+      "chunks_avg": 3,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 402.6300886789785
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "topk5",
+      "strategy_label": "top-k (k=5)",
+      "n": 106,
+      "em": 0.19811320754716982,
+      "f1": 0.20754716981132076,
+      "f1_answerable": 0.16,
+      "raw_f1_answerable": 0.4490800865800866,
+      "idk_rate": 0.839622641509434,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.75,
+      "tokens_context_avg": 685.2641509433962,
+      "tokens_used_avg": 698.9433962264151,
+      "budget_avg": 490.3207547169811,
+      "truncated": 99,
+      "chunks_avg": 5,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 492.56743301836804
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "greedy",
+      "strategy_label": "voraz",
+      "n": 106,
+      "em": 0.18867924528301888,
+      "f1": 0.19811320754716982,
+      "f1_answerable": 0.15,
+      "raw_f1_answerable": 0.3983333333333333,
+      "idk_rate": 0.8490566037735849,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.69,
+      "tokens_context_avg": 431.1509433962264,
+      "tokens_used_avg": 444.8301886792453,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.452830188679245,
+      "redundant_dropped_avg": 0.1320754716981132,
+      "t_model_ms_avg": 428.18125849122947
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "greedy_nored",
+      "strategy_label": "voraz sin redundancia",
+      "n": 106,
+      "em": 0.18867924528301888,
+      "f1": 0.19811320754716982,
+      "f1_answerable": 0.15,
+      "raw_f1_answerable": 0.39916666666666667,
+      "idk_rate": 0.8490566037735849,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.69,
+      "tokens_context_avg": 429.3301886792453,
+      "tokens_used_avg": 443.00943396226415,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.471698113207547,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 426.9277415100215
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "greedy_red03",
+      "strategy_label": "voraz, redundancia 0.3",
+      "n": 106,
+      "em": 0.1792452830188679,
+      "f1": 0.18867924528301888,
+      "f1_answerable": 0.14,
+      "raw_f1_answerable": 0.39916666666666667,
+      "idk_rate": 0.8584905660377359,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.69,
+      "tokens_context_avg": 425.08490566037733,
+      "tokens_used_avg": 438.7641509433962,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.349056603773585,
+      "redundant_dropped_avg": 0.8018867924528302,
+      "t_model_ms_avg": 437.497119812453
+    },
+    {
+      "method": "exact",
+      "method_label": "Exacta (KMP)",
+      "strategy": "dp",
+      "strategy_label": "PD (mochila)",
+      "n": 106,
+      "em": 0.19811320754716982,
+      "f1": 0.20754716981132076,
+      "f1_answerable": 0.16,
+      "raw_f1_answerable": 0.40852472089314196,
+      "idk_rate": 0.839622641509434,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.68,
+      "tokens_context_avg": 458.6320754716981,
+      "tokens_used_avg": 472.311320754717,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.4245283018867925,
+      "redundant_dropped_avg": 0.1320754716981132,
+      "t_model_ms_avg": 453.78508396256706
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "topk1",
+      "strategy_label": "top-k (k=1)",
+      "n": 106,
+      "em": 0.33962264150943394,
+      "f1": 0.3553459119496855,
+      "f1_answerable": 0.31666666666666665,
+      "raw_f1_answerable": 0.5713636363636364,
+      "idk_rate": 0.660377358490566,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.71,
+      "tokens_context_avg": 126.19811320754717,
+      "tokens_used_avg": 139.87735849056602,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 1,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 166.6529830197863
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "topk3",
+      "strategy_label": "top-k (k=3)",
+      "n": 106,
+      "em": 0.2641509433962264,
+      "f1": 0.27358490566037735,
+      "f1_answerable": 0.23,
+      "raw_f1_answerable": 0.5055194805194805,
+      "idk_rate": 0.7735849056603774,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.82,
+      "tokens_context_avg": 417.4339622641509,
+      "tokens_used_avg": 431.1132075471698,
+      "budget_avg": 490.3207547169811,
+      "truncated": 22,
+      "chunks_avg": 3,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 410.85512358445413
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "topk5",
+      "strategy_label": "top-k (k=5)",
+      "n": 106,
+      "em": 0.2169811320754717,
+      "f1": 0.22641509433962265,
+      "f1_answerable": 0.18,
+      "raw_f1_answerable": 0.49817099567099565,
+      "idk_rate": 0.8207547169811321,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.86,
+      "tokens_context_avg": 695.6792452830189,
+      "tokens_used_avg": 709.3584905660377,
+      "budget_avg": 490.3207547169811,
+      "truncated": 97,
+      "chunks_avg": 5,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 494.1257103766372
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "greedy",
+      "strategy_label": "voraz",
+      "n": 106,
+      "em": 0.22641509433962265,
+      "f1": 0.2358490566037736,
+      "f1_answerable": 0.19,
+      "raw_f1_answerable": 0.4690909090909091,
+      "idk_rate": 0.8113207547169812,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.79,
+      "tokens_context_avg": 433.1132075471698,
+      "tokens_used_avg": 446.79245283018867,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.320754716981132,
+      "redundant_dropped_avg": 0.09433962264150944,
+      "t_model_ms_avg": 432.7470056607195
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "greedy_nored",
+      "strategy_label": "voraz sin redundancia",
+      "n": 106,
+      "em": 0.22641509433962265,
+      "f1": 0.2358490566037736,
+      "f1_answerable": 0.19,
+      "raw_f1_answerable": 0.4699242424242424,
+      "idk_rate": 0.8113207547169812,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.79,
+      "tokens_context_avg": 430.6320754716981,
+      "tokens_used_avg": 444.311320754717,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.330188679245283,
+      "redundant_dropped_avg": 0,
+      "t_model_ms_avg": 430.74555377413316
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "greedy_red03",
+      "strategy_label": "voraz, redundancia 0.3",
+      "n": 106,
+      "em": 0.22641509433962265,
+      "f1": 0.2358490566037736,
+      "f1_answerable": 0.19,
+      "raw_f1_answerable": 0.48992424242424243,
+      "idk_rate": 0.8113207547169812,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.79,
+      "tokens_context_avg": 424.7358490566038,
+      "tokens_used_avg": 438.41509433962267,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.2075471698113205,
+      "redundant_dropped_avg": 0.8018867924528302,
+      "t_model_ms_avg": 440.743303773727
+    },
+    {
+      "method": "approximate",
+      "method_label": "Aproximada (híbrida)",
+      "strategy": "dp",
+      "strategy_label": "PD (mochila)",
+      "n": 106,
+      "em": 0.2358490566037736,
+      "f1": 0.24528301886792453,
+      "f1_answerable": 0.2,
+      "raw_f1_answerable": 0.4742822966507177,
+      "idk_rate": 0.8018867924528302,
+      "no_answer_acc": 1,
+      "evidence_recall": 0.8,
+      "tokens_context_avg": 458.8490566037736,
+      "tokens_used_avg": 472.52830188679246,
+      "budget_avg": 490.3207547169811,
+      "truncated": 0,
+      "chunks_avg": 4.264150943396227,
+      "redundant_dropped_avg": 0.09433962264150944,
+      "t_model_ms_avg": 455.1328839621625
+    }
+  ],
+  "redundancy_stats": {
+    "consecutive": {
+      "n": 485,
+      "median": 0.11627906976744186,
+      "p90": 0.3548387096774194,
+      "max": 0.6136363636363636,
+      "above": {
+        "0.2": 188,
+        "0.3": 96,
+        "0.4": 22,
+        "0.5": 6
+      }
+    },
+    "random": {
+      "n": 2000,
+      "median": 0.030927835051546393,
+      "p99": 0.15151515151515152,
+      "max": 0.6363636363636364,
+      "above": {
+        "0.2": 7,
+        "0.3": 3,
+        "0.4": 2,
+        "0.5": 1
+      }
+    }
+  },
+  "threshold": [
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 0,
+      "f1": 0.49914236706689535,
+      "f1_answerable": 0.4690909090909091,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 1,
+      "f1": 0.4897084048027444,
+      "f1_answerable": 0.4590909090909091,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 2,
+      "f1": 0.48027444253859347,
+      "f1_answerable": 0.4490909090909091,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 3,
+      "f1": 0.3812178387650086,
+      "f1_answerable": 0.3440909090909091,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 4,
+      "f1": 0.3443396226415094,
+      "f1_answerable": 0.305,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 5,
+      "f1": 0.3018867924528302,
+      "f1_answerable": 0.26,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 6,
+      "f1": 0.2830188679245283,
+      "f1_answerable": 0.24,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 7,
+      "f1": 0.2358490566037736,
+      "f1_answerable": 0.19,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 8,
+      "f1": 0.16981132075471697,
+      "f1_answerable": 0.12,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 9,
+      "f1": 0.14150943396226415,
+      "f1_answerable": 0.09,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 10,
+      "f1": 0.08018867924528301,
+      "f1_answerable": 0.025,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "greedy",
+      "threshold": 12,
+      "f1": 0.0660377358490566,
+      "f1_answerable": 0.01,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 0,
+      "f1": 0.5956260720411664,
+      "f1_answerable": 0.5713636363636364,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 1,
+      "f1": 0.5809033733562036,
+      "f1_answerable": 0.5557575757575758,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 2,
+      "f1": 0.5526014865637507,
+      "f1_answerable": 0.5257575757575758,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 3,
+      "f1": 0.5337335620354489,
+      "f1_answerable": 0.5057575757575757,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 4,
+      "f1": 0.505431675242996,
+      "f1_answerable": 0.47575757575757577,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 5,
+      "f1": 0.4393939393939394,
+      "f1_answerable": 0.40575757575757576,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 6,
+      "f1": 0.42995997712978845,
+      "f1_answerable": 0.39575757575757575,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 7,
+      "f1": 0.3553459119496855,
+      "f1_answerable": 0.31666666666666665,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 8,
+      "f1": 0.31761006289308175,
+      "f1_answerable": 0.27666666666666667,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 9,
+      "f1": 0.279874213836478,
+      "f1_answerable": 0.23666666666666666,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 10,
+      "f1": 0.20911949685534592,
+      "f1_answerable": 0.16166666666666665,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "approximate",
+      "strategy": "topk1",
+      "threshold": 12,
+      "f1": 0.08962264150943396,
+      "f1_answerable": 0.035,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 0,
+      "f1": 0.43238993710691825,
+      "f1_answerable": 0.3983333333333333,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 1,
+      "f1": 0.43238993710691825,
+      "f1_answerable": 0.3983333333333333,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 2,
+      "f1": 0.41037735849056606,
+      "f1_answerable": 0.375,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 3,
+      "f1": 0.33962264150943394,
+      "f1_answerable": 0.3,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 4,
+      "f1": 0.3018867924528302,
+      "f1_answerable": 0.26,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 5,
+      "f1": 0.2641509433962264,
+      "f1_answerable": 0.22,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 6,
+      "f1": 0.24528301886792453,
+      "f1_answerable": 0.2,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 7,
+      "f1": 0.19811320754716982,
+      "f1_answerable": 0.15,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 8,
+      "f1": 0.14150943396226415,
+      "f1_answerable": 0.09,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 9,
+      "f1": 0.11320754716981132,
+      "f1_answerable": 0.06,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 10,
+      "f1": 0.07547169811320754,
+      "f1_answerable": 0.02,
+      "no_answer_acc": 1.0
+    },
+    {
+      "method": "exact",
+      "strategy": "greedy",
+      "threshold": 12,
+      "f1": 0.0660377358490566,
+      "f1_answerable": 0.01,
+      "no_answer_acc": 1.0
+    }
+  ],
+  "threshold_by_strategy": [
+    {
+      "strategy": "topk1",
+      "strategy_label": "top-k (k=1)",
+      "n_correct_spans": 59,
+      "tokens_context_avg": 124.98305084745763,
+      "sd_avg": 7.521914236626382,
+      "sd_median": 7.713536620140076,
+      "pct_above_threshold": 55.932203389830505
+    },
+    {
+      "strategy": "topk3",
+      "strategy_label": "top-k (k=3)",
+      "n_correct_spans": 52,
+      "tokens_context_avg": 420.6923076923077,
+      "sd_avg": 6.35589827138644,
+      "sd_median": 6.446218550205231,
+      "pct_above_threshold": 46.15384615384615
+    },
+    {
+      "strategy": "topk5",
+      "strategy_label": "top-k (k=5)",
+      "n_correct_spans": 51,
+      "tokens_context_avg": 677.9411764705883,
+      "sd_avg": 5.598221652648029,
+      "sd_median": 6.297441124916077,
+      "pct_above_threshold": 37.254901960784316
+    },
+    {
+      "strategy": "greedy",
+      "strategy_label": "voraz",
+      "n_correct_spans": 49,
+      "tokens_context_avg": 436.46938775510205,
+      "sd_avg": 5.90661850267527,
+      "sd_median": 6.336440920829773,
+      "pct_above_threshold": 40.816326530612244
+    },
+    {
+      "strategy": "greedy_nored",
+      "strategy_label": "voraz sin redundancia",
+      "n_correct_spans": 49,
+      "tokens_context_avg": 436.6326530612245,
+      "sd_avg": 5.904694722623241,
+      "sd_median": 6.336440920829773,
+      "pct_above_threshold": 40.816326530612244
+    },
+    {
+      "strategy": "greedy_red03",
+      "strategy_label": "voraz, redundancia 0.3",
+      "n_correct_spans": 51,
+      "tokens_context_avg": 429.5882352941176,
+      "sd_avg": 5.884219908246807,
+      "sd_median": 4.963200807571411,
+      "pct_above_threshold": 39.21568627450981
+    },
+    {
+      "strategy": "dp",
+      "strategy_label": "PD (mochila)",
+      "n_correct_spans": 49,
+      "tokens_context_avg": 460.14285714285717,
+      "sd_avg": 5.8101040100564765,
+      "sd_median": 6.336440920829773,
+      "pct_above_threshold": 42.857142857142854
+    }
+  ],
+  "greedy_vs_dp": {
+    "exact": {
+      "label": "Exacta (KMP)",
+      "n": 106,
+      "different_sets": 50,
+      "value_gap_avg": 0.0643459202545079,
+      "value_gap_max": 0.4624700652419711,
+      "value_gap_pct_avg": 1.6817677088435121,
+      "answer_changed": 3,
+      "f1_greedy": 0.19811320754716982,
+      "f1_dp": 0.20754716981132076,
+      "t_select_greedy_ms": 2.330371697476125,
+      "t_select_dp_ms": 3.0795122640380934,
+      "examples": [
+        {
+          "id": "Q02",
+          "method": "Exacta (KMP)",
+          "greedy": [
+            385,
+            386,
+            321,
+            380,
+            338
+          ],
+          "dp": [
+            385,
+            386,
+            384,
+            321
+          ],
+          "greedy_value": 4.076,
+          "dp_value": 4.538,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        },
+        {
+          "id": "Q04",
+          "method": "Exacta (KMP)",
+          "greedy": [
+            116,
+            388,
+            456
+          ],
+          "dp": [
+            116,
+            388,
+            462
+          ],
+          "greedy_value": 3.657,
+          "dp_value": 3.921,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        },
+        {
+          "id": "Q05",
+          "method": "Exacta (KMP)",
+          "greedy": [
+            388,
+            399,
+            424,
+            339
+          ],
+          "dp": [
+            395,
+            396,
+            399,
+            339
+          ],
+          "greedy_value": 5.092,
+          "dp_value": 5.436,
+          "greedy_answer": "I don't know",
+          "dp_answer": "five"
+        },
+        {
+          "id": "Q06",
+          "method": "Exacta (KMP)",
+          "greedy": [
+            272,
+            103,
+            472,
+            408
+          ],
+          "dp": [
+            272,
+            103,
+            472,
+            19
+          ],
+          "greedy_value": 2.664,
+          "dp_value": 2.692,
+          "greedy_answer": "Phobos and Deimos",
+          "dp_answer": "Phobos and Deimos"
+        },
+        {
+          "id": "Q07",
+          "method": "Exacta (KMP)",
+          "greedy": [
+            278,
+            135,
+            118,
+            402,
+            466,
+            199
+          ],
+          "dp": [
+            278,
+            135,
+            118,
+            402,
+            434,
+            466
+          ],
+          "greedy_value": 4.971,
+          "dp_value": 4.993,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        }
+      ]
+    },
+    "approximate": {
+      "label": "Aproximada (híbrida)",
+      "n": 106,
+      "different_sets": 54,
+      "value_gap_avg": 0.07866171883767574,
+      "value_gap_max": 0.5316115948944291,
+      "value_gap_pct_avg": 1.9801286933676874,
+      "answer_changed": 3,
+      "f1_greedy": 0.2358490566037736,
+      "f1_dp": 0.24528301886792453,
+      "t_select_greedy_ms": 2.281205660969959,
+      "t_select_dp_ms": 2.991927358380053,
+      "examples": [
+        {
+          "id": "Q02",
+          "method": "Aproximada (híbrida)",
+          "greedy": [
+            385,
+            386,
+            321,
+            380,
+            338
+          ],
+          "dp": [
+            385,
+            386,
+            384,
+            321
+          ],
+          "greedy_value": 4.025,
+          "dp_value": 4.473,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        },
+        {
+          "id": "Q04",
+          "method": "Aproximada (híbrida)",
+          "greedy": [
+            116,
+            388,
+            456
+          ],
+          "dp": [
+            116,
+            388,
+            462
+          ],
+          "greedy_value": 3.659,
+          "dp_value": 3.918,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        },
+        {
+          "id": "Q05",
+          "method": "Aproximada (híbrida)",
+          "greedy": [
+            388,
+            399,
+            424,
+            339
+          ],
+          "dp": [
+            395,
+            396,
+            399,
+            339
+          ],
+          "greedy_value": 5.104,
+          "dp_value": 5.446,
+          "greedy_answer": "I don't know",
+          "dp_answer": "five"
+        },
+        {
+          "id": "Q06",
+          "method": "Aproximada (híbrida)",
+          "greedy": [
+            272,
+            103,
+            472,
+            408
+          ],
+          "dp": [
+            272,
+            103,
+            472,
+            19
+          ],
+          "greedy_value": 2.664,
+          "dp_value": 2.692,
+          "greedy_answer": "Phobos and Deimos",
+          "dp_answer": "Phobos and Deimos"
+        },
+        {
+          "id": "Q07",
+          "method": "Aproximada (híbrida)",
+          "greedy": [
+            278,
+            135,
+            118,
+            402,
+            466,
+            199
+          ],
+          "dp": [
+            278,
+            135,
+            118,
+            402,
+            434,
+            466
+          ],
+          "greedy_value": 4.974,
+          "dp_value": 4.994,
+          "greedy_answer": "I don't know",
+          "dp_answer": "I don't know"
+        }
+      ]
+    }
+  },
+  "analysis": [
+    "**¿Qué algoritmo es más rápido?** Arreglo de sufijos (exacta) (0.510 ms promedio). KMP + índice: 14.335 ms. De las aproximadas, n-gramas + Jaccard (1.286 ms); híbrido 2.908 ms.",
+    "**¿Qué método recupera información más útil?** OSA (Damerau) + Trie con poda: Hit@5 0.860, MRR 0.773 (KMP: Hit@5 0.750, MRR 0.627). En preguntas con errores: Hit@5 0.640 → 0.860, MRR 0.475 → 0.767. Literales: 0.952 (exacta) contra 0.952 (híbrida). Paráfrasis: 0.375 contra 0.375.",
+    "**Errores de escritura, OSA contra Levenshtein:** Hit@5 typo 0.860 contra 0.780 (el generador de errores intercambia letras).",
+    "**Poda:** OSA sobre el Trie visita en promedio 7.5% de los nodos y es 40× más rápido que la fuerza bruta, con el mismo resultado.",
+    "**¿Cómo afecta el tamaño de la colección?** De 52 a 523 fragmentos (×10.1) el vocabulario crece ×4.1 (1,111 → 4,555). Tiempo por consulta: KMP 1.17 → 13.27 ms; OSA + Trie 1.09 → 2.01 ms; n-gramas 0.19 → 1.12 ms; arreglo de sufijos 0.07 → 0.53 ms.",
+    "**¿Cómo afecta la selección del contexto?** Mejor F1: Aproximada (híbrida) con top-k (k=1) (0.355). Aproximada: top-1 0.355, top-3 0.274, top-5 0.226 (97 truncadas), voraz 0.236, PD 0.245. Evidencia en el contexto: top-1 0.71 contra voraz 0.79.",
+    "**Voraz contra PD:** eligen conjuntos distintos en 54 de 106 preguntas; diferencia de valor promedio 1.98%; la respuesta cambió en 3.",
+    "**Umbral:** con t = 7 (PokeChat) el F1 global de la aproximada con contexto voraz es 0.236; el mejor del barrido es t = 0 con 0.499 (F1 con respuesta 0.469, aciertos sin respuesta 1.000).",
+    "**Ventajas y limitaciones:** la aproximada corrige errores de escritura con poco costo extra y no empeora las literales; no resuelve sinónimos (paráfrasis sin cambio) ni errores que forman otra palabra real; la corrección empeoró el ranking en 1 pregunta(s) (sección B)."
+  ],
+  "elapsed_s": 127.0395436000108,
+  "figures": [
+    "comp_hit5_categorias.png",
+    "comp_tiempo.png",
+    "comp_poda.png",
+    "comp_escalabilidad.png",
+    "comp_contexto_f1.png",
+    "comp_umbral.png"
+  ]
+}

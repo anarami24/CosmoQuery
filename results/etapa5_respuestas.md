@@ -1,0 +1,536 @@
+# Etapa 5 - Respuestas del modelo con el contexto seleccionado
+
+Modelo: `deepset/roberta-base-squad2` (extractivo, sin entrenamiento adicional), con la lógica de `ask_question` del cuaderno PokeChat: si `score_difference` < 7, la respuesta es "I don't know". Flujo: pregunta → búsqueda → recuperación de los 10 mejores fragmentos → selección del contexto (`greedy`, con eliminación de redundancia) → modelo → respuesta.
+
+Método principal: búsqueda aproximada híbrida. En paralelo: búsqueda exacta (KMP con índice). 24 preguntas del banco de Ana: 10 literal, 4 paraphrase, 6 typo, 4 no_answer, repartidas uniformemente dentro de cada categoría. Tiempos medidos sin caché del modelo, en CPU.
+
+## Criterios del diagnóstico automático
+
+- **Evidencia en el contexto**: algún fragmento relevante de Ana (`relevant_chunks`) quedó entre los seleccionados.
+- **Correcta**: F1 ≥ 0.5 contra las respuestas aceptadas del banco (EM/F1 de `answer_scores`).
+- **correcta y respaldada**: correcta y con evidencia en el contexto.
+- **correcta (evidencia fuera de los fragmentos anotados)**: correcta, pero salió de un fragmento que no está entre los relevantes de Ana (otro documento dice lo mismo).
+- **recuperación incompleta**: incorrecta y la evidencia no llegó al contexto.
+- **falla del modelo**: incorrecta aunque la evidencia sí estaba en el contexto.
+- **no-respuesta correcta / respuesta sin respaldo**: pregunta sin respuesta en la colección; el modelo dice o no dice "I don't know".
+
+## Resumen por diagnóstico
+
+| Diagnóstico | Aproximada (híbrida) | Exacta (KMP) |
+|---|---:|---:|
+| correcta y respaldada | 5 | 3 |
+| correcta (evidencia fuera de los fragmentos anotados) | 0 | 0 |
+| recuperación incompleta | 7 | 8 |
+| falla del modelo | 8 | 9 |
+| no-respuesta correcta | 4 | 4 |
+| respuesta sin respaldo | 0 | 0 |
+
+| Método | EM | F1 | Evidencia en contexto | "I don't know" | Truncadas | Tokens de entrada prom. | Búsqueda ms | Selección ms | Modelo ms | Total ms |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Aproximada (híbrida) | 0.375 | 0.375 | 13/20 | 19/24 | 0 | 443 | 5.5 | 4.3 | 324 | 334 |
+| Exacta (KMP) | 0.292 | 0.292 | 12/20 | 21/24 | 0 | 450 | 21.2 | 2.2 | 311 | 334 |
+
+**"I don't know" con el tramo correcto:** en 5 preguntas (aproximada) y 6 (exacta) el modelo eligió el tramo correcto, pero su score_difference quedó debajo del umbral 7 del PokeChat (valores: 2.36, 4.78, 4.96, 5.79, 6.84). La columna `raw_answer` del `.csv` guarda ese tramo. El efecto del tamaño del contexto sobre score_difference se mide en la Etapa 6.
+
+EM y F1 son promedios sobre las 24 preguntas (las sin respuesta valen 1 si el modelo dice "I don't know"). La evidencia en contexto se cuenta solo en las 20 preguntas con respuesta.
+
+## Tabla de respuestas
+
+| Id | Categoría | Pregunta | Esperada | Aproximada: respuesta (score_diff) | Diagnóstico | Exacta: respuesta (score_diff) | Diagnóstico |
+|---|---|---|---|---|---|---|---|
+| Q01 | literal | When was Pluto discovered? | 1930 | 1930 (7.52) | correcta y respaldada | 1930 (7.52) | correcta y respaldada |
+| Q05 | literal | How many known moons does Pluto have? | five, five known moons | I don't know (4.78) | falla del modelo | I don't know (4.78) | falla del modelo |
+| Q09 | literal | How long is a year on Mars? | 687 Earth days, 669.6 sols | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q14 | literal | Who discovered Uranus? | William Herschel, Herschel | William Herschel (7.52) | correcta y respaldada | William Herschel (7.52) | correcta y respaldada |
+| Q18 | literal | What is the largest moon of Neptune? | Triton | Triton (7.61) | correcta y respaldada | Triton (7.61) | correcta y respaldada |
+| Q22 | literal | What is the atmosphere of Venus mostly made of? | carbon dioxide | I don't know (5.79) | falla del modelo | I don't know (5.79) | falla del modelo |
+| Q26 | literal | Which planet has an average density less than water? | Saturn | I don't know (2.36) | falla del modelo | I don't know (2.36) | falla del modelo |
+| Q30 | literal | What lies beneath the icy shell of Europa? | a saltwater ocean, saltwater ocean | I don't know (6.84) | falla del modelo | I don't know (6.84) | falla del modelo |
+| Q35 | literal | How far is the Sun from Earth? | 93 million miles (150 million kilometers), 93 million miles, 150 million kilometers | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q39 | literal | Who led the committee that selected the contents of the golden record? | Carl Sagan | I don't know (4.96) | falla del modelo | I don't know (4.96) | falla del modelo |
+| Q43 | paraphrase | Which world circles closest to our star? | Mercury | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q45 | paraphrase | What is the tallest volcano on the red planet? | Olympus Mons | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q47 | paraphrase | What enormous storm rages on the biggest planet? | Great Red Spot | I don't know (0.00) | falla del modelo | I don't know (0.00) | falla del modelo |
+| Q49 | paraphrase | Which moon of the ringed planet has seas of hydrocarbons? | Titan | I don't know (0.00) | falla del modelo | I don't know (0.00) | falla del modelo |
+| Q01-T | typo | When was Pluot discovered? | 1930 | 1930 (8.17) | correcta y respaldada | I don't know (0.00) | recuperación incompleta |
+| Q09-T | typo | How long is a year on Mars? | 687 Earth days, 669.6 sols | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q18-T | typo | What is the largst moon of Neptune? | Triton | Triton (10.23) | correcta y respaldada | I don't know (5.62) | falla del modelo |
+| Q26-T | typo | Which planet has an average dnesity less than watrr? | Saturn | I don't know (0.00) | falla del modelo | I don't know (0.00) | falla del modelo |
+| Q34-T | typo | What is the Sun made of? | hydrogen and helium | I don't know (3.64) | recuperación incompleta | I don't know (3.64) | recuperación incompleta |
+| Q43-T | typo | Which weorld circles clnosest to our star? | Mercury | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q51 | no_answer | How many people live on Mars today? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
+| Q53 | no_answer | How much does a ticket to the Moon cost? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
+| Q54 | no_answer | Who is the current president of Jupiter? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
+| Q55 | no_answer | What is the favorite food of astronauts on Pluto? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
+
+## Detalle por pregunta (búsqueda aproximada híbrida)
+
+### Q01 [literal] When was Pluto discovered?
+
+- Respuestas aceptadas: 1930; fragmentos relevantes: [386, 389]
+- Correcciones: ninguna
+- **Respuesta: 1930** · score_difference = 7.52 · fragmento de origen: 240 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 3 fragmentos, 483 tokens de 495 disponibles; entrada al modelo 492/512
+- Tiempos: búsqueda 0.9 ms · selección 2.2 ms · modelo 319 ms · total 322 ms
+- Exacta (KMP): 1930 (7.52) · correcta y respaldada · fragmentos [240, 389, 47]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 240 ← respuesta | Kuiper Belt Facts > Pluto's Place in the Kuiper Belt | 173 | no | In 1930, **Pluto** became the first Kuiper Belt object to be **discovered**. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region, even though another object similar in size, called Eris, has a sli… |
+| 2 | 389 | Pluto Facts > Namesake | 156 | sí | In 1930, Venetia Burney of Oxford, England, suggested to her grandfather that the new discovery be named for the Roman god of the underworld. He forwarded the name to the Lowell Observatory and it was selected. In an interview with NASA in January 2006, Venetia said she offered the name **Pluto** over breakfast with her mother and grandfather. It w… |
+| 3 | 47 | Ceres Facts > Introduction / Namesake | 156 | no | Dwarf planet Ceres is the largest object in the asteroid belt between Mars and Jupiter, and it's the only dwarf planet located in the inner solar system. It was the first member of the asteroid belt to be **discovered** when Giuseppe Piazzi spotted it in 1801. When NASA's Dawn arrived in 2015, Ceres became the first dwarf planet to receive a visit … |
+
+Descartados: 386 (no cabe en el presupuesto (184 tokens)); 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el presupuesto (181 tokens)); 392 (no cabe en el presupuesto (147 tokens)); 390 (no cabe en el presupuesto (168 tokens)); 388 (no cabe en el presupuesto (143 tokens)); 393 (no cabe en el presupuesto (182 tokens))
+
+### Q05 [literal] How many known moons does Pluto have?
+
+- Respuestas aceptadas: five, five known moons; fragmentos relevantes: [387, 388, 395]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 4.78 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo correcto (five) rechazado por el umbral
+- Contexto: 4 fragmentos, 373 tokens de 492 disponibles; entrada al modelo 385/512
+- Tiempos: búsqueda 10.9 ms · selección 4.1 ms · modelo 252 ms · total 267 ms
+- Exacta (KMP): I don't know (4.78) · falla del modelo · fragmentos [388, 399, 424, 339]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 388 | Pluto Facts > Introduction | 143 | sí | It's about 3.6 billion miles away from the Sun, and it has a thin atmosphere composed mostly of nitrogen, methane, and carbon monoxide. On average, **Pluto’s** temperature is -387°F (-232°C), making it too cold to sustain life. **Pluto** is orbited by five known **moons**, the largest of which is Charon. Charon is about half the size of **Pluto** i… |
+| 2 | 399 | Pluto Facts > Structure | 62 | no | **Pluto** is about two-thirds the diameter of Earth's **Moon** and probably has a rocky core surrounded by a mantle of water ice. Interesting ices like methane and nitrogen frost coat the surface. Due to its lower density, **Pluto's** mass is about one-sixth that of Earth's **Moon**.… |
+| 3 | 424 | Solar System Facts > Moons | 134 | no | In addition to Earth's **Moon**, our solar system has hundreds of **moons** orbiting planets, dwarf planets, and asteroids. Of the eight planets, Mercury and Venus are the only ones with no **moons**, although Venus does have a quasi-satellite that has officially been named Zoozve. The giant planets Jupiter and Saturn lead our solar system’s **moon… |
+| 4 | 339 | New Horizons Mission > Firsts | 36 | no | First spacecraft to explore **Pluto** and its **moons** up close. First spacecraft to explore a second Kuiper Belt Object up close – Arrokoth (2014 MU69)… |
+
+Descartados: 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el presupuesto (181 tokens)); 392 (no cabe en el presupuesto (147 tokens)); 387 (no cabe en el presupuesto (195 tokens)); 347 (no cabe en el presupuesto (163 tokens)); 350 (no cabe en el presupuesto (188 tokens))
+
+### Q09 [literal] How long is a year on Mars?
+
+- Respuestas aceptadas: 687 Earth days, 669.6 sols; fragmentos relevantes: [270]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 7 fragmentos, 475 tokens de 492 disponibles; entrada al modelo 487/512
+- Tiempos: búsqueda 12.3 ms · selección 5.3 ms · modelo 317 ms · total 334 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [327, 279, 256, 268, 252, 67, 369]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 327 | Neptune Facts > Orbit and Rotation | 74 | no | Neptune’s axis of rotation is tilted 28 degrees with respect to the plane of its orbit around the Sun, which is similar to the axial tilts of **Mars** and Earth. This means that Neptune experiences seasons just like we do on Earth; however, since its **year** is so **long**, each of the four seasons lasts for over 40 **years**.… |
+| 2 | 279 | Mars Facts > Water on Mars | 132 | no | **Mars** appears to have had a watery past, with ancient river valley networks, deltas, and lakebeds, as well as rocks and minerals on the surface that could only have formed in liquid water. Some features suggest that **Mars** experienced huge floods about 3.5 billion **years** ago. There is water on **Mars** today, but the Martian atmosphere is t… |
+| 3 | 256 | Mars Exploration > MARS RECONNAISSANCE ORBITER / Active Mission | 41 | no | **Mars** Reconnaissance Orbiter searches for evidence that water persisted on the surface of **Mars** for a **long** period of time. Launch: Aug. 12, 2005 **Mars** Arrival: **Mar**. 10, 2006… |
+| 4 | 268 | Mars Facts > Potential for Life | 38 | no | Scientists don't expect to find living things currently thriving on **Mars**. Instead, they're looking for signs of life that existed **long** ago, when **Mars** was warmer and covered with water.… |
+| 5 | 252 | Mars Exploration > Viking@50 Downloads | 42 | no | The lander that broke ground on 50 **years** of **Mars** surface exploration. Celebrate Viking — and the missions still building on what it began — with posters, computer backdrops, phone screens and more.… |
+| 6 | 369 | Oort Cloud Facts > Home to Comets | 66 | no | (Hence the name.) Countless more unknown **long**-period comets have never been seen by human eyes. Some have orbits so **long** that the last time they passed through the inner solar system, our species did not yet exist. Others have never ventured close to the Sun in the billions of **years** since they formed.… |
+| 7 | 67 | Curiosity Mission > Curiosity Reaches 1-Kilometer Elevation Gain / NAS | 84 | no | NASA’s Curiosity **Mars** rover reached the pinnacle — so far — of its 14-**year**-old mission on Aug. 26, 2026, when it marked an elevation gain of 1 kilometer in its journey from Gale Crater on **Mars** up the slope of Mount Sharp. After **years** of lab work, the results are in: A rock that NASA’s Curiosity **Mars** rover drilled and analyzed in… |
+
+Descartados: 368 (no cabe en el presupuesto (191 tokens)); 270 (no cabe en el presupuesto (188 tokens)); 271 (no cabe en el presupuesto (111 tokens))
+
+### Q14 [literal] Who discovered Uranus?
+
+- Respuestas aceptadas: William Herschel, Herschel; fragmentos relevantes: [467, 468]
+- Correcciones: ninguna
+- **Respuesta: William Herschel** · score_difference = 7.52 · fragmento de origen: 467 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 5 fragmentos, 453 tokens de 495 disponibles; entrada al modelo 462/512
+- Tiempos: búsqueda 1.6 ms · selección 5.5 ms · modelo 531 ms · total 538 ms
+- Exacta (KMP): William Herschel (7.52) · correcta y respaldada · fragmentos [467, 323, 466, 472, 476]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 467 ← respuesta | Uranus Facts > Introduction | 133 | sí | **Uranus** is a very cold and windy world. The ice giant is surrounded by 13 faint rings and 28 small moons. **Uranus** rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes **Uranus** appear to spin sideways, orbiting the Sun like a rolling ball. **Uranus** was the first planet found with the aid of a telescope. I… |
+| 2 | 323 | Neptune Facts > Discovery and Namesake | 142 | no | Galileo recorded Neptune as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because **Uranus** didn't travel exactly as astronomers expected it to, French mathemat… |
+| 3 | 466 | Uranus Facts > Our Solar System | 34 | no | **Uranus** is the seventh planet from the Sun, and it has the third largest diameter of planets in our solar system. **Uranus** appears to spin sideways.… |
+| 4 | 472 | Uranus Facts > Moons | 82 | no | **Uranus** has 28 known moons. While most of the satellites orbiting other planets take their names from Greek or Roman mythology, **Uranus**' moons are unique in being named for characters from the works of William Shakespeare and Alexander Pope. All of **Uranus**' inner moons appear to be roughly half water ice and half rock. The composition of t… |
+| 5 | 476 | Uranus Facts > Surface | 64 | no | As an ice giant, **Uranus** doesn’t have a true surface. The planet is mostly swirling fluids. While a spacecraft would have nowhere to land on **Uranus**, it wouldn’t be able to fly through its atmosphere unscathed either. The extreme pressures and temperatures would destroy a metal spacecraft.… |
+
+Descartados: 240 (no cabe en el presupuesto (173 tokens)); 478 (no cabe en el presupuesto (151 tokens)); 471 (no cabe en el presupuesto (186 tokens)); 470 (no cabe en el presupuesto (118 tokens)); 477 (no cabe en el presupuesto (179 tokens))
+
+### Q18 [literal] What is the largest moon of Neptune?
+
+- Respuestas aceptadas: Triton; fragmentos relevantes: [323, 328, 329, 461, 462, 463, 464, 465]
+- Correcciones: ninguna
+- **Respuesta: Triton** · score_difference = 7.61 · fragmento de origen: 328 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 3 fragmentos, 348 tokens de 492 disponibles; entrada al modelo 360/512
+- Tiempos: búsqueda 3.7 ms · selección 5.3 ms · modelo 242 ms · total 251 ms
+- Exacta (KMP): Triton (7.61) · correcta y respaldada · fragmentos [328, 323, 456]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 328 ← respuesta | Neptune Facts > Moons | 173 | sí | **Neptune** has 16 known **moons**. **Neptune's** **largest** **moon** Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle discovered the planet. Since **Neptune** was named for the Roman god of the sea, its **moons** are named for various lesser sea gods and nymphs in Greek mythology. Triton is the… |
+| 2 | 323 | Neptune Facts > Discovery and Namesake | 142 | sí | Galileo recorded **Neptune** as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because Uranus didn't travel exactly as astronomers expected it to, French mathemat… |
+| 3 | 456 | Titan Facts > La NASA refuerza Artemis: añade una misión y perfecciona | 35 | no | Titan is Saturn’s **largest** **moon**. It has an earthlike cycle of liquids flowing across its surface. It is the only **moon** with a thick atmosphere.… |
+
+Descartados: 462 (no cabe en el presupuesto (187 tokens)); 387 (no cabe en el presupuesto (195 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 204 (no cabe en el presupuesto (189 tokens)); 167 (no cabe en el presupuesto (183 tokens)); 240 (no cabe en el presupuesto (173 tokens)); 383 (no cabe en el presupuesto (205 tokens))
+
+### Q22 [literal] What is the atmosphere of Venus mostly made of?
+
+- Respuestas aceptadas: carbon dioxide; fragmentos relevantes: [501]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 5.79 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo correcto (carbon dioxide) rechazado por el umbral
+- Contexto: 5 fragmentos, 485 tokens de 490 disponibles; entrada al modelo 499/512
+- Tiempos: búsqueda 4.4 ms · selección 4.0 ms · modelo 330 ms · total 338 ms
+- Exacta (KMP): I don't know (5.79) · falla del modelo · fragmentos [501, 333, 295, 483, 412]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 501 | Venus Facts > Atmosphere | 124 | sí | **Venus**’ **atmosphere** is one of extremes. With the hottest surface in the solar system, apart from the Sun itself, **Venus** is hotter even than the innermost planet, charbroiled Mercury. The **atmosphere** is **mostly** carbon dioxide — the same gas drives the greenhouse effect on both **Venus** and Earth — with dense clouds composed of sulfur… |
+| 2 | 333 | Neptune Facts > Surface | 54 | no | Neptune does not have a solid surface. Its **atmosphere** (**made** up **mostly** of hydrogen, helium, and methane) extends to great depths, gradually merging into water and other melted ices over a heavier, solid core with about the same mass as Earth.… |
+| 3 | 295 | Mercury Facts > Atmosphere | 49 | no | Instead of an **atmosphere**, Mercury possesses a thin exosphere **made** up of atoms blasted off the surface by the solar wind and striking meteoroids. Mercury's exosphere is composed **mostly** of oxygen, sodium, hydrogen, helium, and potassium.… |
+| 4 | 483 | Venus Facts > Potential for Life | 174 | no | The most likely explanations focus on fine particles, ice crystals, or even a chemical compound called iron chloride. Although it's much less likely, another possibility considered by scientists who study astrobiology is that these streaks could be **made** up of microbial life, **Venus**-style. Astrobiologists note that ring-shaped linkages of sul… |
+| 5 | 412 | Saturn Facts > Formation | 86 | no | Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the Sun. Like Jupiter, Saturn is **mostly** **made** of hydroge… |
+
+Descartados: 498 (no cabe en el presupuesto (184 tokens)); 280 (no cabe en el presupuesto (168 tokens)); 482 (no cabe en el presupuesto (192 tokens)); 207 (no cabe en el presupuesto (145 tokens)); 334 (no cabe en el presupuesto (176 tokens))
+
+### Q26 [literal] Which planet has an average density less than water?
+
+- Respuestas aceptadas: Saturn; fragmentos relevantes: [413]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 2.36 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo correcto (Saturn) rechazado por el umbral
+- Contexto: 4 fragmentos, 411 tokens de 490 disponibles; entrada al modelo 425/512
+- Tiempos: búsqueda 5.7 ms · selección 6.6 ms · modelo 282 ms · total 294 ms
+- Exacta (KMP): I don't know (2.36) · falla del modelo · fragmentos [413, 308, 52, 399]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 413 | Saturn Facts > Structure | 110 | sí | Like Jupiter, Saturn is made mostly of hydrogen and helium. At Saturn's center is a dense core of metals like iron and nickel surrounded by rocky material and other compounds solidified by intense pressure and heat. It is enveloped by liquid metallic hydrogen inside a layer of liquid hydrogen –similar to Jupiter's core but considerably smaller. It'… |
+| 2 | 308 | Moon Facts > Size and Distance | 103 | no | With a radius of about 1,080 miles (1,740 kilometers), the Moon is **less** than a third of the width of Earth. If Earth were the size of a nickel, the Moon would be about as big as a coffee bean. The Moon is an **average** of 238,855 miles (384,400 kilometers) away. That means 30 Earth-sized **planets** could fit in between Earth and the Moon. The… |
+| 3 | 52 | Ceres Facts > Structure | 138 | no | Ceres is more similar to the terrestrial **planets** (Mercury, Venus, Earth, and Mars) than its asteroid neighbors, but it is much **less** dense. One of the similarities is a layered interior, but Ceres' layers aren’t as clearly defined. Ceres probably has a solid core and a mantle made of **water** ice. In fact, Ceres could be composed of as much… |
+| 4 | 399 | Pluto Facts > Structure | 62 | no | Pluto is about two-thirds the diameter of Earth's Moon and probably has a rocky core surrounded by a mantle of **water** ice. Interesting ices like methane and nitrogen frost coat the surface. Due to its lower **density**, Pluto's mass is about one-sixth that of Earth's Moon.… |
+
+Descartados: 463 (no cabe en el presupuesto (173 tokens)); 100 (no cabe en el presupuesto (189 tokens)); 53 (no cabe en el presupuesto (165 tokens)); 164 (no cabe en el presupuesto (164 tokens)); 212 (no cabe en el presupuesto (185 tokens)); 99 (no cabe en el presupuesto (174 tokens))
+
+### Q30 [literal] What lies beneath the icy shell of Europa?
+
+- Respuestas aceptadas: a saltwater ocean, saltwater ocean; fragmentos relevantes: [108, 110, 111]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 6.84 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo correcto (saltwater ocean) rechazado por el umbral
+- Contexto: 4 fragmentos, 421 tokens de 491 disponibles; entrada al modelo 434/512
+- Tiempos: búsqueda 1.7 ms · selección 6.2 ms · modelo 287 ms · total 295 ms
+- Exacta (KMP): I don't know (6.84) · falla del modelo · fragmentos [111, 138, 113, 183]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 111 | Europa Facts > Facts About Europa | 120 | sí | **Europa** is the fourth largest of Jupiter’s moons. It's the sixth-closest moon to the planet. **Europa** may be one of the most promising places in our solar system to find present-day environments suitable for some form of life beyond Earth. Scientists believe a saltwater ocean **lies** **beneath** its **icy** **shell**, holding twice as much wa… |
+| 2 | 138 | Juno Mission > NASA’s Juno Measures Thickness of Europa’s Ice Shell | 164 | no | New insights into Jupiter’s **icy** moon, a candidate in the search for habitable worlds Data from NASA’s Juno mission has provided new insights into the thickness and subsurface structure of the **icy** **shell** encasing Jupiter’s moon **Europa**. Slightly smaller than Earth’s moon, **Europa** is one of the solar system’s highest-priority science… |
+| 3 | 113 | Europa Facts > Europa News / Europa Clipper Website | 101 | no | NASA Samples Antarctic Water to Inform Search for Life on **Icy** Worlds Ammonia-Bearing Compounds Discovered at Surface of Jupiter’s Moon **Europa** NASA’s Galileo Mission Points to Ammonia at **Europa**, Recent Study Shows NASA’s Juno Measures Thickness of **Europa’s** Ice **Shell** **Europa** Clipper’s main science goal is to determine whether t… |
+| 4 | 183 | Juno Mission > Europa Clipper | 38 | no | Scheduled to reach Jupiter's moon **Europa** in 2030, this NASA mission will search **beneath** **Europa's** **icy** surface for signs of life. Learn More About **Europa** and the Clipper Mission… |
+
+Descartados: 201 (no cabe en el presupuesto (106 tokens)); 101 (no cabe en el presupuesto (183 tokens)); 421 (no cabe en el presupuesto (162 tokens)); 102 (no cabe en el presupuesto (138 tokens)); 93 (no cabe en el presupuesto (198 tokens)); 117 (no cabe en el presupuesto (139 tokens))
+
+### Q35 [literal] How far is the Sun from Earth?
+
+- Respuestas aceptadas: 93 million miles (150 million kilometers), 93 million miles, 150 million kilometers; fragmentos relevantes: [429, 438]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 4 fragmentos, 427 tokens de 492 disponibles; entrada al modelo 439/512
+- Tiempos: búsqueda 4.5 ms · selección 5.2 ms · modelo 297 ms · total 307 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [340, 322, 422, 420]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 340 | New Horizons Mission > Key Dates | 44 | no | Oct. 1, 2024: New Horizons passed 60 times as **far** from the **Sun** as **Earth** is, meaning the spacecraft is twice as **far** out as Pluto was when New Horizons flew by on July 14, 2015.… |
+| 2 | 322 | Neptune Facts > Introduction | 133 | no | Dark, cold, and whipped by supersonic winds, ice giant Neptune is more than 30 times as **far** from the **Sun** as **Earth**. Neptune is the only planet in our solar system not visible to the naked eye (Uranus is just barely visible for those with excellent eyesight under dark-sky conditions, provided you know where to look). In 2011 Neptune compl… |
+| 3 | 422 | Solar System Facts > Size and Distance | 180 | no | The Oort Cloud is made of icy pieces of space debris - some bigger than mountains – orbiting our **Sun** as **far** as 1.6 light-years away. This shell of material is thick, extending from 5,000 astronomical units to 100,000 astronomical units. One astronomical unit (or AU) is the distance from the **Sun** to **Earth**, or about 93 million miles (1… |
+| 4 | 420 | Solar System Facts > Namesake / Potential for Life | 72 | no | Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for **Sun**, "solis." So **far**, we've only know about life on **Earth**, but NASA is searching for life on other worlds in our solar system and beyond.… |
+
+Descartados: 310 (redundante con el fragmento 309 (Jaccard 0.52)); 309 (no cabe en el presupuesto (170 tokens)); 438 (no cabe en el presupuesto (171 tokens)); 393 (no cabe en el presupuesto (182 tokens)); 288 (no cabe en el presupuesto (163 tokens)); 365 (no cabe en el presupuesto (151 tokens))
+
+### Q39 [literal] Who led the committee that selected the contents of the golden record?
+
+- Respuestas aceptadas: Carl Sagan; fragmentos relevantes: [505]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 4.96 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo correcto (Carl Sagan) rechazado por el umbral
+- Contexto: 6 fragmentos, 475 tokens de 487 disponibles; entrada al modelo 492/512
+- Tiempos: búsqueda 1.2 ms · selección 5.6 ms · modelo 552 ms · total 559 ms
+- Exacta (KMP): I don't know (4.96) · falla del modelo · fragmentos [505, 301, 341, 182, 299, 303]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 505 | Voyager Mission > The Interstellar Mission / The Golden Record | 53 | sí | After completing the first in-depth reconnaissance of the outer planets, the twin Voyagers are on a new mission to chart the edge of interstellar space. The **contents** of the **golden** **record** were **selected** for NASA by a **committee** **led** by Carl Sagan of Cornell University.… |
+| 2 | 301 | Planetary Missions > New Frontiers | 130 | no | New Frontiers investigation proposals are solicited via the Announcement of Opportunity (AO) process. Each mission proposal is **led** by a principal investigator (PI) who is typically affiliated with a university or research institution. The PI **selects** team members from industry, small businesses, government laboratories and universities to de… |
+| 3 | 341 | New Horizons Mission > In Depth: New Horizons | 158 | no | New Horizons is a NASA mission to study the dwarf planet Pluto, its moons, and other objects in the Kuiper Belt, a region of the solar system that extends from about 30 AU, near the orbit of Neptune, to about 50 AU from the Sun. It was the first mission in NASA’s New Frontiers program, a medium-class, competitively **selected**, and principal inves… |
+| 4 | 182 | Juno Mission > Continuing a Legacy | 35 | no | Juno builds on the work of previous missions to Jupiter, and paves the way for missions yet to come. Learn About the Heritage of Discovery That **Led** to Juno… |
+| 5 | 299 | Planetary Missions > About Our Flight Programs | 68 | no | We’re overseeing a fleet of missions **led** by NASA and scientists around the world. The missions vary in size, cost and complexity. Our programs also include “missions of opportunity” that enable the U.S. science community to participate in non-NASA missions or to use existing NASA spacecraft for a new mission.… |
+| 6 | 303 | Moon Facts > La NASA refuerza Artemis: añade una misión y perfecciona  | 33 | no | Earth's Moon **records** evidence of our solar system's history in the form of impact craters, cooled lava landforms, ancient ice deposits, and more.… |
+
+Descartados: 131 (no cabe en el presupuesto (209 tokens)); 71 (no cabe en el presupuesto (177 tokens)); 228 (no cabe en el presupuesto (79 tokens)); 55 (no cabe en el presupuesto (121 tokens))
+
+### Q43 [paraphrase] Which world circles closest to our star?
+
+- Respuestas aceptadas: Mercury; fragmentos relevantes: [284, 383, 427]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 4 fragmentos, 472 tokens de 492 disponibles; entrada al modelo 484/512
+- Tiempos: búsqueda 2.1 ms · selección 5.9 ms · modelo 322 ms · total 330 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [195, 196, 420, 467]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 195 | Juno Mission > Juno's Io Encounters | 178 | no | Io is caught in a tug-of-war between Jupiter's powerful gravity and the smaller pull from two neighboring moons, churning its insides and creating eruptions and lakes of lava that cover its surface. Meanwhile, the gravitational pull Io exerted on Juno during the Feb. 3 flyby has reduced the spacecraft’s orbit around Jupiter to 33 days. It originall… |
+| 2 | 196 | Juno Mission > Juno's Io Encounters | 91 | no | Juno's flyby was the **closest** of any spacecraft since the Galileo orbiter's visit two decades earlier, and brought Juno within about 930 miles (1,500 kilometers) of Io, the most volcanic **world** in our solar system. This image was compiled from JunoCam's red, blue, and green filters, from an altitude of 1,764 miles (about 2,840 km), during Jun… |
+| 3 | 420 | Solar System Facts > Namesake / Potential for Life | 72 | no | Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our **star**, after the Latin word for Sun, "solis." So far, we've only know about life on Earth, but NASA is searching for life on other **worlds** in our solar system and beyond.… |
+| 4 | 467 | Uranus Facts > Introduction | 133 | no | Uranus is a very cold and windy **world**. The ice giant is surrounded by 13 faint rings and 28 small moons. Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin sideways, orbiting the Sun like a rolling ball. Uranus was the first planet found with the aid of a telescope. It was discov… |
+
+Descartados: 167 (no cabe en el presupuesto (183 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 237 (no cabe en el presupuesto (176 tokens)); 495 (no cabe en el presupuesto (168 tokens)); 247 (no cabe en el presupuesto (161 tokens)); 143 (no cabe en el presupuesto (168 tokens))
+
+### Q45 [paraphrase] What is the tallest volcano on the red planet?
+
+- Respuestas aceptadas: Olympus Mons; fragmentos relevantes: [278]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 6 fragmentos, 397 tokens de 490 disponibles; entrada al modelo 411/512
+- Tiempos: búsqueda 3.4 ms · selección 4.6 ms · modelo 286 ms · total 294 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [276, 267, 273, 377, 265, 255]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 276 | Mars Facts > Surface | 153 | no | The **Red** **Planet** is actually many colors. At the surface, we see colors such as brown, gold, and tan. The reason Mars looks reddish is due to oxidization — or rusting — of iron in the rocks, regolith (Martian “soil”), and dust of Mars. This dust gets kicked up into the atmosphere and from a distance makes the **planet** appear mostly **red**.… |
+| 2 | 267 | Mars Facts > Namesake | 84 | no | Mars was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood. Other civilizations also named the **planet** for this attribute — for example, the Egyptians called it "Her Desher," meaning "the **red** one." Even today, it is frequently called the "**Red** **Planet**" because iron minerals in the Marti… |
+| 3 | 273 | Mars Facts > Rings | 34 | no | Mars has no rings. However, in 50 million years when Phobos crashes into Mars or breaks apart, it could create a dusty ring around the **Red** **Planet**.… |
+| 4 | 377 | Perseverance Mission > The Mars Report | 37 | no | Your source for everything on or about the **Red** **Planet**, continuing NASA's six decades of unparalleled exploration and discoveries — mission news, science findings, unique Mars imagery, and more.… |
+| 5 | 265 | Mars Facts > Introduction | 46 | no | Mars — the fourth **planet** from the Sun — is a dusty, cold, desert world with a very thin atmosphere. This dynamic **planet** has seasons, polar ice caps, extinct **volcanoes**, canyons, and weather.… |
+| 6 | 255 | Mars Exploration > CURIOSITY MARS ROVER / Active Mission | 45 | no | Curiosity is investigating Mars to determine whether the **Red** **Planet** was ever habitable to microbial life. Launch: Nov. 26, 2011 / 15:02 UTC Mars Landing: Aug. 6, 2012 / 05:32 UTC… |
+
+Descartados: 247 (no cabe en el presupuesto (161 tokens)); 264 (no cabe en el presupuesto (93 tokens)); 400 (no cabe en el presupuesto (189 tokens)); 83 (no cabe en el presupuesto (200 tokens))
+
+### Q47 [paraphrase] What enormous storm rages on the biggest planet?
+
+- Respuestas aceptadas: Great Red Spot; fragmentos relevantes: [200, 211, 212, 213, 214]
+- Correcciones: rages -> ranges (OSA d=1, peso 0.83); rages -> ages (OSA d=1, peso 0.80); rages -> rates (OSA d=1, peso 0.80)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo incorrecto (vacío)
+- Contexto: 3 fragmentos, 394 tokens de 490 disponibles; entrada al modelo 408/512
+- Tiempos: búsqueda 30.1 ms · selección 5.6 ms · modelo 275 ms · total 310 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [200, 72, 75, 281]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 200 | Jupiter Facts > Introduction / Namesake | 139 | sí | Jupiter's signature stripes and swirls are actually cold, windy clouds of ammonia and water, floating in an atmosphere of hydrogen and helium. The dark orange stripes are called belts, while the lighter bands are called zones, and they flow east and west in opposite directions. Jupiter’s iconic Great Red Spot is a giant **storm** bigger than Earth … |
+| 2 | 417 | Saturn Facts > Magnetosphere | 173 | no | Saturn's magnetic field is smaller than Jupiter's but still 578 times as powerful as Earth's. Saturn, the rings, and many of the satellites lie totally within Saturn's **enormous** magnetosphere, the region of space in which the behavior of electrically charged particles is influenced more by Saturn's magnetic field than by the solar wind. Aurorae … |
+| 3 | 281 | Mars Facts > Atmosphere | 84 | no | If you were to stand on the surface of Mars on the equator at noon, it would feel like spring at your feet (75 degrees Fahrenheit or 24 degrees Celsius) and winter at your head (32 degrees Fahrenheit or 0 degrees Celsius). Occasionally, winds on Mars are strong enough to create dust **storms** that cover much of the **planet**. After such **storms*… |
+
+Descartados: 430 (no cabe en el presupuesto (174 tokens)); 434 (no cabe en el presupuesto (166 tokens)); 352 (no cabe en el presupuesto (190 tokens)); 72 (no cabe en el presupuesto (128 tokens)); 83 (no cabe en el presupuesto (200 tokens)); 75 (no cabe en el presupuesto (112 tokens)); 137 (no cabe en el presupuesto (155 tokens))
+
+### Q49 [paraphrase] Which moon of the ringed planet has seas of hydrocarbons?
+
+- Respuestas aceptadas: Titan; fragmentos relevantes: [457]
+- Correcciones: ringed -> ranged (OSA d=1, peso 0.83); ringed -> hinged (OSA d=1, peso 0.83)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo incorrecto (vacío)
+- Contexto: 3 fragmentos, 429 tokens de 486 disponibles; entrada al modelo 447/512
+- Tiempos: búsqueda 7.7 ms · selección 5.2 ms · modelo 322 ms · total 335 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [457, 409, 205, 43, 403]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 457 | Titan Facts > Facts About Titan | 91 | sí | Titan is the target of NASA's upcoming Dragonfly mission. Titan is Saturn's largest **moon**, and the only **moon** in our solar system known to have a substantial atmosphere. Titan is the only place besides Earth known to have liquids on its surface. It has clouds, rain, rivers, lakes and **seas** of liquid **hydrocarbons** like methane and ethane… |
+| 2 | 314 | Moon Facts > Surface | 167 | no | With too sparse an atmosphere to impede impacts, a steady rain of asteroids, meteoroids, and comets strikes the surface of the **Moon**, leaving numerous craters behind. Tycho Crater is more than 52 miles (85 kilometers) wide. Over billions of years, these impacts have ground up the surface of the **Moon** into fragments **ranging** from huge bould… |
+| 3 | 328 | Neptune Facts > Moons | 173 | no | Neptune has 16 known **moons**. Neptune's largest **moon** Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle discovered the **planet**. Since Neptune was named for the Roman god of the **sea**, its **moons** are named for various lesser **sea** gods and nymphs in Greek mythology. Triton is the onl… |
+
+Descartados: 480 (no cabe en el presupuesto (140 tokens)); 409 (no cabe en el presupuesto (158 tokens)); 491 (no cabe en el presupuesto (171 tokens)); 18 (no cabe en el presupuesto (181 tokens)); 315 (no cabe en el presupuesto (185 tokens)); 148 (no cabe en el presupuesto (202 tokens)); 501 (no cabe en el presupuesto (124 tokens))
+
+### Q01-T [typo] When was Pluot discovered?
+
+- Pregunta original (sin errores): When was Pluto discovered?
+- Respuestas aceptadas: 1930; fragmentos relevantes: [386, 389]
+- Correcciones: pluot -> pluto (OSA d=1, peso 0.80)
+- **Respuesta: 1930** · score_difference = 8.17 · fragmento de origen: 240 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 3 fragmentos, 380 tokens de 493 disponibles; entrada al modelo 391/512
+- Tiempos: búsqueda 2.7 ms · selección 2.0 ms · modelo 275 ms · total 280 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [461, 329, 404, 411, 306, 129]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 240 ← respuesta | Kuiper Belt Facts > Pluto's Place in the Kuiper Belt | 173 | no | In 1930, **Pluto** became the first Kuiper Belt object to be **discovered**. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region, even though another object similar in size, called Eris, has a sli… |
+| 2 | 389 | Pluto Facts > Namesake | 156 | sí | In 1930, Venetia Burney of Oxford, England, suggested to her grandfather that the new discovery be named for the Roman god of the underworld. He forwarded the name to the Lowell Observatory and it was selected. In an interview with NASA in January 2006, Venetia said she offered the name **Pluto** over breakfast with her mother and grandfather. It w… |
+| 3 | 461 | Triton Facts > Contents / Discovery | 53 | no | Global color mosaic of Triton, taken in 1989 by Voyager 2 during its flyby of the Neptune system. Triton was **discovered** on Oct. 10, 1846 by British astronomer William Lassell, just 17 days after Neptune itself was **discovered**.… |
+
+Descartados: 386 (no cabe en el presupuesto (184 tokens)); 47 (no cabe en el presupuesto (156 tokens)); 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el presupuesto (181 tokens)); 392 (no cabe en el presupuesto (147 tokens)); 390 (no cabe en el presupuesto (168 tokens)); 388 (no cabe en el presupuesto (143 tokens))
+
+### Q09-T [typo] How long is a year on Mars?
+
+- Pregunta original (sin errores): How long is a year on Mars?
+- Respuestas aceptadas: 687 Earth days, 669.6 sols; fragmentos relevantes: [270]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 7 fragmentos, 475 tokens de 492 disponibles; entrada al modelo 487/512
+- Tiempos: búsqueda 1.9 ms · selección 2.2 ms · modelo 346 ms · total 350 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [327, 279, 256, 268, 252, 67, 369]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 327 | Neptune Facts > Orbit and Rotation | 74 | no | Neptune’s axis of rotation is tilted 28 degrees with respect to the plane of its orbit around the Sun, which is similar to the axial tilts of **Mars** and Earth. This means that Neptune experiences seasons just like we do on Earth; however, since its **year** is so **long**, each of the four seasons lasts for over 40 **years**.… |
+| 2 | 279 | Mars Facts > Water on Mars | 132 | no | **Mars** appears to have had a watery past, with ancient river valley networks, deltas, and lakebeds, as well as rocks and minerals on the surface that could only have formed in liquid water. Some features suggest that **Mars** experienced huge floods about 3.5 billion **years** ago. There is water on **Mars** today, but the Martian atmosphere is t… |
+| 3 | 256 | Mars Exploration > MARS RECONNAISSANCE ORBITER / Active Mission | 41 | no | **Mars** Reconnaissance Orbiter searches for evidence that water persisted on the surface of **Mars** for a **long** period of time. Launch: Aug. 12, 2005 **Mars** Arrival: **Mar**. 10, 2006… |
+| 4 | 268 | Mars Facts > Potential for Life | 38 | no | Scientists don't expect to find living things currently thriving on **Mars**. Instead, they're looking for signs of life that existed **long** ago, when **Mars** was warmer and covered with water.… |
+| 5 | 252 | Mars Exploration > Viking@50 Downloads | 42 | no | The lander that broke ground on 50 **years** of **Mars** surface exploration. Celebrate Viking — and the missions still building on what it began — with posters, computer backdrops, phone screens and more.… |
+| 6 | 369 | Oort Cloud Facts > Home to Comets | 66 | no | (Hence the name.) Countless more unknown **long**-period comets have never been seen by human eyes. Some have orbits so **long** that the last time they passed through the inner solar system, our species did not yet exist. Others have never ventured close to the Sun in the billions of **years** since they formed.… |
+| 7 | 67 | Curiosity Mission > Curiosity Reaches 1-Kilometer Elevation Gain / NAS | 84 | no | NASA’s Curiosity **Mars** rover reached the pinnacle — so far — of its 14-**year**-old mission on Aug. 26, 2026, when it marked an elevation gain of 1 kilometer in its journey from Gale Crater on **Mars** up the slope of Mount Sharp. After **years** of lab work, the results are in: A rock that NASA’s Curiosity **Mars** rover drilled and analyzed in… |
+
+Descartados: 368 (no cabe en el presupuesto (191 tokens)); 270 (no cabe en el presupuesto (188 tokens)); 271 (no cabe en el presupuesto (111 tokens))
+
+### Q18-T [typo] What is the largst moon of Neptune?
+
+- Pregunta original (sin errores): What is the largest moon of Neptune?
+- Respuestas aceptadas: Triton; fragmentos relevantes: [323, 328, 329, 461, 462, 463, 464, 465]
+- Correcciones: largst -> largest (OSA d=1, peso 0.86)
+- **Respuesta: Triton** · score_difference = 10.23 · fragmento de origen: 328 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 3 fragmentos, 348 tokens de 491 disponibles; entrada al modelo 361/512
+- Tiempos: búsqueda 5.3 ms · selección 1.9 ms · modelo 255 ms · total 262 ms
+- Exacta (KMP): I don't know (5.62) · falla del modelo · fragmentos [462, 328, 465]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 328 ← respuesta | Neptune Facts > Moons | 173 | sí | **Neptune** has 16 known **moons**. **Neptune's** **largest** **moon** Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle discovered the planet. Since **Neptune** was named for the Roman god of the sea, its **moons** are named for various lesser sea gods and nymphs in Greek mythology. Triton is the… |
+| 2 | 323 | Neptune Facts > Discovery and Namesake | 142 | sí | Galileo recorded **Neptune** as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because Uranus didn't travel exactly as astronomers expected it to, French mathemat… |
+| 3 | 456 | Titan Facts > La NASA refuerza Artemis: añade una misión y perfecciona | 35 | no | Titan is Saturn’s **largest** **moon**. It has an earthlike cycle of liquids flowing across its surface. It is the only **moon** with a thick atmosphere.… |
+
+Descartados: 462 (no cabe en el presupuesto (187 tokens)); 387 (no cabe en el presupuesto (195 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 204 (no cabe en el presupuesto (189 tokens)); 167 (no cabe en el presupuesto (183 tokens)); 383 (no cabe en el presupuesto (205 tokens)); 240 (no cabe en el presupuesto (173 tokens))
+
+### Q26-T [typo] Which planet has an average dnesity less than watrr?
+
+- Pregunta original (sin errores): Which planet has an average density less than water?
+- Respuestas aceptadas: Saturn; fragmentos relevantes: [413]
+- Correcciones: dnesity -> density (OSA d=1, peso 0.86); watrr -> water (OSA d=1, peso 0.80)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo incorrecto (vacío)
+- Contexto: 4 fragmentos, 411 tokens de 487 disponibles; entrada al modelo 428/512
+- Tiempos: búsqueda 7.6 ms · selección 2.3 ms · modelo 307 ms · total 317 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [308, 413, 489, 75]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 413 | Saturn Facts > Structure | 110 | sí | Like Jupiter, Saturn is made mostly of hydrogen and helium. At Saturn's center is a dense core of metals like iron and nickel surrounded by rocky material and other compounds solidified by intense pressure and heat. It is enveloped by liquid metallic hydrogen inside a layer of liquid hydrogen –similar to Jupiter's core but considerably smaller. It'… |
+| 2 | 308 | Moon Facts > Size and Distance | 103 | no | With a radius of about 1,080 miles (1,740 kilometers), the Moon is **less** than a third of the width of Earth. If Earth were the size of a nickel, the Moon would be about as big as a coffee bean. The Moon is an **average** of 238,855 miles (384,400 kilometers) away. That means 30 Earth-sized **planets** could fit in between Earth and the Moon. The… |
+| 3 | 52 | Ceres Facts > Structure | 138 | no | Ceres is more similar to the terrestrial **planets** (Mercury, Venus, Earth, and Mars) than its asteroid neighbors, but it is much **less** dense. One of the similarities is a layered interior, but Ceres' layers aren’t as clearly defined. Ceres probably has a solid core and a mantle made of **water** ice. In fact, Ceres could be composed of as much… |
+| 4 | 399 | Pluto Facts > Structure | 62 | no | Pluto is about two-thirds the diameter of Earth's Moon and probably has a rocky core surrounded by a mantle of **water** ice. Interesting ices like methane and nitrogen frost coat the surface. Due to its lower **density**, Pluto's mass is about one-sixth that of Earth's Moon.… |
+
+Descartados: 463 (no cabe en el presupuesto (173 tokens)); 100 (no cabe en el presupuesto (189 tokens)); 53 (no cabe en el presupuesto (165 tokens)); 164 (no cabe en el presupuesto (164 tokens)); 212 (no cabe en el presupuesto (185 tokens)); 99 (no cabe en el presupuesto (174 tokens))
+
+### Q34-T [typo] What is the Sun made of?
+
+- Pregunta original (sin errores): What is the Sun made of?
+- Respuestas aceptadas: hydrogen and helium; fragmentos relevantes: [429, 444]
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 3.64 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (super-hot, electrically charged gas called plasma)
+- Contexto: 3 fragmentos, 386 tokens de 493 disponibles; entrada al modelo 397/512
+- Tiempos: búsqueda 1.7 ms · selección 2.2 ms · modelo 286 ms · total 290 ms
+- Exacta (KMP): I don't know (3.64) · recuperación incompleta · fragmentos [430, 72, 412]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 430 | Sun Facts > 10 things | 174 | no | The **Sun** is about 100 times wider than Earth and about 10 times wider than Jupiter, the biggest planet. The **Sun** is the only star in our solar system. It is the center of our solar system, and its gravity holds the solar system together. Everything in our solar system revolves around it – the planets, asteroids, comets, and tiny bits of space… |
+| 2 | 72 | Earth Facts > One Way Light Time to Sun | 128 | no | While Earth is only the fifth largest planet in the solar system, it is the only planet in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the **Sun**, all of which are **made** of rock and metal. Earth is the only planet in the solar system whose English… |
+| 3 | 412 | Saturn Facts > Formation | 86 | no | Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the **Sun**. Like Jupiter, Saturn is mostly **made** of hydroge… |
+
+Descartados: 364 (no cabe en el presupuesto (161 tokens)); 422 (no cabe en el presupuesto (180 tokens)); 78 (no cabe en el presupuesto (176 tokens)); 421 (no cabe en el presupuesto (162 tokens)); 368 (no cabe en el presupuesto (191 tokens)); 207 (no cabe en el presupuesto (145 tokens)); 280 (no cabe en el presupuesto (168 tokens))
+
+### Q43-T [typo] Which weorld circles clnosest to our star?
+
+- Pregunta original (sin errores): Which world circles closest to our star?
+- Respuestas aceptadas: Mercury; fragmentos relevantes: [284, 383, 427]
+- Correcciones: weorld -> world (OSA d=1, peso 0.83); clnosest -> closest (OSA d=1, peso 0.88)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
+- Contexto: 4 fragmentos, 472 tokens de 489 disponibles; entrada al modelo 487/512
+- Tiempos: búsqueda 11.9 ms · selección 2.0 ms · modelo 350 ms · total 364 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [441, 438, 360, 429, 443, 418]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 195 | Juno Mission > Juno's Io Encounters | 178 | no | Io is caught in a tug-of-war between Jupiter's powerful gravity and the smaller pull from two neighboring moons, churning its insides and creating eruptions and lakes of lava that cover its surface. Meanwhile, the gravitational pull Io exerted on Juno during the Feb. 3 flyby has reduced the spacecraft’s orbit around Jupiter to 33 days. It originall… |
+| 2 | 420 | Solar System Facts > Namesake / Potential for Life | 72 | no | Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our **star**, after the Latin word for Sun, "solis." So far, we've only know about life on Earth, but NASA is searching for life on other **worlds** in our solar system and beyond.… |
+| 3 | 196 | Juno Mission > Juno's Io Encounters | 91 | no | Juno's flyby was the **closest** of any spacecraft since the Galileo orbiter's visit two decades earlier, and brought Juno within about 930 miles (1,500 kilometers) of Io, the most volcanic **world** in our solar system. This image was compiled from JunoCam's red, blue, and green filters, from an altitude of 1,764 miles (about 2,840 km), during Jun… |
+| 4 | 467 | Uranus Facts > Introduction | 133 | no | Uranus is a very cold and windy **world**. The ice giant is surrounded by 13 faint rings and 28 small moons. Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin sideways, orbiting the Sun like a rolling ball. Uranus was the first planet found with the aid of a telescope. It was discov… |
+
+Descartados: 167 (no cabe en el presupuesto (183 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 237 (no cabe en el presupuesto (176 tokens)); 495 (no cabe en el presupuesto (168 tokens)); 247 (no cabe en el presupuesto (161 tokens)); 143 (no cabe en el presupuesto (168 tokens))
+
+### Q51 [no_answer] How many people live on Mars today?
+
+- Respuestas aceptadas: (ninguna: no está en la colección); fragmentos relevantes: —
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
+- Contexto: 6 fragmentos, 485 tokens de 492 disponibles; entrada al modelo 497/512
+- Tiempos: búsqueda 1.7 ms · selección 5.2 ms · modelo 359 ms · total 366 ms
+- Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [26, 48, 268, 248, 282, 267]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 26 | Asteroid Facts > Large Asteroids Have Hit Earth in the Past | 167 | no | A house-sized asteroid exploded over Chelyabinsk, Russia, on Feb.15, 2013. The explosion released the energy equivalent to about 440,000 tons of TNT, generating a shock wave that damaged some buildings and blew out windows across 200 square miles. Hundreds of **people** were injured in the blast, mostly due to the broken glass. Another impact site,… |
+| 2 | 48 | Ceres Facts > Potential for Life | 112 | no | Ceres is one of the few places in our solar system where scientists would like to search for possible signs of life. Ceres has something a lot of other planets don't: water. Here on Earth, water is essential for life, so it's possible someplace else with that ingredient and a few other conditions could support life, as well. If anything does **live… |
+| 3 | 268 | Mars Facts > Potential for Life | 38 | no | Scientists don't expect to find **living** things currently thriving on **Mars**. Instead, they're looking for signs of life that existed long ago, when **Mars** was warmer and covered with water.… |
+| 4 | 248 | Mars Exploration > Perseverance, On a Roll | 49 | no | Watch an animated map of the rover's path — from 2021 landing to record-setting milestone — see the runner-up rovers, on **Mars** or the Moon, and learn more about how Perseverance got where it is **today**.… |
+| 5 | 282 | Mars Facts > Magnetosphere | 37 | no | **Mars** has no global magnetic field **today**, but areas of the Martian crust in the southern hemisphere are highly magnetized, indicating traces of a magnetic field from 4 billion years ago.… |
+| 6 | 267 | Mars Facts > Namesake | 84 | no | **Mars** was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood. Other civilizations also named the planet for this attribute — for example, the Egyptians called it "Her Desher," meaning "the red one." Even **today**, it is frequently called the "Red Planet" because iron minerals in the Martian dirt … |
+
+Descartados: 279 (no cabe en el presupuesto (132 tokens)); 283 (no cabe en el presupuesto (105 tokens)); 250 (no cabe en el presupuesto (122 tokens)); 375 (no cabe en el presupuesto (183 tokens))
+
+### Q53 [no_answer] How much does a ticket to the Moon cost?
+
+- Respuestas aceptadas: (ninguna: no está en la colección); fragmentos relevantes: —
+- Correcciones: ticket -> tick (Jaccard 0.50 con ngram2)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
+- Contexto: 5 fragmentos, 487 tokens de 490 disponibles; entrada al modelo 501/512
+- Tiempos: búsqueda 4.1 ms · selección 3.6 ms · modelo 364 ms · total 371 ms
+- Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [301, 299, 300, 306, 307]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 301 | Planetary Missions > New Frontiers | 130 | no | New Frontiers investigation proposals are solicited via the Announcement of Opportunity (AO) process. Each mission proposal is led by a principal investigator (PI) who is typically affiliated with a university or research institution. The PI selects team members from industry, small businesses, government laboratories and universities to develop th… |
+| 2 | 299 | Planetary Missions > About Our Flight Programs | 68 | no | We’re overseeing a fleet of missions led by NASA and scientists around the world. The missions vary in size, **cost** and complexity. Our programs also include “missions of opportunity” that enable the U.S. science community to participate in non-NASA missions or to use existing NASA spacecraft for a new mission.… |
+| 3 | 300 | Planetary Missions > Discovery | 135 | no | The goal of NASA’s Discovery Program is to provide frequent flight opportunities for high-quality, high-value, focused, planetary science investigations that can be accomplished under a not-to-exceed **cost** cap. By conducting a series of planetary science investigations, NASA will provide a mechanism by which pressing questions in planetary scien… |
+| 4 | 306 | Moon Facts > How the Moon Got Its Name | 55 | no | Our **Moon** shares a name with all **moons** simply because people didn't know other **moons** existed until Galileo Galilei discovered four **moons** orbiting Jupiter in 1610. In Latin, the **Moon** was called Luna, which is the main adjective for all things **Moon**-related: lunar.… |
+| 5 | 310 | Moon Facts > Orbit and Rotation / Moons | 101 | no | And a "new **moon**" occurs when the far side of the **Moon** has full sunlight, and the side facing us is having its night. The **Moon** makes a complete orbit around Earth in 27 Earth days and rotates or spins at that same rate, or in that same amount of time. Because Earth is moving as well – rotating on its axis as it orbits the Sun – from our … |
+
+Descartados: 309 (redundante con el fragmento 310 (Jaccard 0.52)); 500 (no cabe en el presupuesto (190 tokens)); 424 (no cabe en el presupuesto (134 tokens)); 79 (no cabe en el presupuesto (146 tokens)); 308 (no cabe en el presupuesto (103 tokens))
+
+### Q54 [no_answer] Who is the current president of Jupiter?
+
+- Respuestas aceptadas: (ninguna: no está en la colección); fragmentos relevantes: —
+- Correcciones: ninguna
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
+- Contexto: 4 fragmentos, 407 tokens de 492 disponibles; entrada al modelo 419/512
+- Tiempos: búsqueda 2.1 ms · selección 6.3 ms · modelo 313 ms · total 321 ms
+- Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [175, 128, 51, 412]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 175 | Juno Mission > Scientific Discoveries and Results | 126 | no | The closest images of Io came from Juno’s passes in December 2023 and February 2024, but the monitoring will continue through the **current** end of the extended mission, scheduled in September 2025. Juno has spent years tracking the Great Blue Spot. Not to be confused with **Jupiter’s** iconic red storm, the Blue Spot is an invisible, localized, i… |
+| 2 | 128 | Io Facts > Exploring Io | 95 | no | Most of what we know about Io comes from the Galileo spacecraft, which made a detailed study of the **Jupiter** system. It was Voyager 1 that spotted the first signs of the little moon’s powerful volcanism in 1979. Since 2003, three spacecraft – Ulysses, Cassini, New Horizons, and Juno – have made additional close observations of Io. Juno is **curr… |
+| 3 | 51 | Ceres Facts > Formation | 102 | no | Ceres formed along with the rest of the solar system about 4.5 billion years ago when gravity pulled swirling gas and dust in to become a small dwarf planet. Scientists describe Ceres as an "embryonic planet," which means it started to form but didn't quite finish. Nearby **Jupiter's** strong gravity prevented it from becoming a fully formed planet… |
+| 4 | 412 | Saturn Facts > Formation | 86 | no | Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its **current** position in the outer solar system, where it is the sixth planet from the Sun. Like **Jupiter**, Saturn is mostly made of hydroge… |
+
+Descartados: 206 (no cabe en el presupuesto (117 tokens)); 146 (no cabe en el presupuesto (209 tokens)); 207 (no cabe en el presupuesto (145 tokens)); 147 (no cabe en el presupuesto (187 tokens)); 106 (no cabe en el presupuesto (159 tokens)); 208 (no cabe en el presupuesto (176 tokens))
+
+### Q55 [no_answer] What is the favorite food of astronauts on Pluto?
+
+- Respuestas aceptadas: (ninguna: no está en la colección); fragmentos relevantes: —
+- Correcciones: food -> good (OSA d=1, peso 0.75); food -> fold (OSA d=1, peso 0.75); food -> foot (OSA d=1, peso 0.75)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
+- Contexto: 5 fragmentos, 418 tokens de 490 disponibles; entrada al modelo 432/512
+- Tiempos: búsqueda 3.5 ms · selección 4.9 ms · modelo 318 ms · total 326 ms
+- Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [122, 9, 316, 305]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 358 | New Horizons Mission > New Horizons Stories | 90 | no | NASA’s New Horizons Finds Evidence of Recent Liquid on **Pluto’s** Surface NASA’s New Horizons Spacecraft Wakes from Hibernation in **Good** Health NASA’s New Horizons Enters Mission’s Longest Hibernation Period 10 Years Ago: NASA’s New Horizons Captures **Pluto’s** Heart NASA’s New Horizons Detects Dusty Hints of Extended Kuiper Belt… |
+| 2 | 122 | Hubble Space Telescope > What Did Hubble See on Your Birthday? / What  | 71 | no | To celebrate the nation's 250th birthday, NASA expanded this web app with more images! See what Hubble observed on your birthday, or other special occasion, pick your **favorite** images, and share them with friends! See the area of sky Hubble is investigating. Play this trivia game and test your knowledge! Take a virtual tour of Hubble's operation… |
+| 3 | 103 | Enceladus Facts > How Enceladus Got Its Name | 89 | no | Enceladus is named after the giant, Enceladus, of Greek mythology. William Herschel's son John Herschel suggested the name in his 1847 publication Results of Astronomical Observation made at the Cape of **Good** Hope, in which he suggested names for the first seven Saturnian moons discovered. He chose these names in particular because Saturn, known… |
+| 4 | 316 | Moon Facts > Surface | 85 | no | While you were there, you'd notice that the gravity on the surface of the Moon is one-sixth of Earth's, which is why in footage of moonwalks, **astronauts** appear to almost bounce across the surface. The temperature on the Moon reaches about 260 degrees Fahrenheit (127 degrees Celsius) when in full Sun, but in darkness, the temperatures plummet to… |
+| 5 | 305 | Moon Facts > 10 things | 85 | no | It is not breathable. More than 105 robotic spacecraft have been launched to explore the Moon. It is the only celestial body beyond Earth – so far – visited by human beings. The Moon's weak atmosphere and its lack of liquid water cannot support life as we know it. Apollo **astronauts** brought back a total of 842 pounds (382 kilograms) of lunar roc… |
+
+Descartados: 9 (no cabe en el presupuesto (139 tokens)); 315 (no cabe en el presupuesto (185 tokens)); 10 (no cabe en el presupuesto (175 tokens)); 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el presupuesto (181 tokens))
+
+## Casos comentados (datos)
+
+**correcta y respaldada** · Q01 (aproximada)
+- Pregunta: When was Pluto discovered? · esperada: 1930 · respuesta: 1930 (score_difference 7.52)
+- Relevantes: [386, 389] · recuperados (top-10): [240, 386, 389, 47, 395, 396, 392, 390, 388, 393] · en el contexto: [240, 389, 47] · relevantes en el contexto: [389]
+- Fragmento de origen de la respuesta: 240
+
+**recuperación incompleta** · Q09 (aproximada)
+- Pregunta: How long is a year on Mars? · esperada: 687 Earth days, 669.6 sols · respuesta: I don't know (score_difference 0.00)
+- Relevantes: [270] · recuperados (top-10): [327, 279, 368, 270, 256, 268, 271, 252, 369, 67] · en el contexto: [327, 279, 256, 268, 252, 369, 67] · relevantes en el contexto: ninguno
+- Fragmento de origen de la respuesta: —
+
+**falla del modelo** · Q05 (aproximada)
+- Pregunta: How many known moons does Pluto have? · esperada: five, five known moons · respuesta: I don't know (score_difference 4.78)
+- Relevantes: [387, 388, 395] · recuperados (top-10): [395, 396, 388, 399, 392, 424, 387, 347, 339, 350] · en el contexto: [388, 399, 424, 339] · relevantes en el contexto: [388]
+- Fragmento de origen de la respuesta: —
+
+**no-respuesta correcta** · Q51 (aproximada)
+- Pregunta: How many people live on Mars today? · esperada: — · respuesta: I don't know (score_difference 0.00)
+- Relevantes: — · recuperados (top-10): [26, 279, 48, 268, 248, 282, 283, 267, 250, 375] · en el contexto: [26, 48, 268, 248, 282, 267] · relevantes en el contexto: ninguno
+- Fragmento de origen de la respuesta: —
+
