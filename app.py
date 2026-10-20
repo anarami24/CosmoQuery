@@ -170,9 +170,9 @@ def answer_html(r):
     pct = max(0.0, min(1.0, sd / SD_SCALE)) * 100
     tick = config.NO_ANSWER_THRESHOLD / SD_SCALE * 100
     bar = (f'<div class="cq-bar"><div class="cq-bar-fill {"cq-low" if r.is_no_answer else ""}" '
-           f'style="width:{pct:.1f}%"></div><div class="cq-bar-tick" style="left:{tick:.1f}%"></div></div>'
-           f'<div class="cq-bar-legend"><span>confianza (score_difference) = {sd:.2f}</span>'
-           f'<span>umbral del PokeChat = {config.NO_ANSWER_THRESHOLD:g}</span></div>')
+           f'style="width:{pct:.1f}%"></div><div class="cq-bar-tick" style="left:{tick:.1f}%" '
+           f'title="mínimo para responder: {config.NO_ANSWER_THRESHOLD:g}"></div></div>'
+           f'<div class="cq-bar-legend"><span>confianza: {sd:.2f}</span></div>')
     if r.is_no_answer:
         raw = r.extra.get("raw_answer", "")
         hint = (f' El modelo consideró «{esc(raw)}», pero con una confianza menor al umbral.' if raw else "")
