@@ -1,0 +1,57 @@
+id,category,verdict,question,answer,expected,score_difference,truncated,n_selected,relevant_in_context,em,f1
+Q01,literal,OK,When was Pluto discovered?,1930,1930,8.88,False,3,True,1.0,1.0
+Q02,literal,OK,When was Pluto reclassified as a dwarf planet?,2006,2006,10.23,False,5,True,1.0,1.0
+Q03,literal,OK,When did New Horizons fly by Pluto?,"July 14, 2015","July 14, 2015 | 2015",9.18,False,5,True,1.0,1.0
+Q04,literal,OK,What is the largest moon of Pluto?,Charon,Charon,9.04,False,3,True,1.0,1.0
+Q05,literal,OK,How many known moons does Pluto have?,five,five | five known moons,5.78,False,4,True,1.0,1.0
+Q06,literal,OK,What are the names of the two moons of Mars?,Phobos and Deimos,Phobos and Deimos | Phobos | Deimos,11.27,False,4,True,1.0,1.0
+Q07,literal,OK,What is the largest volcano in the solar system?,Olympus Mons,Olympus Mons,6.59,False,6,True,1.0,1.0
+Q08,literal,OK,What gases make up the atmosphere of Mars?,"carbon dioxide, nitrogen, and argon","carbon dioxide, nitrogen, and argon | carbon dioxide",6.53,False,4,True,1.0,1.0
+Q09,literal,BUSQUEDA,How long is a year on Mars?,I don't know,687 Earth days | 669.6 sols,0.0,False,7,False,0.0,0.0
+Q10,literal,OK,What is the Great Red Spot?,a giant storm bigger than Earth,a giant storm bigger than Earth | giant storm,12.73,False,3,True,1.0,1.0
+Q11,literal,OK,Who first observed the four largest moons of Jupiter?,Galileo Galilei,Galileo Galilei | Galileo,13.45,False,3,True,1.0,1.0
+Q12,literal,OK,What is the largest moon in the solar system?,Ganymede,Ganymede,6.34,False,3,True,1.0,1.0
+Q13,literal,OK,How long is one day on Jupiter?,9.9 hours,9.9 hours,4.95,False,3,True,1.0,1.0
+Q14,literal,OK,Who discovered Uranus?,William Herschel,William Herschel | Herschel,11.24,False,5,True,1.0,1.0
+Q15,literal,OK,What gives Uranus its blue-green color?,methane gas in the atmosphere,methane gas | methane,10.9,False,4,True,0.0,0.667
+Q16,literal,BUSQUEDA,What is the axial tilt of Uranus?,90-degree,97.77 degrees,3.78,False,6,False,0.0,0.0
+Q17,literal,OK,When was Neptune discovered?,1846,1846,6.02,False,4,True,1.0,1.0
+Q18,literal,OK,What is the largest moon of Neptune?,Triton,Triton,9.7,False,3,True,1.0,1.0
+Q19,literal,OK,Which planet is the windiest in our solar system?,Neptune,Neptune,3.76,False,3,True,1.0,1.0
+Q20,literal,OK,What is the hottest planet in our solar system?,Venus,Venus,9.0,False,4,True,1.0,1.0
+Q21,literal,OK,What is the surface temperature of Venus?,872 degrees Fahrenheit,872 degrees Fahrenheit (467 Celsius) | 872 degrees Fahrenheit | 467 Celsius,8.52,False,4,True,1.0,1.0
+Q22,literal,OK,What is the atmosphere of Venus mostly made of?,carbon dioxide,carbon dioxide,11.05,False,5,True,1.0,1.0
+Q23,literal,OK,What is the smallest planet in our solar system?,Mercury,Mercury,7.22,False,4,True,1.0,1.0
+Q24,literal,OK,How long does Mercury take to orbit the Sun?,88 days,88 Earth days | 88 days,4.12,False,3,True,1.0,1.0
+Q25,literal,OK,What are Saturn's rings made of?,billions of small chunks of ice and rock,billions of small chunks of ice and rock | ice and rock,11.56,False,4,True,1.0,1.0
+Q26,literal,OK,Which planet has an average density less than water?,Saturn,Saturn,4.59,False,4,True,1.0,1.0
+Q27,literal,OK,How long is one day on Saturn?,10.7 hours,10.7 hours,7.21,False,4,True,1.0,1.0
+Q28,literal,OK,What is the largest moon of Saturn?,Titan,Titan,7.32,False,5,True,1.0,1.0
+Q29,literal,OK,What are the lakes and seas on Titan made of?,liquid hydrocarbons,liquid hydrocarbons like methane and ethane | methane and ethane,12.0,False,7,True,0.0,0.5
+Q30,literal,OK,What lies beneath the icy shell of Europa?,saltwater ocean,a saltwater ocean | saltwater ocean,10.25,False,4,True,1.0,1.0
+Q31,literal,OK,When did Europa Clipper launch?,"Oct. 14, 2024","Oct. 14, 2024 | October 14, 2024 | 2024",12.89,False,4,True,1.0,1.0
+Q32,literal,OK,When will Europa Clipper reach Jupiter?,April 2030,April 2030 | 2030,10.94,False,5,True,1.0,1.0
+Q33,literal,OK,How old is the Sun?,4.5 billion-year-old,4.5 billion years | 4.5 billion-year-old,6.63,False,5,True,1.0,1.0
+Q34,literal,BUSQUEDA,What is the Sun made of?,"super-hot, electrically charged gas called plasma",hydrogen and helium,8.54,False,3,False,0.0,0.0
+Q35,literal,BUSQUEDA,How far is the Sun from Earth?,60 times,93 million miles (150 million kilometers) | 93 million miles | 150 million kilometers,1.14,False,4,False,0.0,0.0
+Q36,literal,BUSQUEDA,Where did the Perseverance rover land?,Red Planet,Jezero Crater | Jezero,7.85,False,6,False,0.0,0.0
+Q37,literal,OK,What was the first aircraft to fly on another planet?,Ingenuity,Ingenuity,4.25,False,5,True,1.0,1.0
+Q38,literal,OK,When did Voyager 1 reach interstellar space?,2012,2012,10.48,False,4,True,1.0,1.0
+Q39,literal,OK,Who led the committee that selected the contents of the golden record?,Carl Sagan,Carl Sagan,9.54,False,6,True,1.0,1.0
+Q40,literal,OK,When did the Juno spacecraft arrive at Jupiter?,2016,"July 4, 2016 | 2016",10.54,False,4,True,1.0,1.0
+Q41,literal,BUSQUEDA,Where is the main asteroid belt located?,I don't know,between Mars and Jupiter | between the orbits of Mars and Jupiter,0.0,False,3,False,0.0,0.0
+Q42,literal,MODELO,Where do comets come from?,"a vast, extremely distant spherical shell of icy bodies surrounding the solar system",the Kuiper Belt and the Oort Cloud | Kuiper Belt | Oort Cloud,7.71,False,4,True,0.0,0.0
+Q43,paraphrase,BUSQUEDA,Which world circles closest to our star?,Io,Mercury,4.21,False,4,False,0.0,0.0
+Q44,paraphrase,BUSQUEDA,Who first spotted the seventh planet?,I don't know,William Herschel | Herschel,0.0,False,5,False,0.0,0.0
+Q45,paraphrase,BUSQUEDA,What is the tallest volcano on the red planet?,I don't know,Olympus Mons,0.0,False,6,False,0.0,0.0
+Q46,paraphrase,BUSQUEDA,Which satellites orbit the fourth planet?,Callisto,Phobos and Deimos | Phobos | Deimos,3.33,False,5,False,0.0,0.0
+Q47,paraphrase,OK,What enormous storm rages on the biggest planet?,Great Red Spot,Great Red Spot,1.69,False,4,True,1.0,1.0
+Q48,paraphrase,MODELO,Which world has the strongest winds?,Earth,Neptune,6.3,False,3,True,0.0,0.0
+Q49,paraphrase,OK,Which moon of the ringed planet has seas of hydrocarbons?,Titan,Titan,0.71,False,5,True,1.0,1.0
+Q50,paraphrase,OK,What is the age of our star?,4.5 billion,4.5 billion years | 4.5 billion-year-old,1.06,False,5,True,0.0,0.8
+Q51,no_answer,OK,How many people live on Mars today?,I don't know,,0.0,False,6,False,1.0,1.0
+Q52,no_answer,OK,What is the capital city of Venus?,I don't know,,0.0,False,4,False,1.0,1.0
+Q53,no_answer,OK,How much does a ticket to the Moon cost?,I don't know,,0.0,False,5,False,1.0,1.0
+Q54,no_answer,OK,Who is the current president of Jupiter?,I don't know,,0.0,False,4,False,1.0,1.0
+Q55,no_answer,OK,What is the favorite food of astronauts on Pluto?,I don't know,,0.0,False,4,False,1.0,1.0
+Q56,no_answer,OK,Which football team plays on Saturn?,I don't know,,0.0,False,4,False,1.0,1.0

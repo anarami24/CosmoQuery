@@ -12,9 +12,6 @@ FIGURES_DIR = RESULTS_DIR / "figures"
 
 
 # Etapa 1 - Fragmentación
-# Tamaño objetivo de cada fragmento (en palabras) y traslape entre fragmentos
-# consecutivos. 150 palabras =~ 200 tokens de RoBERTa, así que caben 2 fragmentos
-# completos en la ventana de 512 tokens del modelo junto con la pregunta.
 CHUNK_SIZE_WORDS = 150
 CHUNK_OVERLAP_WORDS = 30
 MIN_CHUNK_WORDS = 25        # fragmentos cortos se fusionan con el anterior
@@ -81,31 +78,26 @@ USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHT
               "Chrome/124.0 Safari/537.36 ComoQuery-StudentProject/1.0")
 HTML_DIR = DATA_DIR / "html"   
 
-#------CAMIIII
-# --------------------------------------------------------------------------
-# Etapa 3 - Puntuación (Okapi BM25 + bonos)
-# --------------------------------------------------------------------------
-BM25_K1 = 1.5          # saturación de la frecuencia del término
-BM25_B = 0.75          # normalización por longitud del fragmento
-PHRASE_WEIGHT = 1.0    # peso del bono por frases (bigramas) encontradas
+#Etapa 3 - Puntuación (Okapi BM25 + bonos)
+
+BM25_K1 = 1.5          
+BM25_B = 0.75         
+PHRASE_WEIGHT = 1.0    
 TOP_K = 5
 
-# --------------------------------------------------------------------------
-# Persona 2 - Etapa 4: Búsqueda aproximada
-# --------------------------------------------------------------------------
-FUZZY_MIN_LEN = 4                # palabras de 3 letras o menos no se corrigen
-FUZZY_MAX_DIST = {4: 1, 8: 2}    # longitud mínima -> distancia máxima (4-7: 1, >=8: 2)
-FUZZY_MAX_CANDIDATES = 3         # correcciones por palabra
-NGRAM_N = 2                      # bigramas (se compara con 3 en la Etapa 6)
+#Etapa 4: Búsqueda aproximada
+FUZZY_MIN_LEN = 4                
+FUZZY_MAX_DIST = {4: 1, 8: 2}    
+FUZZY_MAX_CANDIDATES = 3        
+NGRAM_N = 2                      
 NGRAM_MIN_JACCARD = 0.45
-JACCARD_RERANK_WEIGHT = 0.1      # β del reordenamiento por Jaccard de trigramas
-# --------------------------------------------------------------------------
-# Persona 2 - Etapa 5: Contexto y modelo
-# --------------------------------------------------------------------------
+JACCARD_RERANK_WEIGHT = 0.1      
+# Etapa 5: Contexto y modelo
+
 QA_MODEL = "deepset/roberta-base-squad2"
 MODEL_MAX_TOKENS = 512
-CONTEXT_CANDIDATES = 10          # top-N recuperados que entran a la selección
-CONTEXT_TOKEN_BUDGET = None      # None = 512 - tokens(pregunta) - especiales - margen
+CONTEXT_CANDIDATES = 10          
+CONTEXT_TOKEN_BUDGET = None      
 REDUNDANCY_JACCARD = 0.5
-NO_ANSWER_THRESHOLD = 7.0        # umbral del PokeChat (score_difference < 7)
-NO_ANSWER_TEXT = "I don't know"  # coincide con evaluation.answer_scores
+NO_ANSWER_THRESHOLD = 0.5
+NO_ANSWER_TEXT = "I don't know"  

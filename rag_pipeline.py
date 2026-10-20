@@ -67,6 +67,25 @@ class CosmoQuery:
             return self.exact.search(question, algorithm, top_k)
         return self.approx.search(question, algorithm, top_k)
 
+    @staticmethod
+    def _answer_per_chunk(question, chunks, use_cache=True):
+        """Una llamada al modelo por fragmento (k llamadas de O(L²) con L pequeño)
+        y se elige la de mayor score_difference. Devuelve (out, chunk_id, span)."""
+        best, best_cid = None, None
+        total_ms, any_trunc, max_tokens, all_cached = 0.0, False, 0, True
+        for c in chunks:
+            o = qa_model.answer(question, c.text, use_cache)
+            total_ms += o["time_ms"]
+            any_trunc = any_trunc or o["truncated"]
+            max_tokens = max(max_tokens, o["tokens_used"])
+            all_cached = all_cached and o.get("cached", False)
+            if best is None or o["score_difference"] > best["score_difference"]:
+                best, best_cid = o, c.chunk_id
+        out = dict(best, time_ms=total_ms, truncated=any_trunc, tokens_used=max_tokens, cached=all_cached)
+        if best["start_char"] is None:      # el mejor también fue "I don't know"
+            return out, None, None
+        return out, best_cid, (best["start_char"], best["end_char"])
+
     def ask(self, question, method="approximate", algorithm=None, selection="greedy",
             redundancy=True, k=None, use_cache=True, redundancy_threshold=None):
         if method not in METHODS:
@@ -80,19 +99,26 @@ class CosmoQuery:
                                    redundancy_threshold=redundancy_threshold)
         t2 = time.perf_counter()
 
-        if sel.context:
+        if sel.context and getattr(config, "QA_PER_CHUNK", True):
+            # Cada fragmento seleccionado se pasa POR SEPARADO al modelo y se queda la
+            # respuesta con mayor score_difference. Si se pegan varios fragmentos en un
+            # solo contexto, el modelo reparte su confianza entre fragmentos parecidos
+            # y suele preferir "no hay respuesta" (score 0) aunque la respuesta esté ahí.
+            out, source, span = self._answer_per_chunk(question, sel.selected, use_cache)
+        elif sel.context:
             out = qa_model.answer(question, sel.context, use_cache)
+            source = sel.chunk_at(out["start_char"])
+            span = None
+            if source is not None:
+                offset = next(s for cid, s, _ in sel.spans if cid == source)
+                span = (out["start_char"] - offset, out["end_char"] - offset)
         else:                               # nada recuperado: no se llama al modelo
             out = {"answer": config.NO_ANSWER_TEXT, "raw_answer": "", "score_difference": float("-inf"),
                    "start_char": None, "end_char": None, "truncated": False, "time_ms": 0.0,
                    "tokens_used": 0, "cached": False}
+            source, span = None, None
         t3 = time.perf_counter()
 
-        source = sel.chunk_at(out["start_char"])
-        span = None
-        if source is not None:
-            offset = next(s for cid, s, _ in sel.spans if cid == source)
-            span = (out["start_char"] - offset, out["end_char"] - offset)
         return RagAnswer(
             question=question, method=method, algorithm=algorithm, search=res,
             selected=sel.selected, discarded=sel.discarded, context=sel.context,
