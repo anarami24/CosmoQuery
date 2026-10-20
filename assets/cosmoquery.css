@@ -77,6 +77,14 @@ footer { display: none !important; }
 #cq-method { display: flex !important; align-items: center; }
 #cq-alg .container { display: flex; align-items: center; gap: 10px; }
 #cq-alg .container > .wrap { min-width: 240px; border-radius: 10px !important; }
+/* lista del menú: fondo sólido para que se lea encima del titular */
+#cq-alg .options {
+  background: var(--cq-card) !important; border: 1px solid #D9CFA8 !important; border-radius: 12px !important;
+  box-shadow: 0 12px 30px rgba(8, 22, 30, 0.45) !important; padding: 4px !important; z-index: 50;
+}
+#cq-alg .options li.item { color: var(--cq-ink) !important; border-radius: 8px; padding: 8px 12px !important; }
+#cq-alg .options li.item:hover, #cq-alg .options li.item.active { background: #EADFB4 !important; }
+#cq-alg .options li.item.selected { font-weight: 700; }
 #cq-method > span[data-testid="block-info"], #cq-alg span[data-testid="block-info"] {
   font-size: 14px !important; color: var(--cq-muted) !important; margin: 0 10px 0 0 !important;
 }
