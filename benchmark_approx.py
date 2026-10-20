@@ -39,7 +39,8 @@ STRATEGIES = [("topk1", "top-k (k=1)", "topk", False, 1, None), ("topk3", "top-k
               ("greedy_red03", "voraz, redundancia 0.3", "greedy", True, None, 0.3),
               ("dp", "PD (mochila)", "dp", True, None, None)]
 RAG_METHODS = [("exact", "kmp", "Exacta (KMP)"), ("approximate", "hybrid", "Aproximada (híbrida)")]
-THRESHOLDS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12]
+# se incluye siempre el umbral configurado (por ejemplo 0.5) para poder compararlo
+THRESHOLDS = sorted({0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12} | {config.NO_ANSWER_THRESHOLD})
 CACHE_FILE = config.BASE_DIR / ".cache" / "qa_answers.json"
 F1_OK = 0.5
 
@@ -438,7 +439,9 @@ def make_plots(summary, by_cat, pruning, scaling, ctx_summary, sweeps):
                 label="aciertos en preguntas sin respuesta")
     ax.plot(t, [s["f1"] for s in rows], marker="^", linewidth=2, color=MUTED, label="F1 global")
     ax.axvline(config.NO_ANSWER_THRESHOLD, color=INK, linestyle="--", linewidth=1)
-    ax.text(config.NO_ANSWER_THRESHOLD + 0.15, 0.03, "umbral del PokeChat", fontsize=8, color=INK)
+    ax.text(config.NO_ANSWER_THRESHOLD + 0.15, 0.03, f"umbral elegido ({config.NO_ANSWER_THRESHOLD:g})", fontsize=8, color=INK)
+    ax.axvline(7, color=MUTED, linestyle=":", linewidth=1)
+    ax.text(7.15, 0.10, "PokeChat (7)", fontsize=8, color=MUTED)
     ax.set_ylim(0, 1.05)
     _style(ax, "Umbral de \"I don't know\" (aproximada, contexto voraz)", "umbral de score_difference", "")
     ax.legend(fontsize=8, frameon=False)
@@ -559,7 +562,8 @@ def write_markdown(path, ctx):
 
     L += ["## G. Umbral de \"I don't know\"\n",
           "Barrido sobre las respuestas ya calculadas (no se vuelve a correr el modelo): con umbral t, la respuesta es el "
-          "tramo del modelo si score_difference ≥ t. El sistema usa t = 7, el del PokeChat.\n",
+          f"tramo del modelo si score_difference ≥ t. El sistema usa t = {config.NO_ANSWER_THRESHOLD:g}, calibrado "
+          "con calibrar_umbral.py (el PokeChat usaba 7).\n",
           "| Búsqueda / estrategia | " + " | ".join(f"t={t}" for t in THRESHOLDS) + " |",
           "|---|" + "---:|" * len(THRESHOLDS)]
     for method, strategy in (("approximate", "greedy"), ("approximate", "topk1"), ("exact", "greedy")):
@@ -616,7 +620,8 @@ def analysis_bullets(ctx):
     gd = ctx["greedy_vs_dp"]["approximate"]
     thr = [s for s in ctx["threshold"] if s["method"] == "approximate" and s["strategy"] == "greedy"]
     best_t = max(thr, key=lambda s: s["f1"])
-    t7 = next(s for s in thr if s["threshold"] == config.NO_ANSWER_THRESHOLD)
+    t7 = min(thr, key=lambda s: abs(s["threshold"] - config.NO_ANSWER_THRESHOLD))
+    t_poke = min(thr, key=lambda s: abs(s["threshold"] - 7))
     typo = lambda a, m: C[a].get("typo", {}).get(m, 0)
     b = [
         f"**¿Qué algoritmo es más rápido?** {LABEL[fastest['algorithm']]} ({fastest['time_ms_avg']:.3f} ms promedio). "
@@ -647,8 +652,8 @@ def analysis_bullets(ctx):
         f"{ctx_s[('approximate', 'topk1')]['evidence_recall']:.2f} contra voraz {ctx_s[('approximate', 'greedy')]['evidence_recall']:.2f}.",
         f"**Voraz contra PD:** eligen conjuntos distintos en {gd['different_sets']} de {gd['n']} preguntas; diferencia "
         f"de valor promedio {gd['value_gap_pct_avg']:.2f}%; la respuesta cambió en {gd['answer_changed']}.",
-        f"**Umbral:** con t = {config.NO_ANSWER_THRESHOLD:g} (PokeChat) el F1 global de la aproximada con contexto voraz es "
-        f"{t7['f1']:.3f}; el mejor del barrido es t = {best_t['threshold']} con {best_t['f1']:.3f} "
+        f"**Umbral:** con t = {config.NO_ANSWER_THRESHOLD:g} (el elegido) el F1 global de la aproximada con contexto voraz es "
+        f"{t7['f1']:.3f}, contra {t_poke['f1']:.3f} con t = 7 del PokeChat; el mejor del barrido es t = {best_t['threshold']:g} con {best_t['f1']:.3f} "
         f"(F1 con respuesta {f3(best_t['f1_answerable'])}, aciertos sin respuesta {f3(best_t['no_answer_acc'])}).",
         f"**Ventajas y limitaciones:** la aproximada corrige errores de escritura con poco costo extra y no empeora las "
         f"literales; no resuelve sinónimos (paráfrasis sin cambio) ni errores que forman otra palabra real; "

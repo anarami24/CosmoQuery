@@ -1,7 +1,7 @@
 {
   "selection": "greedy",
   "model": "deepset/roberta-base-squad2",
-  "threshold": 7.0,
+  "threshold": 0.5,
   "f1_ok": 0.5,
   "questions": [
     {
@@ -19,7 +19,7 @@
       "approximate": {
         "algorithm": "hybrid",
         "answer": "1930",
-        "score_difference": 7.519,
+        "score_difference": 8.877,
         "source_chunk": 240,
         "answer_span": [
           3,
@@ -111,19 +111,19 @@
           393
         ],
         "n_examined": 98,
-        "tokens_used": 492,
+        "tokens_used": 180,
         "tokens_context": 483,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 0.9138000023085624,
-        "t_select_ms": 2.1612999989883974,
-        "t_model_ms": 319.0353999962099,
-        "t_total_ms": 322.11049999750685
+        "t_search_ms": 0.43274999188724905,
+        "t_select_ms": 0.6152499991003424,
+        "t_model_ms": 103.10445800132584,
+        "t_total_ms": 104.15245799231343
       },
       "exact": {
         "algorithm": "kmp",
         "answer": "1930",
-        "score_difference": 7.519,
+        "score_difference": 8.877,
         "source_chunk": 240,
         "answer_span": [
           3,
@@ -215,14 +215,14 @@
           393
         ],
         "n_examined": 98,
-        "tokens_used": 492,
+        "tokens_used": 180,
         "tokens_context": 483,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 6.478299997979775,
-        "t_select_ms": 1.5739000082248822,
-        "t_model_ms": 316.40759999572765,
-        "t_total_ms": 324.4598000019323
+        "t_search_ms": 2.431917004287243,
+        "t_select_ms": 0.6088329973863438,
+        "t_model_ms": 107.63741699338425,
+        "t_total_ms": 110.67816699505784
       }
     },
     {
@@ -241,16 +241,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 4.777,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "five",
+        "score_difference": 5.78,
+        "source_chunk": 388,
+        "answer_span": [
+          244,
+          248
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "five",
-        "model_detail": "tramo correcto (five) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 388,
@@ -337,27 +340,30 @@
           350
         ],
         "n_examined": 200,
-        "tokens_used": 385,
+        "tokens_used": 153,
         "tokens_context": 373,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 10.878999994019978,
-        "t_select_ms": 4.092100003617816,
-        "t_model_ms": 252.29420000687242,
-        "t_total_ms": 267.2653000045102
+        "t_search_ms": 4.235583008266985,
+        "t_select_ms": 1.3238339888630435,
+        "t_model_ms": 105.75058301037643,
+        "t_total_ms": 111.31000000750646
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 4.777,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "five",
+        "score_difference": 5.78,
+        "source_chunk": 388,
+        "answer_span": [
+          244,
+          248
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "five",
-        "model_detail": "tramo correcto (five) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 388,
@@ -444,14 +450,14 @@
           350
         ],
         "n_examined": 200,
-        "tokens_used": 385,
+        "tokens_used": 153,
         "tokens_context": 373,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 12.303900002734736,
-        "t_select_ms": 1.4144000015221536,
-        "t_model_ms": 247.84169999475125,
-        "t_total_ms": 261.55999999900814
+        "t_search_ms": 4.435958995600231,
+        "t_select_ms": 0.5286250088829547,
+        "t_model_ms": 95.96445799979847,
+        "t_total_ms": 100.92904200428165
       }
     },
     {
@@ -583,14 +589,14 @@
           67
         ],
         "n_examined": 214,
-        "tokens_used": 487,
+        "tokens_used": 142,
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 12.29649999004323,
-        "t_select_ms": 5.2537000010488555,
-        "t_model_ms": 316.67660000675824,
-        "t_total_ms": 334.2267999978503
+        "t_search_ms": 3.7488329980988055,
+        "t_select_ms": 1.5944170008879155,
+        "t_model_ms": 151.03979100240394,
+        "t_total_ms": 156.38304100139067
       },
       "exact": {
         "algorithm": "kmp",
@@ -709,14 +715,14 @@
           369
         ],
         "n_examined": 214,
-        "tokens_used": 487,
+        "tokens_used": 142,
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 18.698999992921017,
-        "t_select_ms": 1.6063000075519085,
-        "t_model_ms": 311.63979999837466,
-        "t_total_ms": 331.9450999988476
+        "t_search_ms": 6.940957988263108,
+        "t_select_ms": 0.5342080112313852,
+        "t_model_ms": 142.09891700011212,
+        "t_total_ms": 149.57408299960662
       }
     },
     {
@@ -735,7 +741,7 @@
       "approximate": {
         "algorithm": "hybrid",
         "answer": "William Herschel",
-        "score_difference": 7.519,
+        "score_difference": 11.238,
         "source_chunk": 467,
         "answer_span": [
           373,
@@ -839,19 +845,19 @@
           476
         ],
         "n_examined": 76,
-        "tokens_used": 462,
+        "tokens_used": 149,
         "tokens_context": 453,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 1.5547000075457618,
-        "t_select_ms": 5.458100000396371,
-        "t_model_ms": 530.9477999981027,
-        "t_total_ms": 537.9606000060448
+        "t_search_ms": 0.490249993163161,
+        "t_select_ms": 1.493208997999318,
+        "t_model_ms": 122.4905410053907,
+        "t_total_ms": 124.47399999655318
       },
       "exact": {
         "algorithm": "kmp",
         "answer": "William Herschel",
-        "score_difference": 7.519,
+        "score_difference": 11.238,
         "source_chunk": 467,
         "answer_span": [
           373,
@@ -955,14 +961,14 @@
           476
         ],
         "n_examined": 76,
-        "tokens_used": 462,
+        "tokens_used": 149,
         "tokens_context": 453,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 5.361199990147725,
-        "t_select_ms": 1.7330999980913475,
-        "t_model_ms": 304.83960000856314,
-        "t_total_ms": 311.9338999968022
+        "t_search_ms": 1.647625002078712,
+        "t_select_ms": 0.5564589955611154,
+        "t_model_ms": 113.67120800423436,
+        "t_total_ms": 115.87529200187419
       }
     },
     {
@@ -986,7 +992,7 @@
       "approximate": {
         "algorithm": "hybrid",
         "answer": "Triton",
-        "score_difference": 7.614,
+        "score_difference": 9.701,
         "source_chunk": 328,
         "answer_span": [
           51,
@@ -1079,19 +1085,19 @@
           387
         ],
         "n_examined": 238,
-        "tokens_used": 360,
+        "tokens_used": 183,
         "tokens_context": 348,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 3.693499995279126,
-        "t_select_ms": 5.26940000418108,
-        "t_model_ms": 242.00790000031702,
-        "t_total_ms": 250.97079999977723
+        "t_search_ms": 1.2410419876687229,
+        "t_select_ms": 1.5205420058919117,
+        "t_model_ms": 85.65254100540187,
+        "t_total_ms": 88.4141249989625
       },
       "exact": {
         "algorithm": "kmp",
         "answer": "Triton",
-        "score_difference": 7.614,
+        "score_difference": 9.701,
         "source_chunk": 328,
         "answer_span": [
           51,
@@ -1184,14 +1190,14 @@
           387
         ],
         "n_examined": 238,
-        "tokens_used": 360,
+        "tokens_used": 183,
         "tokens_context": 348,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 23.888499999884516,
-        "t_select_ms": 1.589899999089539,
-        "t_model_ms": 235.0319999968633,
-        "t_total_ms": 260.51039999583736
+        "t_search_ms": 7.507000002078712,
+        "t_select_ms": 0.47825000365264714,
+        "t_model_ms": 78.802457996062,
+        "t_total_ms": 86.78770800179336
       }
     },
     {
@@ -1207,16 +1213,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 5.788,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "carbon dioxide",
+        "score_difference": 11.046,
+        "source_chunk": 501,
+        "answer_span": [
+          205,
+          219
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "carbon dioxide",
-        "model_detail": "tramo correcto (carbon dioxide) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 501,
@@ -1311,27 +1320,30 @@
           334
         ],
         "n_examined": 156,
-        "tokens_used": 499,
+        "tokens_used": 186,
         "tokens_context": 485,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 4.3699999951059,
-        "t_select_ms": 4.047900001751259,
-        "t_model_ms": 329.91020000190474,
-        "t_total_ms": 338.3280999987619
+        "t_search_ms": 1.5512499958276749,
+        "t_select_ms": 1.8940000009024516,
+        "t_model_ms": 134.37512499513105,
+        "t_total_ms": 137.82037499186117
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 5.788,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "carbon dioxide",
+        "score_difference": 11.046,
+        "source_chunk": 501,
+        "answer_span": [
+          205,
+          219
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "carbon dioxide",
-        "model_detail": "tramo correcto (carbon dioxide) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 501,
@@ -1426,14 +1438,14 @@
           334
         ],
         "n_examined": 156,
-        "tokens_used": 499,
+        "tokens_used": 186,
         "tokens_context": 485,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 22.572700007003732,
-        "t_select_ms": 2.331999989110045,
-        "t_model_ms": 330.5086000036681,
-        "t_total_ms": 355.4132999997819
+        "t_search_ms": 6.95041599101387,
+        "t_select_ms": 0.6356670055538416,
+        "t_model_ms": 123.54975000198465,
+        "t_total_ms": 131.13583299855236
       }
     },
     {
@@ -1449,16 +1461,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 2.362,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Saturn",
+        "score_difference": 4.585,
+        "source_chunk": 413,
+        "answer_span": [
+          373,
+          379
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "Saturn",
-        "model_detail": "tramo correcto (Saturn) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 413,
@@ -1548,27 +1563,30 @@
           99
         ],
         "n_examined": 327,
-        "tokens_used": 425,
+        "tokens_used": 150,
         "tokens_context": 411,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 5.7016000064322725,
-        "t_select_ms": 6.599500004085712,
-        "t_model_ms": 281.77149999828544,
-        "t_total_ms": 294.0726000088034
+        "t_search_ms": 1.8572080007288605,
+        "t_select_ms": 1.7801249923650175,
+        "t_model_ms": 105.82379200786818,
+        "t_total_ms": 109.46112500096206
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 2.362,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Saturn",
+        "score_difference": 4.585,
+        "source_chunk": 413,
+        "answer_span": [
+          373,
+          379
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "Saturn",
-        "model_detail": "tramo correcto (Saturn) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 413,
@@ -1658,14 +1676,14 @@
           99
         ],
         "n_examined": 327,
-        "tokens_used": 425,
+        "tokens_used": 150,
         "tokens_context": 411,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 45.13980000047013,
-        "t_select_ms": 1.5473999956157058,
-        "t_model_ms": 292.19860000011977,
-        "t_total_ms": 338.8857999962056
+        "t_search_ms": 16.29325000976678,
+        "t_select_ms": 0.5652499967254698,
+        "t_model_ms": 101.38024999469053,
+        "t_total_ms": 118.23875000118278
       }
     },
     {
@@ -1684,16 +1702,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 6.844,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "saltwater ocean",
+        "score_difference": 10.249,
+        "source_chunk": 111,
+        "answer_span": [
+          258,
+          273
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "saltwater ocean",
-        "model_detail": "tramo correcto (saltwater ocean) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 111,
@@ -1783,27 +1804,30 @@
           117
         ],
         "n_examined": 89,
-        "tokens_used": 434,
+        "tokens_used": 175,
         "tokens_context": 421,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 1.7493000050308183,
-        "t_select_ms": 6.174299996928312,
-        "t_model_ms": 287.25320000376087,
-        "t_total_ms": 295.17680000572
+        "t_search_ms": 0.5758330080425367,
+        "t_select_ms": 1.6830419917823747,
+        "t_model_ms": 107.3130000004312,
+        "t_total_ms": 109.57187500025611
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 6.844,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "saltwater ocean",
+        "score_difference": 10.249,
+        "source_chunk": 111,
+        "answer_span": [
+          258,
+          273
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "saltwater ocean",
-        "model_detail": "tramo correcto (saltwater ocean) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 111,
@@ -1893,14 +1917,14 @@
           117
         ],
         "n_examined": 89,
-        "tokens_used": 434,
+        "tokens_used": 175,
         "tokens_context": 421,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 16.598500005784445,
-        "t_select_ms": 1.7920999962370843,
-        "t_model_ms": 287.24820000934415,
-        "t_total_ms": 305.6388000113657
+        "t_search_ms": 5.23112500377465,
+        "t_select_ms": 0.5637919966829941,
+        "t_model_ms": 102.24912500416394,
+        "t_total_ms": 108.04404200462159
       }
     },
     {
@@ -1919,16 +1943,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "60 times",
+        "score_difference": 1.142,
+        "source_chunk": 340,
+        "answer_span": [
+          34,
+          42
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "60 times",
+        "model_detail": "",
         "selected": [
           {
             "id": 340,
@@ -2016,27 +2043,30 @@
           288
         ],
         "n_examined": 309,
-        "tokens_used": 439,
+        "tokens_used": 190,
         "tokens_context": 427,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 4.465999998501502,
-        "t_select_ms": 5.230599999777041,
-        "t_model_ms": 297.2462000034284,
-        "t_total_ms": 306.9428000017069
+        "t_search_ms": 1.5436249959748238,
+        "t_select_ms": 1.5306249988498166,
+        "t_model_ms": 107.73458299809135,
+        "t_total_ms": 110.808832992916
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "60 times",
+        "score_difference": 1.142,
+        "source_chunk": 340,
+        "answer_span": [
+          34,
+          42
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "60 times",
+        "model_detail": "",
         "selected": [
           {
             "id": 340,
@@ -2124,14 +2154,14 @@
           288
         ],
         "n_examined": 309,
-        "tokens_used": 439,
+        "tokens_used": 190,
         "tokens_context": 427,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 33.79619999032002,
-        "t_select_ms": 1.2827000027755275,
-        "t_model_ms": 298.6791000002995,
-        "t_total_ms": 333.75799999339506
+        "t_search_ms": 10.97966700035613,
+        "t_select_ms": 0.5688329983968288,
+        "t_model_ms": 100.45879198878538,
+        "t_total_ms": 112.00729198753834
       }
     },
     {
@@ -2147,16 +2177,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 4.963,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Carl Sagan",
+        "score_difference": 9.539,
+        "source_chunk": 505,
+        "answer_span": [
+          232,
+          242
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "Carl Sagan",
-        "model_detail": "tramo correcto (Carl Sagan) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 505,
@@ -2259,27 +2292,30 @@
           303
         ],
         "n_examined": 36,
-        "tokens_used": 492,
+        "tokens_used": 173,
         "tokens_context": 475,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 1.158899991423823,
-        "t_select_ms": 5.572800000663847,
-        "t_model_ms": 552.2308000072371,
-        "t_total_ms": 558.9624999993248
+        "t_search_ms": 0.4554170009214431,
+        "t_select_ms": 1.6133329918375239,
+        "t_model_ms": 144.42620900808834,
+        "t_total_ms": 146.4949590008473
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 4.963,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Carl Sagan",
+        "score_difference": 9.539,
+        "source_chunk": 505,
+        "answer_span": [
+          232,
+          242
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "Carl Sagan",
-        "model_detail": "tramo correcto (Carl Sagan) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 505,
@@ -2382,14 +2418,14 @@
           303
         ],
         "n_examined": 36,
-        "tokens_used": 492,
+        "tokens_used": 173,
         "tokens_context": 475,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 5.558000004384667,
-        "t_select_ms": 1.8363999988650903,
-        "t_model_ms": 334.3343000015011,
-        "t_total_ms": 341.72870000475086
+        "t_search_ms": 2.2944999946048483,
+        "t_select_ms": 0.6047909992048517,
+        "t_model_ms": 135.91758400434628,
+        "t_total_ms": 138.81687499815598
       }
     },
     {
@@ -2407,16 +2443,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "Io",
+        "score_difference": 4.207,
+        "source_chunk": 196,
+        "answer_span": [
+          164,
+          166
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Io",
+        "model_detail": "",
         "selected": [
           {
             "id": 195,
@@ -2505,27 +2544,30 @@
           143
         ],
         "n_examined": 113,
-        "tokens_used": 484,
+        "tokens_used": 188,
         "tokens_context": 472,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 2.10460000380408,
-        "t_select_ms": 5.856600007973611,
-        "t_model_ms": 322.12489999074023,
-        "t_total_ms": 330.0861000025179
+        "t_search_ms": 0.5287499952828512,
+        "t_select_ms": 1.3942090008640662,
+        "t_model_ms": 112.68066600314341,
+        "t_total_ms": 114.60362499929033
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "Io",
+        "score_difference": 4.207,
+        "source_chunk": 196,
+        "answer_span": [
+          164,
+          166
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Io",
+        "model_detail": "",
         "selected": [
           {
             "id": 195,
@@ -2614,14 +2656,14 @@
           143
         ],
         "n_examined": 113,
-        "tokens_used": 484,
+        "tokens_used": 188,
         "tokens_context": 472,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 16.671300007146783,
-        "t_select_ms": 1.9259999971836805,
-        "t_model_ms": 326.0162999940803,
-        "t_total_ms": 344.6135999984108
+        "t_search_ms": 4.913124997983687,
+        "t_select_ms": 0.5984169984003529,
+        "t_model_ms": 107.76570800226182,
+        "t_total_ms": 113.27724999864586
       }
     },
     {
@@ -2747,14 +2789,14 @@
           83
         ],
         "n_examined": 282,
-        "tokens_used": 411,
+        "tokens_used": 165,
         "tokens_context": 397,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 3.3894999942276627,
-        "t_select_ms": 4.637799996999092,
-        "t_model_ms": 285.8550000091782,
-        "t_total_ms": 293.88230000040494
+        "t_search_ms": 1.0161670070374385,
+        "t_select_ms": 1.3326659973245114,
+        "t_model_ms": 126.74891699862201,
+        "t_total_ms": 129.09775000298396
       },
       "exact": {
         "algorithm": "kmp",
@@ -2868,14 +2910,14 @@
           83
         ],
         "n_examined": 282,
-        "tokens_used": 411,
+        "tokens_used": 165,
         "tokens_context": 397,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 36.475399989285506,
-        "t_select_ms": 1.7122000135714188,
-        "t_model_ms": 283.79519999725744,
-        "t_total_ms": 321.98280000011437
+        "t_search_ms": 11.433292005676776,
+        "t_select_ms": 0.5284579965518788,
+        "t_model_ms": 121.09524999686982,
+        "t_total_ms": 133.05699999909848
       }
     },
     {
@@ -2895,16 +2937,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Great Red Spot",
+        "score_difference": 1.691,
+        "source_chunk": 200,
+        "answer_span": [
+          296,
+          310
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Great Red Spot",
+        "model_detail": "",
         "selected": [
           {
             "id": 200,
@@ -2994,27 +3039,30 @@
           137
         ],
         "n_examined": 304,
-        "tokens_used": 408,
+        "tokens_used": 185,
         "tokens_context": 394,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 30.104599994956516,
-        "t_select_ms": 5.643900003633462,
-        "t_model_ms": 274.6069999993779,
-        "t_total_ms": 310.35549999796785
+        "t_search_ms": 11.750584002584219,
+        "t_select_ms": 1.7147500038845465,
+        "t_model_ms": 90.71120798762422,
+        "t_total_ms": 104.17654199409299
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Great Red Spot",
+        "score_difference": 1.691,
+        "source_chunk": 200,
+        "answer_span": [
+          296,
+          310
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Great Red Spot",
+        "model_detail": "",
         "selected": [
           {
             "id": 200,
@@ -3104,14 +3152,14 @@
           383
         ],
         "n_examined": 288,
-        "tokens_used": 475,
+        "tokens_used": 151,
         "tokens_context": 461,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 44.08440001134295,
-        "t_select_ms": 2.9212999943410978,
-        "t_model_ms": 334.2980000015814,
-        "t_total_ms": 381.30370000726543
+        "t_search_ms": 14.547458005836233,
+        "t_select_ms": 0.9357919916510582,
+        "t_model_ms": 107.3895830049878,
+        "t_total_ms": 122.87283300247509
       }
     },
     {
@@ -3127,16 +3175,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Titan",
+        "score_difference": 0.713,
+        "source_chunk": 457,
+        "answer_span": [
+          168,
+          173
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Titan",
+        "model_detail": "",
         "selected": [
           {
             "id": 457,
@@ -3224,27 +3275,30 @@
           501
         ],
         "n_examined": 358,
-        "tokens_used": 447,
+        "tokens_used": 189,
         "tokens_context": 429,
         "token_budget": 486,
         "truncated": false,
-        "t_search_ms": 7.660799994482659,
-        "t_select_ms": 5.153300007805228,
-        "t_model_ms": 321.9113999948604,
-        "t_total_ms": 334.7254999971483
+        "t_search_ms": 2.5588749995222315,
+        "t_select_ms": 1.6674579965183511,
+        "t_model_ms": 99.25179200945422,
+        "t_total_ms": 103.4781250054948
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Titan",
+        "score_difference": 0.713,
+        "source_chunk": 457,
+        "answer_span": [
+          168,
+          173
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Titan",
+        "model_detail": "",
         "selected": [
           {
             "id": 457,
@@ -3340,14 +3394,14 @@
           403
         ],
         "n_examined": 355,
-        "tokens_used": 488,
+        "tokens_used": 174,
         "tokens_context": 470,
         "token_budget": 486,
         "truncated": false,
-        "t_search_ms": 50.619200002984144,
-        "t_select_ms": 3.6278999905334786,
-        "t_model_ms": 338.97670000442304,
-        "t_total_ms": 393.22379999794066
+        "t_search_ms": 23.702833001152612,
+        "t_select_ms": 2.96958300168626,
+        "t_model_ms": 137.66229200700764,
+        "t_total_ms": 164.3347080098465
       }
     },
     {
@@ -3365,7 +3419,7 @@
       "approximate": {
         "algorithm": "hybrid",
         "answer": "1930",
-        "score_difference": 8.168,
+        "score_difference": 8.465,
         "source_chunk": 240,
         "answer_span": [
           3,
@@ -3459,14 +3513,14 @@
           388
         ],
         "n_examined": 98,
-        "tokens_used": 391,
+        "tokens_used": 182,
         "tokens_context": 380,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 2.7181000041309744,
-        "t_select_ms": 2.036599995335564,
-        "t_model_ms": 275.4084000043804,
-        "t_total_ms": 280.1631000038469
+        "t_search_ms": 0.8509159961249679,
+        "t_select_ms": 0.5602089950116351,
+        "t_model_ms": 88.26420799596235,
+        "t_total_ms": 89.67533298709895
       },
       "exact": {
         "algorithm": "kmp",
@@ -3578,14 +3632,14 @@
           490
         ],
         "n_examined": 48,
-        "tokens_used": 463,
+        "tokens_used": 154,
         "tokens_context": 452,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 3.1993000011425465,
-        "t_select_ms": 4.240299997036345,
-        "t_model_ms": 326.2384999979986,
-        "t_total_ms": 333.6780999961775
+        "t_search_ms": 1.1919999960809946,
+        "t_select_ms": 1.0628750023897737,
+        "t_model_ms": 129.15704199986067,
+        "t_total_ms": 131.41191699833144
       }
     },
     {
@@ -3717,14 +3771,14 @@
           67
         ],
         "n_examined": 214,
-        "tokens_used": 487,
+        "tokens_used": 142,
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 1.8763000116450712,
-        "t_select_ms": 2.1572999976342544,
-        "t_model_ms": 345.8351000008406,
-        "t_total_ms": 349.86870001011994
+        "t_search_ms": 0.640458005364053,
+        "t_select_ms": 0.5646249919664115,
+        "t_model_ms": 142.94004200201016,
+        "t_total_ms": 144.14512499934062
       },
       "exact": {
         "algorithm": "kmp",
@@ -3843,14 +3897,14 @@
           369
         ],
         "n_examined": 214,
-        "tokens_used": 487,
+        "tokens_used": 142,
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 20.907800004351884,
-        "t_select_ms": 1.6489999979967251,
-        "t_model_ms": 343.32450000511017,
-        "t_total_ms": 365.8813000074588
+        "t_search_ms": 7.089541992172599,
+        "t_select_ms": 0.5857079959241673,
+        "t_model_ms": 160.88595800101757,
+        "t_total_ms": 168.56120798911434
       }
     },
     {
@@ -3874,7 +3928,7 @@
       "approximate": {
         "algorithm": "hybrid",
         "answer": "Triton",
-        "score_difference": 10.226,
+        "score_difference": 11.06,
         "source_chunk": 328,
         "answer_span": [
           51,
@@ -3969,27 +4023,30 @@
           387
         ],
         "n_examined": 238,
-        "tokens_used": 361,
+        "tokens_used": 184,
         "tokens_context": 348,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 5.287600011797622,
-        "t_select_ms": 1.8814999930327758,
-        "t_model_ms": 255.22400000772905,
-        "t_total_ms": 262.39310001255944
+        "t_search_ms": 1.6340419970219955,
+        "t_select_ms": 0.4989170120097697,
+        "t_model_ms": 83.90258299186826,
+        "t_total_ms": 86.03554200090002
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 5.621,
-        "source_chunk": null,
-        "answer_span": null,
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "answer": "Triton",
+        "score_difference": 11.06,
+        "source_chunk": 328,
+        "answer_span": [
+          51,
+          57
+        ],
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
         "raw_answer": "Triton",
-        "model_detail": "tramo correcto (Triton) rechazado por el umbral",
+        "model_detail": "",
         "selected": [
           {
             "id": 462,
@@ -4071,14 +4128,14 @@
           322
         ],
         "n_examined": 215,
-        "tokens_used": 421,
+        "tokens_used": 198,
         "tokens_context": 408,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 21.952700000838377,
-        "t_select_ms": 2.9212999943410978,
-        "t_model_ms": 294.92519999621436,
-        "t_total_ms": 319.79919999139383
+        "t_search_ms": 6.795541994506493,
+        "t_select_ms": 0.8628749928902835,
+        "t_model_ms": 98.47150000859983,
+        "t_total_ms": 106.12991699599661
       }
     },
     {
@@ -4196,27 +4253,30 @@
           99
         ],
         "n_examined": 327,
-        "tokens_used": 428,
+        "tokens_used": 153,
         "tokens_context": 411,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 7.551100003183819,
-        "t_select_ms": 2.2589000000152737,
-        "t_model_ms": 307.25189999793656,
-        "t_total_ms": 317.06190000113565
+        "t_search_ms": 2.640874998178333,
+        "t_select_ms": 0.5657500005327165,
+        "t_model_ms": 104.02524999517482,
+        "t_total_ms": 107.23187499388587
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 0.0,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "Venus",
+        "score_difference": 3.481,
+        "source_chunk": 489,
+        "answer_span": [
+          254,
+          259
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "falla del modelo",
         "evidence_in_context": true,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Venus",
+        "model_detail": "",
         "selected": [
           {
             "id": 308,
@@ -4306,14 +4366,14 @@
           78
         ],
         "n_examined": 291,
-        "tokens_used": 420,
+        "tokens_used": 127,
         "tokens_context": 403,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 44.02260000642855,
-        "t_select_ms": 3.507199988234788,
-        "t_model_ms": 298.041900008684,
-        "t_total_ms": 345.57170000334736
+        "t_search_ms": 14.701291001983918,
+        "t_select_ms": 1.1872500035678968,
+        "t_model_ms": 98.75399999145884,
+        "t_total_ms": 114.64254099701066
       }
     },
     {
@@ -4330,16 +4390,19 @@
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "I don't know",
-        "score_difference": 3.637,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "super-hot, electrically charged gas called plasma",
+        "score_difference": 8.538,
+        "source_chunk": 430,
+        "answer_span": [
+          415,
+          464
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
         "raw_answer": "super-hot, electrically charged gas called plasma",
-        "model_detail": "tramo incorrecto (super-hot, electrically charged gas called plasma)",
+        "model_detail": "",
         "selected": [
           {
             "id": 430,
@@ -4420,27 +4483,30 @@
           280
         ],
         "n_examined": 205,
-        "tokens_used": 397,
+        "tokens_used": 183,
         "tokens_context": 386,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 1.7293999990215525,
-        "t_select_ms": 2.2160999942570925,
-        "t_model_ms": 285.64519999781623,
-        "t_total_ms": 289.5906999910949
+        "t_search_ms": 0.5095829983474687,
+        "t_select_ms": 0.6784169963793829,
+        "t_model_ms": 84.96595799806528,
+        "t_total_ms": 86.15395799279213
       },
       "exact": {
         "algorithm": "kmp",
-        "answer": "I don't know",
-        "score_difference": 3.637,
-        "source_chunk": null,
-        "answer_span": null,
+        "answer": "super-hot, electrically charged gas called plasma",
+        "score_difference": 8.538,
+        "source_chunk": 430,
+        "answer_span": [
+          415,
+          464
+        ],
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
         "raw_answer": "super-hot, electrically charged gas called plasma",
-        "model_detail": "tramo incorrecto (super-hot, electrically charged gas called plasma)",
+        "model_detail": "",
         "selected": [
           {
             "id": 430,
@@ -4521,14 +4587,14 @@
           32
         ],
         "n_examined": 205,
-        "tokens_used": 397,
+        "tokens_used": 183,
         "tokens_context": 386,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 13.382300006924197,
-        "t_select_ms": 2.155099995434284,
-        "t_model_ms": 284.6209999988787,
-        "t_total_ms": 300.15840000123717
+        "t_search_ms": 4.434375005075708,
+        "t_select_ms": 0.7270000060088933,
+        "t_model_ms": 83.04679198772646,
+        "t_total_ms": 88.20816699881107
       }
     },
     {
@@ -4647,27 +4713,27 @@
           143
         ],
         "n_examined": 113,
-        "tokens_used": 487,
+        "tokens_used": 191,
         "tokens_context": 472,
         "token_budget": 489,
         "truncated": false,
-        "t_search_ms": 11.85520000581164,
-        "t_select_ms": 2.031600000918843,
-        "t_model_ms": 350.1801999955205,
-        "t_total_ms": 364.067000002251
+        "t_search_ms": 4.394540999783203,
+        "t_select_ms": 0.6090000097174197,
+        "t_model_ms": 110.78129199449904,
+        "t_total_ms": 115.78483300399967
       },
       "exact": {
         "algorithm": "kmp",
         "answer": "I don't know",
-        "score_difference": 0.0,
+        "score_difference": 0.11,
         "source_chunk": null,
         "answer_span": null,
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "",
-        "model_detail": "tramo incorrecto (vacío)",
+        "raw_answer": "Which weorld circles clnosest to our star?In the silence and darkness between the stars, where our Sun appears as just a particularly bright star, a theorized group of icy objects collectively called the Oort Cloud",
+        "model_detail": "tramo incorrecto (Which weorld circles clnosest to our star?In the silence and darkness between the stars, where our Sun appears as just a particularly bright star, a theorized group of icy objects collectively called the Oort Cloud)",
         "selected": [
           {
             "id": 441,
@@ -4768,14 +4834,14 @@
           165
         ],
         "n_examined": 54,
-        "tokens_used": 492,
+        "tokens_used": 184,
         "tokens_context": 477,
         "token_budget": 489,
         "truncated": false,
-        "t_search_ms": 8.070700001553632,
-        "t_select_ms": 3.6164000048302114,
-        "t_model_ms": 356.520699991961,
-        "t_total_ms": 368.20779999834485
+        "t_search_ms": 2.5010419922182336,
+        "t_select_ms": 1.1593750095926225,
+        "t_model_ms": 136.30404099239968,
+        "t_total_ms": 139.96445799421053
       }
     },
     {
@@ -4897,14 +4963,14 @@
           375
         ],
         "n_examined": 116,
-        "tokens_used": 497,
+        "tokens_used": 177,
         "tokens_context": 485,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 1.667100004851818,
-        "t_select_ms": 5.201699997996911,
-        "t_model_ms": 358.742299998994,
-        "t_total_ms": 365.6111000018427
+        "t_search_ms": 0.4800000024260953,
+        "t_select_ms": 1.2787500018021092,
+        "t_model_ms": 133.65708300261758,
+        "t_total_ms": 135.4158330068458
       },
       "exact": {
         "algorithm": "kmp",
@@ -5018,14 +5084,14 @@
           375
         ],
         "n_examined": 116,
-        "tokens_used": 497,
+        "tokens_used": 177,
         "tokens_context": 485,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 16.12510000995826,
-        "t_select_ms": 2.0495999924605712,
-        "t_model_ms": 363.2454000035068,
-        "t_total_ms": 381.42010000592563
+        "t_search_ms": 4.285333008738235,
+        "t_select_ms": 0.603374995989725,
+        "t_model_ms": 130.71512499300297,
+        "t_total_ms": 135.60383299773093
       }
     },
     {
@@ -5142,14 +5208,14 @@
           308
         ],
         "n_examined": 170,
-        "tokens_used": 501,
+        "tokens_used": 147,
         "tokens_context": 487,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 4.091900002094917,
-        "t_select_ms": 3.638700000010431,
-        "t_model_ms": 363.54939999000635,
-        "t_total_ms": 371.2799999921117
+        "t_search_ms": 1.3505419919965789,
+        "t_select_ms": 0.9574580035405234,
+        "t_model_ms": 127.44424999982584,
+        "t_total_ms": 129.75224999536294
       },
       "exact": {
         "algorithm": "kmp",
@@ -5256,14 +5322,14 @@
           307
         ],
         "n_examined": 169,
-        "tokens_used": 474,
+        "tokens_used": 147,
         "tokens_context": 460,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 15.900099999271333,
-        "t_select_ms": 2.558399995905347,
-        "t_model_ms": 344.26860000530723,
-        "t_total_ms": 362.7271000004839
+        "t_search_ms": 5.178457999136299,
+        "t_select_ms": 0.6814999942434952,
+        "t_model_ms": 120.59175000467803,
+        "t_total_ms": 126.45170799805783
       }
     },
     {
@@ -5372,14 +5438,14 @@
           208
         ],
         "n_examined": 150,
-        "tokens_used": 419,
+        "tokens_used": 136,
         "tokens_context": 407,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 2.1437999967020005,
-        "t_select_ms": 6.310900003882125,
-        "t_model_ms": 312.974700005725,
-        "t_total_ms": 321.42940000630915
+        "t_search_ms": 0.5951670027570799,
+        "t_select_ms": 1.5448329941136762,
+        "t_model_ms": 100.80712499620859,
+        "t_total_ms": 102.94712499307934
       },
       "exact": {
         "algorithm": "kmp",
@@ -5480,14 +5546,14 @@
           208
         ],
         "n_examined": 150,
-        "tokens_used": 419,
+        "tokens_used": 136,
         "tokens_context": 407,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 17.452500003855675,
-        "t_select_ms": 1.9023999921046197,
-        "t_model_ms": 313.3343000081368,
-        "t_total_ms": 332.6892000040971
+        "t_search_ms": 5.151208009920083,
+        "t_select_ms": 0.5984169984003529,
+        "t_model_ms": 98.2786669919733,
+        "t_total_ms": 104.02829200029373
       }
     },
     {
@@ -5609,14 +5675,14 @@
           396
         ],
         "n_examined": 71,
-        "tokens_used": 432,
+        "tokens_used": 102,
         "tokens_context": 418,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 3.5213000082876533,
-        "t_select_ms": 4.905199995846488,
-        "t_model_ms": 317.53000000026077,
-        "t_total_ms": 325.9565000043949
+        "t_search_ms": 1.0237090027658269,
+        "t_select_ms": 1.219500001752749,
+        "t_model_ms": 124.8395000002347,
+        "t_total_ms": 127.08270900475327
       },
       "exact": {
         "algorithm": "kmp",
@@ -5718,14 +5784,14 @@
           390
         ],
         "n_examined": 65,
-        "tokens_used": 392,
+        "tokens_used": 151,
         "tokens_context": 378,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 10.643400004482828,
-        "t_select_ms": 1.905899989651516,
-        "t_model_ms": 292.0295000076294,
-        "t_total_ms": 304.57880000176374
+        "t_search_ms": 2.93970899656415,
+        "t_select_ms": 0.5529159971047193,
+        "t_model_ms": 98.89450001355726,
+        "t_total_ms": 102.38712500722613
       }
     }
   ]
