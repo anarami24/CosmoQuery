@@ -540,6 +540,8 @@ def write_markdown(path, ctx):
     L += ["## F. Efecto del contexto en el modelo\n",
           f"Modelo `{config.QA_MODEL}` con la lógica del PokeChat (umbral {config.NO_ANSWER_THRESHOLD:g}). "
           f"Recuperación de {config.CONTEXT_CANDIDATES} candidatos; top-k no usa presupuesto ni redundancia. "
+          "El modelo lee cada fragmento elegido por separado y se queda con la respuesta de mayor score_difference, "
+          "así que leer más fragmentos cuesta tiempo (una llamada al modelo por fragmento), no tokens. "
           "\"Evidencia\" = algún fragmento relevante quedó en el contexto (solo preguntas con respuesta). "
           "\"F1 sin umbral\" = F1 del tramo que eligió el modelo antes de aplicar el umbral.\n",
           "| Búsqueda | Estrategia | EM | F1 | F1 (con respuesta) | F1 sin umbral | \"I don't know\" | Aciertos sin respuesta | "

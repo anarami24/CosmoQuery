@@ -156,7 +156,7 @@ Consultas: 10 literales + 10 con errores. ms promedio por consulta. El Trie y el
 
 ## F. Efecto del contexto en el modelo
 
-Modelo `deepset/roberta-base-squad2` con la lógica del PokeChat (umbral 0.5). Recuperación de 10 candidatos; top-k no usa presupuesto ni redundancia. "Evidencia" = algún fragmento relevante quedó en el contexto (solo preguntas con respuesta). "F1 sin umbral" = F1 del tramo que eligió el modelo antes de aplicar el umbral.
+Modelo `deepset/roberta-base-squad2` con la lógica del PokeChat (umbral 0.5). Recuperación de 10 candidatos; top-k no usa presupuesto ni redundancia. El modelo lee cada fragmento elegido por separado y se queda con la respuesta de mayor score_difference, así que leer más fragmentos cuesta tiempo (una llamada al modelo por fragmento), no tokens. "Evidencia" = algún fragmento relevante quedó en el contexto (solo preguntas con respuesta). "F1 sin umbral" = F1 del tramo que eligió el modelo antes de aplicar el umbral.
 
 | Búsqueda | Estrategia | EM | F1 | F1 (con respuesta) | F1 sin umbral | "I don't know" | Aciertos sin respuesta | Evidencia | Fragmentos | Redundantes descartados | Tokens contexto / presupuesto | Truncadas | Modelo ms |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|

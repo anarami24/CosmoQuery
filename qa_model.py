@@ -1,7 +1,8 @@
 #ETAPA 5 - modelo de lenguaje (deepset/roberta-base-squad2, extractivo)
 
 # answer() sigue el ask_question final del cuaderno PokeChat: argmax de inicio y de fin,
-# score_difference = (inicio + fin) - (<s> + <s>) y si es < 7 la respuesta es "I don't know".
+# score_difference = (inicio + fin) - (<s> + <s>) y si es menor al umbral la respuesta es "I don't know".
+# El cuaderno usaba 7; aquí el umbral está en config.NO_ANSWER_THRESHOLD (calibrado con calibrar_umbral.py).
 # Lo único que se agregó: los offsets para ubicar la respuesta, truncar si se pasa de 512
 # tokens (se marca como error) y "I don't know" si el tramo sale vacío.
 # La atención del modelo cuesta O(L²) con L tokens de entrada; por eso importa el presupuesto.

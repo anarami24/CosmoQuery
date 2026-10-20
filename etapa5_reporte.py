@@ -110,8 +110,10 @@ def write_markdown(path, rows, selection):
     L = ["# Etapa 5 - Respuestas del modelo con el contexto seleccionado\n",
          f"Modelo: `{config.QA_MODEL}` (extractivo, sin entrenamiento adicional), con la lógica de `ask_question` del "
          f"cuaderno PokeChat: si `score_difference` < {config.NO_ANSWER_THRESHOLD:g}, la respuesta es "
-         f"\"{config.NO_ANSWER_TEXT}\". Flujo: pregunta → búsqueda → recuperación de los {config.CONTEXT_CANDIDATES} "
-         f"mejores fragmentos → selección del contexto (`{selection}`, con eliminación de redundancia) → modelo → respuesta.\n",
+         f"\"{config.NO_ANSWER_TEXT}\" (el PokeChat usaba 7; el umbral se calibró con `calibrar_umbral.py`). "
+         f"Flujo: pregunta → búsqueda → recuperación de los {config.CONTEXT_CANDIDATES} "
+         f"mejores fragmentos → selección del contexto (`{selection}`, con eliminación de redundancia) → el modelo lee "
+         f"cada fragmento elegido por separado y se queda con la respuesta de mayor `score_difference` → respuesta.\n",
          f"Método principal: búsqueda aproximada híbrida. En paralelo: búsqueda exacta (KMP con índice). "
          f"{len(rows)} preguntas del banco de Ana: " + ", ".join(f"{k} {c}" for c, k in PLAN) +
          ", repartidas uniformemente dentro de cada categoría. Tiempos medidos sin caché del modelo, en CPU.\n",
