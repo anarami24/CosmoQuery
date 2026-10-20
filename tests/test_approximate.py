@@ -240,5 +240,100 @@ class TestApproximateSearcher(unittest.TestCase):
             self.assertLess(r.chunk_id, 50)
 
 
+class TestKnapsack(unittest.TestCase):
+    @staticmethod
+    def brute_force(values, weights, capacity):
+        """Prueba los 2^N subconjuntos."""
+        best = 0.0
+        n = len(values)
+        for mask in range(1 << n):
+            w = sum(weights[i] for i in range(n) if mask >> i & 1)
+            if w <= capacity:
+                best = max(best, sum(values[i] for i in range(n) if mask >> i & 1))
+        return best
+
+    def test_slide_example(self):
+        from context_selection import knapsack_dp, knapsack_greedy
+        chosen, value, weight = knapsack_dp([140, 60, 50], [20, 10, 25], 30)
+        self.assertEqual((chosen, value, weight), ([0, 1], 200, 30))
+        self.assertEqual(knapsack_greedy([140, 60, 50], [20, 10, 25], 30)[1], 200)
+
+    def test_dp_optimal_and_greedy_feasible(self):
+        from context_selection import knapsack_dp, knapsack_greedy
+        rng = random.Random(42)
+        for _ in range(200):
+            n = rng.randint(0, 12)
+            values = [round(rng.uniform(0, 1.5), 3) for _ in range(n)]
+            weights = [rng.randint(1, 60) for _ in range(n)]
+            capacity = rng.randint(0, 200)
+            chosen, value, weight = knapsack_dp(values, weights, capacity)
+            self.assertAlmostEqual(value, self.brute_force(values, weights, capacity))
+            self.assertAlmostEqual(value, sum(values[i] for i in chosen))
+            self.assertLessEqual(weight, capacity)
+            g_chosen, g_value, g_weight = knapsack_greedy(values, weights, capacity)
+            self.assertLessEqual(g_weight, capacity)
+            self.assertLessEqual(g_value, value + 1e-9)
+            self.assertEqual(len(set(g_chosen)), len(g_chosen))
+
+
+class TestContextSelection(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from approx_search import ApproximateSearcher
+        cls.idx = real_index()
+        cls.approx = ApproximateSearcher(cls.idx)
+
+    def fake_selector(self):
+        from context_selection import ContextSelector
+        # Contador falso (1 token por palabra) para probar la lógica sin el modelo.
+        return ContextSelector(self.idx, count_tokens=lambda t: len(t.split()), special_tokens=4)
+
+    def test_strategies_and_spans(self):
+        res = self.approx.search("When was Pluto discovered?", top_k=10)
+        sel = self.fake_selector()
+        for strategy in ("greedy", "dp"):
+            out = sel.select("When was Pluto discovered?", res.results, strategy)
+            self.assertLessEqual(out.tokens_context, out.token_budget, strategy)
+            self.assertTrue(out.selected)
+            for cid, start, end in out.spans:
+                self.assertEqual(out.context[start:end], self.idx.chunks[cid]["text"])
+                self.assertEqual(out.chunk_at(start), cid)
+            ids = [r.chunk_id for r in out.selected] + [c for c, _ in out.discarded]
+            self.assertEqual(sorted(ids), sorted(r.chunk_id for r in res.results))
+        top3 = sel.select("q", res.results, "topk", k=3)
+        self.assertEqual([r.chunk_id for r in top3.selected],
+                         sorted([r.chunk_id for r in res.results[:3]],
+                                key=lambda c: -top3.values[c]))
+
+    def test_redundancy_drops_overlapping_chunks(self):
+        from search_types import ScoredChunk
+        # Dos fragmentos idénticos: el segundo es redundante.
+        c = self.idx.chunks[10]
+        dup = [ScoredChunk(10, 2.0, c["doc"], c["section"], c["text"], coverage=1.0),
+               ScoredChunk(10, 1.0, c["doc"], c["section"], c["text"], coverage=1.0)]
+        out = self.fake_selector().select("q", dup, "greedy", redundancy=True)
+        self.assertEqual(len(out.selected), 1)
+        self.assertIn("redundante", out.discarded[0][1])
+
+    def test_real_tokenizer_never_exceeds_budget(self):
+        try:
+            import qa_model
+            qa_model.get_tokenizer()
+        except Exception as e:                           # sin transformers o sin el modelo descargado
+            self.skipTest(f"tokenizador no disponible: {e}")
+        from context_selection import ContextSelector
+        from evaluation import load_questions
+        sel = ContextSelector(self.idx)
+        for q in load_questions()[::7]:
+            res = self.approx.search(q["question"], top_k=10)
+            for strategy in ("greedy", "dp"):
+                out = sel.select(q["question"], res.results, strategy)
+                total = out.tokens_question + out.tokens_context + sel.special_tokens
+                self.assertLessEqual(total, 512, (q["id"], strategy))
+                if out.context:
+                    real = len(qa_model.get_tokenizer()(q["question"], out.context)["input_ids"])
+                    self.assertLessEqual(real, 512, (q["id"], strategy))
+
+
 if __name__ == "__main__":
     unittest.main()
