@@ -19,9 +19,9 @@ from preprocessing import STOPWORDS, highlight
 from string_matching import ALGORITHM_LABELS as EXACT_LABELS
 
 CSS_FILE = config.BASE_DIR / "assets" / "cosmoquery.css"
-# titulares en Bricolage Grotesque (Google Fonts); sin internet se usa la fuente del sistema
+# Caprasimo para titulares y Alegreya Sans para el texto (Google Fonts); sin internet se usa la del sistema
 HEAD = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-        'family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">')
+        'family=Caprasimo&family=Alegreya+Sans:wght@400;500;700&display=swap">')
 PORT = int(os.environ.get("GRADIO_SERVER_PORT", 7860))
 N_SUGGESTIONS = 6
 METHOD_CHOICES = [("Aproximada", "approximate"), ("Exacta", "exact")]
@@ -198,41 +198,50 @@ def build_ui():
 def theme():
     # colores del diseño "anochecer en Marte"; iguales aunque el navegador esté en modo claro u oscuro
     glass, line = "rgba(255,255,255,0.10)", "rgba(255,255,255,0.28)"
-    colors = dict(body_background_fill="#0D1230", body_text_color="#F4F1FF", body_text_color_subdued="#BDB6E6",
+    colors = dict(body_background_fill="#173445", body_text_color="#F5F0E1", body_text_color_subdued="#A9C3CC",
                   background_fill_primary="transparent", background_fill_secondary=glass,
                   block_background_fill="transparent", block_border_color="transparent",
-                  block_label_text_color="#BDB6E6", block_title_text_color="#BDB6E6",
+                  block_label_text_color="#A9C3CC", block_title_text_color="#A9C3CC",
                   block_label_background_fill="transparent", panel_background_fill="transparent",
                   border_color_primary=line, input_background_fill=glass, input_border_color=line,
-                  input_placeholder_color="#9C95C9", color_accent="#9B8BFA",
-                  button_primary_background_fill="#9B8BFA", button_primary_background_fill_hover="#ADA0FB",
-                  button_primary_text_color="#14112F",
-                  checkbox_label_background_fill="transparent", checkbox_label_background_fill_selected="#F4F1FF",
-                  checkbox_label_text_color="#F4F1FF", checkbox_label_text_color_selected="#1C1840",
+                  input_placeholder_color="#8FAFB9", color_accent="#F08A3E",
+                  button_primary_background_fill="#F08A3E", button_primary_background_fill_hover="#F49B55",
+                  button_primary_text_color="#1D1A14",
+                  checkbox_label_background_fill="transparent", checkbox_label_background_fill_selected="#F5F0E1",
+                  checkbox_label_text_color="#F5F0E1", checkbox_label_text_color_selected="#173445",
                   checkbox_label_border_color="transparent", checkbox_label_border_color_selected="transparent")
-    base = gr.themes.Default(primary_hue="violet", neutral_hue="slate",
-                             font=[gr.themes.GoogleFont("Figtree"), "Segoe UI", "Arial", "sans-serif"])
+    base = gr.themes.Default(primary_hue="orange", neutral_hue="slate",
+                             font=[gr.themes.Font("Alegreya Sans"), "Segoe UI", "Arial", "sans-serif"])
     dark = {f"{k}_dark": v for k, v in colors.items() if hasattr(base, f"{k}_dark")}
     return base.set(**colors, **dark)
 
 
 def sky_css():
-    # estrellas (posiciones fijas) y colinas de Marte como SVG dentro del CSS, sin archivos extra
+    # fondo dibujado con SVG dentro del CSS (sin archivos extra): estrellas, una luna crema enorme
+    # en la esquina con un astronauta diminuto sentado en el borde, y un poco de grano encima
     rnd = random.Random(7)
     stars = "".join(f'<circle cx="{rnd.uniform(0, 1366):.0f}" cy="{rnd.uniform(0, 900):.0f}" '
                     f'r="{rnd.choice([0.6, 0.7, 0.8, 1.0, 1.2, 1.6]):.1f}" fill="#fff" '
                     f'opacity="{rnd.uniform(0.35, 1):.2f}"/>' for _ in range(110))
     stars_svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="900">{stars}</svg>'
-    hills_svg = ('<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="260" viewBox="0 0 1366 260" '
-                 'preserveAspectRatio="none">'
-                 '<path d="M0 110 C 170 60 320 130 480 96 S 780 36 950 92 S 1210 140 1366 70 L 1366 260 L 0 260 Z" '
-                 'fill="#5A2539"/>'
-                 '<circle cx="1050" cy="79" r="5" fill="#FFF0CF"/>'
-                 '<path d="M0 160 C 230 120 400 186 640 152 S 1040 110 1366 174 L 1366 260 L 0 260 Z" '
-                 'fill="#2E1424"/></svg>')
+    moon_svg = ('<svg xmlns="http://www.w3.org/2000/svg" width="560" height="560" viewBox="0 0 560 560">'
+                '<circle cx="330" cy="330" r="300" fill="#EADFB4"/>'
+                '<circle cx="250" cy="250" r="46" fill="#D9CC95"/><circle cx="380" cy="190" r="26" fill="#D9CC95"/>'
+                '<circle cx="410" cy="330" r="60" fill="#D9CC95"/><circle cx="230" cy="420" r="30" fill="#D9CC95"/>'
+                '<circle cx="320" cy="470" r="18" fill="#D9CC95"/>'
+                # astronauta sentado en el borde de la luna (casco, cuerpo naranja y mochila)
+                '<g transform="translate(150 96) rotate(-38)">'
+                '<rect x="-7" y="0" width="14" height="18" rx="5" fill="#F08A3E"/>'
+                '<rect x="-11" y="2" width="5" height="12" rx="2" fill="#C9C2A8"/>'
+                '<circle cx="0" cy="-5" r="7" fill="#F5F0E1"/><circle cx="2" cy="-5" r="4" fill="#173445"/>'
+                '</g></svg>')
+    grain_svg = ('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240">'
+                 '<filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>'
+                 '<feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0"/></filter>'
+                 '<rect width="100%" height="100%" filter="url(#g)"/></svg>')
     uri = lambda svg: "url(\"data:image/svg+xml;utf8," + quote(svg) + "\")"
-    return (f".gradio-container {{ background-image: {uri(hills_svg)}, {uri(stars_svg)}, "
-            "linear-gradient(180deg, #0D1230 0%, #251F5E 42%, #5B3471 72%, #A24E5E 88%, #2B1322 100%) !important; }\n")
+    return (f".gradio-container {{ background-image: {uri(grain_svg)}, {uri(moon_svg)}, {uri(stars_svg)}, "
+            "linear-gradient(180deg, #13293A 0%, #1F4658 55%, #2E6378 100%) !important; }\n")
 
 
 def main():
