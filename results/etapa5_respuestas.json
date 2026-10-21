@@ -115,10 +115,10 @@
         "tokens_context": 483,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 0.43274999188724905,
-        "t_select_ms": 0.6152499991003424,
-        "t_model_ms": 103.10445800132584,
-        "t_total_ms": 104.15245799231343
+        "t_search_ms": 1.0059999985969625,
+        "t_select_ms": 1.9210000027669594,
+        "t_model_ms": 490.83260000043083,
+        "t_total_ms": 493.75960000179475
       },
       "exact": {
         "algorithm": "kmp",
@@ -219,10 +219,10 @@
         "tokens_context": 483,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 2.431917004287243,
-        "t_select_ms": 0.6088329973863438,
-        "t_model_ms": 107.63741699338425,
-        "t_total_ms": 110.67816699505784
+        "t_search_ms": 8.893300000636373,
+        "t_select_ms": 2.202100004069507,
+        "t_model_ms": 447.0904999980121,
+        "t_total_ms": 458.185900002718
       }
     },
     {
@@ -344,10 +344,10 @@
         "tokens_context": 373,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 4.235583008266985,
-        "t_select_ms": 1.3238339888630435,
-        "t_model_ms": 105.75058301037643,
-        "t_total_ms": 111.31000000750646
+        "t_search_ms": 11.354800000844989,
+        "t_select_ms": 4.504199998336844,
+        "t_model_ms": 453.4043000021484,
+        "t_total_ms": 469.2633000013302
       },
       "exact": {
         "algorithm": "kmp",
@@ -454,10 +454,10 @@
         "tokens_context": 373,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 4.435958995600231,
-        "t_select_ms": 0.5286250088829547,
-        "t_model_ms": 95.96445799979847,
-        "t_total_ms": 100.92904200428165
+        "t_search_ms": 15.771799997310154,
+        "t_select_ms": 1.872700006060768,
+        "t_model_ms": 435.8194999949774,
+        "t_total_ms": 453.4639999983483
       }
     },
     {
@@ -593,10 +593,10 @@
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 3.7488329980988055,
-        "t_select_ms": 1.5944170008879155,
-        "t_model_ms": 151.03979100240394,
-        "t_total_ms": 156.38304100139067
+        "t_search_ms": 14.8750000007567,
+        "t_select_ms": 6.173900001158472,
+        "t_model_ms": 562.6343000039924,
+        "t_total_ms": 583.6832000059076
       },
       "exact": {
         "algorithm": "kmp",
@@ -719,10 +719,10 @@
         "tokens_context": 475,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 6.940957988263108,
-        "t_select_ms": 0.5342080112313852,
-        "t_model_ms": 142.09891700011212,
-        "t_total_ms": 149.57408299960662
+        "t_search_ms": 22.769099996367004,
+        "t_select_ms": 1.8359000023338012,
+        "t_model_ms": 541.8092999971122,
+        "t_total_ms": 566.414299995813
       }
     },
     {
@@ -849,10 +849,10 @@
         "tokens_context": 453,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 0.490249993163161,
-        "t_select_ms": 1.493208997999318,
-        "t_model_ms": 122.4905410053907,
-        "t_total_ms": 124.47399999655318
+        "t_search_ms": 1.7177999980049208,
+        "t_select_ms": 6.038800005626399,
+        "t_model_ms": 482.9855999996653,
+        "t_total_ms": 490.7422000032966
       },
       "exact": {
         "algorithm": "kmp",
@@ -965,10 +965,10 @@
         "tokens_context": 453,
         "token_budget": 495,
         "truncated": false,
-        "t_search_ms": 1.647625002078712,
-        "t_select_ms": 0.5564589955611154,
-        "t_model_ms": 113.67120800423436,
-        "t_total_ms": 115.87529200187419
+        "t_search_ms": 6.387699999322649,
+        "t_select_ms": 2.056299999821931,
+        "t_model_ms": 455.92800000304123,
+        "t_total_ms": 464.3720000021858
       }
     },
     {
@@ -1089,10 +1089,10 @@
         "tokens_context": 348,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 1.2410419876687229,
-        "t_select_ms": 1.5205420058919117,
-        "t_model_ms": 85.65254100540187,
-        "t_total_ms": 88.4141249989625
+        "t_search_ms": 3.0181999973137863,
+        "t_select_ms": 5.351400002837181,
+        "t_model_ms": 443.79579999804264,
+        "t_total_ms": 452.1653999981936
       },
       "exact": {
         "algorithm": "kmp",
@@ -1194,10 +1194,10 @@
         "tokens_context": 348,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 7.507000002078712,
-        "t_select_ms": 0.47825000365264714,
-        "t_model_ms": 78.802457996062,
-        "t_total_ms": 86.78770800179336
+        "t_search_ms": 30.860700004268438,
+        "t_select_ms": 1.7383999947924167,
+        "t_model_ms": 356.3812000065809,
+        "t_total_ms": 388.98030000564177
       }
     },
     {
@@ -1324,10 +1324,10 @@
         "tokens_context": 485,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 1.5512499958276749,
-        "t_select_ms": 1.8940000009024516,
-        "t_model_ms": 134.37512499513105,
-        "t_total_ms": 137.82037499186117
+        "t_search_ms": 6.154499998956453,
+        "t_select_ms": 8.580000001529697,
+        "t_model_ms": 620.9065000002738,
+        "t_total_ms": 635.64100000076
       },
       "exact": {
         "algorithm": "kmp",
@@ -1442,10 +1442,10 @@
         "tokens_context": 485,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 6.95041599101387,
-        "t_select_ms": 0.6356670055538416,
-        "t_model_ms": 123.54975000198465,
-        "t_total_ms": 131.13583299855236
+        "t_search_ms": 23.312800003623124,
+        "t_select_ms": 2.0836999974562787,
+        "t_model_ms": 551.4716999969096,
+        "t_total_ms": 576.868199997989
       }
     },
     {
@@ -1567,10 +1567,10 @@
         "tokens_context": 411,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 1.8572080007288605,
-        "t_select_ms": 1.7801249923650175,
-        "t_model_ms": 105.82379200786818,
-        "t_total_ms": 109.46112500096206
+        "t_search_ms": 6.164099999296013,
+        "t_select_ms": 7.402399998682085,
+        "t_model_ms": 463.24400000594324,
+        "t_total_ms": 476.81050000392133
       },
       "exact": {
         "algorithm": "kmp",
@@ -1680,10 +1680,10 @@
         "tokens_context": 411,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 16.29325000976678,
-        "t_select_ms": 0.5652499967254698,
-        "t_model_ms": 101.38024999469053,
-        "t_total_ms": 118.23875000118278
+        "t_search_ms": 53.17039999499684,
+        "t_select_ms": 2.175800000259187,
+        "t_model_ms": 443.06610000057844,
+        "t_total_ms": 498.4122999958345
       }
     },
     {
@@ -1808,10 +1808,10 @@
         "tokens_context": 421,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 0.5758330080425367,
-        "t_select_ms": 1.6830419917823747,
-        "t_model_ms": 107.3130000004312,
-        "t_total_ms": 109.57187500025611
+        "t_search_ms": 1.892600004794076,
+        "t_select_ms": 7.740900000499096,
+        "t_model_ms": 464.5777999976417,
+        "t_total_ms": 474.2113000029349
       },
       "exact": {
         "algorithm": "kmp",
@@ -1921,10 +1921,10 @@
         "tokens_context": 421,
         "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 5.23112500377465,
-        "t_select_ms": 0.5637919966829941,
-        "t_model_ms": 102.24912500416394,
-        "t_total_ms": 108.04404200462159
+        "t_search_ms": 18.717899998591747,
+        "t_select_ms": 1.8517000062274747,
+        "t_model_ms": 484.6620999960578,
+        "t_total_ms": 505.231700000877
       }
     },
     {
@@ -2047,10 +2047,10 @@
         "tokens_context": 427,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 1.5436249959748238,
-        "t_select_ms": 1.5306249988498166,
-        "t_model_ms": 107.73458299809135,
-        "t_total_ms": 110.808832992916
+        "t_search_ms": 5.169999996724073,
+        "t_select_ms": 6.593400001293048,
+        "t_model_ms": 459.43589999660617,
+        "t_total_ms": 471.1992999946233
       },
       "exact": {
         "algorithm": "kmp",
@@ -2158,10 +2158,10 @@
         "tokens_context": 427,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 10.97966700035613,
-        "t_select_ms": 0.5688329983968288,
-        "t_model_ms": 100.45879198878538,
-        "t_total_ms": 112.00729198753834
+        "t_search_ms": 38.483000003907364,
+        "t_select_ms": 1.9003999987035058,
+        "t_model_ms": 485.38830000325106,
+        "t_total_ms": 525.7717000058619
       }
     },
     {
@@ -2296,10 +2296,10 @@
         "tokens_context": 475,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 0.4554170009214431,
-        "t_select_ms": 1.6133329918375239,
-        "t_model_ms": 144.42620900808834,
-        "t_total_ms": 146.4949590008473
+        "t_search_ms": 1.3808999938191846,
+        "t_select_ms": 6.514500004414003,
+        "t_model_ms": 575.8619999978691,
+        "t_total_ms": 583.7573999961023
       },
       "exact": {
         "algorithm": "kmp",
@@ -2422,10 +2422,10 @@
         "tokens_context": 475,
         "token_budget": 487,
         "truncated": false,
-        "t_search_ms": 2.2944999946048483,
-        "t_select_ms": 0.6047909992048517,
-        "t_model_ms": 135.91758400434628,
-        "t_total_ms": 138.81687499815598
+        "t_search_ms": 8.44140000117477,
+        "t_select_ms": 2.1733000030508265,
+        "t_model_ms": 574.9079000015627,
+        "t_total_ms": 585.5226000057883
       }
     },
     {
@@ -2548,10 +2548,10 @@
         "tokens_context": 472,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 0.5287499952828512,
-        "t_select_ms": 1.3942090008640662,
-        "t_model_ms": 112.68066600314341,
-        "t_total_ms": 114.60362499929033
+        "t_search_ms": 2.146599996194709,
+        "t_select_ms": 6.348800001433119,
+        "t_model_ms": 526.3268999988213,
+        "t_total_ms": 534.8222999964491
       },
       "exact": {
         "algorithm": "kmp",
@@ -2660,10 +2660,10 @@
         "tokens_context": 472,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 4.913124997983687,
-        "t_select_ms": 0.5984169984003529,
-        "t_model_ms": 107.76570800226182,
-        "t_total_ms": 113.27724999864586
+        "t_search_ms": 17.194699998071883,
+        "t_select_ms": 2.038699996774085,
+        "t_model_ms": 511.59500000358094,
+        "t_total_ms": 530.8283999984269
       }
     },
     {
@@ -2793,10 +2793,10 @@
         "tokens_context": 397,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 1.0161670070374385,
-        "t_select_ms": 1.3326659973245114,
-        "t_model_ms": 126.74891699862201,
-        "t_total_ms": 129.09775000298396
+        "t_search_ms": 4.212399995594751,
+        "t_select_ms": 6.150699999125209,
+        "t_model_ms": 565.3749000048265,
+        "t_total_ms": 575.7379999995464
       },
       "exact": {
         "algorithm": "kmp",
@@ -2914,10 +2914,10 @@
         "tokens_context": 397,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 11.433292005676776,
-        "t_select_ms": 0.5284579965518788,
-        "t_model_ms": 121.09524999686982,
-        "t_total_ms": 133.05699999909848
+        "t_search_ms": 42.39899999811314,
+        "t_select_ms": 1.8784999992931262,
+        "t_model_ms": 494.33980000321753,
+        "t_total_ms": 538.6173000006238
       }
     },
     {
@@ -3043,10 +3043,10 @@
         "tokens_context": 394,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 11.750584002584219,
-        "t_select_ms": 1.7147500038845465,
-        "t_model_ms": 90.71120798762422,
-        "t_total_ms": 104.17654199409299
+        "t_search_ms": 34.50360000715591,
+        "t_select_ms": 5.979999994451646,
+        "t_model_ms": 410.79919999901904,
+        "t_total_ms": 451.2828000006266
       },
       "exact": {
         "algorithm": "kmp",
@@ -3156,10 +3156,10 @@
         "tokens_context": 461,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 14.547458005836233,
-        "t_select_ms": 0.9357919916510582,
-        "t_model_ms": 107.3895830049878,
-        "t_total_ms": 122.87283300247509
+        "t_search_ms": 49.61329999787267,
+        "t_select_ms": 3.078800000366755,
+        "t_model_ms": 524.9843000055989,
+        "t_total_ms": 577.6764000038384
       }
     },
     {
@@ -3279,10 +3279,10 @@
         "tokens_context": 429,
         "token_budget": 486,
         "truncated": false,
-        "t_search_ms": 2.5588749995222315,
-        "t_select_ms": 1.6674579965183511,
-        "t_model_ms": 99.25179200945422,
-        "t_total_ms": 103.4781250054948
+        "t_search_ms": 8.699099998921156,
+        "t_select_ms": 6.256100001337472,
+        "t_model_ms": 454.86779999919236,
+        "t_total_ms": 469.822999999451
       },
       "exact": {
         "algorithm": "kmp",
@@ -3398,10 +3398,10 @@
         "tokens_context": 470,
         "token_budget": 486,
         "truncated": false,
-        "t_search_ms": 23.702833001152612,
-        "t_select_ms": 2.96958300168626,
-        "t_model_ms": 137.66229200700764,
-        "t_total_ms": 164.3347080098465
+        "t_search_ms": 61.32639999850653,
+        "t_select_ms": 4.4827999954577535,
+        "t_model_ms": 625.1422999994247,
+        "t_total_ms": 690.951499993389
       }
     },
     {
@@ -3517,10 +3517,10 @@
         "tokens_context": 380,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 0.8509159961249679,
-        "t_select_ms": 0.5602089950116351,
-        "t_model_ms": 88.26420799596235,
-        "t_total_ms": 89.67533298709895
+        "t_search_ms": 2.7222999997320585,
+        "t_select_ms": 2.3635000034119003,
+        "t_model_ms": 496.6961999962223,
+        "t_total_ms": 501.78199999936623
       },
       "exact": {
         "algorithm": "kmp",
@@ -3636,23 +3636,27 @@
         "tokens_context": 452,
         "token_budget": 493,
         "truncated": false,
-        "t_search_ms": 1.1919999960809946,
-        "t_select_ms": 1.0628750023897737,
-        "t_model_ms": 129.15704199986067,
-        "t_total_ms": 131.41191699833144
+        "t_search_ms": 5.4572000008192845,
+        "t_select_ms": 5.572399997618049,
+        "t_model_ms": 673.2069999998203,
+        "t_total_ms": 684.2365999982576
       }
     },
     {
-      "id": "Q09-T",
+      "id": "Q10-T",
       "category": "typo",
-      "question": "How long is a year on Mars?",
-      "original": "How long is a year on Mars?",
+      "question": "What is the Graet Red Spot?",
+      "original": "What is the Great Red Spot?",
       "answers": [
-        "687 Earth days",
-        "669.6 sols"
+        "a giant storm bigger than Earth",
+        "giant storm"
       ],
       "relevant": [
-        270
+        200,
+        211,
+        212,
+        213,
+        214
       ],
       "approximate": {
         "algorithm": "hybrid",
@@ -3662,123 +3666,103 @@
         "answer_span": null,
         "em": 0.0,
         "f1": 0.0,
-        "diagnosis": "recuperación incompleta",
-        "evidence_in_context": false,
+        "diagnosis": "falla del modelo",
+        "evidence_in_context": true,
         "raw_answer": "",
         "model_detail": "tramo incorrecto (vacío)",
         "selected": [
           {
-            "id": 327,
-            "doc": "Neptune Facts",
-            "section": "Orbit and Rotation",
-            "score": 11.5662,
+            "id": 213,
+            "doc": "Jupiter Facts",
+            "section": "Atmosphere",
+            "score": 31.3579,
             "coverage": 1.0,
-            "tokens": 74,
-            "relevant": false,
-            "text": "Neptune’s axis of rotation is tilted 28 degrees with respect to the plane of its orbit around the Sun, which is similar to the axial tilts of Mars and Earth. This means that Neptune experiences seasons just like we do on Earth; however, since its year is so long, each of the four seasons lasts for over 40 years."
+            "tokens": 178,
+            "relevant": true,
+            "text": "The findings also indicate these storms are far taller than expected, with some extending 60 miles (100 kilometers) below the cloud tops and others, including the Great Red Spot, extending over 200 miles (350 kilometers). This surprising discovery demonstrates that the vortices cover regions beyond those where water condenses and clouds form, below the depth where sunlight warms the atmosphere. The height and size of the Great Red Spot mean the concentration of atmospheric mass within the storm potentially could be detectable by instruments studying Jupiter’s gravity field. Two close Juno flybys over Jupiter’s most famous spot provided the opportunity to search for the storm’s gravity signature and complement the other results on its depth. With their gravity data, the Juno team was able to constrain the extent of the Great Red Spot to a depth of about 300 miles (500 kilometers) below the cloud tops."
           },
           {
-            "id": 279,
-            "doc": "Mars Facts",
-            "section": "Water on Mars",
-            "score": 10.9058,
+            "id": 211,
+            "doc": "Jupiter Facts",
+            "section": "Atmosphere",
+            "score": 22.9959,
             "coverage": 1.0,
-            "tokens": 132,
-            "relevant": false,
-            "text": "Mars appears to have had a watery past, with ancient river valley networks, deltas, and lakebeds, as well as rocks and minerals on the surface that could only have formed in liquid water. Some features suggest that Mars experienced huge floods about 3.5 billion years ago. There is water on Mars today, but the Martian atmosphere is too thin for liquid water to exist for long on the surface. Today, water on Mars is found in the form of water-ice just under the surface in the polar regions as well as in briny (salty) water, which seasonally flows down some hillsides and crater walls."
+            "tokens": 163,
+            "relevant": true,
+            "text": "Jupiter's fast rotation – spinning once every 10 hours – creates strong jet streams, separating its clouds into dark belts and bright zones across long stretches. With no solid surface to slow them down, Jupiter's spots can persist for many years. Stormy Jupiter is swept by over a dozen prevailing winds, some reaching up to 335 miles per hour (539 kilometers per hour) at the equator. The Great Red Spot, a swirling oval of clouds twice as wide as Earth, has been observed on the giant planet for more than 300 years. More recently, three smaller ovals merged to form the Little Red Spot, about half the size of its larger cousin. Findings from NASA’s Juno probe released in October 2021 provide a fuller picture of what’s going on below those clouds."
           },
           {
-            "id": 256,
-            "doc": "Mars Exploration",
-            "section": "MARS RECONNAISSANCE ORBITER | Active Mission",
-            "score": 8.5354,
-            "coverage": 0.667,
-            "tokens": 41,
+            "id": 175,
+            "doc": "Juno Mission",
+            "section": "Scientific Discoveries and Results",
+            "score": 16.5249,
+            "coverage": 1.0,
+            "tokens": 126,
             "relevant": false,
-            "text": "Mars Reconnaissance Orbiter searches for evidence that water persisted on the surface of Mars for a long period of time. Launch: Aug. 12, 2005 Mars Arrival: Mar. 10, 2006"
-          },
-          {
-            "id": 268,
-            "doc": "Mars Facts",
-            "section": "Potential for Life",
-            "score": 8.0207,
-            "coverage": 0.667,
-            "tokens": 38,
-            "relevant": false,
-            "text": "Scientists don't expect to find living things currently thriving on Mars. Instead, they're looking for signs of life that existed long ago, when Mars was warmer and covered with water."
-          },
-          {
-            "id": 252,
-            "doc": "Mars Exploration",
-            "section": "Viking@50 Downloads",
-            "score": 6.7938,
-            "coverage": 0.667,
-            "tokens": 42,
-            "relevant": false,
-            "text": "The lander that broke ground on 50 years of Mars surface exploration. Celebrate Viking — and the missions still building on what it began — with posters, computer backdrops, phone screens and more."
-          },
-          {
-            "id": 369,
-            "doc": "Oort Cloud Facts",
-            "section": "Home to Comets",
-            "score": 6.6512,
-            "coverage": 0.667,
-            "tokens": 66,
-            "relevant": false,
-            "text": "(Hence the name.) Countless more unknown long-period comets have never been seen by human eyes. Some have orbits so long that the last time they passed through the inner solar system, our species did not yet exist. Others have never ventured close to the Sun in the billions of years since they formed."
-          },
-          {
-            "id": 67,
-            "doc": "Curiosity Mission",
-            "section": "Curiosity Reaches 1-Kilometer Elevation Gain / NASA’s Curiosity Finds Organic Molecules Never Seen Before on Mars",
-            "score": 6.65,
-            "coverage": 0.667,
-            "tokens": 84,
-            "relevant": false,
-            "text": "NASA’s Curiosity Mars rover reached the pinnacle — so far — of its 14-year-old mission on Aug. 26, 2026, when it marked an elevation gain of 1 kilometer in its journey from Gale Crater on Mars up the slope of Mount Sharp. After years of lab work, the results are in: A rock that NASA’s Curiosity Mars rover drilled and analyzed in…"
+            "text": "The closest images of Io came from Juno’s passes in December 2023 and February 2024, but the monitoring will continue through the current end of the extended mission, scheduled in September 2025. Juno has spent years tracking the Great Blue Spot. Not to be confused with Jupiter’s iconic red storm, the Blue Spot is an invisible, localized, intense magnetic field on Jupiter’s equator. The spacecraft showed that the Blue Spot appears to be drifting eastward, pushed by winds measured at the surface; at its current course and speed, the spot could circumnavigate the planet in 350 years."
           }
         ],
         "discarded": [
           [
-            368,
-            "no cabe en el presupuesto (191 tokens)"
+            212,
+            "no cabe en el presupuesto (185 tokens)"
           ],
           [
-            270,
-            "no cabe en el presupuesto (188 tokens)"
+            174,
+            "no cabe en el presupuesto (186 tokens)"
           ],
           [
-            271,
-            "no cabe en el presupuesto (111 tokens)"
+            200,
+            "no cabe en el presupuesto (139 tokens)"
+          ],
+          [
+            173,
+            "no cabe en el presupuesto (182 tokens)"
+          ],
+          [
+            214,
+            "no cabe en el presupuesto (165 tokens)"
+          ],
+          [
+            247,
+            "no cabe en el presupuesto (161 tokens)"
+          ],
+          [
+            335,
+            "no cabe en el presupuesto (141 tokens)"
           ]
         ],
         "terms": [
-          "long",
-          "year",
-          "mar"
+          "great",
+          "grant",
+          "red",
+          "spot"
         ],
-        "corrections": [],
+        "corrections": [
+          "graet -> great (OSA d=1, peso 0.80)",
+          "graet -> grant (OSA d=1, peso 0.80)"
+        ],
         "retrieved": [
-          327,
-          279,
-          368,
-          270,
-          256,
-          268,
-          271,
-          252,
-          369,
-          67
+          213,
+          211,
+          212,
+          174,
+          200,
+          173,
+          214,
+          175,
+          247,
+          335
         ],
-        "n_examined": 214,
-        "tokens_used": 142,
-        "tokens_context": 475,
+        "n_examined": 64,
+        "tokens_used": 188,
+        "tokens_context": 465,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 0.640458005364053,
-        "t_select_ms": 0.5646249919664115,
-        "t_model_ms": 142.94004200201016,
-        "t_total_ms": 144.14512499934062
+        "t_search_ms": 3.4039999954984523,
+        "t_select_ms": 7.2758000023895875,
+        "t_model_ms": 536.7289999994682,
+        "t_total_ms": 547.4087999973563
       },
       "exact": {
         "algorithm": "kmp",
@@ -3788,164 +3772,146 @@
         "answer_span": null,
         "em": 0.0,
         "f1": 0.0,
-        "diagnosis": "recuperación incompleta",
-        "evidence_in_context": false,
+        "diagnosis": "falla del modelo",
+        "evidence_in_context": true,
         "raw_answer": "",
         "model_detail": "tramo incorrecto (vacío)",
         "selected": [
           {
-            "id": 327,
-            "doc": "Neptune Facts",
-            "section": "Orbit and Rotation",
-            "score": 11.487,
-            "coverage": 1.0,
-            "tokens": 74,
-            "relevant": false,
-            "text": "Neptune’s axis of rotation is tilted 28 degrees with respect to the plane of its orbit around the Sun, which is similar to the axial tilts of Mars and Earth. This means that Neptune experiences seasons just like we do on Earth; however, since its year is so long, each of the four seasons lasts for over 40 years."
-          },
-          {
-            "id": 279,
-            "doc": "Mars Facts",
-            "section": "Water on Mars",
-            "score": 10.8611,
-            "coverage": 1.0,
-            "tokens": 132,
-            "relevant": false,
-            "text": "Mars appears to have had a watery past, with ancient river valley networks, deltas, and lakebeds, as well as rocks and minerals on the surface that could only have formed in liquid water. Some features suggest that Mars experienced huge floods about 3.5 billion years ago. There is water on Mars today, but the Martian atmosphere is too thin for liquid water to exist for long on the surface. Today, water on Mars is found in the form of water-ice just under the surface in the polar regions as well as in briny (salty) water, which seasonally flows down some hillsides and crater walls."
-          },
-          {
-            "id": 256,
-            "doc": "Mars Exploration",
-            "section": "MARS RECONNAISSANCE ORBITER | Active Mission",
-            "score": 8.48,
+            "id": 213,
+            "doc": "Jupiter Facts",
+            "section": "Atmosphere",
+            "score": 15.1945,
             "coverage": 0.667,
-            "tokens": 41,
-            "relevant": false,
-            "text": "Mars Reconnaissance Orbiter searches for evidence that water persisted on the surface of Mars for a long period of time. Launch: Aug. 12, 2005 Mars Arrival: Mar. 10, 2006"
+            "tokens": 178,
+            "relevant": true,
+            "text": "The findings also indicate these storms are far taller than expected, with some extending 60 miles (100 kilometers) below the cloud tops and others, including the Great Red Spot, extending over 200 miles (350 kilometers). This surprising discovery demonstrates that the vortices cover regions beyond those where water condenses and clouds form, below the depth where sunlight warms the atmosphere. The height and size of the Great Red Spot mean the concentration of atmospheric mass within the storm potentially could be detectable by instruments studying Jupiter’s gravity field. Two close Juno flybys over Jupiter’s most famous spot provided the opportunity to search for the storm’s gravity signature and complement the other results on its depth. With their gravity data, the Juno team was able to constrain the extent of the Great Red Spot to a depth of about 300 miles (500 kilometers) below the cloud tops."
           },
           {
-            "id": 268,
-            "doc": "Mars Facts",
-            "section": "Potential for Life",
-            "score": 7.9738,
+            "id": 211,
+            "doc": "Jupiter Facts",
+            "section": "Atmosphere",
+            "score": 13.1172,
             "coverage": 0.667,
-            "tokens": 38,
-            "relevant": false,
-            "text": "Scientists don't expect to find living things currently thriving on Mars. Instead, they're looking for signs of life that existed long ago, when Mars was warmer and covered with water."
+            "tokens": 163,
+            "relevant": true,
+            "text": "Jupiter's fast rotation – spinning once every 10 hours – creates strong jet streams, separating its clouds into dark belts and bright zones across long stretches. With no solid surface to slow them down, Jupiter's spots can persist for many years. Stormy Jupiter is swept by over a dozen prevailing winds, some reaching up to 335 miles per hour (539 kilometers per hour) at the equator. The Great Red Spot, a swirling oval of clouds twice as wide as Earth, has been observed on the giant planet for more than 300 years. More recently, three smaller ovals merged to form the Little Red Spot, about half the size of its larger cousin. Findings from NASA’s Juno probe released in October 2021 provide a fuller picture of what’s going on below those clouds."
           },
           {
-            "id": 252,
-            "doc": "Mars Exploration",
-            "section": "Viking@50 Downloads",
-            "score": 6.7547,
+            "id": 175,
+            "doc": "Juno Mission",
+            "section": "Scientific Discoveries and Results",
+            "score": 9.6068,
             "coverage": 0.667,
-            "tokens": 42,
+            "tokens": 126,
             "relevant": false,
-            "text": "The lander that broke ground on 50 years of Mars surface exploration. Celebrate Viking — and the missions still building on what it began — with posters, computer backdrops, phone screens and more."
-          },
-          {
-            "id": 67,
-            "doc": "Curiosity Mission",
-            "section": "Curiosity Reaches 1-Kilometer Elevation Gain / NASA’s Curiosity Finds Organic Molecules Never Seen Before on Mars",
-            "score": 6.6222,
-            "coverage": 0.667,
-            "tokens": 84,
-            "relevant": false,
-            "text": "NASA’s Curiosity Mars rover reached the pinnacle — so far — of its 14-year-old mission on Aug. 26, 2026, when it marked an elevation gain of 1 kilometer in its journey from Gale Crater on Mars up the slope of Mount Sharp. After years of lab work, the results are in: A rock that NASA’s Curiosity Mars rover drilled and analyzed in…"
-          },
-          {
-            "id": 369,
-            "doc": "Oort Cloud Facts",
-            "section": "Home to Comets",
-            "score": 6.6219,
-            "coverage": 0.667,
-            "tokens": 66,
-            "relevant": false,
-            "text": "(Hence the name.) Countless more unknown long-period comets have never been seen by human eyes. Some have orbits so long that the last time they passed through the inner solar system, our species did not yet exist. Others have never ventured close to the Sun in the billions of years since they formed."
+            "text": "The closest images of Io came from Juno’s passes in December 2023 and February 2024, but the monitoring will continue through the current end of the extended mission, scheduled in September 2025. Juno has spent years tracking the Great Blue Spot. Not to be confused with Jupiter’s iconic red storm, the Blue Spot is an invisible, localized, intense magnetic field on Jupiter’s equator. The spacecraft showed that the Blue Spot appears to be drifting eastward, pushed by winds measured at the surface; at its current course and speed, the spot could circumnavigate the planet in 350 years."
           }
         ],
         "discarded": [
           [
-            368,
-            "no cabe en el presupuesto (191 tokens)"
+            212,
+            "no cabe en el presupuesto (185 tokens)"
           ],
           [
-            270,
-            "no cabe en el presupuesto (188 tokens)"
+            174,
+            "no cabe en el presupuesto (186 tokens)"
           ],
           [
-            271,
-            "no cabe en el presupuesto (111 tokens)"
+            200,
+            "no cabe en el presupuesto (139 tokens)"
+          ],
+          [
+            173,
+            "no cabe en el presupuesto (182 tokens)"
+          ],
+          [
+            214,
+            "no cabe en el presupuesto (165 tokens)"
+          ],
+          [
+            247,
+            "no cabe en el presupuesto (161 tokens)"
+          ],
+          [
+            267,
+            "no cabe en el presupuesto (84 tokens)"
           ]
         ],
         "terms": [
-          "long",
-          "year",
-          "mar"
+          "graet",
+          "red",
+          "spot"
         ],
         "corrections": [],
         "retrieved": [
-          327,
-          279,
-          368,
-          270,
-          256,
-          268,
-          271,
-          252,
-          67,
-          369
+          213,
+          211,
+          212,
+          175,
+          174,
+          200,
+          173,
+          214,
+          247,
+          267
         ],
-        "n_examined": 214,
-        "tokens_used": 142,
-        "tokens_context": 475,
+        "n_examined": 50,
+        "tokens_used": 188,
+        "tokens_context": 465,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 7.089541992172599,
-        "t_select_ms": 0.5857079959241673,
-        "t_model_ms": 160.88595800101757,
-        "t_total_ms": 168.56120798911434
+        "t_search_ms": 8.469600004900713,
+        "t_select_ms": 2.954600000521168,
+        "t_model_ms": 541.8793999997433,
+        "t_total_ms": 553.3036000051652
       }
     },
     {
-      "id": "Q18-T",
+      "id": "Q17-T",
       "category": "typo",
-      "question": "What is the largst moon of Neptune?",
-      "original": "What is the largest moon of Neptune?",
+      "question": "When was Neptue discovered?",
+      "original": "When was Neptune discovered?",
       "answers": [
-        "Triton"
+        "1846"
       ],
       "relevant": [
+        322,
         323,
         328,
-        329,
-        461,
-        462,
-        463,
-        464,
-        465
+        461
       ],
       "approximate": {
         "algorithm": "hybrid",
-        "answer": "Triton",
-        "score_difference": 11.06,
-        "source_chunk": 328,
+        "answer": "1846",
+        "score_difference": 5.436,
+        "source_chunk": 323,
         "answer_span": [
-          51,
-          57
+          627,
+          631
         ],
         "em": 1.0,
         "f1": 1.0,
         "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "Triton",
+        "raw_answer": "1846",
         "model_detail": "",
         "selected": [
+          {
+            "id": 461,
+            "doc": "Triton Facts",
+            "section": "Contents / Discovery",
+            "score": 14.0911,
+            "coverage": 1.0,
+            "tokens": 53,
+            "relevant": true,
+            "text": "Global color mosaic of Triton, taken in 1989 by Voyager 2 during its flyby of the Neptune system. Triton was discovered on Oct. 10, 1846 by British astronomer William Lassell, just 17 days after Neptune itself was discovered."
+          },
           {
             "id": 328,
             "doc": "Neptune Facts",
             "section": "Moons",
-            "score": 14.6407,
+            "score": 10.7094,
             "coverage": 1.0,
             "tokens": 173,
             "relevant": true,
@@ -3955,150 +3921,39 @@
             "id": 323,
             "doc": "Neptune Facts",
             "section": "Discovery and Namesake",
-            "score": 11.5861,
+            "score": 8.2991,
             "coverage": 1.0,
             "tokens": 142,
             "relevant": true,
             "text": "Galileo recorded Neptune as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because Uranus didn't travel exactly as astronomers expected it to, French mathematician Urbain Joseph Le Verrier proposed the position and mass of a then-unknown planet that could cause the observed changes to Uranus' orbit. Le Verrier sent his predictions to Johann Gottfried Galle at the Berlin Observatory, who found Neptune on his first night of searching in 1846. Seventeen days later, Neptune's largest moon Triton was discovered as well."
           },
           {
-            "id": 456,
-            "doc": "Titan Facts",
-            "section": "La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general",
-            "score": 8.0055,
-            "coverage": 0.667,
-            "tokens": 35,
+            "id": 321,
+            "doc": "Neptune Facts",
+            "section": "Our Solar System",
+            "score": 4.0133,
+            "coverage": 0.5,
+            "tokens": 30,
             "relevant": false,
-            "text": "Titan is Saturn’s largest moon. It has an earthlike cycle of liquids flowing across its surface. It is the only moon with a thick atmosphere."
+            "text": "Neptune is the eighth and most distant planet in our solar system. Sometimes Neptune is even farther from the Sun than dwarf planet Pluto."
           }
         ],
         "discarded": [
-          [
-            462,
-            "no cabe en el presupuesto (187 tokens)"
-          ],
-          [
-            387,
-            "no cabe en el presupuesto (195 tokens)"
-          ],
-          [
-            116,
-            "no cabe en el presupuesto (162 tokens)"
-          ],
-          [
-            204,
-            "no cabe en el presupuesto (189 tokens)"
-          ],
-          [
-            167,
-            "no cabe en el presupuesto (183 tokens)"
-          ],
-          [
-            383,
-            "no cabe en el presupuesto (205 tokens)"
-          ],
           [
             240,
             "no cabe en el presupuesto (173 tokens)"
-          ]
-        ],
-        "terms": [
-          "largest",
-          "moon",
-          "neptun"
-        ],
-        "corrections": [
-          "largst -> largest (OSA d=1, peso 0.86)"
-        ],
-        "retrieved": [
-          328,
-          462,
-          323,
-          116,
-          456,
-          204,
-          167,
-          383,
-          240,
-          387
-        ],
-        "n_examined": 238,
-        "tokens_used": 184,
-        "tokens_context": 348,
-        "token_budget": 491,
-        "truncated": false,
-        "t_search_ms": 1.6340419970219955,
-        "t_select_ms": 0.4989170120097697,
-        "t_model_ms": 83.90258299186826,
-        "t_total_ms": 86.03554200090002
-      },
-      "exact": {
-        "algorithm": "kmp",
-        "answer": "Triton",
-        "score_difference": 11.06,
-        "source_chunk": 328,
-        "answer_span": [
-          51,
-          57
-        ],
-        "em": 1.0,
-        "f1": 1.0,
-        "diagnosis": "correcta y respaldada",
-        "evidence_in_context": true,
-        "raw_answer": "Triton",
-        "model_detail": "",
-        "selected": [
-          {
-            "id": 462,
-            "doc": "Triton Facts",
-            "section": "Overview",
-            "score": 8.0085,
-            "coverage": 0.667,
-            "tokens": 187,
-            "relevant": true,
-            "text": "Triton is the largest of Neptune's 13 moons. It is unusual because it is the only large moon in our solar system that orbits in the opposite direction of its planet's rotation―a retrograde orbit. Scientists think Triton is a Kuiper Belt Object captured by Neptune's gravity millions of years ago. It shares many similarities with Pluto, the best known world of the Kuiper Belt. Like our own moon, Triton is locked in synchronous rotation with Neptune―one side faces the planet at all times. But because of its unusual orbital inclination both polar regions take turns facing the Sun. A 3D model of Triton, a moon of Neptune. Triton has a diameter of 1,680 miles (2,700 kilometers). Spacecraft images show the moon has a sparsely cratered surface with smooth volcanic plains, mounds and round pits formed by icy lava flows."
-          },
-          {
-            "id": 328,
-            "doc": "Neptune Facts",
-            "section": "Moons",
-            "score": 7.8915,
-            "coverage": 0.667,
-            "tokens": 173,
-            "relevant": true,
-            "text": "Neptune has 16 known moons. Neptune's largest moon Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle discovered the planet. Since Neptune was named for the Roman god of the sea, its moons are named for various lesser sea gods and nymphs in Greek mythology. Triton is the only large moon in the solar system that circles its planet in a direction opposite to the planet's rotation (a retrograde orbit), which suggests that it may once have been an independent object that Neptune captured. Triton is extremely cold, with surface temperatures around minus 391 degrees Fahrenheit (minus 235 degrees Celsius). And yet, despite this deep freeze at Triton, Voyager 2 discovered geysers spewing icy material upward more than 5 miles (8 kilometers)."
-          },
-          {
-            "id": 465,
-            "doc": "Triton Facts",
-            "section": "How Triton Got Its Name",
-            "score": 6.6391,
-            "coverage": 0.667,
-            "tokens": 50,
-            "relevant": true,
-            "text": "Triton is named after the son of Poseidon (the Greek god comparable to the Roman Neptune). Until the discovery of the second moon Nereid in 1949, Triton was commonly known as simply \"the satellite of Neptune.\""
-          }
-        ],
-        "discarded": [
-          [
-            323,
-            "no cabe en el presupuesto (142 tokens)"
           ],
           [
-            330,
-            "no cabe en el presupuesto (162 tokens)"
+            227,
+            "no cabe en el presupuesto (170 tokens)"
           ],
           [
-            341,
-            "no cabe en el presupuesto (158 tokens)"
+            386,
+            "no cabe en el presupuesto (184 tokens)"
           ],
           [
             326,
             "no cabe en el presupuesto (186 tokens)"
-          ],
-          [
-            240,
-            "no cabe en el presupuesto (173 tokens)"
           ],
           [
             325,
@@ -4110,47 +3965,36 @@
           ]
         ],
         "terms": [
-          "largst",
-          "moon",
-          "neptun"
+          "neptun",
+          "discov"
         ],
-        "corrections": [],
+        "corrections": [
+          "neptue -> neptune (OSA d=1, peso 0.86)"
+        ],
         "retrieved": [
-          462,
+          461,
           328,
-          465,
-          323,
-          330,
-          326,
           240,
-          341,
+          323,
+          227,
+          386,
+          326,
+          321,
           325,
           322
         ],
-        "n_examined": 215,
-        "tokens_used": 198,
-        "tokens_context": 408,
-        "token_budget": 491,
+        "n_examined": 101,
+        "tokens_used": 181,
+        "tokens_context": 396,
+        "token_budget": 494,
         "truncated": false,
-        "t_search_ms": 6.795541994506493,
-        "t_select_ms": 0.8628749928902835,
-        "t_model_ms": 98.47150000859983,
-        "t_total_ms": 106.12991699599661
-      }
-    },
-    {
-      "id": "Q26-T",
-      "category": "typo",
-      "question": "Which planet has an average dnesity less than watrr?",
-      "original": "Which planet has an average density less than water?",
-      "answers": [
-        "Saturn"
-      ],
-      "relevant": [
-        413
-      ],
-      "approximate": {
-        "algorithm": "hybrid",
+        "t_search_ms": 3.917499998351559,
+        "t_select_ms": 4.600499996740837,
+        "t_model_ms": 464.5885999998427,
+        "t_total_ms": 473.1065999949351
+      },
+      "exact": {
+        "algorithm": "kmp",
         "answer": "I don't know",
         "score_difference": 0.0,
         "source_chunk": null,
@@ -4163,452 +4007,368 @@
         "model_detail": "tramo incorrecto (vacío)",
         "selected": [
           {
-            "id": 413,
-            "doc": "Saturn Facts",
-            "section": "Structure",
-            "score": 28.5176,
-            "coverage": 1.0,
-            "tokens": 110,
+            "id": 461,
+            "doc": "Triton Facts",
+            "section": "Contents / Discovery",
+            "score": 4.2177,
+            "coverage": 0.5,
+            "tokens": 53,
             "relevant": true,
-            "text": "Like Jupiter, Saturn is made mostly of hydrogen and helium. At Saturn's center is a dense core of metals like iron and nickel surrounded by rocky material and other compounds solidified by intense pressure and heat. It is enveloped by liquid metallic hydrogen inside a layer of liquid hydrogen –similar to Jupiter's core but considerably smaller. It's hard to imagine, but Saturn is the only planet in our solar system with an average density that is less than water. The giant gas planet could float in a bathtub if such a colossal thing existed."
+            "text": "Global color mosaic of Triton, taken in 1989 by Voyager 2 during its flyby of the Neptune system. Triton was discovered on Oct. 10, 1846 by British astronomer William Lassell, just 17 days after Neptune itself was discovered."
           },
           {
-            "id": 308,
+            "id": 329,
+            "doc": "Neptune Facts",
+            "section": "Moons",
+            "score": 3.6835,
+            "coverage": 0.5,
+            "tokens": 89,
+            "relevant": false,
+            "text": "Triton is extremely cold, with surface temperatures around minus 391 degrees Fahrenheit (minus 235 degrees Celsius). And yet, despite this deep freeze at Triton, Voyager 2 discovered geysers spewing icy material upward more than 5 miles (8 kilometers). Triton's thin atmosphere, also discovered by Voyager, has been detected from Earth several times since, and is growing warmer, but scientists do not yet know why."
+          },
+          {
+            "id": 404,
+            "doc": "Saturn Facts",
+            "section": "Namesake",
+            "score": 3.4799,
+            "coverage": 0.5,
+            "tokens": 46,
+            "relevant": false,
+            "text": "The farthest planet from Earth discovered by the unaided human eye, Saturn has been known since ancient times. The planet is named for the Roman god of agriculture and wealth, who was also the father of Jupiter."
+          },
+          {
+            "id": 411,
+            "doc": "Saturn Facts",
+            "section": "Rings",
+            "score": 3.4642,
+            "coverage": 0.5,
+            "tokens": 145,
+            "relevant": false,
+            "text": "Named alphabetically in the order they were discovered, the rings are relatively close to each other, with the exception of a gap measuring 2,920 miles (4,700 kilometers) in width called the Cassini Division that separates Rings A and B. The main rings are A, B, and C. Rings D, E, F, and G are fainter and more recently discovered. Starting at Saturn and moving outward, there is the D ring, C ring, B ring, Cassini Division, A ring, F ring, G ring, and finally, the E ring. Much farther out, there is the very faint Phoebe ring in the orbit of Saturn's moon Phoebe."
+          },
+          {
+            "id": 306,
             "doc": "Moon Facts",
-            "section": "Size and Distance",
-            "score": 8.3708,
-            "coverage": 0.6,
-            "tokens": 103,
+            "section": "How the Moon Got Its Name",
+            "score": 3.2337,
+            "coverage": 0.5,
+            "tokens": 55,
             "relevant": false,
-            "text": "With a radius of about 1,080 miles (1,740 kilometers), the Moon is less than a third of the width of Earth. If Earth were the size of a nickel, the Moon would be about as big as a coffee bean. The Moon is an average of 238,855 miles (384,400 kilometers) away. That means 30 Earth-sized planets could fit in between Earth and the Moon. The Moon is slowly moving away from Earth, getting about an inch farther away each year."
+            "text": "Our Moon shares a name with all moons simply because people didn't know other moons existed until Galileo Galilei discovered four moons orbiting Jupiter in 1610. In Latin, the Moon was called Luna, which is the main adjective for all things Moon-related: lunar."
           },
           {
-            "id": 52,
-            "doc": "Ceres Facts",
-            "section": "Structure",
-            "score": 7.6454,
-            "coverage": 0.6,
-            "tokens": 138,
+            "id": 129,
+            "doc": "Io Facts",
+            "section": "Jupiter Moon News",
+            "score": 2.9918,
+            "coverage": 0.5,
+            "tokens": 66,
             "relevant": false,
-            "text": "Ceres is more similar to the terrestrial planets (Mercury, Venus, Earth, and Mars) than its asteroid neighbors, but it is much less dense. One of the similarities is a layered interior, but Ceres' layers aren’t as clearly defined. Ceres probably has a solid core and a mantle made of water ice. In fact, Ceres could be composed of as much as 25 percent water. If that is correct, Ceres has more water than Earth does. Ceres' crust is rocky and dusty with large salt deposits. The salts on Ceres aren’t like table salt (sodium chloride), but instead are made of different minerals like magnesium sulfate."
-          },
-          {
-            "id": 399,
-            "doc": "Pluto Facts",
-            "section": "Structure",
-            "score": 6.6394,
-            "coverage": 0.4,
-            "tokens": 62,
-            "relevant": false,
-            "text": "Pluto is about two-thirds the diameter of Earth's Moon and probably has a rocky core surrounded by a mantle of water ice. Interesting ices like methane and nitrogen frost coat the surface. Due to its lower density, Pluto's mass is about one-sixth that of Earth's Moon."
+            "text": "Webb Unravels Small Cosmic Details With Interferometry Observing Mode NASA’s Juno Takes Temperature of Jupiter’s Fiery Moon Io NASA Samples Antarctic Water to Inform Search for Life on Icy Worlds Ammonia-Bearing Compounds Discovered at Surface of Jupiter’s Moon Europa"
           }
         ],
         "discarded": [
           [
-            463,
+            410,
+            "redundante con el fragmento 411 (Jaccard 0.54)"
+          ],
+          [
+            328,
             "no cabe en el presupuesto (173 tokens)"
-          ],
-          [
-            100,
-            "no cabe en el presupuesto (189 tokens)"
-          ],
-          [
-            53,
-            "no cabe en el presupuesto (165 tokens)"
           ],
           [
             164,
             "no cabe en el presupuesto (164 tokens)"
           ],
           [
-            212,
-            "no cabe en el presupuesto (185 tokens)"
-          ],
-          [
-            99,
-            "no cabe en el presupuesto (174 tokens)"
+            490,
+            "no cabe en el presupuesto (214 tokens)"
           ]
         ],
         "terms": [
-          "planet",
-          "averag",
-          "densiti",
-          "less",
-          "water"
+          "neptu",
+          "discov"
         ],
-        "corrections": [
-          "dnesity -> density (OSA d=1, peso 0.86)",
-          "watrr -> water (OSA d=1, peso 0.80)"
-        ],
+        "corrections": [],
         "retrieved": [
-          413,
-          463,
-          100,
-          308,
-          52,
-          399,
-          53,
-          212,
+          461,
+          329,
+          328,
+          404,
+          411,
+          306,
           164,
-          99
+          410,
+          129,
+          490
         ],
-        "n_examined": 327,
+        "n_examined": 48,
         "tokens_used": 153,
-        "tokens_context": 411,
-        "token_budget": 487,
+        "tokens_context": 452,
+        "token_budget": 494,
         "truncated": false,
-        "t_search_ms": 2.640874998178333,
-        "t_select_ms": 0.5657500005327165,
-        "t_model_ms": 104.02524999517482,
-        "t_total_ms": 107.23187499388587
-      },
-      "exact": {
-        "algorithm": "kmp",
-        "answer": "Venus",
-        "score_difference": 3.481,
-        "source_chunk": 489,
+        "t_search_ms": 5.314000001817476,
+        "t_select_ms": 2.546999996411614,
+        "t_model_ms": 594.1181000016513,
+        "t_total_ms": 601.9790999998804
+      }
+    },
+    {
+      "id": "Q25-T",
+      "category": "typo",
+      "question": "What are Saturn's rinngs made of?",
+      "original": "What are Saturn's rings made of?",
+      "answers": [
+        "billions of small chunks of ice and rock",
+        "ice and rock"
+      ],
+      "relevant": [
+        409
+      ],
+      "approximate": {
+        "algorithm": "hybrid",
+        "answer": "billions of small chunks of ice and rock",
+        "score_difference": 11.757,
+        "source_chunk": 409,
         "answer_span": [
-          254,
-          259
+          185,
+          225
         ],
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "falla del modelo",
+        "em": 1.0,
+        "f1": 1.0,
+        "diagnosis": "correcta y respaldada",
         "evidence_in_context": true,
-        "raw_answer": "Venus",
+        "raw_answer": "billions of small chunks of ice and rock",
         "model_detail": "",
         "selected": [
           {
-            "id": 308,
-            "doc": "Moon Facts",
-            "section": "Size and Distance",
-            "score": 8.2958,
-            "coverage": 0.6,
-            "tokens": 103,
+            "id": 409,
+            "doc": "Saturn Facts",
+            "section": "Rings",
+            "score": 20.5111,
+            "coverage": 1.0,
+            "tokens": 158,
+            "relevant": true,
+            "text": "Saturn's rings are thought to be pieces of comets, asteroids, or shattered moons that broke up before they reached the planet, torn apart by Saturn's powerful gravity. They are made of billions of small chunks of ice and rock coated with other materials such as dust. The ring particles mostly range from tiny, dust-sized icy grains to chunks as big as a house. A few particles are as large as mountains. The rings would look mostly white if you looked at them from the cloud tops of Saturn, and interestingly, each ring orbits at a different speed around the planet. Saturn's ring system extends up to 175,000 miles (282,000 kilometers) from the planet, yet the vertical height is typically about 30 feet (10 meters) in the main rings."
+          },
+          {
+            "id": 403,
+            "doc": "Saturn Facts",
+            "section": "Introduction",
+            "score": 15.5675,
+            "coverage": 1.0,
+            "tokens": 90,
             "relevant": false,
-            "text": "With a radius of about 1,080 miles (1,740 kilometers), the Moon is less than a third of the width of Earth. If Earth were the size of a nickel, the Moon would be about as big as a coffee bean. The Moon is an average of 238,855 miles (384,400 kilometers) away. That means 30 Earth-sized planets could fit in between Earth and the Moon. The Moon is slowly moving away from Earth, getting about an inch farther away each year."
+            "text": "Like fellow gas giant Jupiter, Saturn is a massive ball made mostly of hydrogen and helium. Saturn is not the only planet to have rings, but none are as spectacular or as complex as Saturn's. Saturn also has dozens of moons. From the jets of water that spray from Saturn's moon Enceladus to the methane lakes on smoggy Titan, the Saturn system is a rich source of scientific discovery and still holds many mysteries."
+          },
+          {
+            "id": 102,
+            "doc": "Enceladus Facts",
+            "section": "Overview / Discovery",
+            "score": 10.3229,
+            "coverage": 1.0,
+            "tokens": 138,
+            "relevant": false,
+            "text": "The E ring is mostly made of ice droplets, but among them are peculiar nanograins of silica, which can only be generated where liquid water and rock interact at temperatures above about 200 degrees Fahrenheit (90 degrees Celsius). This, among other evidence, points to hydrothermal vents deep beneath Enceladus’ icy shell, not unlike the hydrothermal vents that dot Earth’s ocean floor. With its global ocean, unique chemistry and internal heat, Enceladus has become a promising lead in our search for worlds where life could exist. British astronomer William Herschel spotted Enceladus orbiting Saturn on Aug. 28, 1789."
+          },
+          {
+            "id": 40,
+            "doc": "Cassini Mission",
+            "section": "Mission to Saturn",
+            "score": 9.571,
+            "coverage": 0.667,
+            "tokens": 69,
+            "relevant": false,
+            "text": "For more than a decade, NASA’s Cassini spacecraft shared the wonders of Saturn, its spectacular rings, and its family of icy moons. Cassini was a sophisticated robotic spacecraft sent to study Saturn and its complex system of rings and moons in unprecedented detail. It was one of the most ambitious efforts ever mounted in planetary exploration."
+          }
+        ],
+        "discarded": [
+          [
+            411,
+            "redundante con el fragmento 410 (Jaccard 0.54)"
+          ],
+          [
+            101,
+            "no cabe en el presupuesto (183 tokens)"
+          ],
+          [
+            410,
+            "no cabe en el presupuesto (191 tokens)"
+          ],
+          [
+            473,
+            "no cabe en el presupuesto (117 tokens)"
+          ],
+          [
+            417,
+            "no cabe en el presupuesto (173 tokens)"
+          ],
+          [
+            41,
+            "no cabe en el presupuesto (103 tokens)"
+          ]
+        ],
+        "terms": [
+          "saturn",
+          "ring",
+          "made"
+        ],
+        "corrections": [
+          "rinngs -> rings (Jaccard 0.86 con ngram2)"
+        ],
+        "retrieved": [
+          409,
+          403,
+          410,
+          101,
+          411,
+          102,
+          40,
+          473,
+          417,
+          41
+        ],
+        "n_examined": 114,
+        "tokens_used": 171,
+        "tokens_context": 453,
+        "token_budget": 489,
+        "truncated": false,
+        "t_search_ms": 5.233600000792649,
+        "t_select_ms": 3.9164999980130233,
+        "t_model_ms": 553.7650999976904,
+        "t_total_ms": 562.9151999964961
+      },
+      "exact": {
+        "algorithm": "kmp",
+        "answer": "hydrogen and helium",
+        "score_difference": 6.979,
+        "source_chunk": 403,
+        "answer_span": [
+          71,
+          90
+        ],
+        "em": 0.0,
+        "f1": 0.333,
+        "diagnosis": "recuperación incompleta",
+        "evidence_in_context": false,
+        "raw_answer": "hydrogen and helium",
+        "model_detail": "",
+        "selected": [
+          {
+            "id": 403,
+            "doc": "Saturn Facts",
+            "section": "Introduction",
+            "score": 8.5572,
+            "coverage": 0.667,
+            "tokens": 90,
+            "relevant": false,
+            "text": "Like fellow gas giant Jupiter, Saturn is a massive ball made mostly of hydrogen and helium. Saturn is not the only planet to have rings, but none are as spectacular or as complex as Saturn's. Saturn also has dozens of moons. From the jets of water that spray from Saturn's moon Enceladus to the methane lakes on smoggy Titan, the Saturn system is a rich source of scientific discovery and still holds many mysteries."
+          },
+          {
+            "id": 412,
+            "doc": "Saturn Facts",
+            "section": "Formation",
+            "score": 7.6243,
+            "coverage": 0.667,
+            "tokens": 86,
+            "relevant": false,
+            "text": "Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the Sun. Like Jupiter, Saturn is mostly made of hydrogen and helium, the same two main components that make up the Sun."
           },
           {
             "id": 413,
             "doc": "Saturn Facts",
             "section": "Structure",
-            "score": 7.8366,
-            "coverage": 0.6,
+            "score": 7.2354,
+            "coverage": 0.667,
             "tokens": 110,
-            "relevant": true,
+            "relevant": false,
             "text": "Like Jupiter, Saturn is made mostly of hydrogen and helium. At Saturn's center is a dense core of metals like iron and nickel surrounded by rocky material and other compounds solidified by intense pressure and heat. It is enveloped by liquid metallic hydrogen inside a layer of liquid hydrogen –similar to Jupiter's core but considerably smaller. It's hard to imagine, but Saturn is the only planet in our solar system with an average density that is less than water. The giant gas planet could float in a bathtub if such a colossal thing existed."
           },
           {
-            "id": 489,
-            "doc": "Venus Facts",
-            "section": "Orbit and Rotation",
-            "score": 4.1414,
-            "coverage": 0.4,
-            "tokens": 80,
+            "id": 103,
+            "doc": "Enceladus Facts",
+            "section": "How Enceladus Got Its Name",
+            "score": 6.4344,
+            "coverage": 0.667,
+            "tokens": 89,
             "relevant": false,
-            "text": "On Earth, with its spin axis tilted by about 23 degrees, we experience summer when our part of the planet (our hemisphere) receives the Sun’s rays more directly — a result of that tilt. In winter, the tilt means the rays are less direct. No such luck on Venus: Its very slight tilt is only three degrees, which is too little to produce noticeable seasons."
+            "text": "Enceladus is named after the giant, Enceladus, of Greek mythology. William Herschel's son John Herschel suggested the name in his 1847 publication Results of Astronomical Observation made at the Cape of Good Hope, in which he suggested names for the first seven Saturnian moons discovered. He chose these names in particular because Saturn, known in Greek mythology as Cronus, was the leader of the Titans."
           },
           {
-            "id": 75,
-            "doc": "Earth Facts",
-            "section": "Size and Distance",
-            "score": 3.8205,
-            "coverage": 0.4,
-            "tokens": 112,
+            "id": 407,
+            "doc": "Saturn Facts",
+            "section": "Orbit and Rotation",
+            "score": 3.6294,
+            "coverage": 0.333,
+            "tokens": 113,
             "relevant": false,
-            "text": "With an equatorial diameter of 7,926 miles (12,756 kilometers), Earth is the biggest of the terrestrial planets and the fifth largest planet in our solar system. From an average distance of 93 million miles (150 million kilometers), Earth is exactly one astronomical unit away from the Sun because one astronomical unit (abbreviated as AU), is the distance from the Sun to Earth. This unit provides an easy way to quickly compare planets' distances from the Sun. It takes about eight minutes for light from the Sun to reach our planet."
+            "text": "Saturn has the second-shortest day in the solar system. One day on Saturn takes only 10.7 hours (the time it takes for Saturn to rotate or spin around once), and Saturn makes a complete orbit around the Sun (a year in Saturnian time) in about 29.4 Earth years (10,756 Earth days). Its axis is tilted by 26.73 degrees with respect to its orbit around the Sun, which is similar to Earth's 23.5-degree tilt. This means that, like Earth, Saturn experiences seasons."
           }
         ],
         "discarded": [
           [
-            21,
+            409,
             "no cabe en el presupuesto (158 tokens)"
           ],
           [
-            18,
-            "no cabe en el presupuesto (181 tokens)"
+            102,
+            "no cabe en el presupuesto (138 tokens)"
           ],
           [
-            20,
-            "no cabe en el presupuesto (170 tokens)"
+            475,
+            "no cabe en el presupuesto (167 tokens)"
           ],
           [
-            388,
-            "no cabe en el presupuesto (143 tokens)"
+            101,
+            "no cabe en el presupuesto (183 tokens)"
           ],
           [
-            79,
-            "no cabe en el presupuesto (146 tokens)"
-          ],
-          [
-            78,
-            "no cabe en el presupuesto (176 tokens)"
+            417,
+            "no cabe en el presupuesto (173 tokens)"
           ]
         ],
         "terms": [
-          "planet",
-          "averag",
-          "dnesiti",
-          "less",
-          "watrr"
+          "saturn",
+          "rinng",
+          "made"
         ],
         "corrections": [],
         "retrieved": [
-          308,
+          403,
+          412,
           413,
-          21,
-          18,
-          20,
-          489,
-          75,
-          388,
-          79,
-          78
+          409,
+          103,
+          102,
+          475,
+          101,
+          417,
+          407
         ],
-        "n_examined": 291,
-        "tokens_used": 127,
-        "tokens_context": 403,
-        "token_budget": 487,
+        "n_examined": 101,
+        "tokens_used": 126,
+        "tokens_context": 486,
+        "token_budget": 489,
         "truncated": false,
-        "t_search_ms": 14.701291001983918,
-        "t_select_ms": 1.1872500035678968,
-        "t_model_ms": 98.75399999145884,
-        "t_total_ms": 114.64254099701066
+        "t_search_ms": 13.537100006942637,
+        "t_select_ms": 4.11849999363767,
+        "t_model_ms": 636.2440000011702,
+        "t_total_ms": 653.8996000017505
       }
     },
     {
-      "id": "Q34-T",
+      "id": "Q35-T",
       "category": "typo",
-      "question": "What is the Sun made of?",
-      "original": "What is the Sun made of?",
+      "question": "How far is the Sun from Earht?",
+      "original": "How far is the Sun from Earth?",
       "answers": [
-        "hydrogen and helium"
+        "93 million miles (150 million kilometers)",
+        "93 million miles",
+        "150 million kilometers"
       ],
       "relevant": [
         429,
-        444
-      ],
-      "approximate": {
-        "algorithm": "hybrid",
-        "answer": "super-hot, electrically charged gas called plasma",
-        "score_difference": 8.538,
-        "source_chunk": 430,
-        "answer_span": [
-          415,
-          464
-        ],
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "recuperación incompleta",
-        "evidence_in_context": false,
-        "raw_answer": "super-hot, electrically charged gas called plasma",
-        "model_detail": "",
-        "selected": [
-          {
-            "id": 430,
-            "doc": "Sun Facts",
-            "section": "10 things",
-            "score": 8.389,
-            "coverage": 1.0,
-            "tokens": 174,
-            "relevant": false,
-            "text": "The Sun is about 100 times wider than Earth and about 10 times wider than Jupiter, the biggest planet. The Sun is the only star in our solar system. It is the center of our solar system, and its gravity holds the solar system together. Everything in our solar system revolves around it – the planets, asteroids, comets, and tiny bits of space debris. Measuring a “day” on the Sun is complicated. The Sun is made of super-hot, electrically charged gas called plasma. This plasma rotates at different speeds on different parts of the Sun. At its equator, the Sun completes one rotation in 25 Earth days. At its poles, the Sun rotates once on its axis every 36 Earth days. The part of the Sun we see from Earth – the part we call the surface – is the photosphere."
-          },
-          {
-            "id": 72,
-            "doc": "Earth Facts",
-            "section": "One Way Light Time to Sun",
-            "score": 8.0866,
-            "coverage": 1.0,
-            "tokens": 128,
-            "relevant": false,
-            "text": "While Earth is only the fifth largest planet in the solar system, it is the only planet in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the Sun, all of which are made of rock and metal. Earth is the only planet in the solar system whose English name does not come from Greek or Roman mythology. The name was taken from Old English and Germanic. It simply means \"the ground.\" There are, of course, many names for our planet in the thousands of languages spoken by the people of the third planet from the Sun."
-          },
-          {
-            "id": 412,
-            "doc": "Saturn Facts",
-            "section": "Formation",
-            "score": 6.6113,
-            "coverage": 1.0,
-            "tokens": 86,
-            "relevant": false,
-            "text": "Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the Sun. Like Jupiter, Saturn is mostly made of hydrogen and helium, the same two main components that make up the Sun."
-          }
-        ],
-        "discarded": [
-          [
-            364,
-            "no cabe en el presupuesto (161 tokens)"
-          ],
-          [
-            422,
-            "no cabe en el presupuesto (180 tokens)"
-          ],
-          [
-            78,
-            "no cabe en el presupuesto (176 tokens)"
-          ],
-          [
-            421,
-            "no cabe en el presupuesto (162 tokens)"
-          ],
-          [
-            368,
-            "no cabe en el presupuesto (191 tokens)"
-          ],
-          [
-            207,
-            "no cabe en el presupuesto (145 tokens)"
-          ],
-          [
-            280,
-            "no cabe en el presupuesto (168 tokens)"
-          ]
-        ],
-        "terms": [
-          "sun",
-          "made"
-        ],
-        "corrections": [],
-        "retrieved": [
-          430,
-          72,
-          412,
-          364,
-          422,
-          78,
-          421,
-          368,
-          207,
-          280
-        ],
-        "n_examined": 205,
-        "tokens_used": 183,
-        "tokens_context": 386,
-        "token_budget": 493,
-        "truncated": false,
-        "t_search_ms": 0.5095829983474687,
-        "t_select_ms": 0.6784169963793829,
-        "t_model_ms": 84.96595799806528,
-        "t_total_ms": 86.15395799279213
-      },
-      "exact": {
-        "algorithm": "kmp",
-        "answer": "super-hot, electrically charged gas called plasma",
-        "score_difference": 8.538,
-        "source_chunk": 430,
-        "answer_span": [
-          415,
-          464
-        ],
-        "em": 0.0,
-        "f1": 0.0,
-        "diagnosis": "recuperación incompleta",
-        "evidence_in_context": false,
-        "raw_answer": "super-hot, electrically charged gas called plasma",
-        "model_detail": "",
-        "selected": [
-          {
-            "id": 430,
-            "doc": "Sun Facts",
-            "section": "10 things",
-            "score": 8.3674,
-            "coverage": 1.0,
-            "tokens": 174,
-            "relevant": false,
-            "text": "The Sun is about 100 times wider than Earth and about 10 times wider than Jupiter, the biggest planet. The Sun is the only star in our solar system. It is the center of our solar system, and its gravity holds the solar system together. Everything in our solar system revolves around it – the planets, asteroids, comets, and tiny bits of space debris. Measuring a “day” on the Sun is complicated. The Sun is made of super-hot, electrically charged gas called plasma. This plasma rotates at different speeds on different parts of the Sun. At its equator, the Sun completes one rotation in 25 Earth days. At its poles, the Sun rotates once on its axis every 36 Earth days. The part of the Sun we see from Earth – the part we call the surface – is the photosphere."
-          },
-          {
-            "id": 72,
-            "doc": "Earth Facts",
-            "section": "One Way Light Time to Sun",
-            "score": 8.0653,
-            "coverage": 1.0,
-            "tokens": 128,
-            "relevant": false,
-            "text": "While Earth is only the fifth largest planet in the solar system, it is the only planet in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the Sun, all of which are made of rock and metal. Earth is the only planet in the solar system whose English name does not come from Greek or Roman mythology. The name was taken from Old English and Germanic. It simply means \"the ground.\" There are, of course, many names for our planet in the thousands of languages spoken by the people of the third planet from the Sun."
-          },
-          {
-            "id": 412,
-            "doc": "Saturn Facts",
-            "section": "Formation",
-            "score": 6.5917,
-            "coverage": 1.0,
-            "tokens": 86,
-            "relevant": false,
-            "text": "Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the Sun. Like Jupiter, Saturn is mostly made of hydrogen and helium, the same two main components that make up the Sun."
-          }
-        ],
-        "discarded": [
-          [
-            364,
-            "no cabe en el presupuesto (161 tokens)"
-          ],
-          [
-            422,
-            "no cabe en el presupuesto (180 tokens)"
-          ],
-          [
-            78,
-            "no cabe en el presupuesto (176 tokens)"
-          ],
-          [
-            421,
-            "no cabe en el presupuesto (162 tokens)"
-          ],
-          [
-            368,
-            "no cabe en el presupuesto (191 tokens)"
-          ],
-          [
-            207,
-            "no cabe en el presupuesto (145 tokens)"
-          ],
-          [
-            32,
-            "no cabe en el presupuesto (194 tokens)"
-          ]
-        ],
-        "terms": [
-          "sun",
-          "made"
-        ],
-        "corrections": [],
-        "retrieved": [
-          430,
-          72,
-          412,
-          364,
-          422,
-          78,
-          421,
-          368,
-          207,
-          32
-        ],
-        "n_examined": 205,
-        "tokens_used": 183,
-        "tokens_context": 386,
-        "token_budget": 493,
-        "truncated": false,
-        "t_search_ms": 4.434375005075708,
-        "t_select_ms": 0.7270000060088933,
-        "t_model_ms": 83.04679198772646,
-        "t_total_ms": 88.20816699881107
-      }
-    },
-    {
-      "id": "Q43-T",
-      "category": "typo",
-      "question": "Which weorld circles clnosest to our star?",
-      "original": "Which world circles closest to our star?",
-      "answers": [
-        "Mercury"
-      ],
-      "relevant": [
-        284,
-        383,
-        427
+        438
       ],
       "approximate": {
         "algorithm": "hybrid",
@@ -4624,224 +4384,480 @@
         "model_detail": "tramo incorrecto (vacío)",
         "selected": [
           {
-            "id": 195,
-            "doc": "Juno Mission",
-            "section": "Juno's Io Encounters",
-            "score": 9.4125,
-            "coverage": 0.75,
-            "tokens": 178,
+            "id": 340,
+            "doc": "New Horizons Mission",
+            "section": "Key Dates",
+            "score": 13.1484,
+            "coverage": 1.0,
+            "tokens": 44,
             "relevant": false,
-            "text": "Io is caught in a tug-of-war between Jupiter's powerful gravity and the smaller pull from two neighboring moons, churning its insides and creating eruptions and lakes of lava that cover its surface. Meanwhile, the gravitational pull Io exerted on Juno during the Feb. 3 flyby has reduced the spacecraft’s orbit around Jupiter to 33 days. It originally had been circling Jupiter and its environs in 53-day orbits, after it arrived at the king of planets on July 4, 2016. Jupiter's turbulent moon, Io, captured during a close approach by NASA's Juno spacecraft on Dec. 30, 2023. Juno's flyby was the closest of any spacecraft since the Galileo orbiter's visit two decades earlier, and brought Juno within about 930 miles (1,500 kilometers) of Io, the most volcanic world in our solar system."
+            "text": "Oct. 1, 2024: New Horizons passed 60 times as far from the Sun as Earth is, meaning the spacecraft is twice as far out as Pluto was when New Horizons flew by on July 14, 2015."
+          },
+          {
+            "id": 322,
+            "doc": "Neptune Facts",
+            "section": "Introduction",
+            "score": 12.1745,
+            "coverage": 1.0,
+            "tokens": 133,
+            "relevant": false,
+            "text": "Dark, cold, and whipped by supersonic winds, ice giant Neptune is more than 30 times as far from the Sun as Earth. Neptune is the only planet in our solar system not visible to the naked eye (Uranus is just barely visible for those with excellent eyesight under dark-sky conditions, provided you know where to look). In 2011 Neptune completed its first 165-year orbit since its discovery in 1846. Neptune is so far from the Sun that high noon on the big blue planet would seem like dim twilight to us. The warm light we see here on our home planet is roughly 900 times as bright as sunlight on Neptune."
+          },
+          {
+            "id": 422,
+            "doc": "Solar System Facts",
+            "section": "Size and Distance",
+            "score": 9.4726,
+            "coverage": 1.0,
+            "tokens": 180,
+            "relevant": false,
+            "text": "The Oort Cloud is made of icy pieces of space debris - some bigger than mountains – orbiting our Sun as far as 1.6 light-years away. This shell of material is thick, extending from 5,000 astronomical units to 100,000 astronomical units. One astronomical unit (or AU) is the distance from the Sun to Earth, or about 93 million miles (150 million kilometers). The Oort Cloud is the boundary of the Sun's gravitational influence, where orbiting objects can turn around and return closer to our Sun. The Sun's heliosphere doesn't extend quite as far. The heliosphere is the bubble created by the solar wind – a stream of electrically charged gas blowing outward from the Sun in all directions. The boundary where the solar wind is abruptly slowed by pressure from interstellar gases is called the termination shock. This edge occurs between 80-100 astronomical units."
           },
           {
             "id": 420,
             "doc": "Solar System Facts",
             "section": "Namesake / Potential for Life",
-            "score": 6.1895,
-            "coverage": 0.5,
+            "score": 8.6247,
+            "coverage": 1.0,
             "tokens": 72,
             "relevant": false,
             "text": "Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, \"solis.\" So far, we've only know about life on Earth, but NASA is searching for life on other worlds in our solar system and beyond."
-          },
-          {
-            "id": 196,
-            "doc": "Juno Mission",
-            "section": "Juno's Io Encounters",
-            "score": 5.9903,
-            "coverage": 0.5,
-            "tokens": 91,
-            "relevant": false,
-            "text": "Juno's flyby was the closest of any spacecraft since the Galileo orbiter's visit two decades earlier, and brought Juno within about 930 miles (1,500 kilometers) of Io, the most volcanic world in our solar system. This image was compiled from JunoCam's red, blue, and green filters, from an altitude of 1,764 miles (about 2,840 km), during Juno's 57th orbit around Jupiter."
-          },
-          {
-            "id": 467,
-            "doc": "Uranus Facts",
-            "section": "Introduction",
-            "score": 4.4138,
-            "coverage": 0.5,
-            "tokens": 133,
-            "relevant": false,
-            "text": "Uranus is a very cold and windy world. The ice giant is surrounded by 13 faint rings and 28 small moons. Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin sideways, orbiting the Sun like a rolling ball. Uranus was the first planet found with the aid of a telescope. It was discovered in 1781 by astronomer William Herschel, although he originally thought it was either a comet or a star. It was two years later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode."
           }
         ],
         "discarded": [
           [
-            167,
-            "no cabe en el presupuesto (183 tokens)"
+            310,
+            "redundante con el fragmento 309 (Jaccard 0.52)"
           ],
           [
-            116,
-            "no cabe en el presupuesto (162 tokens)"
+            309,
+            "no cabe en el presupuesto (170 tokens)"
           ],
           [
-            237,
-            "no cabe en el presupuesto (176 tokens)"
+            438,
+            "no cabe en el presupuesto (171 tokens)"
           ],
           [
-            495,
-            "no cabe en el presupuesto (168 tokens)"
+            393,
+            "no cabe en el presupuesto (182 tokens)"
           ],
           [
-            247,
-            "no cabe en el presupuesto (161 tokens)"
+            288,
+            "no cabe en el presupuesto (163 tokens)"
           ],
           [
-            143,
-            "no cabe en el presupuesto (168 tokens)"
+            365,
+            "no cabe en el presupuesto (151 tokens)"
           ]
         ],
         "terms": [
-          "world",
-          "circl",
-          "closest",
-          "star"
+          "far",
+          "sun",
+          "earth"
         ],
         "corrections": [
-          "weorld -> world (OSA d=1, peso 0.83)",
-          "clnosest -> closest (OSA d=1, peso 0.88)"
+          "earht -> earth (OSA d=1, peso 0.80)"
         ],
         "retrieved": [
-          195,
+          340,
+          322,
+          422,
+          309,
           420,
-          196,
-          167,
-          116,
-          237,
-          495,
-          247,
-          467,
-          143
+          310,
+          438,
+          393,
+          365,
+          288
         ],
-        "n_examined": 113,
+        "n_examined": 309,
         "tokens_used": 191,
-        "tokens_context": 472,
-        "token_budget": 489,
+        "tokens_context": 427,
+        "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 4.394540999783203,
-        "t_select_ms": 0.6090000097174197,
-        "t_model_ms": 110.78129199449904,
-        "t_total_ms": 115.78483300399967
+        "t_search_ms": 5.118900000525173,
+        "t_select_ms": 1.811899994208943,
+        "t_model_ms": 494.57280000206083,
+        "t_total_ms": 501.50359999679495
       },
       "exact": {
         "algorithm": "kmp",
         "answer": "I don't know",
-        "score_difference": 0.11,
+        "score_difference": 0.0,
         "source_chunk": null,
         "answer_span": null,
         "em": 0.0,
         "f1": 0.0,
         "diagnosis": "recuperación incompleta",
         "evidence_in_context": false,
-        "raw_answer": "Which weorld circles clnosest to our star?In the silence and darkness between the stars, where our Sun appears as just a particularly bright star, a theorized group of icy objects collectively called the Oort Cloud",
-        "model_detail": "tramo incorrecto (Which weorld circles clnosest to our star?In the silence and darkness between the stars, where our Sun appears as just a particularly bright star, a theorized group of icy objects collectively called the Oort Cloud)",
+        "raw_answer": "",
+        "model_detail": "tramo incorrecto (vacío)",
         "selected": [
           {
-            "id": 441,
-            "doc": "Sun Facts",
-            "section": "Rings",
-            "score": 3.6524,
-            "coverage": 0.25,
-            "tokens": 71,
+            "id": 340,
+            "doc": "New Horizons Mission",
+            "section": "Key Dates",
+            "score": 8.2478,
+            "coverage": 0.667,
+            "tokens": 44,
             "relevant": false,
-            "text": "The Sun would have been surrounded by a disk of gas and dust early in its history when the solar system was first forming, about 4.6 billion years ago. Some of that dust is still around today, in several dust rings that circle the Sun. They trace the orbits of planets, whose gravity tugs dust into place around the Sun."
+            "text": "Oct. 1, 2024: New Horizons passed 60 times as far from the Sun as Earth is, meaning the spacecraft is twice as far out as Pluto was when New Horizons flew by on July 14, 2015."
           },
           {
-            "id": 438,
-            "doc": "Sun Facts",
-            "section": "Size and Distance",
-            "score": 3.3779,
-            "coverage": 0.25,
-            "tokens": 171,
-            "relevant": false,
-            "text": "Our Sun is a medium-sized star with a radius of about 435,000 miles (700,000 kilometers). Many stars are much larger – but the Sun is far more massive than our home planet: it would take more than 330,000 Earths to match the mass of the Sun, and it would take 1.3 million Earths to fill the Sun's volume. The Sun is about 93 million miles (150 million kilometers) from Earth. Its nearest stellar neighbor is the Alpha Centauri triple star system: red dwarf star Proxima Centauri is 4.24 light-years away, and Alpha Centauri A and B – two sunlike stars orbiting each other – are 4.37 light-years away. A light-year is the distance light travels in one year, which equals about 6 trillion miles (9.5 trillion kilometers)."
-          },
-          {
-            "id": 360,
-            "doc": "Oort Cloud Facts",
+            "id": 322,
+            "doc": "Neptune Facts",
             "section": "Introduction",
-            "score": 3.2777,
-            "coverage": 0.25,
-            "tokens": 48,
+            "score": 7.9672,
+            "coverage": 0.667,
+            "tokens": 133,
             "relevant": false,
-            "text": "In the silence and darkness between the stars, where our Sun appears as just a particularly bright star, a theorized group of icy objects collectively called the Oort Cloud coast along their orbits like lazy moths around a porch light."
+            "text": "Dark, cold, and whipped by supersonic winds, ice giant Neptune is more than 30 times as far from the Sun as Earth. Neptune is the only planet in our solar system not visible to the naked eye (Uranus is just barely visible for those with excellent eyesight under dark-sky conditions, provided you know where to look). In 2011 Neptune completed its first 165-year orbit since its discovery in 1846. Neptune is so far from the Sun that high noon on the big blue planet would seem like dim twilight to us. The warm light we see here on our home planet is roughly 900 times as bright as sunlight on Neptune."
           },
           {
-            "id": 429,
-            "doc": "Sun Facts",
-            "section": "La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general",
-            "score": 3.075,
-            "coverage": 0.25,
-            "tokens": 85,
-            "relevant": false,
-            "text": "Our Sun is a 4.5 billion-year-old yellow dwarf star – a hot glowing ball of hydrogen and helium – at the center of our solar system. It’s about 93 million miles (150 million kilometers) from Earth and it’s our solar system’s only star. Without the Sun’s energy, life as we know it could not exist on our home planet."
-          },
-          {
-            "id": 443,
-            "doc": "Sun Facts",
+            "id": 365,
+            "doc": "Oort Cloud Facts",
             "section": "Formation",
-            "score": 3.0374,
-            "coverage": 0.25,
-            "tokens": 77,
+            "score": 7.2577,
+            "coverage": 0.667,
+            "tokens": 151,
             "relevant": false,
-            "text": "Like all stars, our Sun will eventually run out of energy. When it starts to die, the Sun will expand into a red giant star, becoming so large that it will engulf Mercury and Venus, and possibly Earth as well. Scientists predict the Sun is a little less than halfway through its lifetime and will last another 5 billion years or so before it becomes a white dwarf."
+            "text": "The leading idea for the formation of the Oort Cloud says that these icy objects were not always so far from the Sun. After the planets formed 4.6 billion years ago, the region in which they formed still contained lots of leftover chunks called planetesimals. Planetesimals formed from the same material as the planets did. The gravity of the planets (primarily Jupiter) then scattered the planetesimals every which way. Some planetesimals were ejected from the solar system entirely, while others were flung into eccentric orbits where they were still held by the Sun’s gravity, but were far enough out that galactic influences also tugged on them. Likely the strongest influence was the tidal force from our galaxy itself."
           },
           {
-            "id": 418,
+            "id": 420,
             "doc": "Solar System Facts",
-            "section": "La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general",
-            "score": 2.8273,
-            "coverage": 0.25,
-            "tokens": 27,
+            "section": "Namesake / Potential for Life",
+            "score": 5.5116,
+            "coverage": 0.667,
+            "tokens": 72,
             "relevant": false,
-            "text": "Our solar system has one star, eight planets, five dwarf planets, hundreds of moons and thousands of comets and asteroids."
+            "text": "Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, \"solis.\" So far, we've only know about life on Earth, but NASA is searching for life on other worlds in our solar system and beyond."
           }
         ],
         "discarded": [
           [
-            434,
-            "no cabe en el presupuesto (166 tokens)"
+            422,
+            "no cabe en el presupuesto (180 tokens)"
           ],
           [
-            435,
+            32,
+            "no cabe en el presupuesto (194 tokens)"
+          ],
+          [
+            393,
             "no cabe en el presupuesto (182 tokens)"
           ],
           [
-            116,
-            "no cabe en el presupuesto (162 tokens)"
+            309,
+            "no cabe en el presupuesto (170 tokens)"
           ],
           [
-            165,
-            "no cabe en el presupuesto (157 tokens)"
+            438,
+            "no cabe en el presupuesto (171 tokens)"
+          ],
+          [
+            288,
+            "no cabe en el presupuesto (163 tokens)"
           ]
         ],
         "terms": [
-          "weorld",
-          "circl",
-          "clnosest",
-          "star"
+          "far",
+          "sun",
+          "earht"
         ],
         "corrections": [],
         "retrieved": [
-          441,
+          340,
+          322,
+          365,
+          422,
+          420,
+          32,
+          393,
+          309,
           438,
-          360,
-          434,
-          435,
-          429,
-          443,
-          418,
-          116,
-          165
+          288
         ],
-        "n_examined": 54,
-        "tokens_used": 184,
-        "tokens_context": 477,
-        "token_budget": 489,
+        "n_examined": 193,
+        "tokens_used": 162,
+        "tokens_context": 398,
+        "token_budget": 491,
         "truncated": false,
-        "t_search_ms": 2.5010419922182336,
-        "t_select_ms": 1.1593750095926225,
-        "t_model_ms": 136.30404099239968,
-        "t_total_ms": 139.96445799421053
+        "t_search_ms": 25.18489999783924,
+        "t_select_ms": 3.450600001087878,
+        "t_model_ms": 475.10460000194144,
+        "t_total_ms": 503.74010000086855
+      }
+    },
+    {
+      "id": "Q42-T",
+      "category": "typo",
+      "question": "Where do comeos come from?",
+      "original": "Where do comets come from?",
+      "answers": [
+        "the Kuiper Belt and the Oort Cloud",
+        "Kuiper Belt",
+        "Oort Cloud"
+      ],
+      "relevant": [
+        59,
+        60,
+        220,
+        222,
+        225,
+        226,
+        245,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368
+      ],
+      "approximate": {
+        "algorithm": "hybrid",
+        "answer": "I don't know",
+        "score_difference": 0.0,
+        "source_chunk": null,
+        "answer_span": null,
+        "em": 0.0,
+        "f1": 0.0,
+        "diagnosis": "falla del modelo",
+        "evidence_in_context": true,
+        "raw_answer": "",
+        "model_detail": "tramo incorrecto (vacío)",
+        "selected": [
+          {
+            "id": 359,
+            "doc": "Oort Cloud Facts",
+            "section": "La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general",
+            "score": 11.6882,
+            "coverage": 1.0,
+            "tokens": 60,
+            "relevant": true,
+            "text": "In 1950, astronomer Jan Oort proposed that some comets come from a vast, extremely distant spherical shell of icy bodies surrounding the solar system. This giant swarm of objects, now named the Oort Cloud, occupies space at a distance between 5,000 and 100,000 astronomical units."
+          },
+          {
+            "id": 245,
+            "doc": "Kuiper Belt Facts",
+            "section": "Relationship to Comets",
+            "score": 10.5841,
+            "coverage": 1.0,
+            "tokens": 129,
+            "relevant": true,
+            "text": "Given their frequent trips into the inner solar system, most tend to exhaust their volatile ices fairly quickly and eventually become dormant, or dead, comets with little or no detectable activity. Researchers have found that some near-Earth asteroids are actually burned-out comets, and most of them would have started out in the Kuiper Belt. Many comets crash into the Sun or the planets. Those that have close encounters with Jupiter tend to be ripped apart or tossed out of the solar system entirely. The other source of comets is the Oort Cloud, where most long-period comets on highly tilted orbits come from."
+          },
+          {
+            "id": 426,
+            "doc": "Solar System Facts",
+            "section": "Formation",
+            "score": 8.0241,
+            "coverage": 1.0,
+            "tokens": 93,
+            "relevant": false,
+            "text": "These clumps smashed into one another, forming larger and larger objects. Some of them grew big enough for their gravity to shape them into spheres, becoming planets, dwarf planets, and large moons. In other cases, planets did not form: the asteroid belt is made of bits and pieces of the early solar system that could never quite come together into a planet. Other smaller leftover pieces became asteroids, comets, meteoroids, and small, irregular moons."
+          },
+          {
+            "id": 182,
+            "doc": "Juno Mission",
+            "section": "Continuing a Legacy",
+            "score": 6.1347,
+            "coverage": 1.0,
+            "tokens": 35,
+            "relevant": false,
+            "text": "Juno builds on the work of previous missions to Jupiter, and paves the way for missions yet to come. Learn About the Heritage of Discovery That Led to Juno"
+          },
+          {
+            "id": 251,
+            "doc": "Mars Exploration",
+            "section": "‘Green for Touchdown,’ on the Red Planet",
+            "score": 5.5077,
+            "coverage": 1.0,
+            "tokens": 50,
+            "relevant": false,
+            "text": "Video celebrating the 50th anniversary of the Viking 1 landing on Mars, the era of Martian surface exploration that it began, and the missions and discoveries ever since, and those yet to come. Includes historic footage and commentary from Viking team members."
+          },
+          {
+            "id": 232,
+            "doc": "Kuiper Belt Facts",
+            "section": "Classical KBOs",
+            "score": 4.7881,
+            "coverage": 1.0,
+            "tokens": 105,
+            "relevant": false,
+            "text": "The cold classical KBOs have orbits that never come very close to Neptune, and thus they remain \"cool\" and unperturbed by the giant planet's gravity. Their orbits likely haven't moved much for billions of years. In contrast, the hot classical KBOs have had interactions with Neptune in the past (that is, with the giant planet's gravity). These interactions pumped energy into their orbits, which stretched them into an elliptical shape, and tilted them slightly out of the plane of the planets."
+          }
+        ],
+        "discarded": [
+          [
+            367,
+            "no cabe en el presupuesto (142 tokens)"
+          ],
+          [
+            37,
+            "no cabe en el presupuesto (216 tokens)"
+          ],
+          [
+            237,
+            "no cabe en el presupuesto (176 tokens)"
+          ],
+          [
+            401,
+            "no cabe en el presupuesto (177 tokens)"
+          ]
+        ],
+        "terms": [
+          "comet",
+          "come"
+        ],
+        "corrections": [
+          "comeos -> comets (OSA d=1, peso 0.83)",
+          "comeos -> comes (OSA d=1, peso 0.83)"
+        ],
+        "retrieved": [
+          359,
+          367,
+          245,
+          426,
+          37,
+          237,
+          401,
+          182,
+          251,
+          232
+        ],
+        "n_examined": 82,
+        "tokens_used": 138,
+        "tokens_context": 470,
+        "token_budget": 493,
+        "truncated": false,
+        "t_search_ms": 4.157300005317666,
+        "t_select_ms": 7.084799995936919,
+        "t_model_ms": 630.326899998181,
+        "t_total_ms": 641.5689999994356
+      },
+      "exact": {
+        "algorithm": "kmp",
+        "answer": "I don't know",
+        "score_difference": 0.0,
+        "source_chunk": null,
+        "answer_span": null,
+        "em": 0.0,
+        "f1": 0.0,
+        "diagnosis": "falla del modelo",
+        "evidence_in_context": true,
+        "raw_answer": "",
+        "model_detail": "tramo incorrecto (vacío)",
+        "selected": [
+          {
+            "id": 182,
+            "doc": "Juno Mission",
+            "section": "Continuing a Legacy",
+            "score": 4.0664,
+            "coverage": 0.5,
+            "tokens": 35,
+            "relevant": false,
+            "text": "Juno builds on the work of previous missions to Jupiter, and paves the way for missions yet to come. Learn About the Heritage of Discovery That Led to Juno"
+          },
+          {
+            "id": 251,
+            "doc": "Mars Exploration",
+            "section": "‘Green for Touchdown,’ on the Red Planet",
+            "score": 3.6595,
+            "coverage": 0.5,
+            "tokens": 50,
+            "relevant": false,
+            "text": "Video celebrating the 50th anniversary of the Viking 1 landing on Mars, the era of Martian surface exploration that it began, and the missions and discoveries ever since, and those yet to come. Includes historic footage and commentary from Viking team members."
+          },
+          {
+            "id": 359,
+            "doc": "Oort Cloud Facts",
+            "section": "La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general",
+            "score": 3.5528,
+            "coverage": 0.5,
+            "tokens": 60,
+            "relevant": true,
+            "text": "In 1950, astronomer Jan Oort proposed that some comets come from a vast, extremely distant spherical shell of icy bodies surrounding the solar system. This giant swarm of objects, now named the Oort Cloud, occupies space at a distance between 5,000 and 100,000 astronomical units."
+          },
+          {
+            "id": 85,
+            "doc": "Earth Facts",
+            "section": "Atmosphere",
+            "score": 3.1275,
+            "coverage": 0.5,
+            "tokens": 102,
+            "relevant": false,
+            "text": "Near the surface, Earth has an atmosphere that consists of 78% nitrogen, 21% oxygen, and 1% other gases such as argon, carbon dioxide, and neon. The atmosphere affects Earth's long-term climate and short-term local weather and shields us from much of the harmful radiation coming from the Sun. It also protects us from meteoroids, most of which burn up in the atmosphere, seen as meteors in the night sky, before they can strike the surface as meteorites."
+          },
+          {
+            "id": 128,
+            "doc": "Io Facts",
+            "section": "Exploring Io",
+            "score": 3.101,
+            "coverage": 0.5,
+            "tokens": 95,
+            "relevant": false,
+            "text": "Most of what we know about Io comes from the Galileo spacecraft, which made a detailed study of the Jupiter system. It was Voyager 1 that spotted the first signs of the little moon’s powerful volcanism in 1979. Since 2003, three spacecraft – Ulysses, Cassini, New Horizons, and Juno – have made additional close observations of Io. Juno is currently orbiting Jupiter, but its prime mission is focused on the giant planet, not the moons."
+          },
+          {
+            "id": 426,
+            "doc": "Solar System Facts",
+            "section": "Formation",
+            "score": 3.0492,
+            "coverage": 0.5,
+            "tokens": 93,
+            "relevant": false,
+            "text": "These clumps smashed into one another, forming larger and larger objects. Some of them grew big enough for their gravity to shape them into spheres, becoming planets, dwarf planets, and large moons. In other cases, planets did not form: the asteroid belt is made of bits and pieces of the early solar system that could never quite come together into a planet. Other smaller leftover pieces became asteroids, comets, meteoroids, and small, irregular moons."
+          }
+        ],
+        "discarded": [
+          [
+            237,
+            "no cabe en el presupuesto (176 tokens)"
+          ],
+          [
+            367,
+            "no cabe en el presupuesto (142 tokens)"
+          ],
+          [
+            232,
+            "no cabe en el presupuesto (105 tokens)"
+          ],
+          [
+            72,
+            "no cabe en el presupuesto (128 tokens)"
+          ]
+        ],
+        "terms": [
+          "comeo",
+          "come"
+        ],
+        "corrections": [],
+        "retrieved": [
+          237,
+          182,
+          367,
+          251,
+          359,
+          232,
+          85,
+          128,
+          426,
+          72
+        ],
+        "n_examined": 34,
+        "tokens_used": 111,
+        "tokens_context": 433,
+        "token_budget": 493,
+        "truncated": false,
+        "t_search_ms": 3.8926999986870214,
+        "t_select_ms": 3.7770000053569674,
+        "t_model_ms": 730.9423999977298,
+        "t_total_ms": 738.6121000017738
       }
     },
     {
@@ -4967,10 +4983,10 @@
         "tokens_context": 485,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 0.4800000024260953,
-        "t_select_ms": 1.2787500018021092,
-        "t_model_ms": 133.65708300261758,
-        "t_total_ms": 135.4158330068458
+        "t_search_ms": 2.408200001809746,
+        "t_select_ms": 7.658800001081545,
+        "t_model_ms": 775.5838000011863,
+        "t_total_ms": 785.6508000040776
       },
       "exact": {
         "algorithm": "kmp",
@@ -5088,10 +5104,10 @@
         "tokens_context": 485,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 4.285333008738235,
-        "t_select_ms": 0.603374995989725,
-        "t_model_ms": 130.71512499300297,
-        "t_total_ms": 135.60383299773093
+        "t_search_ms": 22.47229999920819,
+        "t_select_ms": 3.12619999749586,
+        "t_model_ms": 711.798500000441,
+        "t_total_ms": 737.396999997145
       }
     },
     {
@@ -5212,10 +5228,10 @@
         "tokens_context": 487,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 1.3505419919965789,
-        "t_select_ms": 0.9574580035405234,
-        "t_model_ms": 127.44424999982584,
-        "t_total_ms": 129.75224999536294
+        "t_search_ms": 6.08269999793265,
+        "t_select_ms": 5.717399995774031,
+        "t_model_ms": 722.9843000022811,
+        "t_total_ms": 734.7843999959878
       },
       "exact": {
         "algorithm": "kmp",
@@ -5326,10 +5342,10 @@
         "tokens_context": 460,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 5.178457999136299,
-        "t_select_ms": 0.6814999942434952,
-        "t_model_ms": 120.59175000467803,
-        "t_total_ms": 126.45170799805783
+        "t_search_ms": 26.820400002179667,
+        "t_select_ms": 3.672200000437442,
+        "t_model_ms": 671.4847999974154,
+        "t_total_ms": 701.9774000000325
       }
     },
     {
@@ -5442,10 +5458,10 @@
         "tokens_context": 407,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 0.5951670027570799,
-        "t_select_ms": 1.5448329941136762,
-        "t_model_ms": 100.80712499620859,
-        "t_total_ms": 102.94712499307934
+        "t_search_ms": 2.887800001190044,
+        "t_select_ms": 7.624599995324388,
+        "t_model_ms": 587.3485000047367,
+        "t_total_ms": 597.8609000012511
       },
       "exact": {
         "algorithm": "kmp",
@@ -5550,10 +5566,10 @@
         "tokens_context": 407,
         "token_budget": 492,
         "truncated": false,
-        "t_search_ms": 5.151208009920083,
-        "t_select_ms": 0.5984169984003529,
-        "t_model_ms": 98.2786669919733,
-        "t_total_ms": 104.02829200029373
+        "t_search_ms": 25.99729999928968,
+        "t_select_ms": 2.8987999976379797,
+        "t_model_ms": 637.603900002432,
+        "t_total_ms": 666.4999999993597
       }
     },
     {
@@ -5679,10 +5695,10 @@
         "tokens_context": 418,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 1.0237090027658269,
-        "t_select_ms": 1.219500001752749,
-        "t_model_ms": 124.8395000002347,
-        "t_total_ms": 127.08270900475327
+        "t_search_ms": 4.479100003663916,
+        "t_select_ms": 6.252200000744779,
+        "t_model_ms": 731.371499998204,
+        "t_total_ms": 742.1028000026126
       },
       "exact": {
         "algorithm": "kmp",
@@ -5788,10 +5804,10 @@
         "tokens_context": 378,
         "token_budget": 490,
         "truncated": false,
-        "t_search_ms": 2.93970899656415,
-        "t_select_ms": 0.5529159971047193,
-        "t_model_ms": 98.89450001355726,
-        "t_total_ms": 102.38712500722613
+        "t_search_ms": 16.304000004311092,
+        "t_select_ms": 3.1652999969082884,
+        "t_model_ms": 675.6105000022217,
+        "t_total_ms": 695.079800003441
       }
     }
   ]
