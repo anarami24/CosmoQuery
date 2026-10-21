@@ -22,7 +22,7 @@ DIAGNOSES = ["correcta y respaldada", "correcta (evidencia fuera de los fragment
 def pick_questions(questions):
     chosen = []
     for cat, k in PLAN:
-        pool = [q for q in questions if q["category"] == cat]
+        pool = [q for q in questions if q["category"] == cat and q["question"] != q.get("original", "")]
         chosen += [pool[round(i * len(pool) / k)] for i in range(k)]
     return chosen
 

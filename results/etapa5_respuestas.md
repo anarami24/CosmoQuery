@@ -18,17 +18,17 @@ Método principal: búsqueda aproximada híbrida. En paralelo: búsqueda exacta 
 
 | Diagnóstico | Aproximada (híbrida) | Exacta (KMP) |
 |---|---:|---:|
-| correcta y respaldada | 12 | 11 |
+| correcta y respaldada | 13 | 10 |
 | correcta (evidencia fuera de los fragmentos anotados) | 0 | 0 |
-| recuperación incompleta | 7 | 8 |
-| falla del modelo | 1 | 1 |
+| recuperación incompleta | 5 | 7 |
+| falla del modelo | 2 | 3 |
 | no-respuesta correcta | 4 | 4 |
 | respuesta sin respaldo | 0 | 0 |
 
 | Método | EM | F1 | Evidencia en contexto | "I don't know" | Truncadas | Tokens de entrada prom. | Búsqueda ms | Selección ms | Modelo ms | Total ms |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Aproximada (híbrida) | 0.667 | 0.667 | 13/20 | 9/24 | 0 | 167 | 1.9 | 1.2 | 112 | 116 |
-| Exacta (KMP) | 0.625 | 0.625 | 12/20 | 9/24 | 0 | 165 | 7.2 | 0.8 | 114 | 122 |
+| Aproximada (híbrida) | 0.708 | 0.708 | 15/20 | 9/24 | 0 | 168 | 5.9 | 5.8 | 540 | 552 |
+| Exacta (KMP) | 0.583 | 0.597 | 13/20 | 11/24 | 0 | 161 | 22.9 | 2.8 | 553 | 579 |
 
 **"I don't know" con el tramo correcto:** en 0 preguntas (aproximada) y 0 (exacta) el modelo eligió el tramo correcto, pero su score_difference quedó debajo del umbral 0.5 del PokeChat. La columna `raw_answer` del `.csv` guarda ese tramo. El efecto del tamaño del contexto sobre score_difference se mide en la Etapa 6.
 
@@ -53,11 +53,11 @@ EM y F1 son promedios sobre las 24 preguntas (las sin respuesta valen 1 si el mo
 | Q47 | paraphrase | What enormous storm rages on the biggest planet? | Great Red Spot | Great Red Spot (1.69) | correcta y respaldada | Great Red Spot (1.69) | correcta y respaldada |
 | Q49 | paraphrase | Which moon of the ringed planet has seas of hydrocarbons? | Titan | Titan (0.71) | correcta y respaldada | Titan (0.71) | correcta y respaldada |
 | Q01-T | typo | When was Pluot discovered? | 1930 | 1930 (8.46) | correcta y respaldada | I don't know (0.00) | recuperación incompleta |
-| Q09-T | typo | How long is a year on Mars? | 687 Earth days, 669.6 sols | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
-| Q18-T | typo | What is the largst moon of Neptune? | Triton | Triton (11.06) | correcta y respaldada | Triton (11.06) | correcta y respaldada |
-| Q26-T | typo | Which planet has an average dnesity less than watrr? | Saturn | I don't know (0.00) | falla del modelo | Venus (3.48) | falla del modelo |
-| Q34-T | typo | What is the Sun made of? | hydrogen and helium | super-hot, electrically charged gas called plasma (8.54) | recuperación incompleta | super-hot, electrically charged gas called plasma (8.54) | recuperación incompleta |
-| Q43-T | typo | Which weorld circles clnosest to our star? | Mercury | I don't know (0.00) | recuperación incompleta | I don't know (0.11) | recuperación incompleta |
+| Q10-T | typo | What is the Graet Red Spot? | a giant storm bigger than Earth, giant storm | I don't know (0.00) | falla del modelo | I don't know (0.00) | falla del modelo |
+| Q17-T | typo | When was Neptue discovered? | 1846 | 1846 (5.44) | correcta y respaldada | I don't know (0.00) | falla del modelo |
+| Q25-T | typo | What are Saturn's rinngs made of? | billions of small chunks of ice and rock, ice and rock | billions of small chunks of ice and rock (11.76) | correcta y respaldada | hydrogen and helium (6.98) | recuperación incompleta |
+| Q35-T | typo | How far is the Sun from Earht? | 93 million miles (150 million kilometers), 93 million miles, 150 million kilometers | I don't know (0.00) | recuperación incompleta | I don't know (0.00) | recuperación incompleta |
+| Q42-T | typo | Where do comeos come from? | the Kuiper Belt and the Oort Cloud, Kuiper Belt, Oort Cloud | I don't know (0.00) | falla del modelo | I don't know (0.00) | falla del modelo |
 | Q51 | no_answer | How many people live on Mars today? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
 | Q53 | no_answer | How much does a ticket to the Moon cost? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
 | Q54 | no_answer | Who is the current president of Jupiter? | — | I don't know (0.00) | no-respuesta correcta | I don't know (0.00) | no-respuesta correcta |
@@ -71,7 +71,7 @@ EM y F1 son promedios sobre las 24 preguntas (las sin respuesta valen 1 si el mo
 - Correcciones: ninguna
 - **Respuesta: 1930** · score_difference = 8.88 · fragmento de origen: 240 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 3 fragmentos, 483 tokens de 495 disponibles; entrada al modelo 180/512
-- Tiempos: búsqueda 0.4 ms · selección 0.6 ms · modelo 103 ms · total 104 ms
+- Tiempos: búsqueda 1.0 ms · selección 1.9 ms · modelo 491 ms · total 494 ms
 - Exacta (KMP): 1930 (8.88) · correcta y respaldada · fragmentos [240, 389, 47]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -88,7 +88,7 @@ Descartados: 386 (no cabe en el presupuesto (184 tokens)); 395 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: five** · score_difference = 5.78 · fragmento de origen: 388 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 4 fragmentos, 373 tokens de 492 disponibles; entrada al modelo 153/512
-- Tiempos: búsqueda 4.2 ms · selección 1.3 ms · modelo 106 ms · total 111 ms
+- Tiempos: búsqueda 11.4 ms · selección 4.5 ms · modelo 453 ms · total 469 ms
 - Exacta (KMP): five (5.78) · correcta y respaldada · fragmentos [388, 399, 424, 339]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -106,7 +106,7 @@ Descartados: 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
 - Contexto: 7 fragmentos, 475 tokens de 492 disponibles; entrada al modelo 142/512
-- Tiempos: búsqueda 3.7 ms · selección 1.6 ms · modelo 151 ms · total 156 ms
+- Tiempos: búsqueda 14.9 ms · selección 6.2 ms · modelo 563 ms · total 584 ms
 - Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [327, 279, 256, 268, 252, 67, 369]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -127,7 +127,7 @@ Descartados: 368 (no cabe en el presupuesto (191 tokens)); 270 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: William Herschel** · score_difference = 11.24 · fragmento de origen: 467 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 5 fragmentos, 453 tokens de 495 disponibles; entrada al modelo 149/512
-- Tiempos: búsqueda 0.5 ms · selección 1.5 ms · modelo 122 ms · total 124 ms
+- Tiempos: búsqueda 1.7 ms · selección 6.0 ms · modelo 483 ms · total 491 ms
 - Exacta (KMP): William Herschel (11.24) · correcta y respaldada · fragmentos [467, 323, 466, 472, 476]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -146,7 +146,7 @@ Descartados: 240 (no cabe en el presupuesto (173 tokens)); 478 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: Triton** · score_difference = 9.70 · fragmento de origen: 328 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 3 fragmentos, 348 tokens de 492 disponibles; entrada al modelo 183/512
-- Tiempos: búsqueda 1.2 ms · selección 1.5 ms · modelo 86 ms · total 88 ms
+- Tiempos: búsqueda 3.0 ms · selección 5.4 ms · modelo 444 ms · total 452 ms
 - Exacta (KMP): Triton (9.70) · correcta y respaldada · fragmentos [328, 323, 456]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -163,7 +163,7 @@ Descartados: 462 (no cabe en el presupuesto (187 tokens)); 387 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: carbon dioxide** · score_difference = 11.05 · fragmento de origen: 501 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 5 fragmentos, 485 tokens de 490 disponibles; entrada al modelo 186/512
-- Tiempos: búsqueda 1.6 ms · selección 1.9 ms · modelo 134 ms · total 138 ms
+- Tiempos: búsqueda 6.2 ms · selección 8.6 ms · modelo 621 ms · total 636 ms
 - Exacta (KMP): carbon dioxide (11.05) · correcta y respaldada · fragmentos [501, 333, 295, 483, 412]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -182,7 +182,7 @@ Descartados: 498 (no cabe en el presupuesto (184 tokens)); 280 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: Saturn** · score_difference = 4.58 · fragmento de origen: 413 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 4 fragmentos, 411 tokens de 490 disponibles; entrada al modelo 150/512
-- Tiempos: búsqueda 1.9 ms · selección 1.8 ms · modelo 106 ms · total 109 ms
+- Tiempos: búsqueda 6.2 ms · selección 7.4 ms · modelo 463 ms · total 477 ms
 - Exacta (KMP): Saturn (4.58) · correcta y respaldada · fragmentos [413, 308, 52, 399]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -200,7 +200,7 @@ Descartados: 463 (no cabe en el presupuesto (173 tokens)); 100 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: saltwater ocean** · score_difference = 10.25 · fragmento de origen: 111 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 4 fragmentos, 421 tokens de 491 disponibles; entrada al modelo 175/512
-- Tiempos: búsqueda 0.6 ms · selección 1.7 ms · modelo 107 ms · total 110 ms
+- Tiempos: búsqueda 1.9 ms · selección 7.7 ms · modelo 465 ms · total 474 ms
 - Exacta (KMP): saltwater ocean (10.25) · correcta y respaldada · fragmentos [111, 138, 113, 183]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -218,7 +218,7 @@ Descartados: 201 (no cabe en el presupuesto (106 tokens)); 101 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: 60 times** · score_difference = 1.14 · fragmento de origen: 340 · EM 0, F1 0.00 · **recuperación incompleta**
 - Contexto: 4 fragmentos, 427 tokens de 492 disponibles; entrada al modelo 190/512
-- Tiempos: búsqueda 1.5 ms · selección 1.5 ms · modelo 108 ms · total 111 ms
+- Tiempos: búsqueda 5.2 ms · selección 6.6 ms · modelo 459 ms · total 471 ms
 - Exacta (KMP): 60 times (1.14) · recuperación incompleta · fragmentos [340, 322, 422, 420]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -236,7 +236,7 @@ Descartados: 310 (redundante con el fragmento 309 (Jaccard 0.52)); 309 (no cabe 
 - Correcciones: ninguna
 - **Respuesta: Carl Sagan** · score_difference = 9.54 · fragmento de origen: 505 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 6 fragmentos, 475 tokens de 487 disponibles; entrada al modelo 173/512
-- Tiempos: búsqueda 0.5 ms · selección 1.6 ms · modelo 144 ms · total 146 ms
+- Tiempos: búsqueda 1.4 ms · selección 6.5 ms · modelo 576 ms · total 584 ms
 - Exacta (KMP): Carl Sagan (9.54) · correcta y respaldada · fragmentos [505, 301, 341, 182, 299, 303]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -256,7 +256,7 @@ Descartados: 131 (no cabe en el presupuesto (209 tokens)); 71 (no cabe en el pre
 - Correcciones: ninguna
 - **Respuesta: Io** · score_difference = 4.21 · fragmento de origen: 196 · EM 0, F1 0.00 · **recuperación incompleta**
 - Contexto: 4 fragmentos, 472 tokens de 492 disponibles; entrada al modelo 188/512
-- Tiempos: búsqueda 0.5 ms · selección 1.4 ms · modelo 113 ms · total 115 ms
+- Tiempos: búsqueda 2.1 ms · selección 6.3 ms · modelo 526 ms · total 535 ms
 - Exacta (KMP): Io (4.21) · recuperación incompleta · fragmentos [195, 196, 420, 467]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -274,7 +274,7 @@ Descartados: 167 (no cabe en el presupuesto (183 tokens)); 116 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
 - Contexto: 6 fragmentos, 397 tokens de 490 disponibles; entrada al modelo 165/512
-- Tiempos: búsqueda 1.0 ms · selección 1.3 ms · modelo 127 ms · total 129 ms
+- Tiempos: búsqueda 4.2 ms · selección 6.2 ms · modelo 565 ms · total 576 ms
 - Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [276, 267, 273, 377, 265, 255]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -294,7 +294,7 @@ Descartados: 247 (no cabe en el presupuesto (161 tokens)); 264 (no cabe en el pr
 - Correcciones: rages -> ranges (OSA d=1, peso 0.83); rages -> ages (OSA d=1, peso 0.80); rages -> rates (OSA d=1, peso 0.80)
 - **Respuesta: Great Red Spot** · score_difference = 1.69 · fragmento de origen: 200 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 3 fragmentos, 394 tokens de 490 disponibles; entrada al modelo 185/512
-- Tiempos: búsqueda 11.8 ms · selección 1.7 ms · modelo 91 ms · total 104 ms
+- Tiempos: búsqueda 34.5 ms · selección 6.0 ms · modelo 411 ms · total 451 ms
 - Exacta (KMP): Great Red Spot (1.69) · correcta y respaldada · fragmentos [200, 72, 75, 281]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -311,7 +311,7 @@ Descartados: 430 (no cabe en el presupuesto (174 tokens)); 434 (no cabe en el pr
 - Correcciones: ringed -> ranged (OSA d=1, peso 0.83); ringed -> hinged (OSA d=1, peso 0.83)
 - **Respuesta: Titan** · score_difference = 0.71 · fragmento de origen: 457 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 3 fragmentos, 429 tokens de 486 disponibles; entrada al modelo 189/512
-- Tiempos: búsqueda 2.6 ms · selección 1.7 ms · modelo 99 ms · total 103 ms
+- Tiempos: búsqueda 8.7 ms · selección 6.3 ms · modelo 455 ms · total 470 ms
 - Exacta (KMP): Titan (0.71) · correcta y respaldada · fragmentos [457, 409, 205, 43, 403]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -329,7 +329,7 @@ Descartados: 480 (no cabe en el presupuesto (140 tokens)); 409 (no cabe en el pr
 - Correcciones: pluot -> pluto (OSA d=1, peso 0.80)
 - **Respuesta: 1930** · score_difference = 8.46 · fragmento de origen: 240 · EM 1, F1 1.00 · **correcta y respaldada**
 - Contexto: 3 fragmentos, 380 tokens de 493 disponibles; entrada al modelo 182/512
-- Tiempos: búsqueda 0.9 ms · selección 0.6 ms · modelo 88 ms · total 90 ms
+- Tiempos: búsqueda 2.7 ms · selección 2.4 ms · modelo 497 ms · total 502 ms
 - Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [461, 329, 404, 411, 306, 129]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -340,101 +340,101 @@ Descartados: 480 (no cabe en el presupuesto (140 tokens)); 409 (no cabe en el pr
 
 Descartados: 386 (no cabe en el presupuesto (184 tokens)); 47 (no cabe en el presupuesto (156 tokens)); 395 (no cabe en el presupuesto (188 tokens)); 396 (no cabe en el presupuesto (181 tokens)); 392 (no cabe en el presupuesto (147 tokens)); 390 (no cabe en el presupuesto (168 tokens)); 388 (no cabe en el presupuesto (143 tokens))
 
-### Q09-T [typo] How long is a year on Mars?
+### Q10-T [typo] What is the Graet Red Spot?
 
-- Pregunta original (sin errores): How long is a year on Mars?
-- Respuestas aceptadas: 687 Earth days, 669.6 sols; fragmentos relevantes: [270]
-- Correcciones: ninguna
-- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
-- Contexto: 7 fragmentos, 475 tokens de 492 disponibles; entrada al modelo 142/512
-- Tiempos: búsqueda 0.6 ms · selección 0.6 ms · modelo 143 ms · total 144 ms
-- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [327, 279, 256, 268, 252, 67, 369]
-
-| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
-|---|---|---|---:|---|---|
-| 1 | 327 | Neptune Facts > Orbit and Rotation | 74 | no | Neptune’s axis of rotation is tilted 28 degrees with respect to the plane of its orbit around the Sun, which is similar to the axial tilts of **Mars** and Earth. This means that Neptune experiences seasons just like we do on Earth; however, since its **year** is so **long**, each of the four seasons lasts for over 40 **years**.… |
-| 2 | 279 | Mars Facts > Water on Mars | 132 | no | **Mars** appears to have had a watery past, with ancient river valley networks, deltas, and lakebeds, as well as rocks and minerals on the surface that could only have formed in liquid water. Some features suggest that **Mars** experienced huge floods about 3.5 billion **years** ago. There is water on **Mars** today, but the Martian atmosphere is t… |
-| 3 | 256 | Mars Exploration > MARS RECONNAISSANCE ORBITER / Active Mission | 41 | no | **Mars** Reconnaissance Orbiter searches for evidence that water persisted on the surface of **Mars** for a **long** period of time. Launch: Aug. 12, 2005 **Mars** Arrival: **Mar**. 10, 2006… |
-| 4 | 268 | Mars Facts > Potential for Life | 38 | no | Scientists don't expect to find living things currently thriving on **Mars**. Instead, they're looking for signs of life that existed **long** ago, when **Mars** was warmer and covered with water.… |
-| 5 | 252 | Mars Exploration > Viking@50 Downloads | 42 | no | The lander that broke ground on 50 **years** of **Mars** surface exploration. Celebrate Viking — and the missions still building on what it began — with posters, computer backdrops, phone screens and more.… |
-| 6 | 369 | Oort Cloud Facts > Home to Comets | 66 | no | (Hence the name.) Countless more unknown **long**-period comets have never been seen by human eyes. Some have orbits so **long** that the last time they passed through the inner solar system, our species did not yet exist. Others have never ventured close to the Sun in the billions of **years** since they formed.… |
-| 7 | 67 | Curiosity Mission > Curiosity Reaches 1-Kilometer Elevation Gain / NAS | 84 | no | NASA’s Curiosity **Mars** rover reached the pinnacle — so far — of its 14-**year**-old mission on Aug. 26, 2026, when it marked an elevation gain of 1 kilometer in its journey from Gale Crater on **Mars** up the slope of Mount Sharp. After **years** of lab work, the results are in: A rock that NASA’s Curiosity **Mars** rover drilled and analyzed in… |
-
-Descartados: 368 (no cabe en el presupuesto (191 tokens)); 270 (no cabe en el presupuesto (188 tokens)); 271 (no cabe en el presupuesto (111 tokens))
-
-### Q18-T [typo] What is the largst moon of Neptune?
-
-- Pregunta original (sin errores): What is the largest moon of Neptune?
-- Respuestas aceptadas: Triton; fragmentos relevantes: [323, 328, 329, 461, 462, 463, 464, 465]
-- Correcciones: largst -> largest (OSA d=1, peso 0.86)
-- **Respuesta: Triton** · score_difference = 11.06 · fragmento de origen: 328 · EM 1, F1 1.00 · **correcta y respaldada**
-- Contexto: 3 fragmentos, 348 tokens de 491 disponibles; entrada al modelo 184/512
-- Tiempos: búsqueda 1.6 ms · selección 0.5 ms · modelo 84 ms · total 86 ms
-- Exacta (KMP): Triton (11.06) · correcta y respaldada · fragmentos [462, 328, 465]
-
-| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
-|---|---|---|---:|---|---|
-| 1 | 328 ← respuesta | Neptune Facts > Moons | 173 | sí | **Neptune** has 16 known **moons**. **Neptune's** **largest** **moon** Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle discovered the planet. Since **Neptune** was named for the Roman god of the sea, its **moons** are named for various lesser sea gods and nymphs in Greek mythology. Triton is the… |
-| 2 | 323 | Neptune Facts > Discovery and Namesake | 142 | sí | Galileo recorded **Neptune** as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because Uranus didn't travel exactly as astronomers expected it to, French mathemat… |
-| 3 | 456 | Titan Facts > La NASA refuerza Artemis: añade una misión y perfecciona | 35 | no | Titan is Saturn’s **largest** **moon**. It has an earthlike cycle of liquids flowing across its surface. It is the only **moon** with a thick atmosphere.… |
-
-Descartados: 462 (no cabe en el presupuesto (187 tokens)); 387 (no cabe en el presupuesto (195 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 204 (no cabe en el presupuesto (189 tokens)); 167 (no cabe en el presupuesto (183 tokens)); 383 (no cabe en el presupuesto (205 tokens)); 240 (no cabe en el presupuesto (173 tokens))
-
-### Q26-T [typo] Which planet has an average dnesity less than watrr?
-
-- Pregunta original (sin errores): Which planet has an average density less than water?
-- Respuestas aceptadas: Saturn; fragmentos relevantes: [413]
-- Correcciones: dnesity -> density (OSA d=1, peso 0.86); watrr -> water (OSA d=1, peso 0.80)
+- Pregunta original (sin errores): What is the Great Red Spot?
+- Respuestas aceptadas: a giant storm bigger than Earth, giant storm; fragmentos relevantes: [200, 211, 212, 213, 214]
+- Correcciones: graet -> great (OSA d=1, peso 0.80); graet -> grant (OSA d=1, peso 0.80)
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo incorrecto (vacío)
-- Contexto: 4 fragmentos, 411 tokens de 487 disponibles; entrada al modelo 153/512
-- Tiempos: búsqueda 2.6 ms · selección 0.6 ms · modelo 104 ms · total 107 ms
-- Exacta (KMP): Venus (3.48) · falla del modelo · fragmentos [308, 413, 489, 75]
+- Contexto: 3 fragmentos, 465 tokens de 492 disponibles; entrada al modelo 188/512
+- Tiempos: búsqueda 3.4 ms · selección 7.3 ms · modelo 537 ms · total 547 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [213, 211, 175]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
 |---|---|---|---:|---|---|
-| 1 | 413 | Saturn Facts > Structure | 110 | sí | Like Jupiter, Saturn is made mostly of hydrogen and helium. At Saturn's center is a dense core of metals like iron and nickel surrounded by rocky material and other compounds solidified by intense pressure and heat. It is enveloped by liquid metallic hydrogen inside a layer of liquid hydrogen –similar to Jupiter's core but considerably smaller. It'… |
-| 2 | 308 | Moon Facts > Size and Distance | 103 | no | With a radius of about 1,080 miles (1,740 kilometers), the Moon is **less** than a third of the width of Earth. If Earth were the size of a nickel, the Moon would be about as big as a coffee bean. The Moon is an **average** of 238,855 miles (384,400 kilometers) away. That means 30 Earth-sized **planets** could fit in between Earth and the Moon. The… |
-| 3 | 52 | Ceres Facts > Structure | 138 | no | Ceres is more similar to the terrestrial **planets** (Mercury, Venus, Earth, and Mars) than its asteroid neighbors, but it is much **less** dense. One of the similarities is a layered interior, but Ceres' layers aren’t as clearly defined. Ceres probably has a solid core and a mantle made of **water** ice. In fact, Ceres could be composed of as much… |
-| 4 | 399 | Pluto Facts > Structure | 62 | no | Pluto is about two-thirds the diameter of Earth's Moon and probably has a rocky core surrounded by a mantle of **water** ice. Interesting ices like methane and nitrogen frost coat the surface. Due to its lower **density**, Pluto's mass is about one-sixth that of Earth's Moon.… |
+| 1 | 213 | Jupiter Facts > Atmosphere | 178 | sí | The findings also indicate these storms are far taller than expected, with some extending 60 miles (100 kilometers) below the cloud tops and others, including the **Great** **Red** **Spot**, extending over 200 miles (350 kilometers). This surprising discovery demonstrates that the vortices cover regions beyond those where water condenses and clouds… |
+| 2 | 211 | Jupiter Facts > Atmosphere | 163 | sí | Jupiter's fast rotation – spinning once every 10 hours – creates strong jet streams, separating its clouds into dark belts and bright zones across long stretches. With no solid surface to slow them down, Jupiter's **spots** can persist for many years. Stormy Jupiter is swept by over a dozen prevailing winds, some reaching up to 335 miles per hour (… |
+| 3 | 175 | Juno Mission > Scientific Discoveries and Results | 126 | no | The closest images of Io came from Juno’s passes in December 2023 and February 2024, but the monitoring will continue through the current end of the extended mission, scheduled in September 2025. Juno has spent years tracking the **Great** Blue **Spot**. Not to be confused with Jupiter’s iconic **red** storm, the Blue **Spot** is an invisible, loca… |
 
-Descartados: 463 (no cabe en el presupuesto (173 tokens)); 100 (no cabe en el presupuesto (189 tokens)); 53 (no cabe en el presupuesto (165 tokens)); 164 (no cabe en el presupuesto (164 tokens)); 212 (no cabe en el presupuesto (185 tokens)); 99 (no cabe en el presupuesto (174 tokens))
+Descartados: 212 (no cabe en el presupuesto (185 tokens)); 174 (no cabe en el presupuesto (186 tokens)); 200 (no cabe en el presupuesto (139 tokens)); 173 (no cabe en el presupuesto (182 tokens)); 214 (no cabe en el presupuesto (165 tokens)); 247 (no cabe en el presupuesto (161 tokens)); 335 (no cabe en el presupuesto (141 tokens))
 
-### Q34-T [typo] What is the Sun made of?
+### Q17-T [typo] When was Neptue discovered?
 
-- Pregunta original (sin errores): What is the Sun made of?
-- Respuestas aceptadas: hydrogen and helium; fragmentos relevantes: [429, 444]
-- Correcciones: ninguna
-- **Respuesta: super-hot, electrically charged gas called plasma** · score_difference = 8.54 · fragmento de origen: 430 · EM 0, F1 0.00 · **recuperación incompleta**
-- Contexto: 3 fragmentos, 386 tokens de 493 disponibles; entrada al modelo 183/512
-- Tiempos: búsqueda 0.5 ms · selección 0.7 ms · modelo 85 ms · total 86 ms
-- Exacta (KMP): super-hot, electrically charged gas called plasma (8.54) · recuperación incompleta · fragmentos [430, 72, 412]
+- Pregunta original (sin errores): When was Neptune discovered?
+- Respuestas aceptadas: 1846; fragmentos relevantes: [322, 323, 328, 461]
+- Correcciones: neptue -> neptune (OSA d=1, peso 0.86)
+- **Respuesta: 1846** · score_difference = 5.44 · fragmento de origen: 323 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 4 fragmentos, 396 tokens de 494 disponibles; entrada al modelo 181/512
+- Tiempos: búsqueda 3.9 ms · selección 4.6 ms · modelo 465 ms · total 473 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [461, 329, 404, 411, 306, 129]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
 |---|---|---|---:|---|---|
-| 1 | 430 ← respuesta | Sun Facts > 10 things | 174 | no | The **Sun** is about 100 times wider than Earth and about 10 times wider than Jupiter, the biggest planet. The **Sun** is the only star in our solar system. It is the center of our solar system, and its gravity holds the solar system together. Everything in our solar system revolves around it – the planets, asteroids, comets, and tiny bits of space… |
-| 2 | 72 | Earth Facts > One Way Light Time to Sun | 128 | no | While Earth is only the fifth largest planet in the solar system, it is the only planet in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the **Sun**, all of which are **made** of rock and metal. Earth is the only planet in the solar system whose English… |
-| 3 | 412 | Saturn Facts > Formation | 86 | no | Saturn took shape when the rest of the solar system formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this gas giant. About 4 billion years ago, Saturn settled into its current position in the outer solar system, where it is the sixth planet from the **Sun**. Like Jupiter, Saturn is mostly **made** of hydroge… |
+| 1 | 461 | Triton Facts > Contents / Discovery | 53 | sí | Global color mosaic of Triton, taken in 1989 by Voyager 2 during its flyby of the **Neptune** system. Triton was **discovered** on Oct. 10, 1846 by British astronomer William Lassell, just 17 days after **Neptune** itself was **discovered**.… |
+| 2 | 328 | Neptune Facts > Moons | 173 | sí | **Neptune** has 16 known moons. **Neptune's** largest moon Triton was **discovered** on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried Galle **discovered** the planet. Since **Neptune** was named for the Roman god of the sea, its moons are named for various lesser sea gods and nymphs in Greek mythology. Triton is the only la… |
+| 3 | 323 ← respuesta | Neptune Facts > Discovery and Namesake | 142 | sí | Galileo recorded **Neptune** as a fixed star during observations with his small telescope in 1612 and 1613. More than 200 years later, the ice giant became the first planet located through mathematical predictions rather than through regular observations of the sky. Because Uranus didn't travel exactly as astronomers expected it to, French mathemat… |
+| 4 | 321 | Neptune Facts > Our Solar System | 30 | no | **Neptune** is the eighth and most distant planet in our solar system. Sometimes **Neptune** is even farther from the Sun than dwarf planet Pluto.… |
 
-Descartados: 364 (no cabe en el presupuesto (161 tokens)); 422 (no cabe en el presupuesto (180 tokens)); 78 (no cabe en el presupuesto (176 tokens)); 421 (no cabe en el presupuesto (162 tokens)); 368 (no cabe en el presupuesto (191 tokens)); 207 (no cabe en el presupuesto (145 tokens)); 280 (no cabe en el presupuesto (168 tokens))
+Descartados: 240 (no cabe en el presupuesto (173 tokens)); 227 (no cabe en el presupuesto (170 tokens)); 386 (no cabe en el presupuesto (184 tokens)); 326 (no cabe en el presupuesto (186 tokens)); 325 (no cabe en el presupuesto (110 tokens)); 322 (no cabe en el presupuesto (133 tokens))
 
-### Q43-T [typo] Which weorld circles clnosest to our star?
+### Q25-T [typo] What are Saturn's rinngs made of?
 
-- Pregunta original (sin errores): Which world circles closest to our star?
-- Respuestas aceptadas: Mercury; fragmentos relevantes: [284, 383, 427]
-- Correcciones: weorld -> world (OSA d=1, peso 0.83); clnosest -> closest (OSA d=1, peso 0.88)
+- Pregunta original (sin errores): What are Saturn's rings made of?
+- Respuestas aceptadas: billions of small chunks of ice and rock, ice and rock; fragmentos relevantes: [409]
+- Correcciones: rinngs -> rings (Jaccard 0.86 con ngram2)
+- **Respuesta: billions of small chunks of ice and rock** · score_difference = 11.76 · fragmento de origen: 409 · EM 1, F1 1.00 · **correcta y respaldada**
+- Contexto: 4 fragmentos, 453 tokens de 489 disponibles; entrada al modelo 171/512
+- Tiempos: búsqueda 5.2 ms · selección 3.9 ms · modelo 554 ms · total 563 ms
+- Exacta (KMP): hydrogen and helium (6.98) · recuperación incompleta · fragmentos [403, 412, 413, 103, 407]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 409 ← respuesta | Saturn Facts > Rings | 158 | sí | **Saturn's** **rings** are thought to be pieces of comets, asteroids, or shattered moons that broke up before they reached the planet, torn apart by **Saturn's** powerful gravity. They are **made** of billions of small chunks of ice and rock coated with other materials such as dust. The **ring** particles mostly range from tiny, dust-sized icy grai… |
+| 2 | 403 | Saturn Facts > Introduction | 90 | no | Like fellow gas giant Jupiter, **Saturn** is a massive ball **made** mostly of hydrogen and helium. **Saturn** is not the only planet to have **rings**, but none are as spectacular or as complex as **Saturn's**. **Saturn** also has dozens of moons. From the jets of water that spray from **Saturn's** moon Enceladus to the methane lakes on smoggy Tit… |
+| 3 | 102 | Enceladus Facts > Overview / Discovery | 138 | no | The E **ring** is mostly **made** of ice droplets, but among them are peculiar nanograins of silica, which can only be generated where liquid water and rock interact at temperatures above about 200 degrees Fahrenheit (90 degrees Celsius). This, among other evidence, points to hydrothermal vents deep beneath Enceladus’ icy shell, not unlike the hydr… |
+| 4 | 40 | Cassini Mission > Mission to Saturn | 69 | no | For more than a decade, NASA’s Cassini spacecraft shared the wonders of **Saturn**, its spectacular **rings**, and its family of icy moons. Cassini was a sophisticated robotic spacecraft sent to study **Saturn** and its complex system of **rings** and moons in unprecedented detail. It was one of the most ambitious efforts ever mounted in planetary … |
+
+Descartados: 411 (redundante con el fragmento 410 (Jaccard 0.54)); 101 (no cabe en el presupuesto (183 tokens)); 410 (no cabe en el presupuesto (191 tokens)); 473 (no cabe en el presupuesto (117 tokens)); 417 (no cabe en el presupuesto (173 tokens)); 41 (no cabe en el presupuesto (103 tokens))
+
+### Q35-T [typo] How far is the Sun from Earht?
+
+- Pregunta original (sin errores): How far is the Sun from Earth?
+- Respuestas aceptadas: 93 million miles (150 million kilometers), 93 million miles, 150 million kilometers; fragmentos relevantes: [429, 438]
+- Correcciones: earht -> earth (OSA d=1, peso 0.80)
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **recuperación incompleta** · tramo incorrecto (vacío)
-- Contexto: 4 fragmentos, 472 tokens de 489 disponibles; entrada al modelo 191/512
-- Tiempos: búsqueda 4.4 ms · selección 0.6 ms · modelo 111 ms · total 116 ms
-- Exacta (KMP): I don't know (0.11) · recuperación incompleta · fragmentos [441, 438, 360, 429, 443, 418]
+- Contexto: 4 fragmentos, 427 tokens de 491 disponibles; entrada al modelo 191/512
+- Tiempos: búsqueda 5.1 ms · selección 1.8 ms · modelo 495 ms · total 502 ms
+- Exacta (KMP): I don't know (0.00) · recuperación incompleta · fragmentos [340, 322, 365, 420]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
 |---|---|---|---:|---|---|
-| 1 | 195 | Juno Mission > Juno's Io Encounters | 178 | no | Io is caught in a tug-of-war between Jupiter's powerful gravity and the smaller pull from two neighboring moons, churning its insides and creating eruptions and lakes of lava that cover its surface. Meanwhile, the gravitational pull Io exerted on Juno during the Feb. 3 flyby has reduced the spacecraft’s orbit around Jupiter to 33 days. It originall… |
-| 2 | 420 | Solar System Facts > Namesake / Potential for Life | 72 | no | Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our **star**, after the Latin word for Sun, "solis." So far, we've only know about life on Earth, but NASA is searching for life on other **worlds** in our solar system and beyond.… |
-| 3 | 196 | Juno Mission > Juno's Io Encounters | 91 | no | Juno's flyby was the **closest** of any spacecraft since the Galileo orbiter's visit two decades earlier, and brought Juno within about 930 miles (1,500 kilometers) of Io, the most volcanic **world** in our solar system. This image was compiled from JunoCam's red, blue, and green filters, from an altitude of 1,764 miles (about 2,840 km), during Jun… |
-| 4 | 467 | Uranus Facts > Introduction | 133 | no | Uranus is a very cold and windy **world**. The ice giant is surrounded by 13 faint rings and 28 small moons. Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin sideways, orbiting the Sun like a rolling ball. Uranus was the first planet found with the aid of a telescope. It was discov… |
+| 1 | 340 | New Horizons Mission > Key Dates | 44 | no | Oct. 1, 2024: New Horizons passed 60 times as **far** from the **Sun** as **Earth** is, meaning the spacecraft is twice as **far** out as Pluto was when New Horizons flew by on July 14, 2015.… |
+| 2 | 322 | Neptune Facts > Introduction | 133 | no | Dark, cold, and whipped by supersonic winds, ice giant Neptune is more than 30 times as **far** from the **Sun** as **Earth**. Neptune is the only planet in our solar system not visible to the naked eye (Uranus is just barely visible for those with excellent eyesight under dark-sky conditions, provided you know where to look). In 2011 Neptune compl… |
+| 3 | 422 | Solar System Facts > Size and Distance | 180 | no | The Oort Cloud is made of icy pieces of space debris - some bigger than mountains – orbiting our **Sun** as **far** as 1.6 light-years away. This shell of material is thick, extending from 5,000 astronomical units to 100,000 astronomical units. One astronomical unit (or AU) is the distance from the **Sun** to **Earth**, or about 93 million miles (1… |
+| 4 | 420 | Solar System Facts > Namesake / Potential for Life | 72 | no | Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for **Sun**, "solis." So **far**, we've only know about life on **Earth**, but NASA is searching for life on other worlds in our solar system and beyond.… |
 
-Descartados: 167 (no cabe en el presupuesto (183 tokens)); 116 (no cabe en el presupuesto (162 tokens)); 237 (no cabe en el presupuesto (176 tokens)); 495 (no cabe en el presupuesto (168 tokens)); 247 (no cabe en el presupuesto (161 tokens)); 143 (no cabe en el presupuesto (168 tokens))
+Descartados: 310 (redundante con el fragmento 309 (Jaccard 0.52)); 309 (no cabe en el presupuesto (170 tokens)); 438 (no cabe en el presupuesto (171 tokens)); 393 (no cabe en el presupuesto (182 tokens)); 288 (no cabe en el presupuesto (163 tokens)); 365 (no cabe en el presupuesto (151 tokens))
+
+### Q42-T [typo] Where do comeos come from?
+
+- Pregunta original (sin errores): Where do comets come from?
+- Respuestas aceptadas: the Kuiper Belt and the Oort Cloud, Kuiper Belt, Oort Cloud; fragmentos relevantes: [59, 60, 220, 222, 225, 226, 245, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368]
+- Correcciones: comeos -> comets (OSA d=1, peso 0.83); comeos -> comes (OSA d=1, peso 0.83)
+- **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 0, F1 0.00 · **falla del modelo** · tramo incorrecto (vacío)
+- Contexto: 6 fragmentos, 470 tokens de 493 disponibles; entrada al modelo 138/512
+- Tiempos: búsqueda 4.2 ms · selección 7.1 ms · modelo 630 ms · total 642 ms
+- Exacta (KMP): I don't know (0.00) · falla del modelo · fragmentos [182, 251, 359, 85, 128, 426]
+
+| # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
+|---|---|---|---:|---|---|
+| 1 | 359 | Oort Cloud Facts > La NASA refuerza Artemis: añade una misión y perfec | 60 | sí | In 1950, astronomer Jan Oort proposed that some **comets** **come** from a vast, extremely distant spherical shell of icy bodies surrounding the solar system. This giant swarm of objects, now named the Oort Cloud, occupies space at a distance between 5,000 and 100,000 astronomical units.… |
+| 2 | 245 | Kuiper Belt Facts > Relationship to Comets | 129 | sí | Given their frequent trips into the inner solar system, most tend to exhaust their volatile ices fairly quickly and eventually become dormant, or dead, **comets** with little or no detectable activity. Researchers have found that some near-Earth asteroids are actually burned-out **comets**, and most of them would have started out in the Kuiper Belt… |
+| 3 | 426 | Solar System Facts > Formation | 93 | no | These clumps smashed into one another, forming larger and larger objects. Some of them grew big enough for their gravity to shape them into spheres, becoming planets, dwarf planets, and large moons. In other cases, planets did not form: the asteroid belt is made of bits and pieces of the early solar system that could never quite **come** together i… |
+| 4 | 182 | Juno Mission > Continuing a Legacy | 35 | no | Juno builds on the work of previous missions to Jupiter, and paves the way for missions yet to **come**. Learn About the Heritage of Discovery That Led to Juno… |
+| 5 | 251 | Mars Exploration > ‘Green for Touchdown,’ on the Red Planet | 50 | no | Video celebrating the 50th anniversary of the Viking 1 landing on Mars, the era of Martian surface exploration that it began, and the missions and discoveries ever since, and those yet to **come**. Includes historic footage and commentary from Viking team members.… |
+| 6 | 232 | Kuiper Belt Facts > Classical KBOs | 105 | no | The cold classical KBOs have orbits that never **come** very close to Neptune, and thus they remain "cool" and unperturbed by the giant planet's gravity. Their orbits likely haven't moved much for billions of years. In contrast, the hot classical KBOs have had interactions with Neptune in the past (that is, with the giant planet's gravity). These i… |
+
+Descartados: 367 (no cabe en el presupuesto (142 tokens)); 37 (no cabe en el presupuesto (216 tokens)); 237 (no cabe en el presupuesto (176 tokens)); 401 (no cabe en el presupuesto (177 tokens))
 
 ### Q51 [no_answer] How many people live on Mars today?
 
@@ -442,7 +442,7 @@ Descartados: 167 (no cabe en el presupuesto (183 tokens)); 116 (no cabe en el pr
 - Correcciones: ninguna
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
 - Contexto: 6 fragmentos, 485 tokens de 492 disponibles; entrada al modelo 177/512
-- Tiempos: búsqueda 0.5 ms · selección 1.3 ms · modelo 134 ms · total 135 ms
+- Tiempos: búsqueda 2.4 ms · selección 7.7 ms · modelo 776 ms · total 786 ms
 - Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [26, 48, 268, 248, 282, 267]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -462,7 +462,7 @@ Descartados: 279 (no cabe en el presupuesto (132 tokens)); 283 (no cabe en el pr
 - Correcciones: ticket -> tick (Jaccard 0.50 con ngram2)
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
 - Contexto: 5 fragmentos, 487 tokens de 490 disponibles; entrada al modelo 147/512
-- Tiempos: búsqueda 1.4 ms · selección 1.0 ms · modelo 127 ms · total 130 ms
+- Tiempos: búsqueda 6.1 ms · selección 5.7 ms · modelo 723 ms · total 735 ms
 - Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [301, 299, 300, 306, 307]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -481,7 +481,7 @@ Descartados: 309 (redundante con el fragmento 310 (Jaccard 0.52)); 500 (no cabe 
 - Correcciones: ninguna
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
 - Contexto: 4 fragmentos, 407 tokens de 492 disponibles; entrada al modelo 136/512
-- Tiempos: búsqueda 0.6 ms · selección 1.5 ms · modelo 101 ms · total 103 ms
+- Tiempos: búsqueda 2.9 ms · selección 7.6 ms · modelo 587 ms · total 598 ms
 - Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [175, 128, 51, 412]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -499,7 +499,7 @@ Descartados: 206 (no cabe en el presupuesto (117 tokens)); 146 (no cabe en el pr
 - Correcciones: food -> good (OSA d=1, peso 0.75); food -> fold (OSA d=1, peso 0.75); food -> foot (OSA d=1, peso 0.75)
 - **Respuesta: I don't know** · score_difference = 0.00 · fragmento de origen: — · EM 1, F1 1.00 · **no-respuesta correcta**
 - Contexto: 5 fragmentos, 418 tokens de 490 disponibles; entrada al modelo 102/512
-- Tiempos: búsqueda 1.0 ms · selección 1.2 ms · modelo 125 ms · total 127 ms
+- Tiempos: búsqueda 4.5 ms · selección 6.3 ms · modelo 731 ms · total 742 ms
 - Exacta (KMP): I don't know (0.00) · no-respuesta correcta · fragmentos [122, 9, 316, 305]
 
 | # | Fragmento | Documento > sección | Tokens | Relevante | Texto (inicio, términos en negritas) |
@@ -524,9 +524,9 @@ Descartados: 9 (no cabe en el presupuesto (139 tokens)); 315 (no cabe en el pres
 - Relevantes: [270] · recuperados (top-10): [327, 279, 368, 270, 256, 268, 271, 252, 369, 67] · en el contexto: [327, 279, 256, 268, 252, 369, 67] · relevantes en el contexto: ninguno
 - Fragmento de origen de la respuesta: —
 
-**falla del modelo** · Q26-T (aproximada)
-- Pregunta: Which planet has an average dnesity less than watrr? · esperada: Saturn · respuesta: I don't know (score_difference 0.00)
-- Relevantes: [413] · recuperados (top-10): [413, 463, 100, 308, 52, 399, 53, 212, 164, 99] · en el contexto: [413, 308, 52, 399] · relevantes en el contexto: [413]
+**falla del modelo** · Q10-T (aproximada)
+- Pregunta: What is the Graet Red Spot? · esperada: a giant storm bigger than Earth, giant storm · respuesta: I don't know (score_difference 0.00)
+- Relevantes: [200, 211, 212, 213, 214] · recuperados (top-10): [213, 211, 212, 174, 200, 173, 214, 175, 247, 335] · en el contexto: [213, 211, 175] · relevantes en el contexto: [213, 211]
 - Fragmento de origen de la respuesta: —
 
 **no-respuesta correcta** · Q51 (aproximada)
